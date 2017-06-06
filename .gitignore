@@ -11,3 +11,7 @@ bin/
 tmp/
 
 .DS_Store
+
+build
+**/build  target
+**/target
