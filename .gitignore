@@ -1,0 +1,13 @@
+*.class
+*.jar
+
+.settings
+.gradle
+.project
+.metadata
+.classpath
+
+bin/
+tmp/
+
+.DS_Store
