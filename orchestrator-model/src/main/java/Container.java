@@ -23,7 +23,7 @@ public class Container {
 	public boolean start(Service service) {
 		if (status == Status.ACTIVE || status == Status.NONE)
 			return false;
-		setStatus(Status.ACTIVE);
+		status = Status.ACTIVE;
 		System.out.println("Server started with" + service.getName());
 		return true;
 	}
@@ -31,7 +31,7 @@ public class Container {
 	public boolean stop(Service service) {
 		if (status == Status.STOPPED || status == Status.NONE)
 			return false;
-		setStatus(Status.STOPPED);
+		status = Status.STOPPED;
 		System.out.println("Server stopped with" + service.getName());
 		return true;
 	}
