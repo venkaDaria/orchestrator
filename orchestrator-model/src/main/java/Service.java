@@ -67,6 +67,12 @@ public class Service {
 	}
 	
 	public List<Node> getNodes() {
-		return new ArrayList<Node>();
+		List<Node> nodes = new ArrayList<>();
+		for (Container cont : containers) {
+			if (!nodes.contains(cont.getNode())) {
+				nodes.add(cont.getNode());
+			}
+		}
+		return nodes;
 	}
 }
