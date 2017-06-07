@@ -1,5 +1,5 @@
 
-public class ImageReference implements Cloneable {
+public class ImageReference {
 	private String server;
 	private String name;
 	private String digestTag;

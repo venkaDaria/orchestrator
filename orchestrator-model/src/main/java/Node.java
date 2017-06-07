@@ -28,6 +28,14 @@ public class Node {
 			throw new ContainerException("This container don't belong this node");
 		containers.add(container);
 	}
+	
+	public void removeContainer(Container container) {
+		containers.remove(container);
+	}
+	
+	public void clearContainers() {
+		containers.clear();
+	}
 
 	@Override
 	public int hashCode() {
