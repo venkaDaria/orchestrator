@@ -10,3 +10,6 @@ public class Role {
 		this.value = value;
 	}
 }
+
+// TODO: rules with role 
+// TODO: packages?
