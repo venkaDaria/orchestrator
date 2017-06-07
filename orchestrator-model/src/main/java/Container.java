@@ -3,9 +3,10 @@ public class Container {
 	private Status status;
 	private Node node;
 	
-	public Container(Node node) {
+	public Container(Node node) throws ContainerException {
 		this.node = node;
 		status = Status.NONE;
+		node.addContainer(this);
 	}
 	
 	public Status getStatus() {

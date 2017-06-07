@@ -1,5 +1,5 @@
 
-public class ImageReference {
+public class ImageReference implements Cloneable {
 	private String server;
 	private String name;
 	private String digestTag;
@@ -55,6 +55,7 @@ public class ImageReference {
 		return tag;
 	}
 	
+	@Override
 	public ImageReference clone() {
 		return new ImageReference(server, name, digestTag, tag);
 	}
