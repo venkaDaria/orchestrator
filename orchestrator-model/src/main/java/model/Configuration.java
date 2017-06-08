@@ -10,12 +10,7 @@ public class Configuration {
 		nodes = new ArrayList<>();
 		services = new ArrayList<>();
 	}
-	
-	public Configuration(final List<Node> nodes, final List<Service> services) {
-		this.nodes = new ArrayList<>(nodes);
-		this.services = new ArrayList<>(services);
-	}
-	
+
 	public List<Node> getNodes() {
 		return nodes;
 	}
@@ -30,5 +25,12 @@ public class Configuration {
 
 	public void setServices(List<Service> services) {
 		this.services = new ArrayList<>(services);
+	}
+	
+	public Configuration copy() {
+		Configuration con = new Configuration();
+		con.setNodes(nodes);
+		con.setServices(services);
+		return con;
 	}
 }
