@@ -5,14 +5,14 @@ public class Node {
 	private List<Role> roles;
 	private List<Container> containers;
 	
-	public Node() {
-		roles = new ArrayList<>();
-		containers = new ArrayList<>();
+	public Node(List<Role> roles) {
+		this.roles = new ArrayList<>(roles);
+		this.containers = new ArrayList<>();
 	}
 	
 	public Node(List<Role> roles, List<Container> containers) {
-		roles = new ArrayList<>(roles);
-		containers = new ArrayList<>(containers);
+		this(roles);
+		this.containers = new ArrayList<>(containers);
 	}
 	
 	public List<Role> getRoles() {

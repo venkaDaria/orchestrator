@@ -8,7 +8,7 @@ public class Service {
 	private List<Port> ports;
 	private List<Role> roles;
 	private List<Container> containers;
-	
+
 	public Service(String name, ImageReference image, Volume volume, List<Port> ports, List<Role> roles) {
 		this.name = name;
 		this.image = image;

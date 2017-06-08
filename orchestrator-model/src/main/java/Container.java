@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Container {
 	private Status status;
@@ -21,19 +23,23 @@ public class Container {
 		return node;
 	}
 
-	public boolean start(Service service) {
-		if (status == Status.ACTIVE || status == Status.NONE)
+	public boolean start(Service service) throws ServiceException {
+		List<Role> roles = new ArrayList<>(service.getRoles()); 
+		roles.retainAll(node.getRoles());
+		if (roles.size() == 0)
+			throw new ServiceException("Can't start this service");
+		if (status == Status.ACTIVE)
 			return false;
 		status = Status.ACTIVE;
-		System.out.println("Server started with" + service.getName());
+		System.out.println("Server started with " + service.getName());
 		return true;
 	}
 	
 	public boolean stop(Service service) {
-		if (status == Status.STOPPED || status == Status.NONE)
+		if (status == Status.STOPPED)
 			return false;
 		status = Status.STOPPED;
-		System.out.println("Server stopped with" + service.getName());
+		System.out.println("Server stopped with " + service.getName());
 		return true;
 	}
 }
