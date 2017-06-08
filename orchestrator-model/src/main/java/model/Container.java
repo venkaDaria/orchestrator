@@ -34,13 +34,13 @@ public class Container {
 		return service;
 	}
 
-	public boolean start(Service service) throws ServiceException {
+	public boolean start() throws ServiceException {
 		List<Role> roles = new ArrayList<>(service.getRoles()); 
 		roles.retainAll(node.getRoles());
 		if (roles.size() == 0) {
 			throw new ServiceException("Can't start this service");
 		}
-		if (status == Status.ACTIVE) {
+		if (status == Status.ACTIVE || status == Status.NONE) {
 			return false;
 		}
 		status = Status.ACTIVE;
@@ -48,7 +48,7 @@ public class Container {
 		return true;
 	}
 	
-	public boolean stop(Service service) {
+	public boolean stop() {
 		if (status == Status.STOPPED || status == Status.NONE)
 			return false;
 		status = Status.STOPPED;

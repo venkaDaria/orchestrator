@@ -66,14 +66,18 @@ public class Service {
 			throw new ContainerException("This container don't belong to this service");
 		} if (!containers.contains(container)) {
 			containers.add(container);
+			container.setStatus(Status.STOPPED);
 		}
 	}
 	
 	public void removeContainer(Container container) {
+		container.setStatus(Status.NONE);
 		containers.remove(container);
 	}
 	
 	public void clearContainers() {
+		for (Container cont : containers)
+			cont.setStatus(Status.NONE);
 		containers.clear();
 	}	
 

@@ -37,7 +37,7 @@ public class Demo {
 		}
 		s.printContainers();
 		try {
-			c.start(s);
+			c.start();
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 		}
@@ -45,7 +45,7 @@ public class Demo {
 
 		System.out.println("----");
 		s.printContainers();
-		c.stop(s);
+		c.stop();
 		s.printContainers();
 		System.out.println(s.getNodes());
 
