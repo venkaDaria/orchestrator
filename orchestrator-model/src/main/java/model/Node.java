@@ -32,7 +32,7 @@ public class Node {
 
 	public void addContainer(Container container) throws ContainerException {
 		if (!container.getNode().equals(this))
-			throw new ContainerException("This container don't belong this node");
+			throw new ContainerException("This container don't belong to this node");
 		containers.add(container);
 	}
 	
@@ -42,18 +42,5 @@ public class Node {
 	
 	public void clearContainers() {
 		containers.clear();
-	}
-
-	@Override
-	public int hashCode() {
-		return roles.hashCode() * 2 + containers.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null || !(obj instanceof Node))
-			return false;
-		Node node = (Node)obj;
-		return roles.equals(node.roles) && containers.equals(node.containers);
 	}
 }

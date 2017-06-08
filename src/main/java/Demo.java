@@ -22,7 +22,7 @@ public class Demo {
 			   ref = new ImageReference(el);
 			   System.out.println(ref);
 		   }
-		   
+
 		   List<Role> roles = new ArrayList<Role>();
 		   roles.add(new Role("1"));
 		   roles.add(new Role("3"));
@@ -34,5 +34,12 @@ public class Demo {
 		   Container c = new Container(n);
 		   c.start(s);	
 		   System.out.println(s.getRoles());
+		   
+		   n.clearContainers();
+		   Node n2 = new Node(roles);
+		   Container c2 = new Container(n);
+		   n.addContainer(c2);
+		   System.out.println("---");
+		   n2.addContainer(c2);
 	   }
 }
