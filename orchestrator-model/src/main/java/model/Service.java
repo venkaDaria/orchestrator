@@ -5,15 +5,15 @@ import java.util.List;
 public class Service {
 	private String name;
 	private ImageReference image;
-	private Volume volume;
+	private List<Volume> volumes;
 	private List<Port> ports;
 	private List<Role> roles;
 	private List<Container> containers;
 
-	public Service(String name, ImageReference image, Volume volume, List<Port> ports, List<Role> roles) {
+	public Service(String name, ImageReference image, List<Volume> volumes, List<Port> ports, List<Role> roles) {
 		this.name = name;
 		this.image = image;
-		this.volume = volume;
+		this.volumes = new ArrayList<>(volumes);
 		this.ports = new ArrayList<>(ports);
 		this.roles = new ArrayList<>(roles);
 		this.containers = new ArrayList<>();
@@ -35,12 +35,12 @@ public class Service {
 		this.image = image.clone();
 	}
 	
-	public Volume getVolume() {
-		return volume;
+	public List<Volume> getVolumes() {
+		return volumes;
 	}
 	
-	public void setVolume(Volume volume) {
-		this.volume = volume.clone();
+	public void setVolumes(List<Volume> volumes) {
+		this.volumes = new ArrayList<>(volumes);
 	}
 	
 	public List<Port> getPorts() {

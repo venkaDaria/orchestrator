@@ -8,7 +8,6 @@ import model.Node;
 import model.Role;
 import model.Service;
 import exception.ServiceException;
-import model.Volume;
 
 public class Demo {
 	public static void main(String[] args) {
@@ -25,7 +24,7 @@ public class Demo {
 		List<Role> roles = new ArrayList<Role>();
 		roles.add(new Role("1"));
 		roles.add(new Role("3"));
-		Service s = new Service("name", ref, new Volume("x/y/z:var/xxx"), new ArrayList<>(), roles);
+		Service s = new Service("name", ref, new ArrayList<>(), new ArrayList<>(), roles);
 		roles.clear();
 		roles.add(new Role("2"));
 		roles.add(new Role("3"));
