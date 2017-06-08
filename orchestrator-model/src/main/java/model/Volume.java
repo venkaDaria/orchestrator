@@ -1,4 +1,4 @@
-
+package model;
 public class Volume {
 	private String local;
 	private String remote;
@@ -25,7 +25,13 @@ public class Volume {
 		return remote;
 	}
 	
+	@Override
 	public Volume clone() {
 		return new Volume(local, remote);
+	}
+
+	@Override
+	public String toString() {
+		return local + ":" + remote;
 	}
 }

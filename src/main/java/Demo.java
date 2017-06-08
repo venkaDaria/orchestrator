@@ -1,6 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Container;
+import model.ContainerException;
+import model.ImageReference;
+import model.Node;
+import model.Role;
+import model.Service;
+import model.ServiceException;
+import model.Volume;
+
 public class Demo {
 	public static void main(String[] args) throws ContainerException, ServiceException {
 		   ImageReference ref = null;
@@ -17,7 +26,7 @@ public class Demo {
 		   List<Role> roles = new ArrayList<Role>();
 		   roles.add(new Role("1"));
 		   roles.add(new Role("3"));
-		   Service s = new Service("name", ref, new Volume("..:.."), new ArrayList<>(), roles);
+		   Service s = new Service("name", ref, new Volume("x/y/z:var/xxx"), new ArrayList<>(), roles);
 		   roles.clear();
 		   roles.add(new Role("2"));
 		   roles.add(new Role("3"));
