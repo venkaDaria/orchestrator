@@ -32,6 +32,14 @@ public class Container {
 	public Service getService() {
 		return service;
 	}
+	
+	public boolean setService(Service service) {
+		if (status == Status.NONE) {
+			this.service = service;
+			return true;
+		}
+		return false;
+	}
 
 	public boolean start() throws ServiceException {
 		List<Role> roles = new ArrayList<>(service.getRoles()); 
