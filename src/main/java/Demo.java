@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Container;
-import model.ContainerException;
+import exception.ContainerException;
 import model.ImageReference;
 import model.Node;
 import model.Role;
 import model.Service;
-import model.ServiceException;
+import exception.ServiceException;
 import model.Volume;
 
 public class Demo {

@@ -2,6 +2,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.ContainerException;
+import exception.ServiceException;
+
 public class Container {
 	private Status status;
 	private Node node;

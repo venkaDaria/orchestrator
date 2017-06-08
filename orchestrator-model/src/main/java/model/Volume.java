@@ -1,4 +1,5 @@
 package model;
+
 public class Volume {
 	private String local;
 	private String remote;
