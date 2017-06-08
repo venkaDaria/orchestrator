@@ -5,14 +5,7 @@ public class Container {
 	private Status status = Status.NONE;
 	private Node node;
 	private Service service;
-	
-	public Container(Node node, Service service) throws ContainerException {
-		this.node = node;
-		this.service = service;
-		node.addContainer(this);
-		service.addContainer(this);
-	}
-	
+
 	public Status getStatus() {
 		return status;
 	}
@@ -25,16 +18,25 @@ public class Container {
 		return node;
 	}
 	
+	public void setNode(Node node) throws ContainerException {
+		this.node = node;
+		node.addContainer(this);
+	}
+	
 	public Service getService() {
 		return service;
 	}
 	
-	public boolean setService(Service service) {
-		if (status == Status.NONE) {
-			this.service = service;
-			return true;
-		}
-		return false;
+	public void setService(Service service) throws ContainerException {
+		this.service = service;
+		service.addContainer(this);
+	}
+	
+	public Container copy() throws ContainerException {
+		Container cont = new Container();
+		cont.setNode(node);
+		cont.setService(service);
+		return cont;
 	}
 
 	@Override
