@@ -31,11 +31,11 @@ public class Demo {
 		Node n = new Node(roles);
 		Container c = null;
 		try {
-			c = new Container(n);
+			c = new Container(n, s);
 		} catch (ContainerException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(s.getContainers());
+		s.printContainers();
 		try {
 			c.start(s);
 		} catch (ServiceException e) {
@@ -44,26 +44,18 @@ public class Demo {
 		System.out.println(s.getRoles());
 
 		System.out.println("----");
-		System.out.println(s.getContainers());
+		s.printContainers();
 		c.stop(s);
-		System.out.println(s.getContainers());
-		try {
-			c.start(s);
-		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
-		}
-		System.out.println(s.getContainers());
+		s.printContainers();
 		System.out.println(s.getNodes());
-		c.release(s);
-		System.out.println(s.getContainers());
 
 		System.out.println("----");
 		n.clearContainers();
 		Node n2 = new Node(roles);
 		Container c2;
 		try {
-			c2 = new Container(n);
-			n.addContainer(c2);
+			c2 = new Container(n, s);
+			//n.addContainer(c2);
 			n.printContainers();
 			n2.addContainer(c2);
 		} catch (ContainerException e) {

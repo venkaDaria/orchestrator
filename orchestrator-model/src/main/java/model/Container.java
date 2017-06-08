@@ -8,11 +8,14 @@ import exception.ServiceException;
 public class Container {
 	private Status status;
 	private Node node;
+	private Service service;
 	
-	public Container(Node node) throws ContainerException {
+	public Container(Node node, Service service) throws ContainerException {
 		this.node = node;
+		this.service = service;
 		status = Status.NONE;
 		node.addContainer(this);
+		service.addContainer(this);
 	}
 	
 	public Status getStatus() {
@@ -26,6 +29,10 @@ public class Container {
 	public Node getNode() {
 		return node;
 	}
+	
+	public Service getService() {
+		return service;
+	}
 
 	public boolean start(Service service) throws ServiceException {
 		List<Role> roles = new ArrayList<>(service.getRoles()); 
@@ -35,9 +42,6 @@ public class Container {
 		}
 		if (status == Status.ACTIVE) {
 			return false;
-		}
-		if (status == Status.NONE) {
-			service.getContainers().add(this);
 		}
 		status = Status.ACTIVE;
 		System.out.println("Service started: " + service.getName());
@@ -51,19 +55,9 @@ public class Container {
 		System.out.println("Service stopped: " + service.getName());
 		return true;
 	}
-	
-	public boolean release(Service service) {
-		List<Container> containers = service.getContainers();
-		if (!containers.contains(this))
-			return false;
-		status = Status.NONE;
-		service.getContainers().remove(this);
-		System.out.println("Service released: " + service.getName());
-		return true;
-	}
 
 	@Override
 	public String toString() {
-		return "Container [status=" + status + ", node=" + node + "]";
+		return "Container [status=" + status + ", node=" + node + ", service=" + service + "]";
 	}
 }

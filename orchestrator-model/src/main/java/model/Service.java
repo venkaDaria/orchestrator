@@ -2,6 +2,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.ContainerException;
+
 public class Service {
 	private String name;
 	private ImageReference image;
@@ -59,12 +61,24 @@ public class Service {
 		this.roles = new ArrayList<>(roles);
 	}
 	
-	public List<Container> getContainers() {
-		return containers;
+	public void addContainer(Container container) throws ContainerException {
+		if (!container.getService().equals(this)) {
+			throw new ContainerException("This container don't belong to this service");
+		} if (!containers.contains(container)) {
+			containers.add(container);
+		}
 	}
 	
-	public void setContainers(List<Container> containers) {
-		this.containers = new ArrayList<>(containers);
+	public void removeContainer(Container container) {
+		containers.remove(container);
+	}
+	
+	public void clearContainers() {
+		containers.clear();
+	}	
+
+	public void printContainers() {
+		System.out.println(containers);
 	}
 	
 	public List<Node> getNodes() {
@@ -75,5 +89,11 @@ public class Service {
 			}
 		}
 		return nodes;
+	}
+
+	@Override
+	public String toString() {
+		return "Service [name=" + name + ", image=" + image + ", volumes=" + volumes + ", ports=" + ports + ", roles="
+				+ roles + "]";
 	}
 }
