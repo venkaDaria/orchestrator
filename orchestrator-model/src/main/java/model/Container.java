@@ -6,14 +6,13 @@ import exception.ContainerException;
 import exception.ServiceException;
 
 public class Container {
-	private Status status;
+	private Status status = Status.NONE;
 	private Node node;
 	private Service service;
 	
 	public Container(Node node, Service service) throws ContainerException {
 		this.node = node;
 		this.service = service;
-		status = Status.NONE;
 		node.addContainer(this);
 		service.addContainer(this);
 	}
@@ -59,5 +58,15 @@ public class Container {
 	@Override
 	public String toString() {
 		return "Container [status=" + status + ", node=" + node + ", service=" + service + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return this == obj;
 	}
 }

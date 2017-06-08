@@ -10,16 +10,8 @@ public class Node {
 	private List<Container> containers;
 	
 	public Node(List<Role> roles) {
-		this(roles, null);
-	}
-	
-	public Node(List<Role> roles, List<Container> containers) {
 		this.roles = new ArrayList<>(roles);
-		if (containers != null) {
-			this.containers = new ArrayList<>(containers);
-		} else {
-			this.containers = new ArrayList<>();
-		}
+		this.containers = new ArrayList<>();
 	}
 	
 	public List<Role> getRoles() {
@@ -53,5 +45,15 @@ public class Node {
 	@Override
 	public String toString() {
 		return "Node [roles=" + roles + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return this == obj;
 	}
 }
