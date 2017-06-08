@@ -7,7 +7,6 @@ import model.ImageReference;
 import model.Node;
 import model.Role;
 import model.Service;
-import exception.ServiceException;
 
 public class Demo {
 	public static void main(String[] args) {
@@ -29,25 +28,6 @@ public class Demo {
 		roles.add(new Role("2"));
 		roles.add(new Role("3"));
 		Node n = new Node(roles);
-		Container c = null;
-		try {
-			c = new Container(n, s);
-		} catch (ContainerException e) {
-			System.out.println(e.getMessage());
-		}
-		s.printContainers();
-		try {
-			c.start();
-		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
-		}
-		System.out.println(s.getRoles());
-
-		System.out.println("----");
-		s.printContainers();
-		c.stop();
-		s.printContainers();
-		System.out.println(s.getNodes());
 
 		System.out.println("----");
 		n.clearContainers();

@@ -55,9 +55,8 @@ public class ImageReference {
 	public String getTag() {
 		return tag;
 	}
-	
-	@Override
-	public ImageReference clone() {
+
+	public ImageReference copy() {
 		return new ImageReference(server, name, digestTag, tag);
 	}
 

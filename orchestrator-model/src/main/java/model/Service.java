@@ -34,7 +34,7 @@ public class Service {
 	}
 	
 	public void setImage(ImageReference image) {
-		this.image = image.clone();
+		this.image = image.copy();
 	}
 	
 	public List<Volume> getVolumes() {

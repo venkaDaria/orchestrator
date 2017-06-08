@@ -26,8 +26,7 @@ public class Volume {
 		return remote;
 	}
 	
-	@Override
-	public Volume clone() {
+	public Volume copy() {
 		return new Volume(local, remote);
 	}
 

@@ -25,9 +25,8 @@ public class Port {
 	public int getRemote() {
 		return remote;
 	}
-	
-	@Override
-	public Port clone() {
+
+	public Port copy() {
 		return new Port(local, remote);
 	}
 
