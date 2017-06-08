@@ -46,4 +46,9 @@ public class Container {
 		System.out.println("Server stopped with " + service.getName());
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Container [status=" + status + ", node=" + node + "]";
+	}
 }

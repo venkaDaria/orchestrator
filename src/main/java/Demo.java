@@ -39,7 +39,7 @@ public class Demo {
 		   Node n2 = new Node(roles);
 		   Container c2 = new Container(n);
 		   n.addContainer(c2);
-		   System.out.println("---");
+		   n.printContainers();
 		   n2.addContainer(c2);
 	   }
 }

@@ -31,9 +31,11 @@ public class Node {
 	}
 
 	public void addContainer(Container container) throws ContainerException {
-		if (!container.getNode().equals(this))
+		if (!container.getNode().equals(this)) {
 			throw new ContainerException("This container don't belong to this node");
-		containers.add(container);
+		} if (!containers.contains(container)) {
+			containers.add(container);
+		}
 	}
 	
 	public void removeContainer(Container container) {
@@ -42,5 +44,14 @@ public class Node {
 	
 	public void clearContainers() {
 		containers.clear();
+	}
+
+	public void printContainers() {
+		System.out.println(containers);
+	}
+
+	@Override
+	public String toString() {
+		return "Node [roles=" + roles + "]";
 	}
 }
