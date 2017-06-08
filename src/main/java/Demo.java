@@ -43,6 +43,7 @@ public class Demo {
 		   System.out.println(s.getContainers());
 		   c.start(s);
 		   System.out.println(s.getContainers());
+		   System.out.println(s.getNodes());
 		   c.release(s);
 		   System.out.println(s.getContainers());
 		   
