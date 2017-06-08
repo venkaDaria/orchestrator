@@ -3,8 +3,8 @@ package model;
 public class Role {
 	private String value;
 	
-	public Role(String value) {
-		this.value = value;
+	public Role() {
+		this.value = "";
 	}
 
 	public String getValue() {

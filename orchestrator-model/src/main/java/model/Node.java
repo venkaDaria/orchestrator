@@ -9,8 +9,8 @@ public class Node {
 	private List<Role> roles;
 	private List<Container> containers;
 	
-	public Node(List<Role> roles) {
-		this.roles = new ArrayList<>(roles);
+	public Node() {
+		this.roles = new ArrayList<>();
 		this.containers = new ArrayList<>();
 	}
 	
@@ -40,6 +40,15 @@ public class Node {
 
 	public void printContainers() {
 		System.out.println(containers);
+	}
+	
+	public Node copy() throws ContainerException {
+		Node node = new Node();
+		node.setRoles(roles);
+		for (Container cont : containers) {
+			cont.setNode(node);
+		}
+		return node;
 	}
 
 	@Override

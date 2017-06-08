@@ -12,12 +12,10 @@ public class Service {
 	private List<Role> roles;
 	private List<Container> containers;
 
-	public Service(String name, ImageReference image, List<Volume> volumes, List<Port> ports, List<Role> roles) {
-		this.name = name;
-		this.image = image;
-		this.volumes = new ArrayList<>(volumes);
-		this.ports = new ArrayList<>(ports);
-		this.roles = new ArrayList<>(roles);
+	public Service() {
+		this.volumes = new ArrayList<>();
+		this.ports = new ArrayList<>();
+		this.roles = new ArrayList<>();
 		this.containers = new ArrayList<>();
 	}
 
@@ -93,6 +91,19 @@ public class Service {
 			}
 		}
 		return nodes;
+	}
+	
+	public Service copy() throws ContainerException {
+		Service service = new Service();
+		service.setName(name);
+		service.setImage(image);
+		service.setPorts(ports);
+		service.setRoles(roles);
+		service.setVolumes(volumes);
+		for (Container cont : containers) {
+			cont.setService(service);
+		}
+		return service;
 	}
 
 	@Override
