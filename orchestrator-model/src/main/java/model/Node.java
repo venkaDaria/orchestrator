@@ -10,13 +10,16 @@ public class Node {
 	private List<Container> containers;
 	
 	public Node(List<Role> roles) {
-		this.roles = new ArrayList<>(roles);
-		this.containers = new ArrayList<>();
+		this(roles, null);
 	}
 	
 	public Node(List<Role> roles, List<Container> containers) {
-		this(roles);
-		this.containers = new ArrayList<>(containers);
+		this.roles = new ArrayList<>(roles);
+		if (containers != null) {
+			this.containers = new ArrayList<>(containers);
+		} else {
+			this.containers = new ArrayList<>();
+		}
 	}
 	
 	public List<Role> getRoles() {
