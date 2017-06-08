@@ -1,9 +1,5 @@
 package model;
-import java.util.ArrayList;
-import java.util.List;
-
 import exception.ContainerException;
-import exception.ServiceException;
 
 public class Container {
 	private Status status = Status.NONE;
@@ -39,28 +35,6 @@ public class Container {
 			return true;
 		}
 		return false;
-	}
-
-	public boolean start() throws ServiceException {
-		List<Role> roles = new ArrayList<>(service.getRoles()); 
-		roles.retainAll(node.getRoles());
-		if (roles.size() == 0) {
-			throw new ServiceException("Can't start this service");
-		}
-		if (status == Status.ACTIVE || status == Status.NONE) {
-			return false;
-		}
-		status = Status.ACTIVE;
-		System.out.println("Service started: " + service.getName());
-		return true;
-	}
-	
-	public boolean stop() {
-		if (status == Status.STOPPED || status == Status.NONE)
-			return false;
-		status = Status.STOPPED;
-		System.out.println("Service stopped: " + service.getName());
-		return true;
 	}
 
 	@Override
