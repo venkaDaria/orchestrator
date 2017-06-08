@@ -26,7 +26,13 @@ public class Port {
 		return remote;
 	}
 	
+	@Override
 	public Port clone() {
 		return new Port(local, remote);
+	}
+
+	@Override
+	public String toString() {
+		return local + ":" + remote;
 	}
 }

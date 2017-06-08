@@ -63,7 +63,13 @@ public class ImageReference {
 
 	@Override
 	public String toString() {
-		return "ImageReference [server=" + server + ", name=" + name + ", digestTag=" + digestTag + ", tag=" + tag
-				+ "]";
+		String line = server + "/" + name;
+		if (tag != null) {
+			line += ":" + tag;
+		}
+		if (digestTag != null) {
+			line += "@" + digestTag;
+		}
+		return line;
 	}
 }

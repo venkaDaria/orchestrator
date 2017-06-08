@@ -17,7 +17,7 @@ public class Role {
 
 	@Override
 	public String toString() {
-		return "Role [value=" + value + "]";
+		return "Role: " + value;
 	}
 
 	@Override
