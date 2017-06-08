@@ -7,7 +7,7 @@ public class Port {
 	public Port(String portLine) {
 		String[] ports = portLine.split(":");
 		if (ports.length != 2) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Port must be: \"int:int\"");
 		}
 		local = Integer.valueOf(ports[0]);
 		remote = Integer.valueOf(ports[1]);

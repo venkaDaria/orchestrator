@@ -40,7 +40,7 @@ public class Container {
 	}
 	
 	public boolean stop(Service service) {
-		if (status == Status.STOPPED)
+		if (status == Status.STOPPED || status == Status.NONE)
 			return false;
 		status = Status.STOPPED;
 		System.out.println("Server stopped with " + service.getName());

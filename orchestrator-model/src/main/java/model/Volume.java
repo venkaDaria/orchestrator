@@ -7,7 +7,7 @@ public class Volume {
 	public Volume(String volumeLine) {
 		String[] volumes = volumeLine.split(":");
 		if (volumes.length != 2) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Volume must be: \"string:string\"");
 		}
 		local = volumes[0];
 		remote = volumes[1];

@@ -9,7 +9,7 @@ public class ImageReference {
 	public ImageReference(String path) {	
 		String[] tokens = path.split("/");
 		if (tokens.length != 2) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("ImageReference must be: \"server/name:tag@digestTag\"");
 		}
 		server = tokens[0];
 		
@@ -18,7 +18,7 @@ public class ImageReference {
 		int at = token.indexOf('@');
 		
 		if (colon == -1) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("ImageReference must be: \"server/name:tag@digestTag\"");
 		}
 		if (colon < at)	{
 			name = token.substring(0, colon - 1);
