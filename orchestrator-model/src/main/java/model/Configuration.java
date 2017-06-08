@@ -11,9 +11,9 @@ public class Configuration {
 		services = new ArrayList<>();
 	}
 	
-	public Configuration(List<Node> nodes, List<Service> services) {
-		nodes = new ArrayList<>(nodes);
-		services = new ArrayList<>(services);
+	public Configuration(final List<Node> nodes, final List<Service> services) {
+		this.nodes = new ArrayList<>(nodes);
+		this.services = new ArrayList<>(services);
 	}
 	
 	public List<Node> getNodes() {
