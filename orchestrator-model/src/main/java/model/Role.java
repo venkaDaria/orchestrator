@@ -4,7 +4,9 @@ public class Role {
     private String value;
     
     public Role(final String value) {
-        this.value = value;
+    	if (value == null)
+    		throw new IllegalArgumentException("Value can't be null");
+    	this.value = value;
     }
 
     public String getValue() {

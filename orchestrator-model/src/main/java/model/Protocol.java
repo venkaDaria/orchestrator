@@ -4,6 +4,8 @@ public class Protocol {
     private String value;
     
     public Protocol(final String value) {
+    	if (value == null)
+    		throw new IllegalArgumentException("Value can't be null");
         this.value = value;
     }
 
