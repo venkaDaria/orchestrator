@@ -2,9 +2,13 @@ package model;
 import exception.ContainerException;
 
 public class Container {
-	private Status status = Status.NONE;
+	private Status status;
 	private Node node;
 	private Service service;
+	
+	public Container() {
+		status = Status.NONE;
+	}
 
 	public Status getStatus() {
 		return status;

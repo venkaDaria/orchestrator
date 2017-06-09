@@ -7,11 +7,11 @@ public class ContainerException extends Exception {
 		super();
 	}
 	
-	public ContainerException(String message) {
+	public ContainerException(final String message) {
 		super(message);
 	}
 	
-	public ContainerException(String message, Throwable cause) {
+	public ContainerException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
 }
