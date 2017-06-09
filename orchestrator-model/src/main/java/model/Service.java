@@ -1,21 +1,23 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Service {
     private String name;
     private ImageReference image;
-    private List<Volume> volumes;
-    private List<Port> ports;
-    private List<Role> roles;
+    private Set<Volume> volumes;
+    private Set<Port> ports;
+    private Set<Role> roles;
     private List<Container> containers;
 
     public Service() {
-        this.volumes = new ArrayList<>();
-        this.ports = new ArrayList<>();
-        this.roles = new ArrayList<>();
+        this.volumes = new HashSet<>();
+        this.ports = new HashSet<>();
+        this.roles = new HashSet<>();
         this.containers = new ArrayList<>();
     }
 
@@ -43,36 +45,36 @@ public class Service {
         return image != null;
     }
 
-    public List<Volume> getVolumes() {
+    public Set<Volume> getVolumes() {
         return volumes;
     }
 
-    public void setVolumes(final List<Volume> volumes) {
-        this.volumes = new ArrayList<>(volumes);
+    public void setVolumes(final Set<Volume> volumes) {
+        this.volumes = new HashSet<>(volumes);
     }    
     
     public boolean hasVolumes() {
         return volumes!= null && !volumes.isEmpty();
     }
 
-    public List<Port> getPorts() {
+    public Set<Port> getPorts() {
         return ports;
     }
 
-    public void setPorts(final List<Port> ports) {
-        this.ports = new ArrayList<>(ports);
+    public void setPorts(final Set<Port> ports) {
+        this.ports = new HashSet<>(ports);
     }
     
     public boolean hasPorts() {
         return ports != null && !ports.isEmpty();
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(final List<Role> roles) {
-        this.roles = new ArrayList<>(roles);
+    public void setRoles(final Set<Role> roles) {
+        this.roles = new HashSet<>(roles);
     }
     
     public boolean hasRoles() {
@@ -127,9 +129,9 @@ public class Service {
         service.setName(name);
         service.setImage(image.copy());
 
-        service.setPorts(ports.stream().map(Port::copy).collect(Collectors.toList()));
-        service.setRoles(roles.stream().map(Role::copy).collect(Collectors.toList()));
-        service.setVolumes(volumes.stream().map(Volume::copy).collect(Collectors.toList()));
+        service.setPorts(ports.stream().map(Port::copy).collect(Collectors.toSet()));
+        service.setRoles(roles.stream().map(Role::copy).collect(Collectors.toSet()));
+        service.setVolumes(volumes.stream().map(Volume::copy).collect(Collectors.toSet()));
 
         for (final Container cont : containers) {
             Container container = new Container();

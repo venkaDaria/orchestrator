@@ -8,8 +8,7 @@ public class VolumeTest {
     
     @Test
     public void testCreateVolume() {
-        String line = "var/x:zzz/x/y";
-        Volume volume = new Volume(line);
+        Volume volume = new Volume("var/x:zzz/x/y");
         assertEquals("var/x", volume.getLocal());
         assertEquals("zzz/x/y", volume.getRemote());
     }
