@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -35,5 +36,25 @@ public class ContainerTest {
 
 		assertFalse(service.getContainers().isEmpty());
 		assertTrue(service.getContainers().contains(container));
+	}
+	
+	@Test
+	public void setNodeNullTest() {
+		Node node = new Node();
+		container.setNode(node);		
+		container.setNode(null);
+		
+		assertNull(container.getNode());
+	    assertTrue(node.getContainers().isEmpty());
+	}
+
+	@Test
+	public void setServiceNullTest() {
+		Service service = new Service();
+		container.setService(service);	
+		container.setService(null);
+		
+		assertNull(container.getService());
+	    assertTrue(service.getContainers().isEmpty());
 	}
 }
