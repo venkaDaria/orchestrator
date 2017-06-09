@@ -7,7 +7,8 @@ public class Port {
 
     public Port(final String portLine) {
         String[] ports = portLine.split(":");
-        if (ports.length != 3 && ports.length != 2 || ports[0].equals("") || ports[1].equals("")) {
+        if (ports.length != 3 && ports.length != 2 || ports[0].trim().equals("") 
+        		|| ports[1].trim().equals("")) {
             throw new IllegalArgumentException(
                     "Port must be: \"protocol:int:int\" or \"protocol:int\"");
         }
