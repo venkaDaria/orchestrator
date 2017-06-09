@@ -15,27 +15,27 @@ public class NodeTest {
     @Before
     public void initialize() {
        node = new Node();
-    }	
-	
-	@Test
-	public void testAddContainer() {
-		Container container = new Container();
-		node.addContainer(container);
+    }    
+    
+    @Test
+    public void testAddContainer() {
+        Container container = new Container();
+        node.addContainer(container);
 
-		assertEquals(node, container.getNode());
-		
-		assertFalse(node.getContainers().isEmpty());
-		assertTrue(node.getContainers().contains(container));
-	}
-	
-	@Test
-	public void testRemoveContainer() {
-		Container container = new Container();
-		node.addContainer(container);
-		node.removeContainer(container);
+        assertEquals(node, container.getNode());
+        
+        assertFalse(node.getContainers().isEmpty());
+        assertTrue(node.getContainers().contains(container));
+    }
+    
+    @Test
+    public void testRemoveContainer() {
+        Container container = new Container();
+        node.addContainer(container);
+        node.removeContainer(container);
 
-		assertNull(container.getNode());
-		
-		assertTrue(node.getContainers().isEmpty());
-	}
+        assertNull(container.getNode());
+        
+        assertTrue(node.getContainers().isEmpty());
+    }
 }

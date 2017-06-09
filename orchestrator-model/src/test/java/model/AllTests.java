@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ NodeTest.class, ServiceTest.class, ContainerTest.class,
-	PortTest.class, VolumeTest.class } )
+    PortTest.class, VolumeTest.class } )
 public class AllTests {
 
 }

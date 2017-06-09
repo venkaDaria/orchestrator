@@ -10,32 +10,32 @@ import org.junit.Test;
 
 public class ServiceTest {
 
-	Service service;
+    Service service;
 
-	@Before
-	public void initialize() {
-		service = new Service();
-	}
+    @Before
+    public void initialize() {
+        service = new Service();
+    }
 
-	@Test
-	public void testAddContainer() {
-		Container container = new Container();
-		service.addContainer(container);
+    @Test
+    public void testAddContainer() {
+        Container container = new Container();
+        service.addContainer(container);
 
-		assertEquals(service, container.getService());
+        assertEquals(service, container.getService());
 
-		assertFalse(service.getContainers().isEmpty());
-		assertTrue(service.getContainers().contains(container));
-	}
+        assertFalse(service.getContainers().isEmpty());
+        assertTrue(service.getContainers().contains(container));
+    }
 
-	@Test
-	public void testRemoveContainer() {
-		Container container = new Container();
-		service.addContainer(container);
-		service.removeContainer(container);
+    @Test
+    public void testRemoveContainer() {
+        Container container = new Container();
+        service.addContainer(container);
+        service.removeContainer(container);
 
-		assertNull(container.getNode());
+        assertNull(container.getNode());
 
-		assertTrue(service.getContainers().isEmpty());
-	}
+        assertTrue(service.getContainers().isEmpty());
+    }
 }

@@ -1,5 +1,5 @@
 package model;
 
 public enum Status {
-	NONE, ACTIVE, STOPPED, FAILED
+    NONE, ACTIVE, STOPPED, FAILED
 }

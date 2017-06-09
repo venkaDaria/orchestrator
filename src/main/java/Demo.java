@@ -20,11 +20,9 @@ public class Demo {
 
 		System.out.println("----");
 		List<Role> roles = new ArrayList<Role>();
-		Role role = new Role();
-		role.setValue("1");
+		Role role = new Role("1");
 		roles.add(role);
-		role = new Role();
-		role.setValue("3");
+		role = new Role("3");
 		roles.add(role);
 		Service s = new Service();
 		s.setName("name");
@@ -32,11 +30,9 @@ public class Demo {
 		s.setRoles(roles);
 		System.out.println(s);
 		roles.clear();
-		role = new Role();
-		role.setValue("2");
+		role = new Role("2");
 		roles.add(role);
-		role = new Role();
-		role.setValue("3");
+		role = new Role("3");
 		roles.add(role);
 		Node n = new Node();
 		n.setRoles(roles);
