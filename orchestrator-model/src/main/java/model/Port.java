@@ -1,29 +1,42 @@
 package model;
 
 public class Port {
+	private Protocol protocol;
 	private Integer local;
 	private Integer remote;
-	
+
 	public Port(final String portLine) {
 		String[] ports = portLine.split(":");
-		if (ports.length != 2 && ports.length != 1) {
-			throw new IllegalArgumentException("Port must be: \"int:int\" or \"int\"");
+		if (ports.length != 3 && ports.length != 2) {
+			throw new IllegalArgumentException(
+					"Port must be: \"protocol:int:int\" or \"protocol:int\"");
 		}
-		local = Integer.valueOf(ports[0]);
-		if (ports.length == 2) {
-			remote = Integer.valueOf(ports[1]);
+		protocol = new Protocol();
+		protocol.setValue(ports[0]);
+		local = Integer.valueOf(ports[1]);
+		if (ports.length == 3) {
+			remote = Integer.valueOf(ports[2]);
 		}
 	}
-	
-	private Port(final Integer local, final Integer remote) {
+
+	private Port(final Protocol protocol, final Integer local, final Integer remote) {
+		this.protocol = protocol;
 		this.local = local;
 		this.remote = remote;
+	}
+	
+	public Protocol getProtocol() {
+		return protocol;
+	}
+
+	public boolean hasProtocol() {
+		return protocol != null;
 	}
 
 	public Integer getLocal() {
 		return local;
 	}
-	
+
 	public boolean hasLocal() {
 		return local != null;
 	}
@@ -31,17 +44,17 @@ public class Port {
 	public Integer getRemote() {
 		return remote;
 	}
-	
+
 	public boolean hasRemote() {
 		return remote != null;
 	}
-	
+
 	public Port copy() {
-		return new Port(local, remote);
+		return new Port(protocol, local, remote);
 	}
 
 	@Override
 	public String toString() {
-		return local + ":" + remote;
+		return protocol + ":" + local + ":" + remote;
 	}
 }
