@@ -17,7 +17,7 @@ public class ContainerTest {
 	}
 	
 	@Test
-	public void setNodeTest() {
+	public void testSetNode() {
 		Node node = new Node();
 		container.setNode(node);
 		
@@ -28,7 +28,7 @@ public class ContainerTest {
 	}
 
 	@Test
-	public void setServiceTest() {
+	public void testSetService() {
 		Service service = new Service();
 		container.setService(service);
 
@@ -39,7 +39,7 @@ public class ContainerTest {
 	}
 	
 	@Test
-	public void setNodeNullTest() {
+	public void testSetNode_NullValue() {
 		Node node = new Node();
 		container.setNode(node);		
 		container.setNode(null);
@@ -49,7 +49,7 @@ public class ContainerTest {
 	}
 
 	@Test
-	public void setServiceNullTest() {
+	public void testSetService_NullValue() {
 		Service service = new Service();
 		container.setService(service);	
 		container.setService(null);

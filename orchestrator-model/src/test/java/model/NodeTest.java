@@ -18,7 +18,7 @@ public class NodeTest {
     }	
 	
 	@Test
-	public void addContainerTest() {
+	public void testAddContainer() {
 		Container container = new Container();
 		node.addContainer(container);
 
@@ -29,7 +29,7 @@ public class NodeTest {
 	}
 	
 	@Test
-	public void removeContainerTest() {
+	public void testRemoveContainer() {
 		Container container = new Container();
 		node.addContainer(container);
 		node.removeContainer(container);

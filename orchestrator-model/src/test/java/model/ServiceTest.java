@@ -18,7 +18,7 @@ public class ServiceTest {
 	}
 
 	@Test
-	public void addContainerTest() {
+	public void testAddContainer() {
 		Container container = new Container();
 		service.addContainer(container);
 
@@ -29,7 +29,7 @@ public class ServiceTest {
 	}
 
 	@Test
-	public void removeContainerTest() {
+	public void testRemoveContainer() {
 		Container container = new Container();
 		service.addContainer(container);
 		service.removeContainer(container);
