@@ -4,10 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ NodeTest.class, ServiceTest.class } )
+@Suite.SuiteClasses({ NodeTest.class, ServiceTest.class, ContainerTest.class } )
 public class AllTests {
 
 }
-
-//string tokenizer
-//questions

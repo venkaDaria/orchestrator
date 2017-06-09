@@ -1,9 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,12 +22,10 @@ public class ServiceTest {
 		Container container = new Container();
 		service.addContainer(container);
 
-		Service expected = container.getService();
-		Assert.assertEquals(expected, service);
+		Service actual = container.getService();
+		assertEquals(actual, service);
 
-		List<Container> containers = new ArrayList<>();
-		containers.add(container);
-		Assert.assertEquals(containers, service.getContainers());
+		assertFalse(service.getContainers().isEmpty());
 	}
 
 	@Test
@@ -36,9 +35,8 @@ public class ServiceTest {
 		service.removeContainer(container);
 
 		Node actual = container.getNode();
-		Assert.assertEquals(null, actual);
+		assertNull(actual);
 
-		List<Container> containers = new ArrayList<>();
-		Assert.assertEquals(containers, service.getContainers());
+		assertTrue(service.getContainers().isEmpty());
 	}
 }

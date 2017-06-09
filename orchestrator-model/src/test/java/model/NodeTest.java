@@ -1,9 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,12 +22,10 @@ public class NodeTest {
 		Container container = new Container();
 		node.addContainer(container);
 		
-		Node expected = container.getNode();
-		Assert.assertEquals(expected, node);
+		Node actual = container.getNode();
+		assertEquals(actual, node);
 		
-		List<Container> containers = new ArrayList<>();
-		containers.add(container);
-		Assert.assertEquals(containers, node.getContainers());
+		assertFalse(node.getContainers().isEmpty());
 	}
 	
 	@Test
@@ -36,9 +35,8 @@ public class NodeTest {
 		node.removeContainer(container);
 		
 		Node actual = container.getNode();
-		Assert.assertEquals(null, actual);
+		assertNull(actual);
 		
-		List<Container> containers = new ArrayList<>();
-		Assert.assertEquals(containers, node.getContainers());
+		assertTrue(node.getContainers().isEmpty());
 	}
 }
