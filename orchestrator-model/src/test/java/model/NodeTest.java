@@ -21,11 +21,11 @@ public class NodeTest {
 	public void addContainerTest() {
 		Container container = new Container();
 		node.addContainer(container);
-		
-		Node actual = container.getNode();
-		assertEquals(node, actual);
+
+		assertEquals(node, container.getNode());
 		
 		assertFalse(node.getContainers().isEmpty());
+		assertTrue(node.getContainers().contains(container));
 	}
 	
 	@Test
@@ -33,9 +33,8 @@ public class NodeTest {
 		Container container = new Container();
 		node.addContainer(container);
 		node.removeContainer(container);
-		
-		Node actual = container.getNode();
-		assertNull(actual);
+
+		assertNull(container.getNode());
 		
 		assertTrue(node.getContainers().isEmpty());
 	}

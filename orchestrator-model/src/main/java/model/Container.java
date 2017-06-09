@@ -22,13 +22,12 @@ public class Container {
 	}
 	
 	public void setNode(final Node node) {
-		Node nodeOld = this.node;
-		this.node = node;
-		if (nodeOld != null) {
-			nodeOld.removeContainer(this);
+		if (this.node != null) {
+			this.node.getContainers().remove(this);
 		}
-		if (node != null) {	
-			node.addContainer(this);
+		this.node = node;
+		if (this.node != null) {	
+			this.node.getContainers().add(this);
 		}		
 	}
 	
@@ -37,13 +36,12 @@ public class Container {
 	}
 	
 	public void setService(final Service service) {
-		Service serviceOld = this.service;
-		this.service = service;
-		if (serviceOld != null) {
-			serviceOld.removeContainer(this);
+		if (this.service != null) {
+			this.service.getContainers().remove(this);
 		}
+		this.service = service;
 		if (service != null) {	
-			service.addContainer(this);
+			service.getContainers().add(this);
 		}		
 	}
 	

@@ -22,10 +22,10 @@ public class ServiceTest {
 		Container container = new Container();
 		service.addContainer(container);
 
-		Service actual = container.getService();
-		assertEquals(service, actual);
+		assertEquals(service, container.getService());
 
 		assertFalse(service.getContainers().isEmpty());
+		assertTrue(service.getContainers().contains(container));
 	}
 
 	@Test
@@ -34,8 +34,7 @@ public class ServiceTest {
 		service.addContainer(container);
 		service.removeContainer(container);
 
-		Node actual = container.getNode();
-		assertNull(actual);
+		assertNull(container.getNode());
 
 		assertTrue(service.getContainers().isEmpty());
 	}
