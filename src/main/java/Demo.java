@@ -21,20 +21,37 @@ public class Demo {
 
 		System.out.println("----");
 		List<Role> roles = new ArrayList<Role>();
-		roles.add(new Role("1"));
-		roles.add(new Role("3"));
-		Service s = new Service("name", ref, new ArrayList<>(), new ArrayList<>(), roles);
+		Role role = new Role();
+		role.setValue("1");
+		roles.add(role);
+		role = new Role();
+		role.setValue("3");
+		roles.add(role);
+		Service s = new Service();
+		s.setName("name");
+		s.setImage(ref);
+		s.setRoles(roles);
+		System.out.println(s);
 		roles.clear();
-		roles.add(new Role("2"));
-		roles.add(new Role("3"));
-		Node n = new Node(roles);
+		role = new Role();
+		role.setValue("2");
+		roles.add(role);
+		role = new Role();
+		role.setValue("3");
+		roles.add(role);
+		Node n = new Node();
+		n.setRoles(roles);
+		System.out.println(n);
 
 		System.out.println("----");
 		n.clearContainers();
-		Node n2 = new Node(roles);
+		Node n2 = new Node();
+		n2.setRoles(roles);
 		Container c2;
 		try {
-			c2 = new Container(n, s);
+			c2 = new Container();
+			c2.setNode(n);
+			c2.setService(s);
 			//n.addContainer(c2);
 			n.printContainers();
 			n2.addContainer(c2);

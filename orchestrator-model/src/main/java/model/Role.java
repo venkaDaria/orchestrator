@@ -14,6 +14,12 @@ public class Role {
 	public void setValue(String value) {
 		this.value = value;
 	}
+	
+	public Role copy() {
+		Role role = new Role();
+		role.setValue(value);
+		return role;
+	}
 
 	@Override
 	public String toString() {
