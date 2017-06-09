@@ -2,6 +2,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.ContainerException;
+
 public class Configuration {
 	private List<Node> nodes;
 	private List<Service> services;
@@ -27,9 +29,17 @@ public class Configuration {
 		this.services = new ArrayList<>(services);
 	}
 	
-	public Configuration copy() {
+	public Configuration copy() throws ContainerException {
 		Configuration con = new Configuration();
+		List<Node> nodes = new ArrayList<>();
+		for (final Node node : this.nodes) {
+			nodes.add(node.copy());
+		}
 		con.setNodes(nodes);
+		List<Service> services = new ArrayList<>();
+		for (final Service service : this.services) {
+			services.add(service.copy());
+		}
 		con.setServices(services);
 		return con;
 	}

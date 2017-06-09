@@ -79,10 +79,6 @@ public class Service {
 		containers.clear();
 	}	
 
-	public void printContainers() {
-		System.out.println(containers);
-	}
-	
 	public List<Node> getNodes() {
 		List<Node> nodes = new ArrayList<>();
 		for (Container cont : containers) {
@@ -96,12 +92,30 @@ public class Service {
 	public Service copy() throws ContainerException {
 		Service service = new Service();
 		service.setName(name);
-		service.setImage(image);
+		service.setImage(image.copy());
+		
+		List<Port> ports = new ArrayList<>();
+		for (final Port port : this.ports) {
+			ports.add(port.copy());
+		}
 		service.setPorts(ports);
-		service.setRoles(roles);
+
+		List<Volume> volumes = new ArrayList<>();
+		for (final Volume volume : this.volumes) {
+			volumes.add(volume.copy());
+		}
 		service.setVolumes(volumes);
-		for (Container cont : containers) {
-			cont.setService(service);
+		
+		List<Role> roles = new ArrayList<>();
+		for (final Role role : this.roles) {
+			roles.add(role.copy());
+		}
+		service.setRoles(roles);
+		
+		for (final Container cont : containers) {
+			Container container = new Container();
+			container.setService(service);
+			container.setNode(cont.getNode().copy());
 		}
 		return service;
 	}

@@ -38,15 +38,17 @@ public class Node {
 		containers.clear();
 	}
 
-	public void printContainers() {
-		System.out.println(containers);
-	}
-	
 	public Node copy() throws ContainerException {
 		Node node = new Node();
+		List<Role> roles = new ArrayList<>();
+		for (final Role role : this.roles) {
+			roles.add(role.copy());
+		}
 		node.setRoles(roles);
-		for (Container cont : containers) {
-			cont.setNode(node);
+		for (final Container cont : containers) {
+			Container container = new Container();
+			container.setService(cont.getService().copy());
+			container.setNode(node);
 		}
 		return node;
 	}

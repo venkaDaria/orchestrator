@@ -38,8 +38,8 @@ public class Container {
 	
 	public Container copy() throws ContainerException {
 		Container cont = new Container();
-		cont.setNode(node);
-		cont.setService(service);
+		cont.setNode(node.copy());
+		cont.setService(service.copy());
 		return cont;
 	}
 
