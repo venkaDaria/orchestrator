@@ -1,18 +1,20 @@
 package model;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Node {
-    private List<Role> roles;
+    private Set<Role> roles;
     private List<Container> containers;
     
     public Node() {
-        this.roles = new ArrayList<>();
+        this.roles = new HashSet<>();
         this.containers = new ArrayList<>();
     }
     
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }    
     
@@ -20,8 +22,8 @@ public class Node {
         return roles != null && !roles.isEmpty();
     }
     
-    public void setRoles(final List<Role> roles) {
-        this.roles = new ArrayList<>(roles);
+    public void setRoles(final Set<Role> roles) {
+        this.roles = new HashSet<>(roles);
     }
     
     public List<Container> getContainers() {
@@ -56,7 +58,7 @@ public class Node {
 
     public Node copy() {
         Node node = new Node();
-        node.setRoles(roles.stream().map(Role::copy).collect(Collectors.toList()));
+        node.setRoles(roles.stream().map(Role::copy).collect(Collectors.toSet()));
         for (final Container cont : containers) {
             Container container = new Container();
             container.setService(cont.getService().copy());

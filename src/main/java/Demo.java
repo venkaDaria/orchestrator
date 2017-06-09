@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import model.Container;
 import model.ImageReference;
@@ -19,7 +19,7 @@ public class Demo {
 		}
 
 		System.out.println("----");
-		List<Role> roles = new ArrayList<Role>();
+		Set<Role> roles = new HashSet<Role>();
 		Role role = new Role("1");
 		roles.add(role);
 		role = new Role("3");
