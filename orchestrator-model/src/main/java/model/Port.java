@@ -7,7 +7,7 @@ public class Port {
 
 	public Port(final String portLine) {
 		String[] ports = portLine.split(":");
-		if (ports.length != 3 && ports.length != 2) {
+		if (ports.length != 3 && ports.length != 2 || ports[0].equals("") || ports[1].equals("")) {
 			throw new IllegalArgumentException(
 					"Port must be: \"protocol:int:int\" or \"protocol:int\"");
 		}
@@ -55,6 +55,10 @@ public class Port {
 
 	@Override
 	public String toString() {
-		return protocol + ":" + local + ":" + remote;
+		String line = protocol.getValue() + ":" + local; 
+		if (hasRemote()) {
+			line += ":" + remote;
+		}
+		return line;
 	}
 }

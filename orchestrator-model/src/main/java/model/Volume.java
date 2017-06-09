@@ -6,7 +6,7 @@ public class Volume {
 	
 	public Volume(final String volumeLine) {
 		String[] volumes = volumeLine.split(":");
-		if (volumes.length != 2) {
+		if (volumes.length != 2 || volumes[0].equals("") || volumes[1].equals("")) {
 			throw new IllegalArgumentException("Volume must be: \"string:string\"");
 		}
 		local = volumes[0];
