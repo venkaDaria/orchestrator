@@ -20,6 +20,10 @@ public class Configuration {
 	public void setNodes(final List<Node> nodes) {
 		this.nodes = new ArrayList<>(nodes);
 	}
+	
+	public boolean hasNodes() {
+		return nodes != null && !nodes.isEmpty();
+	}
 
 	public List<Service> getServices() {
 		return services;
@@ -27,6 +31,10 @@ public class Configuration {
 
 	public void setServices(final List<Service> services) {
 		this.services = new ArrayList<>(services);
+	}
+	
+	public boolean hasServices() {
+		return services != null && !services.isEmpty();
 	}
 
 	public Configuration copy() {

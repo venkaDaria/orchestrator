@@ -17,18 +17,26 @@ public class Container {
 		this.status = status;
 	}
 	
+	public boolean hasStatus() {
+		return status != null;
+	}
+	
 	public Node getNode() {
 		return node;
 	}
 	
 	public void setNode(final Node node) {
-		if (this.node != null) {
+		if (hasNode()) {
 			this.node.getContainers().remove(this);
 		}
 		this.node = node;
-		if (this.node != null) {	
+		if (hasNode()) {	
 			this.node.getContainers().add(this);
 		}		
+	}
+	
+	public boolean hasNode() {
+		return node != null;
 	}
 	
 	public Service getService() {
@@ -36,13 +44,17 @@ public class Container {
 	}
 	
 	public void setService(final Service service) {
-		if (this.service != null) {
+		if (hasService()) {
 			this.service.getContainers().remove(this);
 		}
 		this.service = service;
-		if (service != null) {	
-			service.getContainers().add(this);
+		if (hasService()) {	
+			this.service.getContainers().add(this);
 		}		
+	}
+	
+	public boolean hasService() {
+		return service != null;
 	}
 	
 	public Container copy() {

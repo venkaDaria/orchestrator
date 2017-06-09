@@ -21,9 +21,17 @@ public class Volume {
 	public String getLocal() {
 		return local;
 	}
+	
+	public boolean hasLocal() {
+		return local != null;
+	}
 
 	public String getRemote() {
 		return remote;
+	}
+	
+	public boolean hasRemote() {
+		return remote != null;
 	}
 	
 	public Volume copy() {

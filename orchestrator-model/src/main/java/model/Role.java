@@ -15,6 +15,10 @@ public class Role {
 		this.value = value;
 	}
 	
+	public boolean hasValue() {
+		return value != null;
+	}
+	
 	public Role copy() {
 		Role role = new Role();
 		role.setValue(value);

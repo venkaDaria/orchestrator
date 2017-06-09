@@ -14,6 +14,10 @@ public class Node {
 	
 	public List<Role> getRoles() {
 		return roles;
+	}	
+	
+	public boolean hasRoles() {
+		return roles != null && !roles.isEmpty();
 	}
 	
 	public void setRoles(final List<Role> roles) {
@@ -23,9 +27,13 @@ public class Node {
 	public List<Container> getContainers() {
 		return containers;
 	}
+	
+	public boolean hasContainers() {
+		return containers != null && !containers.isEmpty();
+	}
 
 	public void addContainer(final Container container) {
-		if (container.getNode() == null || !container.getNode().equals(this)) {
+		if (!container.hasNode() || !container.getNode().equals(this)) {
 			container.setNode(this);
 		} if (!containers.contains(container)) {
 			containers.add(container);
@@ -33,7 +41,7 @@ public class Node {
 	}
 	
 	public void removeContainer(final Container container) {
-		if (container.getNode() != null && container.getNode().equals(this)) {
+		if (container.hasNode() && container.getNode().equals(this)) {
 			container.setNode(null);
 		} if (containers.contains(container)) {
 			containers.remove(container);

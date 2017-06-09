@@ -26,6 +26,10 @@ public class Service {
 	public void setName(final String name) {
 		this.name = name;
 	}
+	
+	public boolean hasName() {
+		return name != null;
+	}
 
 	public ImageReference getImage() {
 		return image;
@@ -34,6 +38,10 @@ public class Service {
 	public void setImage(final ImageReference image) {
 		this.image = image.copy();
 	}
+	
+	public boolean hasImage() {
+		return image != null;
+	}
 
 	public List<Volume> getVolumes() {
 		return volumes;
@@ -41,6 +49,10 @@ public class Service {
 
 	public void setVolumes(final List<Volume> volumes) {
 		this.volumes = new ArrayList<>(volumes);
+	}	
+	
+	public boolean hasVolumes() {
+		return volumes!= null && !volumes.isEmpty();
 	}
 
 	public List<Port> getPorts() {
@@ -50,6 +62,10 @@ public class Service {
 	public void setPorts(final List<Port> ports) {
 		this.ports = new ArrayList<>(ports);
 	}
+	
+	public boolean hasPorts() {
+		return ports != null && !ports.isEmpty();
+	}
 
 	public List<Role> getRoles() {
 		return roles;
@@ -58,13 +74,21 @@ public class Service {
 	public void setRoles(final List<Role> roles) {
 		this.roles = new ArrayList<>(roles);
 	}
+	
+	public boolean hasRoles() {
+		return roles != null && !roles.isEmpty();
+	}
 
 	public List<Container> getContainers() {
 		return containers;
 	}
+	
+	public boolean hasContainers() {
+		return containers != null && !containers.isEmpty();
+	}
 
 	public void addContainer(final Container container) {
-		if (container.getService() == null || !container.getService().equals(this)) {
+		if (!container.hasService() || !container.getService().equals(this)) {
 			container.setService(this);
 		}
 		if (!containers.contains(container)) {
@@ -74,7 +98,7 @@ public class Service {
 	}
 
 	public void removeContainer(final Container container) {
-		if (container.getService() != null && container.getService().equals(this)) {
+		if (container.hasService() && container.getService().equals(this)) {
 			container.setService(null);
 		} if (containers.contains(container)) {
 			container.setStatus(Status.NONE);

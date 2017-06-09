@@ -43,17 +43,33 @@ public class ImageReference {
 	public String getServer() {
 		return server;
 	}
+	
+	public boolean hasServer() {
+		return server != null;
+	}
 
 	public String getName() {
 		return name;
+	}
+	
+	public boolean hasName() {
+		return name != null;
 	}
 
 	public String getDigestTag() {
 		return digestTag;
 	}
 	
+	public boolean hasDigestTag() {
+		return digestTag != null;
+	}
+	
 	public String getTag() {
 		return tag;
+	}
+	
+	public boolean hasTag() {
+		return tag != null;
 	}
 
 	public ImageReference copy() {
@@ -63,10 +79,10 @@ public class ImageReference {
 	@Override
 	public String toString() {
 		String line = server + "/" + name;
-		if (tag != null) {
+		if (hasTag()) {
 			line += ":" + tag;
 		}
-		if (digestTag != null) {
+		if (hasDigestTag()) {
 			line += "@" + digestTag;
 		}
 		return line;
