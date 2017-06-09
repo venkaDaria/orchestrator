@@ -49,6 +49,7 @@ public class Container {
 		Container cont = new Container();
 		cont.setNode(node.copy());
 		cont.setService(service.copy());
+		cont.setStatus(status);
 		return cont;
 	}
 
