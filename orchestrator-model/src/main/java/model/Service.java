@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Service {
 	private String name;
@@ -102,23 +103,9 @@ public class Service {
 		service.setName(name);
 		service.setImage(image.copy());
 
-		List<Port> ports = new ArrayList<>();
-		for (final Port port : this.ports) {
-			ports.add(port.copy());
-		}
-		service.setPorts(ports);
-
-		List<Volume> volumes = new ArrayList<>();
-		for (final Volume volume : this.volumes) {
-			volumes.add(volume.copy());
-		}
-		service.setVolumes(volumes);
-
-		List<Role> roles = new ArrayList<>();
-		for (final Role role : this.roles) {
-			roles.add(role.copy());
-		}
-		service.setRoles(roles);
+		service.setPorts(ports.stream().map(Port::copy).collect(Collectors.toList()));
+		service.setRoles(roles.stream().map(Role::copy).collect(Collectors.toList()));
+		service.setVolumes(volumes.stream().map(Volume::copy).collect(Collectors.toList()));
 
 		for (final Container cont : containers) {
 			Container container = new Container();

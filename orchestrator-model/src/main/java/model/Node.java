@@ -1,6 +1,7 @@
 package model;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Node {
 	private List<Role> roles;
@@ -47,11 +48,7 @@ public class Node {
 
 	public Node copy() {
 		Node node = new Node();
-		List<Role> roles = new ArrayList<>();
-		for (final Role role : this.roles) {
-			roles.add(role.copy());
-		}
-		node.setRoles(roles);
+		node.setRoles(roles.stream().map(Role::copy).collect(Collectors.toList()));
 		for (final Container cont : containers) {
 			Container container = new Container();
 			container.setService(cont.getService().copy());
