@@ -43,4 +43,6 @@ public class Configuration {
 		con.setServices(services);
 		return con;
 	}
+	
+	// throws, links in remove recursive, test for methods
 }

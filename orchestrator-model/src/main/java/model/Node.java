@@ -30,12 +30,19 @@ public class Node {
 		}
 	}
 	
-	public void removeContainer(Container container) {
-		containers.remove(container);
+	public void removeContainer(Container container) throws ContainerException {
+		if (!container.getNode().equals(this)) {
+			throw new ContainerException("This container don't belong to this node");
+		}
+		if (containers.contains(container)) {
+			containers.remove(container);
+		}
 	}
 	
-	public void clearContainers() {
-		containers.clear();
+	public void clearContainers() throws ContainerException {
+		for (Container cont : containers) {
+			removeContainer(cont);
+		}
 	}
 
 	public Node copy() throws ContainerException {

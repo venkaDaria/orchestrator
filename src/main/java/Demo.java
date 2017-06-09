@@ -44,7 +44,6 @@ public class Demo {
 		System.out.println(n);
 
 		System.out.println("----");
-		n.clearContainers();
 		Node n2 = new Node();
 		n2.setRoles(roles);
 		Container c2;
@@ -52,8 +51,6 @@ public class Demo {
 			c2 = new Container();
 			c2.setNode(n);
 			c2.setService(s);
-			//n.addContainer(c2);
-			n.printContainers();
 			n2.addContainer(c2);
 		} catch (ContainerException e) {
 			System.out.println(e.getMessage());

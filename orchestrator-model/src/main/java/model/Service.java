@@ -68,15 +68,20 @@ public class Service {
 		}
 	}
 	
-	public void removeContainer(Container container) {
-		container.setStatus(Status.NONE);
-		containers.remove(container);
+	public void removeContainer(Container container) throws ContainerException {
+		if (!container.getService().equals(this)) {
+			throw new ContainerException("This container don't belong to this service");
+		} 
+		if (containers.contains(container)) {
+			container.setStatus(Status.NONE);
+			containers.remove(container);
+		}
 	}
 	
-	public void clearContainers() {
-		for (Container cont : containers)
-			cont.setStatus(Status.NONE);
-		containers.clear();
+	public void clearContainers() throws ContainerException {
+		for (Container cont : containers) {
+			removeContainer(cont);
+		}
 	}	
 
 	public List<Node> getNodes() {

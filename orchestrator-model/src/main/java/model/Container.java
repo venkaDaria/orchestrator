@@ -23,8 +23,13 @@ public class Container {
 	}
 	
 	public void setNode(Node node) throws ContainerException {
+		if (this.node != null) {
+			this.node.removeContainer(this);
+		}
 		this.node = node;
-		node.addContainer(this);
+		if (node != null) {	
+			node.addContainer(this);
+		}		
 	}
 	
 	public Service getService() {
@@ -32,8 +37,13 @@ public class Container {
 	}
 	
 	public void setService(Service service) throws ContainerException {
+		if (this.service != null) {
+			this.service.removeContainer(this);
+		}
 		this.service = service;
-		service.addContainer(this);
+		if (service != null) {	
+			service.addContainer(this);
+		}		
 	}
 	
 	public Container copy() throws ContainerException {
