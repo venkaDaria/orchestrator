@@ -23,7 +23,7 @@ public class ServiceTest {
 		service.addContainer(container);
 
 		Service actual = container.getService();
-		assertEquals(actual, service);
+		assertEquals(service, actual);
 
 		assertFalse(service.getContainers().isEmpty());
 	}

@@ -23,7 +23,7 @@ public class NodeTest {
 		node.addContainer(container);
 		
 		Node actual = container.getNode();
-		assertEquals(actual, node);
+		assertEquals(node, actual);
 		
 		assertFalse(node.getContainers().isEmpty());
 	}
