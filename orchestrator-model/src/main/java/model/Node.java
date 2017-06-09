@@ -58,14 +58,18 @@ public class Node {
 
     public Node copy() {
         Node node = new Node();
+        
         node.setRoles(roles.stream().map(Role::copy).collect(Collectors.toSet()));
+        
         for (final Container cont : containers) {
             Container container = new Container();
             container.setService(cont.getService().copy());
             container.setNode(node);
         }
+    
         return node;
     }
+    
 
     @Override
     public String toString() {
