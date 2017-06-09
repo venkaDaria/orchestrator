@@ -1,9 +1,6 @@
 package model;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import exception.ContainerException;
 
 public class Node {
 	private List<Role> roles;
@@ -22,30 +19,30 @@ public class Node {
 		this.roles = new ArrayList<>(roles);
 	}
 
-	public void addContainer(Container container) throws ContainerException {
+	public void addContainer(Container container) {
 		if (!container.getNode().equals(this)) {
-			throw new ContainerException("This container don't belong to this node");
+			container.setNode(this);
 		} if (!containers.contains(container)) {
 			containers.add(container);
 		}
 	}
 	
-	public void removeContainer(Container container) throws ContainerException {
+	public void removeContainer(Container container) {
 		if (!container.getNode().equals(this)) {
-			throw new ContainerException("This container don't belong to this node");
+			container.setNode(null);
 		}
 		if (containers.contains(container)) {
 			containers.remove(container);
 		}
 	}
 	
-	public void clearContainers() throws ContainerException {
+	public void clearContainers() {
 		for (Container cont : containers) {
 			removeContainer(cont);
 		}
 	}
 
-	public Node copy() throws ContainerException {
+	public Node copy() {
 		Node node = new Node();
 		List<Role> roles = new ArrayList<>();
 		for (final Role role : this.roles) {

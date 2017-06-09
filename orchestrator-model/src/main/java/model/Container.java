@@ -1,5 +1,4 @@
 package model;
-import exception.ContainerException;
 
 public class Container {
 	private Status status;
@@ -22,7 +21,7 @@ public class Container {
 		return node;
 	}
 	
-	public void setNode(Node node) throws ContainerException {
+	public void setNode(Node node) {
 		if (this.node != null) {
 			this.node.removeContainer(this);
 		}
@@ -36,7 +35,7 @@ public class Container {
 		return service;
 	}
 	
-	public void setService(Service service) throws ContainerException {
+	public void setService(Service service) {
 		if (this.service != null) {
 			this.service.removeContainer(this);
 		}
@@ -46,7 +45,7 @@ public class Container {
 		}		
 	}
 	
-	public Container copy() throws ContainerException {
+	public Container copy() {
 		Container cont = new Container();
 		cont.setNode(node.copy());
 		cont.setService(service.copy());

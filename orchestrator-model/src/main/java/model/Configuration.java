@@ -2,8 +2,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import exception.ContainerException;
-
 public class Configuration {
 	private List<Node> nodes;
 	private List<Service> services;
@@ -29,7 +27,7 @@ public class Configuration {
 		this.services = new ArrayList<>(services);
 	}
 	
-	public Configuration copy() throws ContainerException {
+	public Configuration copy() {
 		Configuration con = new Configuration();
 		List<Node> nodes = new ArrayList<>();
 		for (final Node node : this.nodes) {
@@ -43,6 +41,4 @@ public class Configuration {
 		con.setServices(services);
 		return con;
 	}
-	
-	// throws, links in remove recursive, test for methods
 }

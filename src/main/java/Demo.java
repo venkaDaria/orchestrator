@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Container;
-import exception.ContainerException;
 import model.ImageReference;
 import model.Node;
 import model.Role;
@@ -46,14 +45,12 @@ public class Demo {
 		System.out.println("----");
 		Node n2 = new Node();
 		n2.setRoles(roles);
-		Container c2;
-		try {
-			c2 = new Container();
-			c2.setNode(n);
-			c2.setService(s);
-			n2.addContainer(c2);
-		} catch (ContainerException e) {
-			System.out.println(e.getMessage());
-		}	
+		Container c2 = new Container();
+		c2.setNode(n);
+		c2.setService(s);
+		n2.addContainer(c2);
+		System.out.println(c2);
+		System.out.println(n2);
+		System.out.println(s);
 	}
 }
