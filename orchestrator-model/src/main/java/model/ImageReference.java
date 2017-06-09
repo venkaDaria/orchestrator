@@ -6,7 +6,7 @@ public class ImageReference {
 	private String digestTag;
 	private String tag;
 	
-	public ImageReference(String path) {	
+	public ImageReference(final String path) {	
 		String[] tokens = path.split("/");
 		if (tokens.length != 2) {
 			throw new IllegalArgumentException("ImageReference must be: \"server/name:tag@digestTag\"");
@@ -33,7 +33,7 @@ public class ImageReference {
 		}
 	}
 
-	private ImageReference(String server, String name, String digestTag, String tag) {
+	private ImageReference(final String server, final String name, final String digestTag, final String tag) {
 		this.server = server;
 		this.name = name;
 		this.digestTag = digestTag;

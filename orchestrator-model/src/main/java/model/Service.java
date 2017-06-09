@@ -23,7 +23,7 @@ public class Service {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -31,7 +31,7 @@ public class Service {
 		return image;
 	}
 
-	public void setImage(ImageReference image) {
+	public void setImage(final ImageReference image) {
 		this.image = image.copy();
 	}
 
@@ -39,7 +39,7 @@ public class Service {
 		return volumes;
 	}
 
-	public void setVolumes(List<Volume> volumes) {
+	public void setVolumes(final List<Volume> volumes) {
 		this.volumes = new ArrayList<>(volumes);
 	}
 
@@ -47,7 +47,7 @@ public class Service {
 		return ports;
 	}
 
-	public void setPorts(List<Port> ports) {
+	public void setPorts(final List<Port> ports) {
 		this.ports = new ArrayList<>(ports);
 	}
 
@@ -55,7 +55,7 @@ public class Service {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(final List<Role> roles) {
 		this.roles = new ArrayList<>(roles);
 	}
 
@@ -63,7 +63,7 @@ public class Service {
 		return containers;
 	}
 
-	public void addContainer(Container container) {
+	public void addContainer(final Container container) {
 		if (container.getService() == null || !container.getService().equals(this)) {
 			container.setService(this);
 		}
@@ -73,7 +73,7 @@ public class Service {
 		}
 	}
 
-	public void removeContainer(Container container) {
+	public void removeContainer(final Container container) {
 		if (container.getService() != null && container.getService().equals(this)) {
 			container.setService(null);
 		} if (containers.contains(container)) {
@@ -127,7 +127,7 @@ public class Service {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return this == obj;
 	}
 }

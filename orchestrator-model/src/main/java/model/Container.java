@@ -13,7 +13,7 @@ public class Container {
 		return status;
 	}
 	
-	public void setStatus(Status status) {
+	public void setStatus(final Status status) {
 		this.status = status;
 	}
 	
@@ -21,7 +21,7 @@ public class Container {
 		return node;
 	}
 	
-	public void setNode(Node node) {
+	public void setNode(final Node node) {
 		Node nodeOld = this.node;
 		this.node = node;
 		if (nodeOld != null) {
@@ -36,7 +36,7 @@ public class Container {
 		return service;
 	}
 	
-	public void setService(Service service) {
+	public void setService(final Service service) {
 		Service serviceOld = this.service;
 		this.service = service;
 		if (serviceOld != null) {
@@ -66,7 +66,7 @@ public class Container {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return this == obj;
 	}
 }

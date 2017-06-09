@@ -16,7 +16,7 @@ public class Node {
 		return roles;
 	}
 	
-	public void setRoles(List<Role> roles) {
+	public void setRoles(final List<Role> roles) {
 		this.roles = new ArrayList<>(roles);
 	}
 	
@@ -24,7 +24,7 @@ public class Node {
 		return containers;
 	}
 
-	public void addContainer(Container container) {
+	public void addContainer(final Container container) {
 		if (container.getNode() == null || !container.getNode().equals(this)) {
 			container.setNode(this);
 		} if (!containers.contains(container)) {
@@ -32,7 +32,7 @@ public class Node {
 		}
 	}
 	
-	public void removeContainer(Container container) {
+	public void removeContainer(final Container container) {
 		if (container.getNode() != null && container.getNode().equals(this)) {
 			container.setNode(null);
 		} if (containers.contains(container)) {
@@ -68,7 +68,7 @@ public class Node {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return this == obj;
 	}
 }

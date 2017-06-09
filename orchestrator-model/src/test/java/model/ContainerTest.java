@@ -24,7 +24,7 @@ public class ContainerTest {
 
 		assertFalse(node.getContainers().isEmpty());
 	}
-	
+
 	@Test
 	public void setServiceTest() {
 		Service service = new Service();

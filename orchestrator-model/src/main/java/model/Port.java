@@ -4,7 +4,7 @@ public class Port {
 	private int local;
 	private int remote;
 	
-	public Port(String portLine) {
+	public Port(final String portLine) {
 		String[] ports = portLine.split(":");
 		if (ports.length != 2) {
 			throw new IllegalArgumentException("Port must be: \"int:int\"");
@@ -13,7 +13,7 @@ public class Port {
 		remote = Integer.valueOf(ports[1]);
 	}
 	
-	private Port(int local, int remote) {
+	private Port(final int local, final int remote) {
 		this.local = local;
 		this.remote = remote;
 	}

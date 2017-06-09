@@ -11,7 +11,7 @@ public class Role {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(final String value) {
 		this.value = value;
 	}
 	
@@ -32,7 +32,7 @@ public class Role {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (obj == null || !(obj instanceof Role))
 			return false;
 		Role role = (Role)obj;

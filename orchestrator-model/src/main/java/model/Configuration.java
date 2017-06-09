@@ -17,7 +17,7 @@ public class Configuration {
 		return nodes;
 	}
 
-	public void setNodes(List<Node> nodes) {
+	public void setNodes(final List<Node> nodes) {
 		this.nodes = new ArrayList<>(nodes);
 	}
 
@@ -25,7 +25,7 @@ public class Configuration {
 		return services;
 	}
 
-	public void setServices(List<Service> services) {
+	public void setServices(final List<Service> services) {
 		this.services = new ArrayList<>(services);
 	}
 

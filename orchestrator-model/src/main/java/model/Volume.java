@@ -4,7 +4,7 @@ public class Volume {
 	private String local;
 	private String remote;
 	
-	public Volume(String volumeLine) {
+	public Volume(final String volumeLine) {
 		String[] volumes = volumeLine.split(":");
 		if (volumes.length != 2) {
 			throw new IllegalArgumentException("Volume must be: \"string:string\"");
@@ -13,7 +13,7 @@ public class Volume {
 		remote = volumes[1];
 	}
 	
-	private Volume(String local, String remote) {
+	private Volume(final String local, final String remote) {
 		this.local = local;
 		this.remote = remote;
 	}
