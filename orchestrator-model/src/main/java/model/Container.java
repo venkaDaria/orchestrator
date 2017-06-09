@@ -22,10 +22,11 @@ public class Container {
 	}
 	
 	public void setNode(Node node) {
-		if (this.node != null) {
-			this.node.removeContainer(this);
-		}
+		Node nodeOld = this.node;
 		this.node = node;
+		if (nodeOld != null) {
+			nodeOld.removeContainer(this);
+		}
 		if (node != null) {	
 			node.addContainer(this);
 		}		
@@ -36,10 +37,11 @@ public class Container {
 	}
 	
 	public void setService(Service service) {
-		if (this.service != null) {
-			this.service.removeContainer(this);
-		}
+		Service serviceOld = this.service;
 		this.service = service;
+		if (serviceOld != null) {
+			serviceOld.removeContainer(this);
+		}
 		if (service != null) {	
 			service.addContainer(this);
 		}		

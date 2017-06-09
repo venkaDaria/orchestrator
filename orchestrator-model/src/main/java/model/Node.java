@@ -18,9 +18,13 @@ public class Node {
 	public void setRoles(List<Role> roles) {
 		this.roles = new ArrayList<>(roles);
 	}
+	
+	public List<Container> getContainers() {
+		return containers;
+	}
 
 	public void addContainer(Container container) {
-		if (!container.getNode().equals(this)) {
+		if (container.getNode() == null || !container.getNode().equals(this)) {
 			container.setNode(this);
 		} if (!containers.contains(container)) {
 			containers.add(container);
@@ -28,10 +32,9 @@ public class Node {
 	}
 	
 	public void removeContainer(Container container) {
-		if (!container.getNode().equals(this)) {
+		if (container.getNode() != null && container.getNode().equals(this)) {
 			container.setNode(null);
-		}
-		if (containers.contains(container)) {
+		} if (containers.contains(container)) {
 			containers.remove(container);
 		}
 	}
