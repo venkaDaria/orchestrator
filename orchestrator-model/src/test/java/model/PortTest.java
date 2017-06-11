@@ -23,6 +23,7 @@ public class PortTest {
         assertNull(port.getRemote());
     }
     
+    @Test
     public void testCreatePort_NullProtocol() {
     	Port port = new Port("8080");
         assertEquals("tcp", port.getProtocol().getValue());

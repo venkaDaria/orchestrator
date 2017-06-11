@@ -39,8 +39,14 @@ public class Node {
         }
     }
     
+    public void addContainers(Container[] collection) {
+        for (Container cont : collection) {
+        	addContainer(cont);
+        }
+    }
+    
     public void addContainers(Iterable<Container> collection) {
-        for (Container cont : containers) {
+        for (Container cont : collection) {
         	addContainer(cont);
         }
     }
@@ -51,8 +57,14 @@ public class Node {
         } 
     }
     
+    public void removeContainers(Container[] collection) {
+        for (Container cont : collection) {
+        	removeContainer(cont);
+        }
+    }
+    
     public void removeContainers(Iterable<Container> collection) {
-        for (Container cont : containers) {
+        for (Container cont : collection) {
         	removeContainer(cont);
         }
     }

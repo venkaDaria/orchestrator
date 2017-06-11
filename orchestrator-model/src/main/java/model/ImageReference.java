@@ -12,14 +12,15 @@ public final class ImageReference {
 	private final String tag;
 
 	public ImageReference(final String path) {
-		Pattern p = Pattern.compile("^(.+?)\\/(.+?)(:(.+?))?(@(.+))?$");  
-        Matcher m = p.matcher(path);  
-        m.matches();
-		
-        if (m.groupCount() < 4 || m.group(1) == null || m.group(2) == null) {
-        	throw new ImageReferenceException("ImageReference must be: \"server/name:tag@digestTag\"");
-        }
-        	
+		Pattern p = Pattern.compile("^(.+?)\\/(.+?)(:(.+?))?(@(.+))?$");
+		Matcher m = p.matcher(path);
+		boolean isMatch = m.matches();
+
+		if (!isMatch || m.groupCount() < 4 || m.group(1) == null || m.group(2) == null
+				|| m.group(4) == null && m.group(6) == null) {
+			throw new ImageReferenceException("ImageReference must be: \"server/name:tag@digestTag\"");
+		}
+
 		server = m.group(1);
 		name = m.group(2);
 		tag = m.group(4);
@@ -29,11 +30,11 @@ public final class ImageReference {
 	public String getServer() {
 		return server;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public String getDigestTag() {
 		return digestTag;
 	}

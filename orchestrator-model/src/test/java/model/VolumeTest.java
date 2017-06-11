@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import exception.VolumeException;
+
 public class VolumeTest {
     
     @Test
@@ -13,18 +15,18 @@ public class VolumeTest {
         assertEquals("zzz/x/y", volume.getRemote());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = VolumeException.class)
     public void testCreateVolume_NullRemote() {
         new Volume("var/x");
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = VolumeException.class)
     public void testCreateVolume_NullRemoteWithColon() {
         new Volume("var/x:");
     }
         
-    @Test(expected = IllegalArgumentException.class)
-    public void testCreatePort_NotVolume() {
-        new Port("var:ngfhgfh:var/x");
+    @Test(expected = VolumeException.class)
+    public void testCreateVolume_NotVolume() {
+        new Volume("var:ngfhgfh:var/x");
     }
 }
