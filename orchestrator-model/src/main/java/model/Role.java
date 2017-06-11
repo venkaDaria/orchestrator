@@ -1,24 +1,18 @@
 package model;
 
-public class Role {
-    private String value;
+import exception.RoleException;
+
+public final class Role {
+    private final String value;
     
     public Role(final String value) {
-    	if (value == null)
-    		throw new IllegalArgumentException("Value can't be null");
+    	if (value == null || value.trim().equals(""))
+    		throw new RoleException("Value can't be null or empty");
     	this.value = value;
     }
 
     public String getValue() {
         return value;
-    }
-    
-    public boolean hasValue() {
-        return value != null;
-    }
-    
-    public Role copy() {
-        return new Role(value);
     }
 
     @Override
@@ -36,6 +30,6 @@ public class Role {
         if (obj == null || !(obj instanceof Role))
             return false;
         Role role = (Role)obj;
-        return value.equals(role.value);
+        return value.equals(role.getValue());
     }
 }

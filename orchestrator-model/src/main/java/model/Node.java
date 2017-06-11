@@ -59,7 +59,7 @@ public class Node {
     public Node copy() {
         Node node = new Node();
         
-        node.setRoles(roles.stream().map(Role::copy).collect(Collectors.toSet()));
+        node.setRoles(roles);
         
         for (final Container cont : containers) {
             Container container = new Container();

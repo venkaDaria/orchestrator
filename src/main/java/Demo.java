@@ -1,5 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import model.Container;
 import model.ImageReference;
@@ -9,6 +11,11 @@ import model.Service;
 
 public class Demo {
 	public static void main(String[] args) {
+		Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");  
+	    Matcher m = p.matcher("8080:8000/tcp");  
+	    m.matches();
+	    System.out.println(m.group());		
+		
 		ImageReference ref = null;
 		String[] arr = new String[] { "docker-registry.cloud.sophos/haproxy:dev",
 				"docker-registry.cloud.sophos/haproxy@sha256:123abc",
@@ -50,3 +57,9 @@ public class Demo {
 		System.out.println(s);
 	}
 }
+
+// TODO: tcp -> default
+// TODO: свои исключения для неизм объектов, 
+	//для невалидных данных - как анчекед иларгс, чекед для бизнеса
+
+

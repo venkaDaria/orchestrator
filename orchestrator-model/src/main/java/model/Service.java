@@ -38,7 +38,7 @@ public class Service {
     }
 
     public void setImage(final ImageReference image) {
-        this.image = image.copy();
+        this.image = image;
     }
     
     public boolean hasImage() {
@@ -127,11 +127,11 @@ public class Service {
     public Service copy() {
         Service service = new Service();
         service.setName(name);
-        service.setImage(image.copy());
+        service.setImage(image);
 
-        service.setPorts(ports.stream().map(Port::copy).collect(Collectors.toSet()));
-        service.setRoles(roles.stream().map(Role::copy).collect(Collectors.toSet()));
-        service.setVolumes(volumes.stream().map(Volume::copy).collect(Collectors.toSet()));
+        service.setPorts(ports);
+        service.setRoles(roles);
+        service.setVolumes(volumes);
 
         for (final Container cont : containers) {
             Container container = new Container();

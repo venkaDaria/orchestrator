@@ -1,64 +1,59 @@
 package model;
 
-public class Port {
-    private Protocol protocol;
-    private Integer local;
-    private Integer remote;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-    public Port(final String portLine) {
-        String[] ports = portLine.split(":");
-        if (ports.length != 3 && ports.length != 2 || ports[0].trim().equals("") 
-        		|| ports[1].trim().equals("")) {
-            throw new IllegalArgumentException(
-                    "Port must be: \"protocol:int:int\" or \"protocol:int\"");
-        }
-        protocol = new Protocol(ports[0]);
-        local = Integer.valueOf(ports[1]);
-        if (ports.length == 3) {
-            remote = Integer.valueOf(ports[2]);
-        }
-    }
+public final class Port {
+	private final Protocol protocol;
+	private final Integer local;
+	private final Integer remote;
 
-    private Port(final Protocol protocol, final Integer local, final Integer remote) {
-        this.protocol = protocol;
-        this.local = local;
-        this.remote = remote;
-    }
-    
-    public Protocol getProtocol() {
-        return protocol;
-    }
+	public Port(final String portLine) {
+        Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");  
+        Matcher m = p.matcher(portLine);  
+        m.matches();
+        
+        protocol = new Protocol(m.group(5) != null ? m.group(5) : "tcp");
+		local = Integer.valueOf(m.group(1));		
+		remote = (m.group(3) != null) ? Integer.valueOf(m.group(3)) : null;
+	}
 
-    public boolean hasProtocol() {
-        return protocol != null;
-    }
+	public Protocol getProtocol() {
+		return protocol;
+	}
 
-    public Integer getLocal() {
-        return local;
-    }
+	public Integer getLocal() {
+		return local;
+	}
 
-    public boolean hasLocal() {
-        return local != null;
-    }
+	public Integer getRemote() {
+		return remote;
+	}
 
-    public Integer getRemote() {
-        return remote;
-    }
+	public boolean hasRemote() {
+		return remote != null;
+	}
 
-    public boolean hasRemote() {
-        return remote != null;
-    }
+	@Override
+	public int hashCode() {
+		return local.hashCode() * 2 + remote.hashCode() + protocol.hashCode();
+	}
 
-    public Port copy() {
-        return new Port(protocol, local, remote);
-    }
+	@Override
+	public boolean equals(final Object obj) {
+		if (obj == null || !(obj instanceof Volume))
+			return false;
+		Port port = (Port) obj;
+		return local.equals(port.getLocal()) && remote.equals(port.getRemote()) && protocol.equals(port.getProtocol());
+	}
 
-    @Override
-    public String toString() {
-        String line = protocol.getValue() + ":" + local; 
-        if (hasRemote()) {
-            line += ":" + remote;
-        }
-        return line;
-    }
+	@Override
+	public String toString() {
+		String line = local.toString();
+		if (hasRemote()) {
+			line += ":" + remote;
+		}
+		line += "/" + protocol.getValue();
+		return line;
+	}
 }

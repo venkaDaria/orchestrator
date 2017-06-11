@@ -1,92 +1,86 @@
 package model;
 
-public class ImageReference {
-    private String server;
-    private String name;
-    private String digestTag;
-    private String tag;
-    
-    public ImageReference(final String path) {    
-        String[] tokens = path.split("/");
-        if (tokens.length != 2) {
-            throw new IllegalArgumentException(
-                    "ImageReference must be: \"server/name:tag@digestTag\"");
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import exception.ImageReferenceException;
+
+public final class ImageReference {
+	private final String server;
+	private final String name;
+	private final String digestTag;
+	private final String tag;
+
+	public ImageReference(final String path) {
+		Pattern p = Pattern.compile("^(.+?)\\/(.+?)(:(.+?))?(@(.+))?$");  
+        Matcher m = p.matcher(path);  
+        m.matches();
+		
+        if (m.groupCount() < 4 || m.group(1) == null || m.group(2) == null) {
+        	throw new ImageReferenceException("ImageReference must be: \"server/name:tag@digestTag\"");
         }
-        server = tokens[0];
-        
-        String token = tokens[1];
-        int colon = token.indexOf(':');
-        int at = token.indexOf('@');
-        
-        if (colon == -1) {
-            throw new IllegalArgumentException(
-                    "ImageReference must be: \"server/name:tag@digestTag\"");
-        }
-        if (colon < at)    {
-            name = token.substring(0, colon);
-            tag = token.substring(colon + 1, at);
-            digestTag = token.substring(at + 1);            
-        } else if (at != -1){
-            name = token.substring(0, at);
-            digestTag = token.substring(at + 1);
-        } else {
-            name = token.substring(0, colon);
-            tag = token.substring(colon + 1);
-        }    
-    }
+        	
+		server = m.group(1);
+		name = m.group(2);
+		tag = m.group(4);
+		digestTag = m.group(6);
+	}
 
-    private ImageReference(final String server, final String name, final String digestTag, final String tag) {
-        this.server = server;
-        this.name = name;
-        this.digestTag = digestTag;
-        this.tag = tag;
-    }
-    
-    public String getServer() {
-        return server;
-    }
-    
-    public boolean hasServer() {
-        return server != null;
-    }
+	public String getServer() {
+		return server;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getDigestTag() {
+		return digestTag;
+	}
 
-    public String getName() {
-        return name;
-    }
-    
-    public boolean hasName() {
-        return name != null;
-    }
+	public boolean hasDigestTag() {
+		return digestTag != null;
+	}
 
-    public String getDigestTag() {
-        return digestTag;
-    }
-    
-    public boolean hasDigestTag() {
-        return digestTag != null;
-    }
-    
-    public String getTag() {
-        return tag;
-    }
-    
-    public boolean hasTag() {
-        return tag != null;
-    }
+	public String getTag() {
+		return tag;
+	}
 
-    public ImageReference copy() {
-        return new ImageReference(server, name, digestTag, tag);
-    }
+	public boolean hasTag() {
+		return tag != null;
+	}
 
-    @Override
-    public String toString() {
-        String line = server + "/" + name;
-        if (hasTag()) {
-            line += ":" + tag;
-        }
-        if (hasDigestTag()) {
-            line += "@" + digestTag;
-        }
-        return line;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + digestTag.hashCode();
+		result = prime * result + name.hashCode();
+		result = prime * result + server.hashCode();
+		result = prime * result + tag.hashCode();
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		ImageReference other = (ImageReference) obj;
+		return name.equals(other.name) && server.equals(other.server) && tag.equals(other.tag)
+				&& digestTag.equals(other.digestTag);
+	}
+
+	@Override
+	public String toString() {
+		String line = server + "/" + name;
+		if (hasTag()) {
+			line += ":" + tag;
+		}
+		if (hasDigestTag()) {
+			line += "@" + digestTag;
+		}
+		return line;
+	}
 }
