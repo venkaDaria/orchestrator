@@ -27,9 +27,9 @@ public final class Protocol {
 
     @Override
     public boolean equals(final Object obj) {
-        if (obj == null || !(obj instanceof Protocol))
+        if (obj == null || getClass() != obj.getClass())
             return false;
         Protocol protocol = (Protocol)obj;
-        return value.equals(protocol.getValue());
+        return value.equals(protocol.value);
     }
 }

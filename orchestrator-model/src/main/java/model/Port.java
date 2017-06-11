@@ -9,12 +9,12 @@ public final class Port {
 	private final Integer remote;
 
 	public Port(final String portLine) {
-        Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");  
-        Matcher m = p.matcher(portLine);  
-        m.matches();
-        
-        protocol = new Protocol(m.group(5) != null ? m.group(5) : "tcp");
-		local = Integer.valueOf(m.group(1));		
+		Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");
+		Matcher m = p.matcher(portLine);
+		m.matches();
+
+		protocol = new Protocol(m.group(5) != null ? m.group(5) : "tcp");
+		local = Integer.valueOf(m.group(1));
 		remote = (m.group(3) != null) ? Integer.valueOf(m.group(3)) : null;
 	}
 
@@ -36,15 +36,31 @@ public final class Port {
 
 	@Override
 	public int hashCode() {
-		return local.hashCode() * 2 + remote.hashCode() + protocol.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + local.hashCode();
+		result = prime * result + protocol.hashCode();
+		result = prime * result + ((remote == null) ? 0 : remote.hashCode());
+		return result;
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
-		if (obj == null || !(obj instanceof Volume))
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
 			return false;
+
 		Port port = (Port) obj;
-		return local.equals(port.getLocal()) && remote.equals(port.getRemote()) && protocol.equals(port.getProtocol());
+		boolean isEqual = local.equals(port.getLocal()) && protocol.equals(port.getProtocol());
+		if (remote == null) {
+			if (remote != null) {
+				return false;
+			} else {
+				return isEqual;
+			}
+		}
+		return isEqual && remote.equals(port.getRemote());
 	}
 
 	@Override

@@ -27,17 +27,23 @@ public final class Volume {
 	public String toString() {
 		return local + ":" + remote;
 	}
-
+	
 	@Override
 	public int hashCode() {
-		return local.hashCode() * 2 + remote.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + local.hashCode();
+		result = prime * result + remote.hashCode();
+		return result;
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
-		if (obj == null || !(obj instanceof Volume))
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
 			return false;
-		Volume volume = (Volume) obj;
-		return local.equals(volume.getLocal()) && remote.equals(volume.getRemote());
+		Volume other = (Volume) obj;
+		return local.equals(other.local) && remote.equals(other.remote);
 	}
 }

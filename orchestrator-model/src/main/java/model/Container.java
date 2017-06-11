@@ -70,13 +70,13 @@ public class Container {
         return "Container [status=" + status + ", node=" + node + ", service=" + service + "]";
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 
-    @Override
-    public boolean equals(final Object obj) {
-        return this == obj;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		return this == obj;		
+	}
 }
