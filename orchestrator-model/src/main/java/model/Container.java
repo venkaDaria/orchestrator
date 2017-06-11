@@ -2,8 +2,8 @@ package model;
 
 public class Container {
     private Status status;
-    private Node node;
-    private Service service;
+    private transient Node node;
+    private transient Service service;
     
     public Container() {
         status = Status.NONE;

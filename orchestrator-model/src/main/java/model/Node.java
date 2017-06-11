@@ -1,16 +1,15 @@
 package model;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Node {
     private Set<Role> roles;
     private List<Container> containers;
     
     public Node() {
-        this.roles = new HashSet<>();
         this.containers = new ArrayList<>();
     }
     
@@ -22,7 +21,7 @@ public class Node {
         return roles != null && !roles.isEmpty();
     }
     
-    public void setRoles(final Set<Role> roles) {
+    public void setRoles(final Collection<Role> roles) {
         this.roles = new HashSet<>(roles);
     }
     
@@ -35,18 +34,26 @@ public class Node {
     }
 
     public void addContainer(final Container container) {
-        if (!container.hasNode() || !container.getNode().equals(this)) {
+    	if (container != null && (!container.hasNode() || !container.getNode().equals(this))) {
             container.setNode(this);
-        } if (!containers.contains(container)) {
-            containers.add(container);
+        }
+    }
+    
+    public void addContainers(Iterable<Container> collection) {
+        for (Container cont : containers) {
+        	addContainer(cont);
         }
     }
     
     public void removeContainer(final Container container) {
-        if (container.hasNode() && container.getNode().equals(this)) {
+    	if (container != null && container.hasNode() && container.getNode().equals(this)) {
             container.setNode(null);
-        } if (containers.contains(container)) {
-            containers.remove(container);
+        } 
+    }
+    
+    public void removeContainers(Iterable<Container> collection) {
+        for (Container cont : containers) {
+        	removeContainer(cont);
         }
     }
     
@@ -70,7 +77,6 @@ public class Node {
         return node;
     }
     
-
     @Override
     public String toString() {
         return "Node [roles=" + roles + "]";

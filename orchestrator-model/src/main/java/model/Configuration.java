@@ -8,11 +8,6 @@ public class Configuration {
     private List<Node> nodes;
     private List<Service> services;
 
-    public Configuration() {
-        nodes = new ArrayList<>();
-        services = new ArrayList<>();
-    }
-
     public List<Node> getNodes() {
         return nodes;
     }

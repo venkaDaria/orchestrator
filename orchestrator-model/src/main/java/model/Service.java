@@ -1,159 +1,163 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Service {
-    private String name;
-    private ImageReference image;
-    private Set<Volume> volumes;
-    private Set<Port> ports;
-    private Set<Role> roles;
-    private List<Container> containers;
+	private String name;
+	private ImageReference image;
+	private Set<Volume> volumes;
+	private Set<Port> ports;
+	private Set<Role> roles;
+	private List<Container> containers;
 
-    public Service() {
-        this.volumes = new HashSet<>();
-        this.ports = new HashSet<>();
-        this.roles = new HashSet<>();
-        this.containers = new ArrayList<>();
-    }
+	public Service() {
+		this.containers = new ArrayList<>();
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(final String name) {
-        this.name = name;
-    }
-    
-    public boolean hasName() {
-        return name != null;
-    }
+	public void setName(final String name) {
+		this.name = name;
+	}
 
-    public ImageReference getImage() {
-        return image;
-    }
+	public boolean hasName() {
+		return name != null;
+	}
 
-    public void setImage(final ImageReference image) {
-        this.image = image;
-    }
-    
-    public boolean hasImage() {
-        return image != null;
-    }
+	public ImageReference getImage() {
+		return image;
+	}
 
-    public Set<Volume> getVolumes() {
-        return volumes;
-    }
+	public void setImage(final ImageReference image) {
+		this.image = image;
+	}
 
-    public void setVolumes(final Set<Volume> volumes) {
-        this.volumes = new HashSet<>(volumes);
-    }    
-    
-    public boolean hasVolumes() {
-        return volumes!= null && !volumes.isEmpty();
-    }
+	public boolean hasImage() {
+		return image != null;
+	}
 
-    public Set<Port> getPorts() {
-        return ports;
-    }
+	public Set<Volume> getVolumes() {
+		return volumes;
+	}
 
-    public void setPorts(final Set<Port> ports) {
-        this.ports = new HashSet<>(ports);
-    }
-    
-    public boolean hasPorts() {
-        return ports != null && !ports.isEmpty();
-    }
+	public void setVolumes(final Collection<Volume> volumes) {
+		this.volumes = new HashSet<>(volumes);
+	}
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+	public boolean hasVolumes() {
+		return volumes != null && !volumes.isEmpty();
+	}
 
-    public void setRoles(final Set<Role> roles) {
-        this.roles = new HashSet<>(roles);
-    }
-    
-    public boolean hasRoles() {
-        return roles != null && !roles.isEmpty();
-    }
+	public Set<Port> getPorts() {
+		return ports;
+	}
 
-    public List<Container> getContainers() {
-        return containers;
-    }
-    
-    public boolean hasContainers() {
-        return containers != null && !containers.isEmpty();
-    }
+	public void setPorts(final Collection<Port> ports) {
+		this.ports = new HashSet<>(ports);
+	}
 
-    public void addContainer(final Container container) {
-        if (!container.hasService() || !container.getService().equals(this)) {
-            container.setService(this);
-        }
-        if (!containers.contains(container)) {
-            container.setStatus(Status.STOPPED);
-            containers.add(container);            
-        }
-    }
+	public boolean hasPorts() {
+		return ports != null && !ports.isEmpty();
+	}
 
-    public void removeContainer(final Container container) {
-        if (container.hasService() && container.getService().equals(this)) {
-            container.setService(null);
-        } if (containers.contains(container)) {
-            container.setStatus(Status.NONE);
-            containers.remove(container);
-        }
-    }
+	public Set<Role> getRoles() {
+		return roles;
+	}
 
-    public void clearContainers() {
-        for (Container cont : containers) {
-            removeContainer(cont);
-        }
-    }
+	public void setRoles(final Collection<Role> roles) {
+		this.roles = new HashSet<>(roles);
+	}
 
-    public List<Node> getNodes() {
-        List<Node> nodes = new ArrayList<>();
-        for (Container cont : containers) {
-            if (!nodes.contains(cont.getNode())) {
-                nodes.add(cont.getNode());
-            }
-        }
-        return nodes;
-    }
+	public boolean hasRoles() {
+		return roles != null && !roles.isEmpty();
+	}
 
-    public Service copy() {
-        Service service = new Service();
-        service.setName(name);
-        service.setImage(image);
+	public List<Container> getContainers() {
+		return containers;
+	}
 
-        service.setPorts(ports);
-        service.setRoles(roles);
-        service.setVolumes(volumes);
+	public boolean hasContainers() {
+		return containers != null && !containers.isEmpty();
+	}
 
-        for (final Container cont : containers) {
-            Container container = new Container();
-            container.setService(service);
-            container.setNode(cont.getNode().copy());
-        }
-        return service;
-    }
+	public void addContainer(final Container container) {
+		if (container != null && (!container.hasService() || !container.getService().equals(this))) {
+			container.setStatus(Status.STOPPED);
+			container.setService(this);
+		}
+	}
 
-    @Override
-    public String toString() {
-        return "Service [name=" + name + ", image=" + image + ", volumes=" + volumes + ", ports=" + ports + ", roles="
-                + roles + "]";
-    }
+	public void addContainers(Iterable<Container> collection) {
+		for (Container cont : containers) {
+			addContainer(cont);
+		}
+	}
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
+	public void removeContainer(final Container container) {
+		if (container != null && container.hasService() && container.getService().equals(this)) {
+			container.setStatus(Status.NONE);
+			container.setService(null);
+		}
+	}
 
-    @Override
-    public boolean equals(final Object obj) {
-        return this == obj;
-    }
+	public void removeContainers(Iterable<Container> collection) {
+		for (Container cont : containers) {
+			removeContainer(cont);
+		}
+	}
+
+	public void clearContainers() {
+		for (Container cont : containers) {
+			removeContainer(cont);
+		}
+	}
+
+	public List<Node> getNodes() {
+		List<Node> nodes = new ArrayList<>();
+		for (Container cont : containers) {
+			if (!nodes.contains(cont.getNode())) {
+				nodes.add(cont.getNode());
+			}
+		}
+		return nodes;
+	}
+
+	public Service copy() {
+		Service service = new Service();
+		service.setName(name);
+		service.setImage(image);
+
+		service.setPorts(ports);
+		service.setRoles(roles);
+		service.setVolumes(volumes);
+
+		for (final Container cont : containers) {
+			Container container = new Container();
+			container.setService(service);
+			container.setNode(cont.getNode().copy());
+		}
+		return service;
+	}
+
+	@Override
+	public String toString() {
+		return "Service [name=" + name + ", image=" + image + ", volumes=" + volumes + ", ports=" + ports + ", roles="
+				+ roles + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		return this == obj;
+	}
 }
