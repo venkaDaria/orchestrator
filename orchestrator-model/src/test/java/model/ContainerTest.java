@@ -5,19 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
-public class ContainerTest {
-    Container container = new Container();
-    
-    @Before
-    public void initialize() {
-        container = new Container();
-    }
-    
+public class ContainerTest {   
     @Test
     public void testSetNode() {
+    	Container container = new Container();
         Node node = new Node();
         container.setNode(node);
         
@@ -29,6 +22,7 @@ public class ContainerTest {
 
     @Test
     public void testSetService() {
+    	Container container = new Container();
         Service service = new Service();
         container.setService(service);
 
@@ -40,6 +34,7 @@ public class ContainerTest {
     
     @Test
     public void testSetNode_NullValue() {
+    	Container container = new Container();
         Node node = new Node();
         container.setNode(node);        
         container.setNode(null);
@@ -50,6 +45,7 @@ public class ContainerTest {
 
     @Test
     public void testSetService_NullValue() {
+    	Container container = new Container();
         Service service = new Service();
         container.setService(service);    
         container.setService(null);

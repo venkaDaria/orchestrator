@@ -5,20 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class NodeTest {
-
-    Node node;
-    
-    @Before
-    public void initialize() {
-       node = new Node();
-    }    
-    
     @Test
     public void testAddContainer() {
+        Node node = new Node();
         Container container = new Container();
         node.addContainer(container);
 
@@ -30,6 +22,7 @@ public class NodeTest {
     
     @Test
     public void testRemoveContainer() {
+        Node node = new Node();
         Container container = new Container();
         node.addContainer(container);
         node.removeContainer(container);

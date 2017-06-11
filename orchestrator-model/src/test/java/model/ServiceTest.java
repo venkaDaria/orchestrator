@@ -5,21 +5,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class ServiceTest {
-
-    Service service;
-
-    @Before
-    public void initialize() {
-        service = new Service();
-    }
-
     @Test
     public void testAddContainer() {
-        Container container = new Container();
+    	Service service = new Service();
+    	Container container = new Container();
         service.addContainer(container);
 
         assertEquals(service, container.getService());
@@ -30,7 +22,8 @@ public class ServiceTest {
 
     @Test
     public void testRemoveContainer() {
-        Container container = new Container();
+    	Service service = new Service();
+    	Container container = new Container();
         service.addContainer(container);
         service.removeContainer(container);
 
