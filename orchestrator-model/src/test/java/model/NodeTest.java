@@ -2,8 +2,12 @@ package model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -68,4 +72,42 @@ public class NodeTest {
 
 		assertTrue(node.getContainers().isEmpty());
 	}
+	
+    @Test
+    public void testEquals() {
+    	Set<Role> roles = new HashSet<Role>();
+		Role role = new Role("1");
+		roles.add(role);
+		role = new Role("3");
+		roles.add(role);
+		
+		Node node = new Node();
+    	node.setName("hgh");
+    	node.setRoles(roles);
+    	
+    	Node node2 = new Node();
+    	node2.setName("hgh");
+    	node2.setRoles(roles);
+    	
+        assertEquals(node, node2);
+    }
+
+    @Test
+    public void testEquals_False() {
+    	Set<Role> roles = new HashSet<Role>();
+		Role role = new Role("1");
+		roles.add(role);
+		role = new Role("3");
+		roles.add(role);
+		
+		Node node = new Node();
+    	node.setName("hgh");
+    	node.setRoles(roles);
+    	
+    	Node node2 = new Node();
+    	node2.setName("hh");
+    	node2.setRoles(roles);
+    	
+    	assertNotEquals(node, node2);
+    } 
 }
