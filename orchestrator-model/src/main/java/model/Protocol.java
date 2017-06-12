@@ -9,6 +9,7 @@ public final class Protocol {
     	if (value == null || value.trim().equals("")) {
     		throw new ProtocolException("Value can't be null or empty");
     	}
+    	
         this.value = value;
     }
 

@@ -29,7 +29,9 @@ public class Container {
         if (hasNode()) {
             this.node.getContainers().remove(this);
         }
+        
         this.node = node;
+        
         if (hasNode()) {    
             this.node.getContainers().add(this);
         }        
@@ -47,7 +49,9 @@ public class Container {
         if (hasService()) {
             this.service.getContainers().remove(this);
         }
+        
         this.service = service;
+        
         if (hasService()) {    
             this.service.getContainers().add(this);
         }        

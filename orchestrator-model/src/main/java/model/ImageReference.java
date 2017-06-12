@@ -14,6 +14,7 @@ public final class ImageReference {
 	public ImageReference(final String path) {
 		Pattern p = Pattern.compile("^(.+?)\\/(.+?)(:(.+?))?(@(.+))?$");
 		Matcher m = p.matcher(path);
+		
 		boolean isMatch = m.matches();
 
 		if (!isMatch || m.groupCount() < 4 || m.group(1) == null || m.group(2) == null
@@ -93,12 +94,15 @@ public final class ImageReference {
 	@Override
 	public String toString() {
 		String line = server + "/" + name;
+		
 		if (hasTag()) {
 			line += ":" + tag;
 		}
+		
 		if (hasDigestTag()) {
 			line += "@" + digestTag;
 		}
+		
 		return line;
 	}
 }

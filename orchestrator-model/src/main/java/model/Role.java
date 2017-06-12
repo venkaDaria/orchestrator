@@ -6,8 +6,10 @@ public final class Role {
     private final String value;
     
     public Role(final String value) {
-    	if (value == null || value.trim().equals(""))
+    	if (value == null || value.trim().equals("")) {
     		throw new RoleException("Value can't be null or empty");
+    	}
+    	
     	this.value = value;
     }
 

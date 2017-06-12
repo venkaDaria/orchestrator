@@ -13,6 +13,7 @@ public final class Port {
 	public Port(final String portLine) {
 		Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");
 		Matcher m = p.matcher(portLine);
+		
 		boolean isMatch = m.matches();
 		
 		if (!isMatch) {

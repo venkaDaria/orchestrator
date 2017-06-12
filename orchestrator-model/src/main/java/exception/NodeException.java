@@ -1,6 +1,6 @@
 package exception;
 
-public class NodeException  extends IllegalArgumentException {
+public class NodeException extends IllegalArgumentException {
 	private static final long serialVersionUID = 1L;
 
     public NodeException() {
