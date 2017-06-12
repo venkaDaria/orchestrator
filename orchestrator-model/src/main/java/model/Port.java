@@ -3,6 +3,8 @@ package model;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import exception.PortException;
+
 public final class Port {
 	private final Protocol protocol;
 	private final Integer local;
@@ -11,7 +13,11 @@ public final class Port {
 	public Port(final String portLine) {
 		Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");
 		Matcher m = p.matcher(portLine);
-		m.matches();
+		boolean isMatch = m.matches();
+		
+		if (!isMatch) {
+			throw new PortException("Port must be \"int:int/protocol\" or \"int/protocol\"");
+		}
 
 		protocol = new Protocol(m.group(5) != null ? m.group(5) : "tcp");
 		local = Integer.valueOf(m.group(1));
