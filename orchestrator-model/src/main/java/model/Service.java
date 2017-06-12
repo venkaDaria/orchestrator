@@ -14,10 +14,10 @@ public class Service {
 	private Set<Volume> volumes;
 	private Set<Port> ports;
 	private Set<Role> roles;
-	private transient List<Container> containers;
+	private transient Set<Container> containers;
 
 	public Service() {
-		this.containers = new ArrayList<>();
+		this.containers = new HashSet<>();
 	}
 
 	public String getName() {
@@ -80,7 +80,7 @@ public class Service {
 		return roles != null && !roles.isEmpty();
 	}
 
-	public List<Container> getContainers() {
+	public Set<Container> getContainers() {
 		return containers;
 	}
 
@@ -103,7 +103,7 @@ public class Service {
 		}
 	}
 
-	public void addContainers(Iterable<Container> collection) {
+	public void addContainers(Collection<Container> collection) {
 		for (Container cont : collection) {
 			addContainer(cont);
 		}
@@ -124,7 +124,7 @@ public class Service {
 		}
 	}
 	
-	public void removeContainers(Iterable<Container> collection) {
+	public void removeContainers(Collection<Container> collection) {
 		for (Container cont : collection) {
 			removeContainer(cont);
 		}
@@ -173,12 +173,12 @@ public class Service {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((containers == null) ? 0 : containers.hashCode());
-		result = prime * result + ((image == null) ? 0 : image.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((ports == null) ? 0 : ports.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
-		result = prime * result + ((volumes == null) ? 0 : volumes.hashCode());
+		result = prime * result + (!hasContainers() ? 0 : containers.hashCode());
+		result = prime * result + (!hasImage() ? 0 : image.hashCode());
+		result = prime * result + (!hasName() ? 0 : name.hashCode());
+		result = prime * result + (!hasPorts() ? 0 : ports.hashCode());
+		result = prime * result + (!hasRoles() ? 0 : roles.hashCode());
+		result = prime * result + (!hasVolumes() ? 0 : volumes.hashCode());
 		return result;
 	}
 	

@@ -58,8 +58,8 @@ public final class ImageReference {
 		int result = 1;
 		result = prime * result + name.hashCode();
 		result = prime * result + server.hashCode();
-		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
-		result = prime * result + ((digestTag == null) ? 0 : digestTag.hashCode());
+		result = prime * result + (!hasTag() ? 0 : tag.hashCode());
+		result = prime * result + (!hasDigestTag() ? 0 : digestTag.hashCode());
 		return result;
 	}
 
@@ -73,13 +73,13 @@ public final class ImageReference {
 		ImageReference other = (ImageReference) obj;
 		boolean isEqual = name.equals(other.name) && server.equals(other.server);
 
-		if (digestTag == null && other.digestTag != null) {
+		if (!hasDigestTag() && other.hasDigestTag()) {
 			return false;
-		} else if (tag == null && other.tag != null) {
+		} else if (!hasTag() && other.hasTag()) {
 			return false;
-		} else if (other.digestTag == null) {
+		} else if (!other.hasDigestTag()) {
 			return isEqual && tag.equals(other.tag);
-		} else if (other.tag == null) {
+		} else if (!other.hasTag()) {
 			return isEqual && digestTag.equals(other.digestTag);
 		} else {
 			return isEqual && tag.equals(other.tag) && digestTag.equals(other.digestTag);

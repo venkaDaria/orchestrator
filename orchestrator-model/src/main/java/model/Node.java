@@ -1,19 +1,17 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import exception.NodeException;
 
 public class Node {
 	private Set<Role> roles;
-	private transient List<Container> containers;
+	private transient Set<Container> containers;
 
 	public Node() {
-		this.containers = new ArrayList<>();
+		this.containers = new HashSet<>();
 	}
 
 	public Set<Role> getRoles() {
@@ -28,7 +26,7 @@ public class Node {
 		this.roles = new HashSet<>(roles);
 	}
 
-	public List<Container> getContainers() {
+	public Set<Container> getContainers() {
 		return containers;
 	}
 
@@ -50,7 +48,7 @@ public class Node {
 		}
 	}
 
-	public void addContainers(Iterable<Container> collection) {
+	public void addContainers(Collection<Container> collection) {
 		for (Container cont : collection) {
 			addContainer(cont);
 		}
@@ -70,7 +68,7 @@ public class Node {
 		}
 	}
 
-	public void removeContainers(Iterable<Container> collection) {
+	public void removeContainers(Collection<Container> collection) {
 		for (Container cont : collection) {
 			removeContainer(cont);
 		}
@@ -105,8 +103,8 @@ public class Node {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((containers == null) ? 0 : containers.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+		result = prime * result + (!hasContainers() ? 0 : containers.hashCode());
+		result = prime * result + (!hasRoles() ? 0 : roles.hashCode());
 		return result;
 	}
 

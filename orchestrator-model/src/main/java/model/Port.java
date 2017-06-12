@@ -13,9 +13,9 @@ public final class Port {
 	public Port(final String portLine) {
 		Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");
 		Matcher m = p.matcher(portLine);
-		
+
 		boolean isMatch = m.matches();
-		
+
 		if (!isMatch || m.group(1) == null || m.group(1).trim().equals("")) {
 			throw new PortException();
 		}
@@ -47,7 +47,7 @@ public final class Port {
 		int result = 1;
 		result = prime * result + local.hashCode();
 		result = prime * result + protocol.hashCode();
-		result = prime * result + ((remote == null) ? 0 : remote.hashCode());
+		result = prime * result + (!hasRemote() ? 0 : remote.hashCode());
 		return result;
 	}
 
@@ -60,26 +60,23 @@ public final class Port {
 
 		Port port = (Port) obj;
 		boolean isEqual = local.equals(port.getLocal()) && protocol.equals(port.getProtocol());
-		
-		if (remote == null) {
-			if (remote != null) {
-				return false;
-			} else {
-				return isEqual;
-			}
-		}
-		
+
+		if (!hasRemote() && port.hasRemote())
+			return false;
+		else if (!hasRemote())
+			return isEqual;
+
 		return isEqual && remote.equals(port.getRemote());
 	}
 
 	@Override
 	public String toString() {
 		String line = local.toString();
-		
+
 		if (hasRemote()) {
 			line += ":" + remote;
 		}
-		
+
 		line += "/" + protocol.getValue();
 		return line;
 	}
