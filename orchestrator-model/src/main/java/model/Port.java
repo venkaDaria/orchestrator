@@ -19,7 +19,7 @@ public final class Port {
 			throw new PortException("Port must be \"int:int/protocol\" or \"int/protocol\"");
 		}
 
-		protocol = new Protocol(m.group(5) != null ? m.group(5) : "tcp");
+		protocol = new Protocol((m.group(5) != null) ? m.group(5) : "tcp");
 		local = Integer.valueOf(m.group(1));
 		remote = (m.group(3) != null) ? Integer.valueOf(m.group(3)) : null;
 	}
@@ -59,6 +59,7 @@ public final class Port {
 
 		Port port = (Port) obj;
 		boolean isEqual = local.equals(port.getLocal()) && protocol.equals(port.getProtocol());
+		
 		if (remote == null) {
 			if (remote != null) {
 				return false;
@@ -66,15 +67,18 @@ public final class Port {
 				return isEqual;
 			}
 		}
+		
 		return isEqual && remote.equals(port.getRemote());
 	}
 
 	@Override
 	public String toString() {
 		String line = local.toString();
+		
 		if (hasRemote()) {
 			line += ":" + remote;
 		}
+		
 		line += "/" + protocol.getValue();
 		return line;
 	}

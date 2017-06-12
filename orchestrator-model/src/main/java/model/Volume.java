@@ -8,9 +8,11 @@ public final class Volume {
 
 	public Volume(final String volumeLine) {
 		String[] volumes = volumeLine.split(":");
+		
 		if (volumes.length != 2 || volumes[0].trim().equals("") || volumes[1].trim().equals("")) {
 			throw new VolumeException("Volume must be: \"string:string\"");
 		}
+		
 		local = volumes[0];
 		remote = volumes[1];
 	}
@@ -43,6 +45,7 @@ public final class Volume {
 			return true;
 		if (obj == null || getClass() != obj.getClass())
 			return false;
+		
 		Volume other = (Volume) obj;
 		return local.equals(other.local) && remote.equals(other.remote);
 	}

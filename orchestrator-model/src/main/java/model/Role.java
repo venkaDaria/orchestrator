@@ -27,8 +27,11 @@ public final class Role {
 
     @Override
     public boolean equals(final Object obj) {
-        if (obj == null || !(obj instanceof Role))
+    	if (this == obj)
+    		return true;
+    	if (obj == null || getClass() != obj.getClass())
             return false;
+    	
         Role role = (Role)obj;
         return value.equals(role.getValue());
     }
