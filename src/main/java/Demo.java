@@ -42,11 +42,13 @@ public class Demo {
 		role = new Role("3");
 		roles.add(role);
 		Node n = new Node();
+		n.setName("hghg");
 		n.setRoles(roles);
 		System.out.println(n);
 
 		System.out.println("----");
 		Node n2 = new Node();
+		n2.setName("hjhj");
 		n2.setRoles(roles);
 		Container c2 = new Container();
 		c2.setNode(n);
