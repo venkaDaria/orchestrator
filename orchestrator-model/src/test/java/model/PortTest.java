@@ -34,17 +34,17 @@ public class PortTest {
         assertNull(port.getRemote());
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NumberFormatException.class)
     public void testCreatePort_SpaceLocal() {
         new Port("     :9090/http");
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NumberFormatException.class)
     public void testCreatePort_SpaceProtocolAndLocal() {
         new Port("   :9080:   ");
     }
     
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NumberFormatException.class)
     public void testCreatePort_NullLocal() {
         new Port("tcp");
     }
