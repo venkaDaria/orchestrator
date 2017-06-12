@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import exception.ServiceException;
+
 public class Service {
 	private String name;
 	private ImageReference image;
@@ -90,7 +92,9 @@ public class Service {
 		if (container != null && (!container.hasService() || !container.getService().equals(this))) {
 			container.setStatus(Status.STOPPED);
 			container.setService(this);
-		}
+		} else {
+        	throw new ServiceException("Can't add container");
+        }
 	}
 	
 	public void addContainers(Container[] collection) {
@@ -109,7 +113,9 @@ public class Service {
 		if (container != null && container.hasService() && container.getService().equals(this)) {
 			container.setStatus(Status.NONE);
 			container.setService(null);
-		}
+		} else {
+        	throw new ServiceException("Can't remoove container");
+        }
 	}
 
 	public void removeContainers(Container[] collection) {

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import exception.NodeException;
+
 public class Node {
     private Set<Role> roles;
     private List<Container> containers;
@@ -36,6 +38,8 @@ public class Node {
     public void addContainer(final Container container) {
     	if (container != null && (!container.hasNode() || !container.getNode().equals(this))) {
             container.setNode(this);
+        } else {
+        	throw new NodeException("Can't add container");
         }
     }
     
@@ -54,7 +58,9 @@ public class Node {
     public void removeContainer(final Container container) {
     	if (container != null && container.hasNode() && container.getNode().equals(this)) {
             container.setNode(null);
-        } 
+        } else {
+        	throw new NodeException("Can't remove container");
+        }
     }
     
     public void removeContainers(Container[] collection) {
