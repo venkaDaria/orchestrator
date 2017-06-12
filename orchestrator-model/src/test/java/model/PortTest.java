@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
+import exception.PortException;
+
 public class PortTest {
 
     @Test
@@ -34,12 +36,12 @@ public class PortTest {
         assertNull(port.getRemote());
     }
     
-    @Test(expected = NumberFormatException.class)
+    @Test(expected = PortException.class)
     public void testCreatePort_SpaceLocal() {
         new Port("     :9090/http");
     }
     
-    @Test(expected = NumberFormatException.class)
+    @Test(expected = PortException.class)
     public void testCreatePort_SpaceProtocolAndLocal() {
         new Port("   :9080:   ");
     }
