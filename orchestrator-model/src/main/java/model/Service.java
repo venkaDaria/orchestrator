@@ -14,7 +14,7 @@ public class Service {
 	private Set<Volume> volumes;
 	private Set<Port> ports;
 	private Set<Role> roles;
-	private List<Container> containers;
+	private transient List<Container> containers;
 
 	public Service() {
 		this.containers = new ArrayList<>();
@@ -171,11 +171,39 @@ public class Service {
 
 	@Override
 	public int hashCode() {
-		return super.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((containers == null) ? 0 : containers.hashCode());
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((ports == null) ? 0 : ports.hashCode());
+		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+		result = prime * result + ((volumes == null) ? 0 : volumes.hashCode());
+		return result;
 	}
-
+	
 	@Override
-	public boolean equals(final Object obj) {
-		return this == obj;
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+
+		Service other = (Service) obj;
+
+		if (!hasContainers() && other.hasContainers() || hasContainers() && !containers.equals(other.containers))
+			return false;
+		if (!hasImage() && other.hasImage() || hasImage() && !image.equals(other.image))
+			return false;
+		if (!hasName() && other.hasName() || hasName() && !name.equals(other.name))
+			return false;
+		if (!hasPorts() && other.hasPorts() || hasPorts() && !ports.equals(other.ports))
+			return false;
+		if (!hasRoles() && other.hasRoles() || hasRoles() && !roles.equals(other.roles))
+			return false;
+		if (!hasVolumes() && other.hasVolumes() || hasVolumes() && !volumes.equals(other.volumes))
+			return false;
+		
+		return true;
 	}
 }

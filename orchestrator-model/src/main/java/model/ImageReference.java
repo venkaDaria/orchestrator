@@ -14,7 +14,7 @@ public final class ImageReference {
 	public ImageReference(final String path) {
 		Pattern p = Pattern.compile("^(.+?)\\/(.+?)(:(.+?))?(@(.+))?$");
 		Matcher m = p.matcher(path);
-		
+
 		boolean isMatch = m.matches();
 
 		if (!isMatch || m.groupCount() < 4 || m.group(1) == null || m.group(2) == null
@@ -69,40 +69,35 @@ public final class ImageReference {
 			return true;
 		if (obj == null || getClass() != obj.getClass())
 			return false;
-		
+
 		ImageReference other = (ImageReference) obj;
 		boolean isEqual = name.equals(other.name) && server.equals(other.server);
-		
-		if (digestTag == null) {
-			if (other.digestTag != null) {
-				return false;
-			} else {
-				return isEqual && tag.equals(other.tag);
-			}
-		} else if (tag == null) {
-			if (other.tag != null) {
-				return false;
-			} else {
-				return isEqual && digestTag.equals(other.digestTag);
-			}
+
+		if (digestTag == null && other.digestTag != null) {
+			return false;
+		} else if (tag == null && other.tag != null) {
+			return false;
+		} else if (other.digestTag == null) {
+			return isEqual && tag.equals(other.tag);
+		} else if (other.tag == null) {
+			return isEqual && digestTag.equals(other.digestTag);
 		} else {
 			return isEqual && tag.equals(other.tag) && digestTag.equals(other.digestTag);
 		}
-		
 	}
 
 	@Override
 	public String toString() {
 		String line = server + "/" + name;
-		
+
 		if (hasTag()) {
 			line += ":" + tag;
 		}
-		
+
 		if (hasDigestTag()) {
 			line += "@" + digestTag;
 		}
-		
+
 		return line;
 	}
 }
