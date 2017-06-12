@@ -97,10 +97,11 @@ public class Node {
 		Node node = new Node();
 
 		node.setRoles(roles);
-
+		node.setName(name);
+		
 		for (final Container cont : containers) {
 			Container container = new Container();
-			container.setService(cont.getService().copy());
+			container.setService(cont.getService());
 			container.setNode(node);
 		}
 

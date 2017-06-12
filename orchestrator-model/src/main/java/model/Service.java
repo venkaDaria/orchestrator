@@ -154,7 +154,7 @@ public class Service {
 		for (final Container cont : containers) {
 			Container container = new Container();
 			container.setService(service);
-			container.setNode(cont.getNode().copy());
+			container.setNode(cont.getNode());
 		}
 		return service;
 	}
