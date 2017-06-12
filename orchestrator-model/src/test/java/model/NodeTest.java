@@ -85,9 +85,7 @@ public class NodeTest {
     	node.setName("hgh");
     	node.setRoles(roles);
     	
-    	Node node2 = new Node();
-    	node2.setName("hgh");
-    	node2.setRoles(roles);
+    	Node node2 = node.copy();
     	
         assertEquals(node, node2);
     }
@@ -104,9 +102,8 @@ public class NodeTest {
     	node.setName("hgh");
     	node.setRoles(roles);
     	
-    	Node node2 = new Node();
+    	Node node2 = node.copy();
     	node2.setName("hh");
-    	node2.setRoles(roles);
     	
     	assertNotEquals(node, node2);
     } 
