@@ -109,8 +109,8 @@ public class Service {
 
 	public void removeContainer(final Container container) {
 		if (container != null && container.hasService() && container.getService().equals(this)) {
-			container.setStatus(Status.NONE);
 			container.setService(null);
+			container.setStatus(Status.NONE);
 		} else {
         	throw new ServiceException("Can't remove container");
         }
@@ -169,7 +169,6 @@ public class Service {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (!hasContainers() ? 0 : containers.hashCode());
 		result = prime * result + (!hasImage() ? 0 : image.hashCode());
 		result = prime * result + (!hasName() ? 0 : name.hashCode());
 		result = prime * result + (!hasPorts() ? 0 : ports.hashCode());
@@ -187,8 +186,6 @@ public class Service {
 
 		Service other = (Service) obj;
 
-		if (!hasContainers() && other.hasContainers() || hasContainers() && !containers.equals(other.containers))
-			return false;
 		if (!hasImage() && other.hasImage() || hasImage() && !image.equals(other.image))
 			return false;
 		if (!hasName() && other.hasName() || hasName() && !name.equals(other.name))

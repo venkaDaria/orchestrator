@@ -7,11 +7,24 @@ import java.util.Set;
 import exception.NodeException;
 
 public class Node {
+	private String name;
 	private Set<Role> roles;
 	private transient Set<Container> containers;
 
 	public Node() {
 		this.containers = new HashSet<>();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public boolean hasName() {
+		return name != null;
 	}
 
 	public Set<Role> getRoles() {
@@ -103,7 +116,7 @@ public class Node {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (!hasContainers() ? 0 : containers.hashCode());
+		result = prime * result + (!hasName() ? 0 : name.hashCode());
 		result = prime * result + (!hasRoles() ? 0 : roles.hashCode());
 		return result;
 	}
@@ -117,11 +130,11 @@ public class Node {
 
 		Node other = (Node) obj;
 
-		if (!hasContainers() && other.hasContainers() || hasContainers() && !containers.equals(other.containers))
-			return false;
 		if (!hasRoles() && other.hasRoles() || hasRoles() && !roles.equals(other.roles))
 			return false;
-
+		if (!hasName() && other.hasName() || hasName() && !name.equals(other.name))
+			return false;
+		
 		return true;
 	}
 }

@@ -88,6 +88,8 @@ public class Container {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
+		result = prime * result + (!hasService() ? 0 : service.hashCode());
+		result = prime * result + (!hasNode() ? 0 : node.hashCode());
 		result = prime * result + (!hasStatus() ? 0 : status.hashCode());
 		return result;
 	}
@@ -100,6 +102,11 @@ public class Container {
 			return false;
 
 		Container other = (Container) obj;
-		return id == other.id;
+		if (!hasService() && other.hasService() || hasService() && !service.equals(other.service))
+			return false;
+		if (!hasNode() && other.hasNode() || hasNode() && !node.equals(other.node))
+			return false;
+		
+		return id == other.id && status == other.status;
 	}
 }
