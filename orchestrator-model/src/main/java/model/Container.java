@@ -17,7 +17,7 @@ public class Container {
 	public void setId(final int id) {
 		this.id = id;
 	}
-	
+
 	public Status getStatus() {
 		return status;
 	}
@@ -80,7 +80,7 @@ public class Container {
 
 	@Override
 	public String toString() {
-		return "Container [status=" + status + ", node=" + node + ", service=" + service + "]";
+		return "Container [id = " + id + ", status=" + status + ", node=" + node + ", service=" + service + "]";
 	}
 
 	@Override
@@ -88,9 +88,7 @@ public class Container {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + (hasNode() ? 0 : node.hashCode());
-		result = prime * result + (hasService() ? 0 : service.hashCode());
-		result = prime * result + (hasStatus() ? 0 : status.hashCode());
+		result = prime * result + (!hasStatus() ? 0 : status.hashCode());
 		return result;
 	}
 
@@ -105,6 +103,3 @@ public class Container {
 		return id == other.id;
 	}
 }
-
-//TODO: set instead of list, bidirectional eq and hc
-

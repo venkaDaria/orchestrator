@@ -1,6 +1,7 @@
 package model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
@@ -24,4 +25,18 @@ public class ProtocolTest {
     public void testCreateProtocol_Null() {
     	new Protocol(null);
     }
+    
+	@Test
+	public void testEquals() {
+		Protocol protocol = new Protocol("http");
+		Protocol protocol2 = new Protocol("http");
+		assertEquals(protocol, protocol2);
+	}
+
+	@Test
+	public void testEquals_False() {
+		Protocol protocol = new Protocol("http");
+		Protocol protocol2 = new Protocol("htp");
+		assertNotEquals(protocol, protocol2);
+	}
 }

@@ -1,6 +1,7 @@
 package model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -53,5 +54,33 @@ public class ContainerTest {
         
         assertNull(container.getService());
         assertTrue(service.getContainers().isEmpty());
+    }    
+    
+    @Test
+    public void testEquals() {
+    	Container container = new Container();
+      
+        container.setId(4);        
+        container.setStatus(Status.STOPPED);
+        
+        Container container2 = new Container();
+        container2.setId(4);        
+        container2.setStatus(Status.STOPPED);
+        
+        assertEquals(container, container2);
     }
+
+    @Test
+    public void testEquals_False() {
+    	Container container = new Container();
+        
+        container.setId(4);        
+        container.setStatus(Status.STOPPED);
+        
+        Container container2 = new Container();
+        container2.setId(5);        
+        container.setStatus(Status.STOPPED);
+        
+        assertNotEquals(container, container2);
+    }   
 }

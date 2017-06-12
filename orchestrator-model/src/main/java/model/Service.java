@@ -1,9 +1,7 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import exception.ServiceException;
@@ -136,12 +134,10 @@ public class Service {
 		}
 	}
 
-	public List<Node> getNodes() {
-		List<Node> nodes = new ArrayList<>();
+	public Set<Node> getNodes() {
+		Set<Node> nodes = new HashSet<>();
 		for (Container cont : containers) {
-			if (!nodes.contains(cont.getNode())) {
-				nodes.add(cont.getNode());
-			}
+			nodes.add(cont.getNode());
 		}
 		return nodes;
 	}
