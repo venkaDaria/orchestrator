@@ -18,8 +18,4 @@ public class ProtocolException extends ValidationException {
     public ProtocolException(Throwable cause) {
         super(code, cause);
     }
-    
-    public int getCode() {
-    	return code;
-    }
 }

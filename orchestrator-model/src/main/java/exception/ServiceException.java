@@ -18,8 +18,4 @@ public class ServiceException extends ValidationException {
     public ServiceException(Throwable cause) {
         super(code, cause);
     }
-    
-    public int getCode() {
-    	return code;
-    }
 }

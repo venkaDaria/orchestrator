@@ -18,8 +18,4 @@ public class ImageReferenceException extends ValidationException {
     public ImageReferenceException(Throwable cause) {
         super(code, cause);
     }
-    
-    public int getCode() {
-    	return code;
-    }
 }

@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import exception.PortException;
 import model.Container;
 import model.ImageReference;
 import model.Node;
@@ -25,8 +26,11 @@ public class Demo {
 			ref = new ImageReference(el);
 			System.out.println(ref);
 		}
-
+		
 		System.out.println("----");
+		System.out.println(new PortException().getCode());
+		System.out.println("----");
+		
 		Set<Role> roles = new HashSet<Role>();
 		Role role = new Role("1");
 		roles.add(role);

@@ -18,8 +18,4 @@ public class RoleException extends ValidationException {
     public RoleException(Throwable cause) {
         super(code, cause);
     }
-    
-    public int getCode() {
-    	return code;
-    }
 }

@@ -18,8 +18,4 @@ public class PortException extends ValidationException {
     public PortException(Throwable cause) {
         super(code, cause);
     }
-    
-    public int getCode() {
-    	return code;
-    }
 }

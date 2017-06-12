@@ -18,8 +18,4 @@ public class NodeException extends ValidationException {
     public NodeException(Throwable cause) {
         super(code, cause);
     }
-    
-    public int getCode() {
-    	return code;
-    }
 }
