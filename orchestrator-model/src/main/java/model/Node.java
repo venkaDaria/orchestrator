@@ -109,7 +109,7 @@ public class Node {
 
 	@Override
 	public String toString() {
-		return "Node [roles=" + roles + "]";
+		return "Node [name=" + name + ", roles=" + roles + "]";
 	}
 
 	@Override

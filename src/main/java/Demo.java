@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -10,12 +11,12 @@ import model.Role;
 import model.Service;
 
 public class Demo {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");  
 	    Matcher m = p.matcher("8080:8000/tcp");  
 	    m.matches();
-	    System.out.println(m.group());		
-		
+	    System.out.println(m.group());	
+
 		ImageReference ref = null;
 		String[] arr = new String[] { "docker-registry.cloud.sophos/haproxy:dev",
 				"docker-registry.cloud.sophos/haproxy@sha256:123abc",
@@ -57,5 +58,6 @@ public class Demo {
 		System.out.println(c2);
 		System.out.println(n2);
 		System.out.println(s);
+		System.out.println("----");
 	}
 }
