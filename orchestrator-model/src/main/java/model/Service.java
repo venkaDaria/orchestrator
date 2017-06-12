@@ -114,7 +114,7 @@ public class Service {
 			container.setStatus(Status.NONE);
 			container.setService(null);
 		} else {
-        	throw new ServiceException("Can't remoove container");
+        	throw new ServiceException("Can't remove container");
         }
 	}
 
