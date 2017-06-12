@@ -94,5 +94,50 @@ public class ContainerTest {
         container2.setStatus(Status.STOPPED);
         
         assertNotEquals(container, container2);
-    }   
+    } 
+    
+    @Test
+    public void testEquals_FalseService() {
+    	Container container = new Container();
+    	Service service = new Service();
+    	Node node = new Node();
+    	
+    	Service service2 = new Service();
+    	service2.setName("hg");
+    	
+        container.setId(4); 
+        container.setNode(node);  
+        container.setService(service);  
+        container.setStatus(Status.STOPPED);
+        
+        Container container2 = new Container();
+        container2.setId(4);   
+        container2.setNode(node);  
+        container2.setService(service2);  
+        container2.setStatus(Status.STOPPED);
+        
+        assertNotEquals(container, container2);
+    } 
+    
+    @Test
+    public void testEquals_FalseNode() {
+    	Container container = new Container();
+    	Service service = new Service();
+    	Node node = new Node();
+    	Node node2 = new Node();
+    	node2.setName("hghg");
+    	
+        container.setId(4); 
+        container.setNode(node);  
+        container.setService(service);  
+        container.setStatus(Status.STOPPED);
+        
+        Container container2 = new Container();
+        container2.setId(4);   
+        container2.setNode(node2);  
+        container2.setService(service);  
+        container2.setStatus(Status.STOPPED);
+        
+        assertNotEquals(container, container2);
+    } 
 }
