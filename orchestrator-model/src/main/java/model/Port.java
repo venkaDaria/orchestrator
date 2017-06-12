@@ -16,7 +16,7 @@ public final class Port {
 		
 		boolean isMatch = m.matches();
 		
-		if (!isMatch || m.group(1) == null) {
+		if (!isMatch || m.group(1) == null || m.group(1).trim().equals("")) {
 			throw new PortException("Port must be \"int:int/protocol\" or \"int/protocol\"");
 		}
 
