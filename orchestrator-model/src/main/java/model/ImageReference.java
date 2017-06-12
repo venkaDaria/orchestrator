@@ -19,7 +19,7 @@ public final class ImageReference {
 
 		if (!isMatch || m.groupCount() < 4 || m.group(1) == null || m.group(2) == null
 				|| m.group(4) == null && m.group(6) == null) {
-			throw new ImageReferenceException("ImageReference must be: \"server/name:tag@digestTag\"");
+			throw new ImageReferenceException();
 		}
 
 		server = m.group(1);

@@ -10,7 +10,7 @@ public final class Volume {
 		String[] volumes = volumeLine.split(":");
 		
 		if (volumes.length != 2 || volumes[0].trim().equals("") || volumes[1].trim().equals("")) {
-			throw new VolumeException("Volume must be: \"string:string\"");
+			throw new VolumeException();
 		}
 		
 		local = volumes[0];

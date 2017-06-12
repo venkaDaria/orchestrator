@@ -7,7 +7,7 @@ public final class Role {
     
     public Role(final String value) {
     	if (value == null || value.trim().equals("")) {
-    		throw new RoleException("Value can't be null or empty");
+    		throw new RoleException();
     	}
     	
     	this.value = value;

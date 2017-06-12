@@ -1,17 +1,25 @@
 package exception;
 
-public class ServiceException extends IllegalArgumentException {
-	private static final long serialVersionUID = 1L;
-
+public class ServiceException extends ValidationException {
+	private static final int code = 100001;	
+	
     public ServiceException() {
-        super();
+        super(code, "Can't do some operation with service");
     }
 
     public ServiceException(String message) {
-        super(message);
+        super(code, message);
     }
 
     public ServiceException(String message, Throwable cause) {
-        super(message, cause);
+        super(code, message, cause);
+    }
+    
+    public ServiceException(Throwable cause) {
+        super(code, cause);
+    }
+    
+    public int getCode() {
+    	return code;
     }
 }

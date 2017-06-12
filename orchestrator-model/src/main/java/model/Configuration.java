@@ -1,31 +1,32 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Configuration {
-    private List<Node> nodes;
-    private List<Service> services;
+    private Set<Node> nodes;
+    private Set<Service> services;
 
-    public List<Node> getNodes() {
+    public Set<Node> getNodes() {
         return nodes;
     }
 
-    public void setNodes(final List<Node> nodes) {
-        this.nodes = new ArrayList<>(nodes);
+    public void setNodes(final Collection<Node> nodes) {
+        this.nodes = new HashSet<>(nodes);
     }
 
     public boolean hasNodes() {
         return nodes != null && !nodes.isEmpty();
     }
 
-    public List<Service> getServices() {
+    public Set<Service> getServices() {
         return services;
     }
 
-    public void setServices(final List<Service> services) {
-        this.services = new ArrayList<>(services);
+    public void setServices(final Collection<Service> services) {
+        this.services = new HashSet<>(services);
     }
 
     public boolean hasServices() {
@@ -34,8 +35,8 @@ public class Configuration {
 
     public Configuration copy() {
         Configuration con = new Configuration();
-        con.setNodes(nodes.stream().map(Node::copy).collect(Collectors.toList()));
-        con.setServices(services.stream().map(Service::copy).collect(Collectors.toList()));
+        con.setNodes(nodes.stream().map(Node::copy).collect(Collectors.toSet()));
+        con.setServices(services.stream().map(Service::copy).collect(Collectors.toSet()));
         return con;
     }
 }

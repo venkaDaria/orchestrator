@@ -1,17 +1,25 @@
 package exception;
 
-public class ImageReferenceException extends IllegalArgumentException {
-	private static final long serialVersionUID = 1L;
-
+public class ImageReferenceException extends ValidationException {
+	private static final int code = 100003;	
+	
     public ImageReferenceException() {
-        super();
+        super(code, "ImageReference must be: \"server/name:tag@digestTag\"");
     }
 
     public ImageReferenceException(String message) {
-        super(message);
+        super(code, message);
     }
 
     public ImageReferenceException(String message, Throwable cause) {
-        super(message, cause);
+        super(code, message, cause);
+    }
+    
+    public ImageReferenceException(Throwable cause) {
+        super(code, cause);
+    }
+    
+    public int getCode() {
+    	return code;
     }
 }

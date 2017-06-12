@@ -1,17 +1,25 @@
 package exception;
 
-public class NodeException extends IllegalArgumentException {
-	private static final long serialVersionUID = 1L;
-
+public class NodeException extends ValidationException {
+	private static final int code = 100002;	
+	
     public NodeException() {
-        super();
+        super(code, "Can't do some operation with node");
     }
 
     public NodeException(String message) {
-        super(message);
+        super(code, message);
     }
 
     public NodeException(String message, Throwable cause) {
-        super(message, cause);
+        super(code, message, cause);
+    }
+    
+    public NodeException(Throwable cause) {
+        super(code, cause);
+    }
+    
+    public int getCode() {
+    	return code;
     }
 }

@@ -1,17 +1,25 @@
 package exception;
 
-public class PortException extends IllegalArgumentException {
-	private static final long serialVersionUID = 1L;
-
+public class PortException extends ValidationException {
+	private static final int code = 100004;	
+	
     public PortException() {
-        super();
+        super(code, "Port must be \"int:int/protocol\" or \"int/protocol\"");
     }
 
     public PortException(String message) {
-        super(message);
+        super(code, message);
     }
 
     public PortException(String message, Throwable cause) {
-        super(message, cause);
+        super(code, message, cause);
+    }
+    
+    public PortException(Throwable cause) {
+        super(code, cause);
+    }
+    
+    public int getCode() {
+    	return code;
     }
 }

@@ -1,17 +1,25 @@
 package exception;
 
-public class RoleException extends IllegalArgumentException {
-	private static final long serialVersionUID = 1L;
+public class RoleException extends ValidationException {
+	private static final int code = 100007;	
+	
+    public RoleException() {
+        super(code, "Value can't be null or empty");
+    }
 
-	public RoleException() {
-		super();
-	}
+    public RoleException(String message) {
+        super(code, message);
+    }
 
-	public RoleException(String message) {
-		super(message);
-	}
-
-	public RoleException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public RoleException(String message, Throwable cause) {
+        super(code, message, cause);
+    }
+    
+    public RoleException(Throwable cause) {
+        super(code, cause);
+    }
+    
+    public int getCode() {
+    	return code;
+    }
 }

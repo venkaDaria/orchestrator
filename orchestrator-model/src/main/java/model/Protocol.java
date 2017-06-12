@@ -7,7 +7,7 @@ public final class Protocol {
     
     public Protocol(final String value) {
     	if (value == null || value.trim().equals("")) {
-    		throw new ProtocolException("Value can't be null or empty");
+    		throw new ProtocolException();
     	}
     	
         this.value = value;
