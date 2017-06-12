@@ -12,7 +12,8 @@ public class ImageReferenceTest {
 	@Test
 	public void testImageReference() {
 		ImageReference image = new ImageReference("docker-registry.cloud.sophos/haproxy:dev@sha256:123abc");
-        assertEquals("docker-registry.cloud.sophos", image.getServer());
+        
+		assertEquals("docker-registry.cloud.sophos", image.getServer());
         assertEquals("haproxy", image.getName());
         assertEquals("dev", image.getTag());
         assertEquals("sha256:123abc", image.getDigestTag());
@@ -21,7 +22,8 @@ public class ImageReferenceTest {
 	@Test
 	public void testImageReference_TagNull() {
 		ImageReference image = new ImageReference("docker-registry.cloud.sophos/haproxy@sha256:123abc");
-        assertEquals("docker-registry.cloud.sophos", image.getServer());
+        
+		assertEquals("docker-registry.cloud.sophos", image.getServer());
         assertEquals("haproxy", image.getName());
         assertEquals("sha256:123abc", image.getDigestTag());
         assertNull(image.getTag());
@@ -30,7 +32,8 @@ public class ImageReferenceTest {
 	@Test
 	public void testImageReference_DigestTagNull() {
 		ImageReference image = new ImageReference("docker-registry.cloud.sophos/haproxy:dev");
-        assertEquals("docker-registry.cloud.sophos", image.getServer());
+        
+		assertEquals("docker-registry.cloud.sophos", image.getServer());
         assertEquals("haproxy", image.getName());
         assertEquals("dev", image.getTag());
         assertNull(image.getDigestTag());
