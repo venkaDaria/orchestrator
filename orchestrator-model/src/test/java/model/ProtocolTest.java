@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 import exception.ProtocolValidationException;
+import model.valueobject.Protocol;
 
 public class ProtocolTest {
 

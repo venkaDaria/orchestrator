@@ -1,11 +1,11 @@
-package model;
+package model.valueobject;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import exception.ImageReferenceValidationException;
 
-public final class ImageReference {
+public final class ImageReference extends ValueObject<String> {
 	private final String server;
 	private final String name;
 	private final String digestTag;
@@ -87,7 +87,13 @@ public final class ImageReference {
 	}
 
 	@Override
-	public String toString() {
+	public String asFormattedString() {
+		return "ImageReference [server=" + server + ", name=" + name + ", digestTag=" + digestTag + ", tag=" + tag
+				+ "]";
+	}
+
+	@Override
+	public String getValue() {
 		String line = server + "/" + name;
 
 		if (hasTag()) {

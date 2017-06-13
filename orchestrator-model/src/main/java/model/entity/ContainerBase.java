@@ -1,12 +1,14 @@
-package model;
+package model.entity;
 
-public class Container {
+import model.Status;
+
+public abstract class ContainerBase extends Entity {
 	private String id;
 	private Status status;
-	private Node node;
-	private Service service;
+	private NodeBase node;
+	private ServiceBase service;
 
-	public Container() {
+	public ContainerBase() {
 		status = Status.NONE;
 	}
 
@@ -17,7 +19,7 @@ public class Container {
 	public void setId(final String id) {
 		this.id = id;
 	}
-	
+
 	public boolean hasId() {
 		return id != null;
 	}
@@ -34,11 +36,11 @@ public class Container {
 		return status != null;
 	}
 
-	public Node getNode() {
+	public NodeBase getNode() {
 		return node;
 	}
 
-	public void setNode(final Node node) {
+	public void setNode(final NodeBase node) {
 		if (hasNode()) {
 			this.node.getContainers().remove(this);
 		}
@@ -54,11 +56,11 @@ public class Container {
 		return node != null;
 	}
 
-	public Service getService() {
+	public ServiceBase getService() {
 		return service;
 	}
 
-	public void setService(final Service service) {
+	public void setService(final ServiceBase service) {
 		if (hasService()) {
 			this.service.getContainers().remove(this);
 		}
@@ -84,33 +86,24 @@ public class Container {
 	}
 
 	@Override
-	public String toString() {
+	public boolean equals(final Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || !(obj instanceof ContainerBase))
+			return false;
+
+		ContainerBase other = (ContainerBase) obj;
+		return getIdentity() == null && other.getIdentity() == null
+				|| getIdentity() != null && getIdentity().equals(other.getIdentity());
+	}
+
+	@Override
+	public String asFormattedString() {
 		return "Container [id = " + id + ", status=" + status + ", node=" + node + ", service=" + service + "]";
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (!hasId() ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || getClass() != obj.getClass())
-			return false;
-
-		Container other = (Container) obj;
-		if (!hasService() && other.hasService() || hasService() && !service.equals(other.service))
-			return false;
-		if (!hasNode() && other.hasNode() || hasNode() && !node.equals(other.node))
-			return false;
-		if (!hasId() && other.hasId() || hasId() && !id.equals(other.id))
-			return false;
-		
-		return status == other.status;
+	public Object getIdentity() {
+		return id;
 	}
 }

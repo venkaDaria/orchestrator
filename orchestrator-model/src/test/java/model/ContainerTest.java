@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import model.entity.Container;
+import model.entity.Node;
+import model.entity.Service;
+
 public class ContainerTest {
 
 	@Test

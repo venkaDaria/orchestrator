@@ -1,17 +1,18 @@
-package model;
+package model.entity;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import exception.NodeValidationException;
+import model.valueobject.Role;
 
-public class Node {
+public abstract class NodeBase extends Entity {
 	private String name;
 	private Set<Role> roles;
-	private transient Set<Container> containers;
+	private transient Set<ContainerBase> containers;
 
-	public Node() {
+	public NodeBase() {
 		this.containers = new HashSet<>();
 	}
 
@@ -39,7 +40,7 @@ public class Node {
 		this.roles = new HashSet<>(roles);
 	}
 
-	public Set<Container> getContainers() {
+	public Set<ContainerBase> getContainers() {
 		return containers;
 	}
 
@@ -47,7 +48,7 @@ public class Node {
 		return containers != null && !containers.isEmpty();
 	}
 
-	public void addContainer(final Container container) {
+	public void addContainer(final ContainerBase container) {
 		if (container != null && (!container.hasNode() || !container.getNode().equals(this))) {
 			container.setNode(this);
 		} else {
@@ -55,19 +56,19 @@ public class Node {
 		}
 	}
 
-	public void addContainers(final Container[] collection) {
-		for (Container cont : collection) {
+	public void addContainers(final ContainerBase[] collection) {
+		for (ContainerBase cont : collection) {
 			addContainer(cont);
 		}
 	}
 
-	public void addContainers(final Collection<Container> collection) {
-		for (Container cont : collection) {
+	public void addContainers(final Collection<ContainerBase> collection) {
+		for (ContainerBase cont : collection) {
 			addContainer(cont);
 		}
 	}
 
-	public void removeContainer(final Container container) {
+	public void removeContainer(final ContainerBase container) {
 		if (container != null && container.hasNode() && container.getNode().equals(this)) {
 			container.setNode(null);
 		} else {
@@ -75,14 +76,14 @@ public class Node {
 		}
 	}
 
-	public void removeContainers(final Container[] collection) {
-		for (Container cont : collection) {
+	public void removeContainers(final ContainerBase[] collection) {
+		for (ContainerBase cont : collection) {
 			removeContainer(cont);
 		}
 	}
 
-	public void removeContainers(final Collection<Container> collection) {
-		for (Container cont : collection.toArray(new Container[] {})) {
+	public void removeContainers(final Collection<ContainerBase> collection) {
+		for (ContainerBase cont : collection.toArray(new ContainerBase[] {})) {
 			removeContainer(cont);
 		}
 	}
@@ -95,14 +96,14 @@ public class Node {
 		return copy(null);
 	}
 
-	public Node copy(Service service) {
+	public Node copy(ServiceBase service) {
 		Node node = new Node();
 
 		node.setRoles(roles);
 		node.setName(name);
 		
-		for (final Container cont : containers) {
-			Container container = new Container();
+		for (final ContainerBase cont : containers) {
+			ContainerBase container = new Container();
 			container.setId(cont.getId());
 			container.setService((service == null) ? cont.getService().copy(node) : service);
 			container.setNode(node);
@@ -111,33 +112,24 @@ public class Node {
 	}
 
 	@Override
-	public String toString() {
+	public boolean equals(final Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || !(obj instanceof NodeBase))
+			return false;
+
+		NodeBase other = (NodeBase) obj;
+		return getIdentity() == null && other.getIdentity() == null
+				|| getIdentity() != null && getIdentity().equals(other.getIdentity());
+	}
+
+	@Override
+	public String asFormattedString() {
 		return "Node [name=" + name + ", roles=" + roles + "]";
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (!hasName() ? 0 : name.hashCode());
-		result = prime * result + (!hasRoles() ? 0 : roles.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || getClass() != obj.getClass())
-			return false;
-
-		Node other = (Node) obj;
-
-		if (!hasRoles() && other.hasRoles() || hasRoles() && !roles.equals(other.roles))
-			return false;
-		if (!hasName() && other.hasName() || hasName() && !name.equals(other.name))
-			return false;
-		
-		return true;
+	public Object getIdentity() {
+		return name;
 	}
 }

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 import exception.RoleValidationException;
+import model.valueobject.Role;
 
 public class RoleTest {
 

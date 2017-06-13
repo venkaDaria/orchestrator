@@ -1,11 +1,11 @@
-package model;
+package model.valueobject;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import exception.PortValidationException;
 
-public final class Port {
+public final class Port extends ValueObject<String>{
 	private final Protocol protocol;
 	private final Integer local;
 	private final Integer remote;
@@ -70,7 +70,12 @@ public final class Port {
 	}
 
 	@Override
-	public String toString() {
+	public String asFormattedString() {
+		return "Port [protocol=" + protocol + ", local=" + local + ", remote=" + remote + "]";
+	}
+
+	@Override
+	public String getValue() {
 		String line = local.toString();
 
 		if (hasRemote()) {

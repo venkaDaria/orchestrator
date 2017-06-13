@@ -1,8 +1,8 @@
-package model;
+package model.valueobject;
 
 import exception.ProtocolValidationException;
 
-public final class Protocol {
+public final class Protocol extends ValueObject<String>{
     private final String value;
     
     public Protocol(final String value) {
@@ -12,16 +12,12 @@ public final class Protocol {
     	
         this.value = value;
     }
-
+    
+    @Override
     public String getValue() {
         return value;
     }
 
-    @Override
-    public String toString() {
-        return "Protocol: " + value;
-    }
-    
     @Override
     public int hashCode() {
         return value.hashCode();
@@ -37,4 +33,9 @@ public final class Protocol {
         Protocol protocol = (Protocol)obj;
         return value.equals(protocol.value);
     }
+
+	@Override
+	public String asFormattedString() {
+		return "Protocol [value=" + value + "]";
+	}
 }

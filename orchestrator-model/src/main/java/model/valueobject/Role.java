@@ -1,8 +1,8 @@
-package model;
+package model.valueobject;
 
 import exception.RoleValidationException;
 
-public final class Role {
+public final class Role extends ValueObject<String>{
     private final String value;
     
     public Role(final String value) {
@@ -13,13 +13,9 @@ public final class Role {
     	this.value = value;
     }
 
+    @Override
     public String getValue() {
         return value;
-    }
-
-    @Override
-    public String toString() {
-        return "Role: " + value;
     }
 
     @Override
@@ -36,5 +32,11 @@ public final class Role {
     	
         Role role = (Role)obj;
         return value.equals(role.getValue());
+    }    
+
+    @Override
+    public String asFormattedString() {
+        return "Role [value=" + value + "]";
     }
+
 }

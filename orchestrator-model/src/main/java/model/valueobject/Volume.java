@@ -1,8 +1,8 @@
-package model;
+package model.valueobject;
 
 import exception.VolumeValidationException;
 
-public final class Volume {
+public final class Volume extends ValueObject<String>{
 	private final String local;
 	private final String remote;
 
@@ -26,11 +26,6 @@ public final class Volume {
 	}
 
 	@Override
-	public String toString() {
-		return local + ":" + remote;
-	}
-	
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -48,5 +43,15 @@ public final class Volume {
 		
 		Volume other = (Volume) obj;
 		return local.equals(other.local) && remote.equals(other.remote);
+	}
+
+	@Override
+	public String asFormattedString() {
+		return "Volume [local=" + local + ", remote=" + remote + "]";
+	}
+
+	@Override
+	public String getValue() {
+		return local + ":" + remote;
 	}
 }

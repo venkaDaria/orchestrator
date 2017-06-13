@@ -6,11 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import exception.PortValidationException;
-import model.Container;
-import model.ImageReference;
-import model.Node;
-import model.Role;
-import model.Service;
+import model.entity.Container;
+import model.entity.Node;
+import model.entity.Service;
+import model.valueobject.ImageReference;
+import model.valueobject.Role;
 
 public class Demo {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {

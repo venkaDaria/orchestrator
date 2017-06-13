@@ -11,6 +11,11 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import model.entity.Container;
+import model.entity.Service;
+import model.valueobject.ImageReference;
+import model.valueobject.Role;
+
 public class ServiceTest {
 	
     @Test

@@ -11,6 +11,10 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import model.entity.Container;
+import model.entity.Node;
+import model.valueobject.Role;
+
 public class NodeTest {
 
 	@Test
