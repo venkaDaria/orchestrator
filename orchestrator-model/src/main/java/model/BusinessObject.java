@@ -5,6 +5,6 @@ public abstract class BusinessObject implements Formattable{
 	@Deprecated
 	@Override
 	public String toString() {
-		return "";
+		return asFormattedString();
 	}
 }
