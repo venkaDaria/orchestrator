@@ -65,3 +65,6 @@ public class Demo {
 		System.out.println("----");
 	}
 }
+
+// TODO: copy bi-link
+// TODO: check add-remove-clear with hashcode-equals
