@@ -1,6 +1,6 @@
 package model;
 
-import exception.VolumeException;
+import exception.VolumeValidationException;
 
 public final class Volume {
 	private final String local;
@@ -10,7 +10,7 @@ public final class Volume {
 		String[] volumes = volumeLine.split(":");
 		
 		if (volumes.length != 2 || volumes[0].trim().equals("") || volumes[1].trim().equals("")) {
-			throw new VolumeException();
+			throw new VolumeValidationException();
 		}
 		
 		local = volumes[0];
@@ -40,7 +40,7 @@ public final class Volume {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null || getClass() != obj.getClass())

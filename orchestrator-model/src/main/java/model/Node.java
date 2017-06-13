@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import exception.NodeException;
+import exception.NodeValidationException;
 
 public class Node {
 	private String name;
@@ -19,7 +19,7 @@ public class Node {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
@@ -51,17 +51,17 @@ public class Node {
 		if (container != null && (!container.hasNode() || !container.getNode().equals(this))) {
 			container.setNode(this);
 		} else {
-			throw new NodeException("Can't add container");
+			throw new NodeValidationException("Can't add container");
 		}
 	}
 
-	public void addContainers(Container[] collection) {
+	public void addContainers(final Container[] collection) {
 		for (Container cont : collection) {
 			addContainer(cont);
 		}
 	}
 
-	public void addContainers(Collection<Container> collection) {
+	public void addContainers(final Collection<Container> collection) {
 		for (Container cont : collection) {
 			addContainer(cont);
 		}
@@ -71,17 +71,17 @@ public class Node {
 		if (container != null && container.hasNode() && container.getNode().equals(this)) {
 			container.setNode(null);
 		} else {
-			throw new NodeException("Can't remove container");
+			throw new NodeValidationException("Can't remove container");
 		}
 	}
 
-	public void removeContainers(Container[] collection) {
+	public void removeContainers(final Container[] collection) {
 		for (Container cont : collection) {
 			removeContainer(cont);
 		}
 	}
 
-	public void removeContainers(Collection<Container> collection) {
+	public void removeContainers(final Collection<Container> collection) {
 		for (Container cont : collection) {
 			removeContainer(cont);
 		}
@@ -123,7 +123,7 @@ public class Node {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null || getClass() != obj.getClass())

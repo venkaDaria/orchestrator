@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import exception.PortException;
+import exception.PortValidationException;
 import model.Container;
 import model.ImageReference;
 import model.Node;
@@ -29,7 +29,7 @@ public class Demo {
 		}
 
 		System.out.println("----");
-		System.out.println(new PortException().getCode());
+		System.out.println(new PortValidationException().getCode());
 		System.out.println("----");
 
 		Set<Role> roles = new HashSet<Role>();
@@ -87,5 +87,3 @@ public class Demo {
 		System.out.println(c3.getService());
 	}
 }
-
-// TODO: copy bi-link

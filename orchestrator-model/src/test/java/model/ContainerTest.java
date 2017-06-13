@@ -70,7 +70,7 @@ public class ContainerTest {
 		Node node = new Node();
 		node.setRoles(new ArrayList<>());
 
-		container.setId(4);
+		container.setId("4");
 		container.setNode(node);
 		container.setService(service);
 		container.setStatus(Status.STOPPED);
@@ -92,13 +92,13 @@ public class ContainerTest {
 		Node node = new Node();
 		node.setRoles(new ArrayList<>());
 
-		container.setId(4);
+		container.setId("4");
 		container.setNode(node);
 		container.setService(service);
 		container.setStatus(Status.STOPPED);
 
 		Container container2 = container.copy();
-		container2.setId(5);
+		container2.setId("5");
 
 		assertNotEquals(container, container2);
 	}
@@ -115,7 +115,7 @@ public class ContainerTest {
 		Node node = new Node();
 		node.setRoles(new ArrayList<>());
 
-		container.setId(4);
+		container.setId("4");
 		container.setNode(node);
 		container.setService(service);
 		container.setStatus(Status.STOPPED);
@@ -142,7 +142,7 @@ public class ContainerTest {
 		Node node = new Node();
 		node.setRoles(new ArrayList<>());
 
-		container.setId(4);
+		container.setId("4");
 		container.setNode(node);
 		container.setService(service);
 		container.setStatus(Status.STOPPED);

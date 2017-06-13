@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import exception.PortException;
+import exception.PortValidationException;
 
 public class PortTest {
 
@@ -37,12 +37,12 @@ public class PortTest {
 		assertNull(port.getRemote());
 	}
 
-	@Test(expected = PortException.class)
+	@Test(expected = PortValidationException.class)
 	public void testCreatePort_SpaceLocal() {
 		new Port("     :9090/http");
 	}
 
-	@Test(expected = PortException.class)
+	@Test(expected = PortValidationException.class)
 	public void testCreatePort_SpaceProtocolAndLocal() {
 		new Port("   :9080:   ");
 	}

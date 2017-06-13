@@ -1,13 +1,13 @@
 package model;
 
-import exception.ProtocolException;
+import exception.ProtocolValidationException;
 
 public final class Protocol {
     private final String value;
     
     public Protocol(final String value) {
     	if (value == null || value.trim().equals("")) {
-    		throw new ProtocolException();
+    		throw new ProtocolValidationException();
     	}
     	
         this.value = value;

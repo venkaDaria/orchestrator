@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import exception.ServiceException;
+import exception.ServiceValidationException;
 
 public class Service {
 	private String name;
@@ -91,17 +91,17 @@ public class Service {
 			container.setStatus(Status.STOPPED);
 			container.setService(this);
 		} else {
-        	throw new ServiceException("Can't add container");
+        	throw new ServiceValidationException("Can't add container");
         }
 	}
 	
-	public void addContainers(Container[] collection) {
+	public void addContainers(final Container[] collection) {
 		for (Container cont : collection) {
 			addContainer(cont);
 		}
 	}
 
-	public void addContainers(Collection<Container> collection) {
+	public void addContainers(final Collection<Container> collection) {
 		for (Container cont : collection) {
 			addContainer(cont);
 		}
@@ -112,17 +112,17 @@ public class Service {
 			container.setService(null);
 			container.setStatus(Status.NONE);
 		} else {
-        	throw new ServiceException("Can't remove container");
+        	throw new ServiceValidationException("Can't remove container");
         }
 	}
 
-	public void removeContainers(Container[] collection) {
+	public void removeContainers(final Container[] collection) {
 		for (Container cont : collection) {
 			removeContainer(cont);
 		}
 	}
 	
-	public void removeContainers(Collection<Container> collection) {
+	public void removeContainers(final Collection<Container> collection) {
 		for (Container cont : collection) {
 			removeContainer(cont);
 		}
@@ -179,7 +179,7 @@ public class Service {
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null || getClass() != obj.getClass())

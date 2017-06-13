@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import exception.VolumeException;
+import exception.VolumeValidationException;
 
 public class VolumeTest {
 
@@ -16,17 +16,17 @@ public class VolumeTest {
 		assertEquals("zzz/x/y", volume.getRemote());
 	}
 
-	@Test(expected = VolumeException.class)
+	@Test(expected = VolumeValidationException.class)
 	public void testCreateVolume_NullRemote() {
 		new Volume("var/x");
 	}
 
-	@Test(expected = VolumeException.class)
+	@Test(expected = VolumeValidationException.class)
 	public void testCreateVolume_NullRemoteWithColon() {
 		new Volume("var/x:");
 	}
 
-	@Test(expected = VolumeException.class)
+	@Test(expected = VolumeValidationException.class)
 	public void testCreateVolume_NotVolume() {
 		new Volume("var:ngfhgfh:var/x");
 	}

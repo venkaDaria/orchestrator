@@ -1,7 +1,7 @@
 package model;
 
 public class Container {
-	private int id;
+	private String id;
 	private Status status;
 	private Node node;
 	private Service service;
@@ -10,12 +10,16 @@ public class Container {
 		status = Status.NONE;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(final int id) {
+	public void setId(final String id) {
 		this.id = id;
+	}
+	
+	public boolean hasId() {
+		return id != null;
 	}
 
 	public Status getStatus() {
@@ -88,12 +92,12 @@ public class Container {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + (!hasId() ? 0 : id.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null || getClass() != obj.getClass())
@@ -104,7 +108,9 @@ public class Container {
 			return false;
 		if (!hasNode() && other.hasNode() || hasNode() && !node.equals(other.node))
 			return false;
+		if (!hasId() && other.hasId() || hasId() && !id.equals(other.id))
+			return false;
 		
-		return id == other.id && status == other.status;
+		return status == other.status;
 	}
 }

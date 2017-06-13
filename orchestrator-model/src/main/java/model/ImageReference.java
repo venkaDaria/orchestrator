@@ -3,7 +3,7 @@ package model;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import exception.ImageReferenceException;
+import exception.ImageReferenceValidationException;
 
 public final class ImageReference {
 	private final String server;
@@ -19,7 +19,7 @@ public final class ImageReference {
 
 		if (!isMatch || m.groupCount() < 4 || m.group(1) == null || m.group(2) == null
 				|| m.group(4) == null && m.group(6) == null) {
-			throw new ImageReferenceException();
+			throw new ImageReferenceValidationException();
 		}
 
 		server = m.group(1);
@@ -64,7 +64,7 @@ public final class ImageReference {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null || getClass() != obj.getClass())

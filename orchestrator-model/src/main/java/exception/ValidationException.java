@@ -1,5 +1,8 @@
 package exception;
 
+/**
+ * Exception's codes intervals is 100001-100007
+ */
 public abstract class ValidationException extends RuntimeException {	
 	private final int code;	
 	
@@ -11,12 +14,7 @@ public abstract class ValidationException extends RuntimeException {
     public ValidationException(int code, String message, Throwable cause) {
         super(message, cause);
 		this.code = code;
-    }
-    
-    public ValidationException(int code, Throwable cause) {
-        super(cause);
-		this.code = code;
-    }   
+    } 
     
     public int getCode() {
     	return code;

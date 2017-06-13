@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import exception.ImageReferenceException;
+import exception.ImageReferenceValidationException;
 
 public class ImageReferenceTest {
 
@@ -40,12 +40,12 @@ public class ImageReferenceTest {
         assertNull(image.getDigestTag());
     }	
 	
-	@Test(expected = ImageReferenceException.class)
+	@Test(expected = ImageReferenceValidationException.class)
 	public void testImageReference_BothTagNull() {
 		new ImageReference("docker-registry.cloud.sophos/haproxy");       
     }
 	
-	@Test(expected = ImageReferenceException.class)
+	@Test(expected = ImageReferenceValidationException.class)
 	public void testImageReference_NameNull() {
 		new ImageReference("haproxy:dev@sha256:123ab");       
     }	

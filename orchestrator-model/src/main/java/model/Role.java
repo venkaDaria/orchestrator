@@ -1,13 +1,13 @@
 package model;
 
-import exception.RoleException;
+import exception.RoleValidationException;
 
 public final class Role {
     private final String value;
     
     public Role(final String value) {
     	if (value == null || value.trim().equals("")) {
-    		throw new RoleException();
+    		throw new RoleValidationException();
     	}
     	
     	this.value = value;
