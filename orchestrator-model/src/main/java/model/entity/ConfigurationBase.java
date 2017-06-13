@@ -39,14 +39,4 @@ public abstract class ConfigurationBase extends Entity {
 		con.setServices(services.stream().map(Service::copy).collect(Collectors.toSet()));
 		return con;
 	}
-
-	@Override
-	public String asFormattedString() {
-		return "ConfigurationBase [nodes=" + nodes + ", services=" + services + "]";
-	}
-
-	@Override
-	public Object getIdentity() {
-		return new Object[] { nodes, services };
-	}
 }

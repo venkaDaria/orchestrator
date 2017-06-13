@@ -84,26 +84,4 @@ public abstract class ContainerBase extends Entity {
 		cont.setStatus(status);
 		return cont;
 	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || !(obj instanceof ContainerBase))
-			return false;
-
-		ContainerBase other = (ContainerBase) obj;
-		return getIdentity() == null && other.getIdentity() == null
-				|| getIdentity() != null && getIdentity().equals(other.getIdentity());
-	}
-
-	@Override
-	public String asFormattedString() {
-		return "Container [id = " + id + ", status=" + status + ", node=" + node + ", service=" + service + "]";
-	}
-
-	@Override
-	public Object getIdentity() {
-		return id;
-	}
 }

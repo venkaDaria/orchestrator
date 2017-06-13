@@ -8,6 +8,6 @@ public abstract class Entity extends BusinessObject {
 	@Override
 	public int hashCode() {
 		final int prime = 31;	
-		return prime + (getIdentity() == null  ? 0 : getIdentity().hashCode());
+		return prime + (getIdentity() == null ? 0 : getIdentity().hashCode());
 	}
 }

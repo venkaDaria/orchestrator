@@ -110,26 +110,4 @@ public abstract class NodeBase extends Entity {
 		}
 		return node;
 	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || !(obj instanceof NodeBase))
-			return false;
-
-		NodeBase other = (NodeBase) obj;
-		return getIdentity() == null && other.getIdentity() == null
-				|| getIdentity() != null && getIdentity().equals(other.getIdentity());
-	}
-
-	@Override
-	public String asFormattedString() {
-		return "Node [name=" + name + ", roles=" + roles + "]";
-	}
-
-	@Override
-	public Object getIdentity() {
-		return name;
-	}
 }
