@@ -89,9 +89,6 @@ public class Container {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + (!hasService() ? 0 : service.hashCode());
-		result = prime * result + (!hasNode() ? 0 : node.hashCode());
-		result = prime * result + (!hasStatus() ? 0 : status.hashCode());
 		return result;
 	}
 

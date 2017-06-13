@@ -78,4 +78,3 @@ public class Demo {
 }
 
 // TODO: copy bi-link
-// TODO: check add-remove-clear with hashcode-equals -> problems with hashset
