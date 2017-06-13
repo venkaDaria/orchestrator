@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -40,6 +41,8 @@ public class Demo {
 		s.setName("name");
 		s.setImage(ref);
 		s.setRoles(roles);
+		s.setPorts(new ArrayList<>());
+		s.setVolumes(new ArrayList<>());
 		System.out.println(s);
 		roles.clear();
 		role = new Role("2");
@@ -74,6 +77,14 @@ public class Demo {
 
 		n.clearContainers();
 		System.out.println(n.getContainers());
+
+		Container c3 = c2.copy();
+		c3.getNode().setName("kkj");
+		c3.getService().setName("kkj");
+		System.out.println(c2.getNode());
+		System.out.println(c3.getNode());
+		System.out.println(c2.getService());
+		System.out.println(c3.getService());
 	}
 }
 
