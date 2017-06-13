@@ -13,10 +13,10 @@ import model.Service;
 
 public class Demo {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");  
-	    Matcher m = p.matcher("8080:8000/tcp");  
-	    m.matches();
-	    System.out.println(m.group());	
+		Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");
+		Matcher m = p.matcher("8080:8000/tcp");
+		m.matches();
+		System.out.println(m.group());
 
 		ImageReference ref = null;
 		String[] arr = new String[] { "docker-registry.cloud.sophos/haproxy:dev",
@@ -26,11 +26,11 @@ public class Demo {
 			ref = new ImageReference(el);
 			System.out.println(ref);
 		}
-		
+
 		System.out.println("----");
 		System.out.println(new PortException().getCode());
 		System.out.println("----");
-		
+
 		Set<Role> roles = new HashSet<Role>();
 		Role role = new Role("1");
 		roles.add(role);
@@ -58,13 +58,24 @@ public class Demo {
 		Container c2 = new Container();
 		c2.setNode(n);
 		c2.setService(s);
+		System.out.println("----");
+		System.out.println(n.getContainers());
+		System.out.println(c2.hashCode());
+		n.getContainers().forEach(c -> System.out.println(c.hashCode()));
+		n.getContainers().forEach(c -> System.out.println(c.equals(c2)));
+		System.out.println(n.getContainers().contains(c2));
+		System.out.println(c2);
 		n2.addContainer(c2);
+		System.out.println("----");
 		System.out.println(c2);
 		System.out.println(n2);
 		System.out.println(s);
 		System.out.println("----");
+
+		n.clearContainers();
+		System.out.println(n.getContainers());
 	}
 }
 
 // TODO: copy bi-link
-// TODO: check add-remove-clear with hashcode-equals
+// TODO: check add-remove-clear with hashcode-equals -> problems with hashset
