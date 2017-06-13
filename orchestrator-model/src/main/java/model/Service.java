@@ -153,6 +153,7 @@ public class Service {
 
 		for (final Container cont : containers) {
 			Container container = new Container();
+			container.setId(cont.getId());
 			container.setService(service);
 			container.setNode(cont.getNode());
 		}

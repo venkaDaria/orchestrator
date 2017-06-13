@@ -101,10 +101,10 @@ public class Node {
 		
 		for (final Container cont : containers) {
 			Container container = new Container();
+			container.setId(cont.getId());
 			container.setService(cont.getService());
 			container.setNode(node);
 		}
-
 		return node;
 	}
 
