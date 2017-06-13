@@ -8,15 +8,15 @@ public class PortValidationException extends ValidationException {
         super(CODE, MESSAGE);
     }
 
-    public PortValidationException(String message) {
+    public PortValidationException(final String message) {
         super(CODE, message);
     }
 
-    public PortValidationException(String message, Throwable cause) {
+    public PortValidationException(final String message, final Throwable cause) {
         super(CODE, message, cause);
     }
     
-    public PortValidationException(Throwable cause) {
+    public PortValidationException(final Throwable cause) {
         super(CODE, MESSAGE, cause);
     }
 }

@@ -8,15 +8,15 @@ public class ImageReferenceValidationException extends ValidationException {
         super(CODE, MESSAGE);
     }
 
-    public ImageReferenceValidationException(String message) {
+    public ImageReferenceValidationException(final String message) {
         super(CODE, message);
     }
 
-    public ImageReferenceValidationException(String message, Throwable cause) {
+    public ImageReferenceValidationException(final String message, final Throwable cause) {
         super(CODE, message, cause);
     }
     
-    public ImageReferenceValidationException(Throwable cause) {
+    public ImageReferenceValidationException(final Throwable cause) {
         super(CODE, MESSAGE, cause);
     }
 }

@@ -8,15 +8,15 @@ public class NodeValidationException extends ValidationException {
         super(CODE, MESSAGE);
     }
 
-    public NodeValidationException(String message) {
+    public NodeValidationException(final String message) {
         super(CODE, message);
     }
 
-    public NodeValidationException(String message, Throwable cause) {
+    public NodeValidationException(final String message, final Throwable cause) {
         super(CODE, message, cause);
     }
     
-    public NodeValidationException(Throwable cause) {
+    public NodeValidationException(final Throwable cause) {
         super(CODE, MESSAGE, cause);
     }
 }

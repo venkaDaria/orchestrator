@@ -8,15 +8,15 @@ public class ServiceValidationException extends ValidationException {
         super(CODE, MESSAGE);
     }
 
-    public ServiceValidationException(String message) {
+    public ServiceValidationException(final String message) {
         super(CODE, message);
     }
 
-    public ServiceValidationException(String message, Throwable cause) {
+    public ServiceValidationException(final String message, final Throwable cause) {
         super(CODE, message, cause);
     }
     
-    public ServiceValidationException(Throwable cause) {
+    public ServiceValidationException(final Throwable cause) {
         super(CODE, MESSAGE, cause);
     }
 }

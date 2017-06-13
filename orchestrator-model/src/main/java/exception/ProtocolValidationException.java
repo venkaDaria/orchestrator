@@ -8,15 +8,15 @@ public class ProtocolValidationException extends ValidationException {
         super(CODE, MESSAGE);
     }
 
-    public ProtocolValidationException(String message) {
+    public ProtocolValidationException(final String message) {
         super(CODE, message);
     }
 
-    public ProtocolValidationException(String message, Throwable cause) {
+    public ProtocolValidationException(final String message, final Throwable cause) {
         super(CODE, message, cause);
     }
     
-    public ProtocolValidationException(Throwable cause) {
+    public ProtocolValidationException(final Throwable cause) {
         super(CODE, MESSAGE, cause);
     }
 }

@@ -8,15 +8,15 @@ public class RoleValidationException extends ValidationException {
         super(CODE, MESSAGE);
     }
 
-    public RoleValidationException(String message) {
+    public RoleValidationException(final String message) {
         super(CODE, message);
     }
 
-    public RoleValidationException(String message, Throwable cause) {
+    public RoleValidationException(final String message, final Throwable cause) {
         super(CODE, message, cause);
     }
     
-    public RoleValidationException(Throwable cause) {
+    public RoleValidationException(final Throwable cause) {
         super(CODE, MESSAGE, cause);
     }
 }

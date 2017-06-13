@@ -8,15 +8,15 @@ public class VolumeValidationException extends ValidationException {
         super(CODE, MESSAGE);
     }
 
-    public VolumeValidationException(String message) {
+    public VolumeValidationException(final String message) {
         super(CODE, message);
     }
 
-    public VolumeValidationException(String message, Throwable cause) {
+    public VolumeValidationException(final String message, final Throwable cause) {
         super(CODE, message, cause);
     }
     
-    public VolumeValidationException(Throwable cause) {
+    public VolumeValidationException(final Throwable cause) {
         super(CODE, MESSAGE, cause);
     }
 }
