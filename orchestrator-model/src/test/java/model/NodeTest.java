@@ -60,8 +60,10 @@ public class NodeTest {
 	public void testRemoveContainers() {
 		Node node = new Node();
 
-		Container container = new Container();
-		Container container2 = new Container();
+        Container container = new Container();
+        container.setId("i");
+        Container container2 = new Container();
+        container2.setId("j");
 		Container[] containers = new Container[] { container, container2 };
 
 		node.addContainers(containers);

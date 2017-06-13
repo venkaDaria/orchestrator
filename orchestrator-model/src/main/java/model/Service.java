@@ -121,17 +121,15 @@ public class Service {
 			removeContainer(cont);
 		}
 	}
-	
+
 	public void removeContainers(final Collection<Container> collection) {
-		for (Container cont : collection) {
+		for (Container cont : collection.toArray(new Container[] {})) {
 			removeContainer(cont);
 		}
 	}
 
 	public void clearContainers() {
-		for (Container cont : containers) {
-			removeContainer(cont);
-		}
+		removeContainers(containers);
 	}
 
 	public Set<Node> getNodes() {

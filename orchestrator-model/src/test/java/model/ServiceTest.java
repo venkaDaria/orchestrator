@@ -60,7 +60,9 @@ public class ServiceTest {
     	Service service = new Service();
         
         Container container = new Container();
+        container.setId("i");
         Container container2 = new Container();
+        container2.setId("j");
         Container[] containers = new Container[] { container, container2 };
 
         service.addContainers(containers);

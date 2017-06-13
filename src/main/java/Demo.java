@@ -85,5 +85,11 @@ public class Demo {
 		System.out.println(c3.getNode());
 		System.out.println(c2.getService());
 		System.out.println(c3.getService());
+
+		Node n3 = c3.getNode().copy();
+		System.out.println(n3.getContainers());
+		n3.clearContainers();
+		System.out.println(n3.getContainers());
+		System.out.println(c3.getNode());
 	}
 }

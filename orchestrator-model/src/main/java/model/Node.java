@@ -82,15 +82,13 @@ public class Node {
 	}
 
 	public void removeContainers(final Collection<Container> collection) {
-		for (Container cont : collection) {
+		for (Container cont : collection.toArray(new Container[] {})) {
 			removeContainer(cont);
 		}
 	}
 
 	public void clearContainers() {
-		for (Container cont : containers) {
-			removeContainer(cont);
-		}
+		removeContainers(containers);
 	}
 
 	public Node copy() {
