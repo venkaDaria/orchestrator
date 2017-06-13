@@ -1,7 +1,7 @@
 package model.valueobject;
 
 import exception.ProtocolValidationException;
-import model.base.ValueObject;
+import model.ValueObject;
 
 public final class Protocol extends ValueObject<String>{
     private final String value;

@@ -1,4 +1,4 @@
-package model.base;
+package model;
 
 public abstract class ValueObject<T> extends BusinessObject {
 	public abstract T getValue();

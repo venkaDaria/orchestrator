@@ -1,4 +1,4 @@
-package model.base;
+package model;
 
 public abstract class BusinessObject implements Formattable{
 

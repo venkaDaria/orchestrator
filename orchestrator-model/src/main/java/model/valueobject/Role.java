@@ -1,7 +1,7 @@
 package model.valueobject;
 
 import exception.RoleValidationException;
-import model.base.ValueObject;
+import model.ValueObject;
 
 public final class Role extends ValueObject<String>{
     private final String value;

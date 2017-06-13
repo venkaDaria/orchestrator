@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import exception.NodeValidationException;
+import model.Entity;
 import model.entity.Container;
-import model.entity.Entity;
 import model.entity.Node;
 import model.valueobject.Role;
 

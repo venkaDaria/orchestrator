@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import exception.PortValidationException;
-import model.base.ValueObject;
+import model.ValueObject;
 
 public final class Port extends ValueObject<String>{
 	private final Protocol protocol;
