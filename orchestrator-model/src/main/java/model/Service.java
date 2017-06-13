@@ -139,8 +139,12 @@ public class Service {
 		}
 		return nodes;
 	}
-
+	
 	public Service copy() {
+		return copy(null);
+	}
+
+	public Service copy(Node node) {
 		Service service = new Service();
 		service.setName(name);
 		service.setImage(image);
@@ -153,7 +157,7 @@ public class Service {
 			Container container = new Container();
 			container.setId(cont.getId());
 			container.setService(service);
-			container.setNode(cont.getNode());
+			container.setNode((node == null) ? cont.getNode().copy(service) : node);
 		}
 		return service;
 	}

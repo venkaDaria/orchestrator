@@ -53,43 +53,40 @@ public class Demo {
 		n.setName("hghg");
 		n.setRoles(roles);
 		System.out.println(n);
-
 		System.out.println("----");
+
 		Node n2 = new Node();
 		n2.setName("hjhj");
 		n2.setRoles(roles);
 		Container c2 = new Container();
 		c2.setNode(n);
 		c2.setService(s);
-		System.out.println("----");
-		System.out.println(n.getContainers());
+
+		n.getContainers().forEach(c -> System.out.println("*" + c));
 		System.out.println(c2.hashCode());
 		n.getContainers().forEach(c -> System.out.println(c.hashCode()));
 		n.getContainers().forEach(c -> System.out.println(c.equals(c2)));
 		System.out.println(n.getContainers().contains(c2));
 		System.out.println(c2);
 		n2.addContainer(c2);
-		System.out.println("----");
 		System.out.println(c2);
-		System.out.println(n2);
+		System.out.println("----");
+
+		n2.getContainers().forEach(c -> System.out.println("*" + c));
+		System.out.println(n.getContainers());
 		System.out.println(s);
 		System.out.println("----");
 
-		n.clearContainers();
-		System.out.println(n.getContainers());
-
+		c2.getNode().getContainers().forEach(c -> System.out.println("*" + c));
 		Container c3 = c2.copy();
-		c3.getNode().setName("kkj");
-		c3.getService().setName("kkj");
-		System.out.println(c2.getNode());
-		System.out.println(c3.getNode());
-		System.out.println(c2.getService());
-		System.out.println(c3.getService());
+		System.out.println(";;;;");
+		c3.getNode().getContainers().forEach(c -> System.out.println("*" + c));
 
+		System.out.println("----");
 		Node n3 = c3.getNode().copy();
-		System.out.println(n3.getContainers());
-		n3.clearContainers();
-		System.out.println(n3.getContainers());
-		System.out.println(c3.getNode());
+		n3.getContainers().forEach(c -> System.out.println("*" + c));
+		n3.getContainers().forEach(c -> c.getService().setName("l"));
+		n3.getContainers().forEach(c -> System.out.println("**" + c.getService()));
+		System.out.println(c3.getService());
 	}
 }

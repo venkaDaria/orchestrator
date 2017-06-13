@@ -90,8 +90,12 @@ public class Node {
 	public void clearContainers() {
 		removeContainers(containers);
 	}
-
+	
 	public Node copy() {
+		return copy(null);
+	}
+
+	public Node copy(Service service) {
 		Node node = new Node();
 
 		node.setRoles(roles);
@@ -100,7 +104,7 @@ public class Node {
 		for (final Container cont : containers) {
 			Container container = new Container();
 			container.setId(cont.getId());
-			container.setService(cont.getService());
+			container.setService((service == null) ? cont.getService().copy(node) : service);
 			container.setNode(node);
 		}
 		return node;
