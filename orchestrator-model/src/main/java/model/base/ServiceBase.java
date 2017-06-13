@@ -1,4 +1,4 @@
-package model.entity;
+package model.base;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -6,6 +6,9 @@ import java.util.Set;
 
 import exception.ServiceValidationException;
 import model.Status;
+import model.entity.Container;
+import model.entity.Entity;
+import model.entity.Service;
 import model.valueobject.ImageReference;
 import model.valueobject.Port;
 import model.valueobject.Role;

@@ -1,9 +1,14 @@
-package model.entity;
+package model.base;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import model.entity.Configuration;
+import model.entity.Entity;
+import model.entity.Node;
+import model.entity.Service;
 
 public abstract class ConfigurationBase extends Entity {
 	private Set<Node> nodes;

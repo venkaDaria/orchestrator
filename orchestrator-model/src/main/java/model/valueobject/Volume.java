@@ -1,6 +1,7 @@
 package model.valueobject;
 
 import exception.VolumeValidationException;
+import model.base.ValueObject;
 
 public final class Volume extends ValueObject<String>{
 	private final String local;

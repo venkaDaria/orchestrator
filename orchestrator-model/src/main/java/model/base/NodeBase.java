@@ -1,10 +1,13 @@
-package model.entity;
+package model.base;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import exception.NodeValidationException;
+import model.entity.Container;
+import model.entity.Entity;
+import model.entity.Node;
 import model.valueobject.Role;
 
 public abstract class NodeBase extends Entity {

@@ -1,4 +1,4 @@
-package model.valueobject;
+package model.base;
 
 import model.BusinessObject;
 

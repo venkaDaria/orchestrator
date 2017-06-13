@@ -1,5 +1,7 @@
 package model.entity;
 
+import model.base.ConfigurationBase;
+
 public class Configuration extends ConfigurationBase {
 
 	@Override

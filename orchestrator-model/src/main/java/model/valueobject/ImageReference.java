@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import exception.ImageReferenceValidationException;
+import model.base.ValueObject;
 
 public final class ImageReference extends ValueObject<String> {
 	private final String server;

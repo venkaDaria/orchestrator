@@ -1,6 +1,8 @@
-package model.entity;
+package model.base;
 
 import model.Status;
+import model.entity.Container;
+import model.entity.Entity;
 
 public abstract class ContainerBase extends Entity {
 	private String id;

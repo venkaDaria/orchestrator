@@ -1,5 +1,7 @@
 package model.entity;
 
+import model.base.NodeBase;
+
 public class Node extends NodeBase {
 
 	@Override

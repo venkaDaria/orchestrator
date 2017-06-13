@@ -1,5 +1,7 @@
 package model.entity;
 
+import model.base.ServiceBase;
+
 public class Service extends ServiceBase {
 	@Override
 	public String asFormattedString() {
