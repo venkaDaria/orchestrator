@@ -1,6 +1,6 @@
 package model.entity;
 
-import model.BusinessObject;
+import model.base.BusinessObject;
 
 public abstract class Entity extends BusinessObject {
 	public abstract Object getIdentity();
