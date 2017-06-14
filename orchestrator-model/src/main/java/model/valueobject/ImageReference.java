@@ -54,40 +54,6 @@ public final class ImageReference extends ValueObject<String> {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + name.hashCode();
-		result = prime * result + server.hashCode();
-		result = prime * result + (!hasTag() ? 0 : tag.hashCode());
-		result = prime * result + (!hasDigestTag() ? 0 : digestTag.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || getClass() != obj.getClass())
-			return false;
-
-		ImageReference other = (ImageReference) obj;
-		boolean isEqual = name.equals(other.name) && server.equals(other.server);
-
-		if (!hasDigestTag() && other.hasDigestTag()) {
-			return false;
-		} else if (!hasTag() && other.hasTag()) {
-			return false;
-		} else if (!other.hasDigestTag()) {
-			return isEqual && tag.equals(other.tag);
-		} else if (!other.hasTag()) {
-			return isEqual && digestTag.equals(other.digestTag);
-		} else {
-			return isEqual && tag.equals(other.tag) && digestTag.equals(other.digestTag);
-		}
-	}
-
-	@Override
 	public String asFormattedString() {
 		return "ImageReference [server=" + server + ", name=" + name + ", digestTag=" + digestTag + ", tag=" + tag
 				+ "]";
