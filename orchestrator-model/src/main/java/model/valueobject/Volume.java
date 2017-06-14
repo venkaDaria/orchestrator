@@ -8,6 +8,7 @@ public final class Volume extends ValueObject<String> {
 	private final String remote;
 
 	public Volume(final String volumeLine) {
+		super(volumeLine, new VolumeValidationException());
 		String[] volumes = volumeLine.split(":");
 
 		if (volumes.length != 2 || volumes[0].trim().equals("") || volumes[1].trim().equals("")) {

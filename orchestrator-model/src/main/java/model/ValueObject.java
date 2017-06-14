@@ -1,9 +1,17 @@
 package model;
 
+import exception.ValidationException;
+
 public abstract class ValueObject<T> extends BusinessObject {
 	public abstract String asString();
 
 	public abstract T getValue();
+
+	public ValueObject(T value, ValidationException ex) {
+		if (value == null || value instanceof String && ((String) value).trim().equals("")) {
+			throw ex;
+		}
+	}
 
 	@Override
 	public int hashCode() {

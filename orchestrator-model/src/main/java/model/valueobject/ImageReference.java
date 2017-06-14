@@ -13,6 +13,8 @@ public final class ImageReference extends ValueObject<String> {
 	private final String tag;
 
 	public ImageReference(final String path) {
+		super(path, new ImageReferenceValidationException());
+
 		Pattern p = Pattern.compile("^(.+?)\\/(.+?)(:(.+?))?(@(.+))?$");
 		Matcher m = p.matcher(path);
 

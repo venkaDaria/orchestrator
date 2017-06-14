@@ -7,10 +7,7 @@ public final class Protocol extends ValueObject<String> {
 	private final String value;
 
 	public Protocol(final String value) {
-		if (value == null || value.trim().equals("")) {
-			throw new ProtocolValidationException();
-		}
-
+		super(value, new ProtocolValidationException());
 		this.value = value;
 	}
 

@@ -7,10 +7,7 @@ public final class Role extends ValueObject<String> {
 	private final String value;
 
 	public Role(final String value) {
-		if (value == null || value.trim().equals("")) {
-			throw new RoleValidationException();
-		}
-
+		super(value, new RoleValidationException());
 		this.value = value;
 	}
 
