@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import exception.RoleValidationException;
+import exception.ValueObjectValidationException;
 import model.valueobject.Role;
 
 public class RoleTest {
@@ -17,12 +17,12 @@ public class RoleTest {
 		assertEquals("data", role.getValue());
 	}
 
-	@Test(expected = RoleValidationException.class)
+	@Test(expected = ValueObjectValidationException.class)
 	public void testCreateRole_Empty() {
 		new Role("   ");
 	}
 
-	@Test(expected = RoleValidationException.class)
+	@Test(expected = ValueObjectValidationException.class)
 	public void testCreateRole_Null() {
 		new Role(null);
 	}

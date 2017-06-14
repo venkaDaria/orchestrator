@@ -7,6 +7,7 @@ import java.util.Set;
 
 import exception.ServiceValidationException;
 import model.Entity;
+import model.Status;
 import model.entity.Container;
 import model.entity.Node;
 import model.entity.Service;
@@ -117,10 +118,10 @@ public abstract class ServiceBase extends Entity {
 
 	public void removeContainer(final Container container) {
 		if (container != null) {
-			if (container.hasService() || container.getService().equals(this)) {
-				container.setService(null);
-			} else {
+			if (container.hasService() && container.getService().equals(this)) {
 				containers.remove(container);
+				container.setStatus(Status.NONE);
+				container.setService(null);
 			}
 		} else {
 			throw new ServiceValidationException("Can't add container");

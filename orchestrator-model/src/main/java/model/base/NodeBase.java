@@ -74,9 +74,8 @@ public abstract class NodeBase extends Entity {
 
 	public void removeContainer(final Container container) {
 		if (container != null) {
-			if (container.hasNode() || container.getNode().equals(this)) {
+			if (container.hasNode() && container.getNode().equals(this)) {
 				containers.remove(container);
-			} else {
 				container.setNode(null);
 			}
 		} else {

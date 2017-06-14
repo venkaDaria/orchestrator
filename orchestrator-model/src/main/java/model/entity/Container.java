@@ -29,7 +29,7 @@ public class Container extends ContainerBase {
 
 	@Override
 	public void setService(final Service service) {
-		if (hasService()) {
+		if (hasService() && getService().containsContainer(this)) {
 			getService().removeContainer(this);
 		}
 
