@@ -14,8 +14,6 @@ public abstract class ValueObject<T> extends BusinessObject {
 			return true;
 		if (obj == null || getClass() != obj.getClass())
 			return false;
-
-		ValueObject<T> other = (ValueObject<T>) obj;
-		return getValue().equals(other.getValue());
+		return getValue().equals(((ValueObject<T>) obj).getValue());
 	}
 }

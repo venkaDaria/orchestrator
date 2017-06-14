@@ -15,8 +15,6 @@ public abstract class Entity extends BusinessObject {
 			return true;
 		if (obj == null || getClass() != obj.getClass())
 			return false;
-
-		Entity other = (Entity) obj;
-		return getIdentity() != null && getIdentity().equals(other.getIdentity());
+		return getIdentity() != null && getIdentity().equals(((Entity) obj).getIdentity());
 	}
 }
