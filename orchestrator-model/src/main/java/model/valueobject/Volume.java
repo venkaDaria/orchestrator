@@ -27,7 +27,7 @@ public final class Volume extends ValueObject<String> {
 	}
 
 	@Override
-	public String asFormattedString() {
+	public String asString() {
 		return "Volume [local=" + local + ", remote=" + remote + "]";
 	}
 

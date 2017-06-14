@@ -1,6 +1,8 @@
 package model;
 
 public abstract class ValueObject<T> extends BusinessObject {
+	public abstract String asString();
+
 	public abstract T getValue();
 
 	@Override
@@ -15,5 +17,10 @@ public abstract class ValueObject<T> extends BusinessObject {
 		if (obj == null || getClass() != obj.getClass())
 			return false;
 		return getValue().equals(((ValueObject<T>) obj).getValue());
+	}
+
+	@Override
+	public String asFormattedString() {
+		return asString();
 	}
 }

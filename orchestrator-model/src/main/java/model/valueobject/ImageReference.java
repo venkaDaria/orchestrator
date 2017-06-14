@@ -54,7 +54,7 @@ public final class ImageReference extends ValueObject<String> {
 	}
 
 	@Override
-	public String asFormattedString() {
+	public String asString() {
 		return "ImageReference [server=" + server + ", name=" + name + ", digestTag=" + digestTag + ", tag=" + tag
 				+ "]";
 	}

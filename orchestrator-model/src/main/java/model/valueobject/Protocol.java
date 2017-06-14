@@ -20,7 +20,7 @@ public final class Protocol extends ValueObject<String> {
 	}
 
 	@Override
-	public String asFormattedString() {
+	public String asString() {
 		return "Protocol [value=" + value + "]";
 	}
 }

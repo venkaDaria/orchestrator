@@ -43,7 +43,7 @@ public final class Port extends ValueObject<String> {
 	}
 
 	@Override
-	public String asFormattedString() {
+	public String asString() {
 		return "Port [protocol=" + protocol + ", local=" + local + ", remote=" + remote + "]";
 	}
 

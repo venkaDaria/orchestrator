@@ -20,7 +20,7 @@ public final class Role extends ValueObject<String> {
 	}
 
 	@Override
-	public String asFormattedString() {
+	public String asString() {
 		return "Role [value=" + value + "]";
 	}
 
