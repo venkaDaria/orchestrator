@@ -7,7 +7,6 @@ import java.util.Set;
 
 import exception.ServiceValidationException;
 import model.Entity;
-import model.Status;
 import model.entity.Container;
 import model.entity.Node;
 import model.entity.Service;
@@ -96,7 +95,9 @@ public abstract class ServiceBase extends Entity {
 		return containers != null && !containers.isEmpty();
 	}
 
-	public abstract void addContainer(final Container container);
+	public void addContainer(final Container container) {
+		containers.add(container);
+	}
 
 	public void addContainers(final Container[] collection) {
 		for (Container cont : collection) {
@@ -110,12 +111,19 @@ public abstract class ServiceBase extends Entity {
 		}
 	}
 
+	public boolean containsContainer(Container container) {
+		return containers.contains(container);
+	}
+
 	public void removeContainer(final Container container) {
-		if (container != null && container.hasService() && container.getService().equals(this)) {
-			container.setService(null);
-			container.setStatus(Status.NONE);
+		if (container != null) {
+			if (container.hasService() || container.getService().equals(this)) {
+				container.setService(null);
+			} else {
+				containers.remove(container);
+			}
 		} else {
-			throw new ServiceValidationException("Can't remove container");
+			throw new ServiceValidationException("Can't add container");
 		}
 	}
 
@@ -144,10 +152,6 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public Service copy() {
-		return copy(null);
-	}
-
-	public Service copy(Node node) {
 		Service service = new Service();
 		service.setName(name);
 		service.setImage(image);

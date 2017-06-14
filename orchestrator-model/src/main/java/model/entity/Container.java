@@ -16,27 +16,27 @@ public class Container extends ContainerBase {
 
 	@Override
 	public void setNode(Node node) {
-		if (hasNode()) {
-			getNode().getContainers().remove(this);
+		if (hasNode() && getNode().containsContainer(this)) {
+			getNode().removeContainer(this);
 		}
 
 		super.setNode(node);
 
 		if (hasNode()) {
-			getNode().getContainers().add(this);
+			getNode().addContainer(this);
 		}
 	}
 
 	@Override
 	public void setService(final Service service) {
 		if (hasService()) {
-			getService().getContainers().remove(this);
+			getService().removeContainer(this);
 		}
 
 		super.setService(service);
 
 		if (hasService()) {
-			getService().getContainers().add(this);
+			getService().addContainer(this);
 		}
 	}
 }

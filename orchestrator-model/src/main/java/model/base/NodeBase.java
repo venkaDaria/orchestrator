@@ -9,7 +9,6 @@ import exception.NodeValidationException;
 import model.Entity;
 import model.entity.Container;
 import model.entity.Node;
-import model.entity.Service;
 import model.valueobject.Role;
 
 public abstract class NodeBase extends Entity {
@@ -53,7 +52,9 @@ public abstract class NodeBase extends Entity {
 		return containers != null && !containers.isEmpty();
 	}
 
-	public abstract void addContainer(final Container container);
+	public void addContainer(final Container container) {
+		containers.add(container);
+	}
 
 	public void addContainers(final Container[] collection) {
 		for (Container cont : collection) {
@@ -67,11 +68,19 @@ public abstract class NodeBase extends Entity {
 		}
 	}
 
+	public boolean containsContainer(Container container) {
+		return containers.contains(container);
+	}
+
 	public void removeContainer(final Container container) {
-		if (container != null && container.hasNode() && container.getNode().equals(this)) {
-			container.setNode(null);
+		if (container != null) {
+			if (container.hasNode() || container.getNode().equals(this)) {
+				containers.remove(container);
+			} else {
+				container.setNode(null);
+			}
 		} else {
-			throw new NodeValidationException("Can't remove container");
+			throw new NodeValidationException("Can't add container");
 		}
 	}
 
@@ -92,10 +101,6 @@ public abstract class NodeBase extends Entity {
 	}
 
 	public Node copy() {
-		return copy(null);
-	}
-
-	public Node copy(Service service) {
 		Node node = new Node();
 
 		node.setRoles(roles);
