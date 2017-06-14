@@ -1,13 +1,12 @@
 package model.valueobject;
 
-import exception.ProtocolValidationException;
 import model.ValueObject;
 
 public final class Protocol extends ValueObject<String> {
 	private final String value;
 
 	public Protocol(final String value) {
-		super(value, new ProtocolValidationException());
+		super(value);
 		this.value = value;
 	}
 

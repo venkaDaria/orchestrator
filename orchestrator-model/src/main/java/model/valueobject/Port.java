@@ -12,7 +12,7 @@ public final class Port extends ValueObject<String> {
 	private final Integer remote;
 
 	public Port(final String portLine) {
-		super(portLine, new PortValidationException());
+		super(portLine);
 
 		Pattern p = Pattern.compile("^(.+?)(:(.+?))?(\\/(.+)?)?$");
 		Matcher m = p.matcher(portLine);

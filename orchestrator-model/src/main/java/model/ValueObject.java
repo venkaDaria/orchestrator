@@ -1,15 +1,15 @@
 package model;
 
-import exception.ValidationException;
+import exception.ValueObjectValidationException;
 
 public abstract class ValueObject<T> extends BusinessObject {
 	public abstract String asString();
 
 	public abstract T getValue();
 
-	public ValueObject(T value, ValidationException ex) {
+	public ValueObject(T value) {
 		if (value == null || value instanceof String && ((String) value).trim().equals("")) {
-			throw ex;
+			throw new ValueObjectValidationException();
 		}
 	}
 
