@@ -8,12 +8,13 @@ import exception.NodeValidationException;
 import model.Entity;
 import model.entity.Container;
 import model.entity.Node;
+import model.entity.Service;
 import model.valueobject.Role;
 
 public abstract class NodeBase extends Entity {
 	private String name;
 	private Set<Role> roles;
-	private transient Set<ContainerBase> containers;
+	private transient Set<Container> containers;
 
 	public NodeBase() {
 		this.containers = new HashSet<>();
@@ -26,7 +27,7 @@ public abstract class NodeBase extends Entity {
 	public void setName(final String name) {
 		this.name = name;
 	}
-	
+
 	public boolean hasName() {
 		return name != null;
 	}
@@ -43,7 +44,7 @@ public abstract class NodeBase extends Entity {
 		this.roles = new HashSet<>(roles);
 	}
 
-	public Set<ContainerBase> getContainers() {
+	public Set<Container> getContainers() {
 		return containers;
 	}
 
@@ -51,27 +52,21 @@ public abstract class NodeBase extends Entity {
 		return containers != null && !containers.isEmpty();
 	}
 
-	public void addContainer(final ContainerBase container) {
-		if (container != null && (!container.hasNode() || !container.getNode().equals(this))) {
-			container.setNode(this);
-		} else {
-			throw new NodeValidationException("Can't add container");
-		}
-	}
+	public abstract void addContainer(final Container container);
 
-	public void addContainers(final ContainerBase[] collection) {
-		for (ContainerBase cont : collection) {
+	public void addContainers(final Container[] collection) {
+		for (Container cont : collection) {
 			addContainer(cont);
 		}
 	}
 
-	public void addContainers(final Collection<ContainerBase> collection) {
-		for (ContainerBase cont : collection) {
+	public void addContainers(final Collection<Container> collection) {
+		for (Container cont : collection) {
 			addContainer(cont);
 		}
 	}
 
-	public void removeContainer(final ContainerBase container) {
+	public void removeContainer(final Container container) {
 		if (container != null && container.hasNode() && container.getNode().equals(this)) {
 			container.setNode(null);
 		} else {
@@ -79,14 +74,14 @@ public abstract class NodeBase extends Entity {
 		}
 	}
 
-	public void removeContainers(final ContainerBase[] collection) {
-		for (ContainerBase cont : collection) {
+	public void removeContainers(final Container[] collection) {
+		for (Container cont : collection) {
 			removeContainer(cont);
 		}
 	}
 
-	public void removeContainers(final Collection<ContainerBase> collection) {
-		for (ContainerBase cont : collection.toArray(new ContainerBase[] {})) {
+	public void removeContainers(final Collection<Container> collection) {
+		for (Container cont : collection.toArray(new Container[] {})) {
 			removeContainer(cont);
 		}
 	}
@@ -94,19 +89,19 @@ public abstract class NodeBase extends Entity {
 	public void clearContainers() {
 		removeContainers(containers);
 	}
-	
+
 	public Node copy() {
 		return copy(null);
 	}
 
-	public Node copy(ServiceBase service) {
+	public Node copy(Service service) {
 		Node node = new Node();
 
 		node.setRoles(roles);
 		node.setName(name);
-		
-		for (final ContainerBase cont : containers) {
-			ContainerBase container = new Container();
+
+		for (final Container cont : containers) {
+			Container container = new Container();
 			container.setId(cont.getId());
 			container.setService((service == null) ? cont.getService().copy(node) : service);
 			container.setNode(node);

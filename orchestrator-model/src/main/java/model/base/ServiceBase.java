@@ -8,6 +8,7 @@ import exception.ServiceValidationException;
 import model.Entity;
 import model.Status;
 import model.entity.Container;
+import model.entity.Node;
 import model.entity.Service;
 import model.valueobject.ImageReference;
 import model.valueobject.Port;
@@ -20,7 +21,7 @@ public abstract class ServiceBase extends Entity {
 	private Set<Volume> volumes;
 	private Set<Port> ports;
 	private Set<Role> roles;
-	private transient Set<ContainerBase> containers;
+	private transient Set<Container> containers;
 
 	public ServiceBase() {
 		this.containers = new HashSet<>();
@@ -86,7 +87,7 @@ public abstract class ServiceBase extends Entity {
 		return roles != null && !roles.isEmpty();
 	}
 
-	public Set<ContainerBase> getContainers() {
+	public Set<Container> getContainers() {
 		return containers;
 	}
 
@@ -94,44 +95,37 @@ public abstract class ServiceBase extends Entity {
 		return containers != null && !containers.isEmpty();
 	}
 
-	public void addContainer(final ContainerBase container) {
-		if (container != null && (!container.hasService() || !container.getService().equals(this))) {
-			container.setStatus(Status.STOPPED);
-			container.setService(this);
-		} else {
-        	throw new ServiceValidationException("Can't add container");
-        }
-	}
-	
-	public void addContainers(final ContainerBase[] collection) {
-		for (ContainerBase cont : collection) {
+	public abstract void addContainer(final Container container);
+
+	public void addContainers(final Container[] collection) {
+		for (Container cont : collection) {
 			addContainer(cont);
 		}
 	}
 
-	public void addContainers(final Collection<ContainerBase> collection) {
-		for (ContainerBase cont : collection) {
+	public void addContainers(final Collection<Container> collection) {
+		for (Container cont : collection) {
 			addContainer(cont);
 		}
 	}
 
-	public void removeContainer(final ContainerBase container) {
+	public void removeContainer(final Container container) {
 		if (container != null && container.hasService() && container.getService().equals(this)) {
 			container.setService(null);
 			container.setStatus(Status.NONE);
 		} else {
-        	throw new ServiceValidationException("Can't remove container");
-        }
+			throw new ServiceValidationException("Can't remove container");
+		}
 	}
 
-	public void removeContainers(final ContainerBase[] collection) {
-		for (ContainerBase cont : collection) {
+	public void removeContainers(final Container[] collection) {
+		for (Container cont : collection) {
 			removeContainer(cont);
 		}
 	}
 
-	public void removeContainers(final Collection<ContainerBase> collection) {
-		for (ContainerBase cont : collection.toArray(new ContainerBase[] {})) {
+	public void removeContainers(final Collection<Container> collection) {
+		for (Container cont : collection.toArray(new Container[] {})) {
 			removeContainer(cont);
 		}
 	}
@@ -140,19 +134,19 @@ public abstract class ServiceBase extends Entity {
 		removeContainers(containers);
 	}
 
-	public Set<NodeBase> getNodes() {
-		Set<NodeBase> nodes = new HashSet<>();
-		for (ContainerBase cont : containers) {
+	public Set<Node> getNodes() {
+		Set<Node> nodes = new HashSet<>();
+		for (Container cont : containers) {
 			nodes.add(cont.getNode());
 		}
 		return nodes;
 	}
-	
+
 	public Service copy() {
 		return copy(null);
 	}
 
-	public Service copy(NodeBase node) {
+	public Service copy(Node node) {
 		Service service = new Service();
 		service.setName(name);
 		service.setImage(image);
@@ -161,8 +155,8 @@ public abstract class ServiceBase extends Entity {
 		service.setRoles(roles);
 		service.setVolumes(volumes);
 
-		for (final ContainerBase cont : containers) {
-			ContainerBase container = new Container();
+		for (final Container cont : containers) {
+			Container container = new Container();
 			container.setId(cont.getId());
 			container.setService(service);
 			container.setNode((node == null) ? cont.getNode().copy(service) : node);

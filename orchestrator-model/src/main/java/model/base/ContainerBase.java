@@ -3,12 +3,14 @@ package model.base;
 import model.Entity;
 import model.Status;
 import model.entity.Container;
+import model.entity.Node;
+import model.entity.Service;
 
 public abstract class ContainerBase extends Entity {
 	private String id;
 	private Status status;
-	private NodeBase node;
-	private ServiceBase service;
+	private Node node;
+	private Service service;
 
 	public ContainerBase() {
 		status = Status.NONE;
@@ -38,40 +40,24 @@ public abstract class ContainerBase extends Entity {
 		return status != null;
 	}
 
-	public NodeBase getNode() {
+	public Node getNode() {
 		return node;
 	}
 
-	public void setNode(final NodeBase node) {
-		if (hasNode()) {
-			this.node.getContainers().remove(this);
-		}
-
+	public void setNode(final Node node) {
 		this.node = node;
-
-		if (hasNode()) {
-			this.node.getContainers().add(this);
-		}
 	}
 
 	public boolean hasNode() {
 		return node != null;
 	}
 
-	public ServiceBase getService() {
+	public Service getService() {
 		return service;
 	}
 
-	public void setService(final ServiceBase service) {
-		if (hasService()) {
-			this.service.getContainers().remove(this);
-		}
-
+	public void setService(final Service service) {
 		this.service = service;
-
-		if (hasService()) {
-			this.service.getContainers().add(this);
-		}
 	}
 
 	public boolean hasService() {
