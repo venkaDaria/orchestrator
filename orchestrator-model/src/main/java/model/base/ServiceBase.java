@@ -1,7 +1,6 @@
 package model.base;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -53,7 +52,7 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public Set<Volume> getVolumes() {
-		return Collections.unmodifiableSet(volumes);
+		return getUnmodifiableSet(volumes);
 	}
 
 	public void setVolumes(final Collection<Volume> volumes) {
@@ -65,7 +64,7 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public Set<Port> getPorts() {
-		return Collections.unmodifiableSet(ports);
+		return getUnmodifiableSet(ports);
 	}
 
 	public void setPorts(final Collection<Port> ports) {
@@ -77,7 +76,7 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public Set<Role> getRoles() {
-		return Collections.unmodifiableSet(roles);
+		return getUnmodifiableSet(roles);
 	}
 
 	public void setRoles(final Collection<Role> roles) {
@@ -89,7 +88,7 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public Set<Container> getContainers() {
-		return Collections.unmodifiableSet(containers);
+		return getUnmodifiableSet(containers);
 	}
 
 	public boolean hasContainers() {
