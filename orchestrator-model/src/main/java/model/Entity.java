@@ -7,7 +7,7 @@ public abstract class Entity extends BusinessObject {
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(getIdentity() == null ? 0 : getIdentity().hashCode());
+		return Objects.hashCode(getIdentity());
 	}
 
 	@Override
