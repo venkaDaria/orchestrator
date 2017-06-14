@@ -155,12 +155,7 @@ public abstract class ServiceBase extends Entity {
 		service.setRoles(roles);
 		service.setVolumes(volumes);
 
-		for (final Container cont : containers) {
-			Container container = new Container();
-			container.setId(cont.getId());
-			container.setService(service);
-			container.setNode((node == null) ? cont.getNode().copy(service) : node);
-		}
+		// TODO: ?
 		return service;
 	}
 }

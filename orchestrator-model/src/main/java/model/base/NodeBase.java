@@ -100,12 +100,7 @@ public abstract class NodeBase extends Entity {
 		node.setRoles(roles);
 		node.setName(name);
 
-		for (final Container cont : containers) {
-			Container container = new Container();
-			container.setId(cont.getId());
-			container.setService((service == null) ? cont.getService().copy(node) : service);
-			container.setNode(node);
-		}
+		// TODO: ?
 		return node;
 	}
 }
