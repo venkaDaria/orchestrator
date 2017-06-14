@@ -59,6 +59,7 @@ public class Demo {
 		n2.setName("hjhj");
 		n2.setRoles(roles);
 		Container c2 = new Container();
+		c2.setId("8");
 		c2.setNode(n);
 		c2.setService(s);
 
