@@ -1,6 +1,7 @@
 package model.base;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ public abstract class ConfigurationBase extends BusinessObject {
 	private Set<Service> services;
 
 	public Set<Node> getNodes() {
-		return nodes;
+		return Collections.unmodifiableSet(nodes);
 	}
 
 	public void setNodes(final Collection<Node> nodes) {
@@ -27,7 +28,7 @@ public abstract class ConfigurationBase extends BusinessObject {
 	}
 
 	public Set<Service> getServices() {
-		return services;
+		return Collections.unmodifiableSet(services);
 	}
 
 	public void setServices(final Collection<Service> services) {

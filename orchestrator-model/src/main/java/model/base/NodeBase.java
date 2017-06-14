@@ -1,6 +1,7 @@
 package model.base;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public abstract class NodeBase extends Entity {
 	}
 
 	public Set<Role> getRoles() {
-		return roles;
+		return Collections.unmodifiableSet(roles);
 	}
 
 	public boolean hasRoles() {
@@ -45,7 +46,7 @@ public abstract class NodeBase extends Entity {
 	}
 
 	public Set<Container> getContainers() {
-		return containers;
+		return Collections.unmodifiableSet(containers);
 	}
 
 	public boolean hasContainers() {

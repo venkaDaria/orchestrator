@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 import exception.ValueObjectValidationException;
 
 public abstract class ValueObject<T> extends BusinessObject {
@@ -15,16 +17,14 @@ public abstract class ValueObject<T> extends BusinessObject {
 
 	@Override
 	public int hashCode() {
-		return getValue().hashCode();
+		return Objects.hashCode(getValue());
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || getClass() != obj.getClass())
+		if (getClass() != obj.getClass())
 			return false;
-		return getValue().equals(((ValueObject<T>) obj).getValue());
+		return Objects.equals(getValue(), ((ValueObject<T>) obj).getValue());
 	}
 
 	@Override
