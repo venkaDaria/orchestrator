@@ -84,7 +84,7 @@ public class Demo {
 		c3.getNode().getContainers().forEach(c -> System.out.println("*" + c.asFormattedString()));
 
 		System.out.println("----");
-		Node n3 = c3.getNode().copy();
+		Node n3 = c3.getNode().copyWithContainers();
 		n3.getContainers().forEach(c -> System.out.println("*" + c.asFormattedString()));
 		n3.getContainers().forEach(c -> c.getService().setName("l"));
 		n3.getContainers().forEach(c -> System.out.println("**" + c.getService().asFormattedString()));

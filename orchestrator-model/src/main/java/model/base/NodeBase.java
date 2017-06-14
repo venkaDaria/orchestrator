@@ -8,6 +8,7 @@ import exception.NodeValidationException;
 import model.Entity;
 import model.entity.Container;
 import model.entity.Node;
+import model.entity.Service;
 import model.valueobject.Role;
 
 public abstract class NodeBase extends Entity {
@@ -104,7 +105,36 @@ public abstract class NodeBase extends Entity {
 		node.setRoles(roles);
 		node.setName(name);
 
-		// TODO: ?
+		return node;
+	}
+
+	public Node copyWithContainers() {
+		Node node = this.copy();
+
+		for (Container cont : containers) {
+			Container container = new Container();
+			container.setId(cont.getId());
+			container.setNode(node);
+
+			Service service = null;
+			if (cont.hasService()) {
+				service = cont.getService().copy();
+
+				for (Container c : cont.getService().getContainers()) {
+					Container conts = new Container();
+					conts.setId(c.getId());
+					conts.setService(service);
+					if (!c.hasNode()) {
+						conts.setNode(null);
+					} else if (c.getNode().equals(node)) {
+						conts.setNode(node);
+					} else {
+						conts.setNode(node.copyWithContainers());
+					}
+				}
+			}
+			container.setService(service);
+		}
 		return node;
 	}
 }
