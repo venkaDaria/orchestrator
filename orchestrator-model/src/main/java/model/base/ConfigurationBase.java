@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import model.Entity;
+import model.BusinessObject;
 import model.entity.Configuration;
 import model.entity.Node;
 import model.entity.Service;
 
-public abstract class ConfigurationBase extends Entity {
+public abstract class ConfigurationBase extends BusinessObject {
 	private Set<Node> nodes;
 	private Set<Service> services;
 

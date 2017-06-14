@@ -8,9 +8,4 @@ public class Configuration extends ConfigurationBase {
 	public String asFormattedString() {
 		return "ConfigurationBase [nodes=" + getNodes() + ", services=" + getServices() + "]";
 	}
-
-	@Override
-	public Object getIdentity() {
-		return new Object[] { getNodes(), getServices() };
-	}
 }
