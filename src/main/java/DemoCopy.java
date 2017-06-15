@@ -41,10 +41,12 @@ public class DemoCopy {
 		c4.setId("4");
 
 		c.setNode(n);
-		c.setService(s);
+		c.setService(s2);
+		// c.setService(s);
 
 		c2.setNode(n);
-		c2.setService(s2);
+		c2.setService(s);
+		// c3.setService(s2);
 
 		c3.setNode(n2);
 		c3.setService(s);
