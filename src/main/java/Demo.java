@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import exception.PortValidationException;
 import model.entity.Container;
 import model.entity.Node;
 import model.entity.Service;
@@ -28,8 +27,6 @@ public class Demo {
 			System.out.println(ref.asFormattedString());
 		}
 
-		System.out.println("----");
-		System.out.println(new PortValidationException().getCode());
 		System.out.println("----");
 
 		Set<Role> roles = new HashSet<Role>();
