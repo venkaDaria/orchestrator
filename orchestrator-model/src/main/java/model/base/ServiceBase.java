@@ -175,6 +175,7 @@ public abstract class ServiceBase extends Entity {
 			if (cont.hasNode()) {
 				node = cont.getNode().copy();
 
+				Set<Service> services = new HashSet<>();
 				for (Container c : cont.getNode().getContainers()) {
 					Container conts = new Container();
 					conts.setId(c.getId());
@@ -184,7 +185,10 @@ public abstract class ServiceBase extends Entity {
 					} else if (c.getService().equals(service)) {
 						conts.setService(service);
 					} else {
-						conts.setService(service.copyWithContainers());
+						Service s = services.stream().filter(c.getService()::equals).findAny()
+								.orElse(service.copyWithContainers());
+						conts.setService(s);
+						services.add(s);
 					}
 				}
 			}

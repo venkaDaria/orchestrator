@@ -120,6 +120,7 @@ public abstract class NodeBase extends Entity {
 			if (cont.hasService()) {
 				service = cont.getService().copy();
 
+				Set<Node> nodes = new HashSet<>();
 				for (Container c : cont.getService().getContainers()) {
 					Container conts = new Container();
 					conts.setId(c.getId());
@@ -129,7 +130,9 @@ public abstract class NodeBase extends Entity {
 					} else if (c.getNode().equals(node)) {
 						conts.setNode(node);
 					} else {
-						conts.setNode(node.copyWithContainers());
+						Node n = nodes.stream().filter(c.getNode()::equals).findAny().orElse(node.copyWithContainers());
+						conts.setNode(n);
+						nodes.add(n);
 					}
 				}
 			}
