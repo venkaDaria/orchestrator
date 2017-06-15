@@ -172,7 +172,7 @@ public abstract class ServiceBase extends Entity {
 			container.setService(service);
 
 			Node node = null;
-			if (cont.hasService()) {
+			if (cont.hasNode()) {
 				node = cont.getNode().copy();
 
 				for (Container c : cont.getNode().getContainers()) {
