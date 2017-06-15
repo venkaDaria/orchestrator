@@ -11,9 +11,9 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import model.entity.Container;
-import model.entity.Node;
-import model.valueobject.Role;
+import com.globallogic.orchestrator.model.entity.Container;
+import com.globallogic.orchestrator.model.entity.Node;
+import com.globallogic.orchestrator.model.valueobject.Role;
 
 public class NodeTest {
 

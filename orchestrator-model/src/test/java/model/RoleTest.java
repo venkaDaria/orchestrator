@@ -5,8 +5,8 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import exception.StringValidationException;
-import model.valueobject.Role;
+import com.globallogic.orchestrator.base.StringValidationException;
+import com.globallogic.orchestrator.model.valueobject.Role;
 
 public class RoleTest {
 

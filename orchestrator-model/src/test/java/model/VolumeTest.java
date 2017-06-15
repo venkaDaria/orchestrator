@@ -5,8 +5,8 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import exception.VolumeValidationException;
-import model.valueobject.Volume;
+import com.globallogic.orchestrator.exception.VolumeValidationException;
+import com.globallogic.orchestrator.model.valueobject.Volume;
 
 public class VolumeTest {
 

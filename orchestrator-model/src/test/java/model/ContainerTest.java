@@ -10,9 +10,10 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import model.entity.Container;
-import model.entity.Node;
-import model.entity.Service;
+import com.globallogic.orchestrator.model.Status;
+import com.globallogic.orchestrator.model.entity.Container;
+import com.globallogic.orchestrator.model.entity.Node;
+import com.globallogic.orchestrator.model.entity.Service;
 
 public class ContainerTest {
 

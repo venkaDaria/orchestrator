@@ -11,10 +11,10 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import model.entity.Container;
-import model.entity.Service;
-import model.valueobject.ImageReference;
-import model.valueobject.Role;
+import com.globallogic.orchestrator.model.entity.Container;
+import com.globallogic.orchestrator.model.entity.Service;
+import com.globallogic.orchestrator.model.valueobject.ImageReference;
+import com.globallogic.orchestrator.model.valueobject.Role;
 
 public class ServiceTest {
 	

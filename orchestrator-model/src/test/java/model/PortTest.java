@@ -6,8 +6,8 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import exception.PortValidationException;
-import model.valueobject.Port;
+import com.globallogic.orchestrator.exception.PortValidationException;
+import com.globallogic.orchestrator.model.valueobject.Port;
 
 public class PortTest {
 

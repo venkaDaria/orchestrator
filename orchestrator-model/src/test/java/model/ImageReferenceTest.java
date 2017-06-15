@@ -6,8 +6,8 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import exception.ImageReferenceValidationException;
-import model.valueobject.ImageReference;
+import com.globallogic.orchestrator.exception.ImageReferenceValidationException;
+import com.globallogic.orchestrator.model.valueobject.ImageReference;
 
 public class ImageReferenceTest {
 
