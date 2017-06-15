@@ -3,6 +3,8 @@ package model.valueobject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+
 import exception.ImageReferenceValidationException;
 import model.StringValueObject;
 
@@ -20,8 +22,8 @@ public final class ImageReference extends StringValueObject {
 
 		boolean isMatch = m.matches();
 
-		if (!isMatch || m.groupCount() < 4 || m.group(1) == null || m.group(2) == null
-				|| m.group(4) == null && m.group(6) == null) {
+		if (!isMatch || m.groupCount() < 4 || StringUtils.isBlank(m.group(1)) || StringUtils.isBlank(m.group(2))
+				|| StringUtils.isBlank(m.group(4)) && StringUtils.isBlank(m.group(6))) {
 			throw new ImageReferenceValidationException();
 		}
 
@@ -44,7 +46,7 @@ public final class ImageReference extends StringValueObject {
 	}
 
 	public boolean hasDigestTag() {
-		return digestTag != null;
+		return StringUtils.isNotBlank(digestTag);
 	}
 
 	public String getTag() {
@@ -52,7 +54,7 @@ public final class ImageReference extends StringValueObject {
 	}
 
 	public boolean hasTag() {
-		return tag != null;
+		return StringUtils.isNotBlank(tag);
 	}
 
 	@Override

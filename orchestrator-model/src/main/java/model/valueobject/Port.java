@@ -3,6 +3,8 @@ package model.valueobject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+
 import exception.PortValidationException;
 import model.StringValueObject;
 
@@ -19,13 +21,13 @@ public final class Port extends StringValueObject {
 
 		boolean isMatch = m.matches();
 
-		if (!isMatch || m.group(1) == null || m.group(1).trim().equals("")) {
+		if (!isMatch || StringUtils.isBlank(m.group(1))) {
 			throw new PortValidationException();
 		}
 
-		protocol = new Protocol((m.group(5) != null) ? m.group(5) : "tcp");
+		protocol = new Protocol(StringUtils.isNotBlank(m.group(5)) ? m.group(5) : "tcp");
 		local = Integer.valueOf(m.group(1));
-		remote = (m.group(3) != null) ? Integer.valueOf(m.group(3)) : null;
+		remote = StringUtils.isNotBlank(m.group(3)) ? Integer.valueOf(m.group(3)) : null;
 	}
 
 	public Protocol getProtocol() {

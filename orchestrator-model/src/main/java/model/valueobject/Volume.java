@@ -1,5 +1,7 @@
 package model.valueobject;
 
+import org.apache.commons.lang3.StringUtils;
+
 import exception.VolumeValidationException;
 import model.StringValueObject;
 
@@ -11,7 +13,7 @@ public final class Volume extends StringValueObject {
 		super(volumeLine);
 		String[] volumes = volumeLine.split(":");
 
-		if (volumes.length != 2 || volumes[0].trim().equals("") || volumes[1].trim().equals("")) {
+		if (volumes.length != 2 || StringUtils.isBlank(volumes[0]) || StringUtils.isBlank(volumes[1])) {
 			throw new VolumeValidationException();
 		}
 

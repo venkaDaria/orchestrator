@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import model.BusinessObject;
 import model.entity.Configuration;
 import model.entity.Node;
@@ -23,7 +25,7 @@ public abstract class ConfigurationBase extends BusinessObject {
 	}
 
 	public boolean hasNodes() {
-		return nodes != null && !nodes.isEmpty();
+		return CollectionUtils.isNotEmpty(nodes);
 	}
 
 	public Set<Service> getServices() {
@@ -35,7 +37,7 @@ public abstract class ConfigurationBase extends BusinessObject {
 	}
 
 	public boolean hasServices() {
-		return services != null && !services.isEmpty();
+		return CollectionUtils.isNotEmpty(services);
 	}
 
 	public Configuration copy() {

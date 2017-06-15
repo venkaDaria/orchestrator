@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import exception.NodeValidationException;
 import model.Entity;
 import model.entity.Container;
@@ -29,7 +32,7 @@ public abstract class NodeBase extends Entity {
 	}
 
 	public boolean hasName() {
-		return name != null;
+		return StringUtils.isNotBlank(name);
 	}
 
 	public Set<Role> getRoles() {
@@ -37,7 +40,7 @@ public abstract class NodeBase extends Entity {
 	}
 
 	public boolean hasRoles() {
-		return roles != null && !roles.isEmpty();
+		return CollectionUtils.isNotEmpty(roles);
 	}
 
 	public void setRoles(final Collection<Role> roles) {
@@ -49,7 +52,7 @@ public abstract class NodeBase extends Entity {
 	}
 
 	public boolean hasContainers() {
-		return containers != null && !containers.isEmpty();
+		return CollectionUtils.isNotEmpty(containers);
 	}
 
 	public void addContainer(final Container container) {

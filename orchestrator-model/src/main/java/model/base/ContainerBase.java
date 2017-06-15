@@ -1,5 +1,7 @@
 package model.base;
 
+import org.apache.commons.lang3.StringUtils;
+
 import model.Entity;
 import model.Status;
 import model.entity.Container;
@@ -25,7 +27,7 @@ public abstract class ContainerBase extends Entity {
 	}
 
 	public boolean hasId() {
-		return id != null;
+		return StringUtils.isNotBlank(id);
 	}
 
 	public Status getStatus() {

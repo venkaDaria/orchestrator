@@ -1,11 +1,13 @@
 package model;
 
+import org.apache.commons.lang3.StringUtils;
+
 import exception.StringValidationException;
 
 public abstract class StringValueObject extends ValueObject<String> {
 
 	public StringValueObject(String value) {
-		if (value == null || value.trim().equals("")) {
+		if (StringUtils.isBlank(value)) {
 			throw new StringValidationException();
 		}
 	}

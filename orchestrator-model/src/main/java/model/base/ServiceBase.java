@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import exception.ServiceValidationException;
 import model.Entity;
 import model.Status;
@@ -36,7 +39,7 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public boolean hasName() {
-		return name != null;
+		return StringUtils.isNotEmpty(name);
 	}
 
 	public ImageReference getImage() {
@@ -60,7 +63,7 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public boolean hasVolumes() {
-		return volumes != null && !volumes.isEmpty();
+		return CollectionUtils.isNotEmpty(volumes);
 	}
 
 	public Set<Port> getPorts() {
@@ -72,7 +75,7 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public boolean hasPorts() {
-		return ports != null && !ports.isEmpty();
+		return CollectionUtils.isNotEmpty(ports);
 	}
 
 	public Set<Role> getRoles() {
@@ -84,7 +87,7 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public boolean hasRoles() {
-		return roles != null && !roles.isEmpty();
+		return CollectionUtils.isNotEmpty(roles);
 	}
 
 	public Set<Container> getContainers() {
@@ -92,7 +95,7 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public boolean hasContainers() {
-		return containers != null && !containers.isEmpty();
+		return CollectionUtils.isNotEmpty(containers);
 	}
 
 	public void addContainer(final Container container) {
