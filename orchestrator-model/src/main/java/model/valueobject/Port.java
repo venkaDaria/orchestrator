@@ -4,9 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import exception.PortValidationException;
-import model.ValueObject;
+import model.StringValueObject;
 
-public final class Port extends ValueObject<String> {
+public final class Port extends StringValueObject {
 	private final Protocol protocol;
 	private final Integer local;
 	private final Integer remote;

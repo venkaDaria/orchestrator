@@ -1,8 +1,8 @@
 package model.valueobject;
 
-import model.ValueObject;
+import model.StringValueObject;
 
-public final class Role extends ValueObject<String> {
+public final class Role extends StringValueObject {
 	private final String value;
 
 	public Role(final String value) {

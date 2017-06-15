@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import exception.ValueObjectValidationException;
+import exception.StringValidationException;
 import model.valueobject.Protocol;
 
 public class ProtocolTest {
@@ -17,12 +17,12 @@ public class ProtocolTest {
 		assertEquals("http", protocol.getValue());
 	}
 
-	@Test(expected = ValueObjectValidationException.class)
+	@Test(expected = StringValidationException.class)
 	public void testCreateProtocol_Empty() {
 		new Protocol("   ");
 	}
 
-	@Test(expected = ValueObjectValidationException.class)
+	@Test(expected = StringValidationException.class)
 	public void testCreateProtocol_Null() {
 		new Protocol(null);
 	}

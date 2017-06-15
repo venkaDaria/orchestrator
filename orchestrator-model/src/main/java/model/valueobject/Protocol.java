@@ -1,8 +1,8 @@
 package model.valueobject;
 
-import model.ValueObject;
+import model.StringValueObject;
 
-public final class Protocol extends ValueObject<String> {
+public final class Protocol extends StringValueObject {
 	private final String value;
 
 	public Protocol(final String value) {
