@@ -1,12 +1,24 @@
-package model;
+package model.base;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import exception.ServiceValidationException;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
-public class Service {
+import exception.ServiceValidationException;
+import model.Entity;
+import model.Status;
+import model.entity.Container;
+import model.entity.Node;
+import model.entity.Service;
+import model.valueobject.ImageReference;
+import model.valueobject.Port;
+import model.valueobject.Role;
+import model.valueobject.Volume;
+
+public abstract class ServiceBase extends Entity {
 	private String name;
 	private ImageReference image;
 	private Set<Volume> volumes;
@@ -14,7 +26,7 @@ public class Service {
 	private Set<Role> roles;
 	private transient Set<Container> containers;
 
-	public Service() {
+	public ServiceBase() {
 		this.containers = new HashSet<>();
 	}
 
@@ -27,7 +39,7 @@ public class Service {
 	}
 
 	public boolean hasName() {
-		return name != null;
+		return StringUtils.isNotEmpty(name);
 	}
 
 	public ImageReference getImage() {
@@ -43,7 +55,7 @@ public class Service {
 	}
 
 	public Set<Volume> getVolumes() {
-		return volumes;
+		return getUnmodifiableSet(volumes);
 	}
 
 	public void setVolumes(final Collection<Volume> volumes) {
@@ -51,11 +63,11 @@ public class Service {
 	}
 
 	public boolean hasVolumes() {
-		return volumes != null && !volumes.isEmpty();
+		return CollectionUtils.isNotEmpty(volumes);
 	}
 
 	public Set<Port> getPorts() {
-		return ports;
+		return getUnmodifiableSet(ports);
 	}
 
 	public void setPorts(final Collection<Port> ports) {
@@ -63,11 +75,11 @@ public class Service {
 	}
 
 	public boolean hasPorts() {
-		return ports != null && !ports.isEmpty();
+		return CollectionUtils.isNotEmpty(ports);
 	}
 
 	public Set<Role> getRoles() {
-		return roles;
+		return getUnmodifiableSet(roles);
 	}
 
 	public void setRoles(final Collection<Role> roles) {
@@ -75,26 +87,21 @@ public class Service {
 	}
 
 	public boolean hasRoles() {
-		return roles != null && !roles.isEmpty();
+		return CollectionUtils.isNotEmpty(roles);
 	}
 
 	public Set<Container> getContainers() {
-		return containers;
+		return getUnmodifiableSet(containers);
 	}
 
 	public boolean hasContainers() {
-		return containers != null && !containers.isEmpty();
+		return CollectionUtils.isNotEmpty(containers);
 	}
 
 	public void addContainer(final Container container) {
-		if (container != null && (!container.hasService() || !container.getService().equals(this))) {
-			container.setStatus(Status.STOPPED);
-			container.setService(this);
-		} else {
-        	throw new ServiceValidationException("Can't add container");
-        }
+		containers.add(container);
 	}
-	
+
 	public void addContainers(final Container[] collection) {
 		for (Container cont : collection) {
 			addContainer(cont);
@@ -107,13 +114,19 @@ public class Service {
 		}
 	}
 
+	public boolean containsContainer(Container container) {
+		return containers.contains(container);
+	}
+
 	public void removeContainer(final Container container) {
-		if (container != null && container.hasService() && container.getService().equals(this)) {
-			container.setService(null);
+		if (container == null) {
+			throw new ServiceValidationException("Can't remove container");
+		}
+		if (container.hasService() && container.getService().equals(this)) {
+			containers.remove(container);
 			container.setStatus(Status.NONE);
-		} else {
-        	throw new ServiceValidationException("Can't remove container");
-        }
+			container.setService(null);
+		}
 	}
 
 	public void removeContainers(final Container[] collection) {
@@ -139,12 +152,8 @@ public class Service {
 		}
 		return nodes;
 	}
-	
-	public Service copy() {
-		return copy(null);
-	}
 
-	public Service copy(Node node) {
+	public Service copy() {
 		Service service = new Service();
 		service.setName(name);
 		service.setImage(image);
@@ -153,53 +162,40 @@ public class Service {
 		service.setRoles(roles);
 		service.setVolumes(volumes);
 
-		for (final Container cont : containers) {
-			Container container = new Container();
-			container.setId(cont.getId());
-			container.setService(service);
-			container.setNode((node == null) ? cont.getNode().copy(service) : node);
-		}
 		return service;
 	}
 
-	@Override
-	public String toString() {
-		return "Service [name=" + name + ", image=" + image + ", volumes=" + volumes + ", ports=" + ports + ", roles="
-				+ roles + "]";
-	}
+	public Service copyWithContainers() {
+		Service service = this.copy();
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (!hasImage() ? 0 : image.hashCode());
-		result = prime * result + (!hasName() ? 0 : name.hashCode());
-		result = prime * result + (!hasPorts() ? 0 : ports.hashCode());
-		result = prime * result + (!hasRoles() ? 0 : roles.hashCode());
-		result = prime * result + (!hasVolumes() ? 0 : volumes.hashCode());
-		return result;
-	}
-	
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || getClass() != obj.getClass())
-			return false;
+		for (Container cont : containers) {
+			Container container = new Container();
+			container.setId(cont.getId());
+			container.setService(service);
 
-		Service other = (Service) obj;
+			Node node = null;
+			if (cont.hasNode()) {
+				node = cont.getNode().copy();
 
-		if (!hasImage() && other.hasImage() || hasImage() && !image.equals(other.image))
-			return false;
-		if (!hasName() && other.hasName() || hasName() && !name.equals(other.name))
-			return false;
-		if (!hasPorts() && other.hasPorts() || hasPorts() && !ports.equals(other.ports))
-			return false;
-		if (!hasRoles() && other.hasRoles() || hasRoles() && !roles.equals(other.roles))
-			return false;
-		if (!hasVolumes() && other.hasVolumes() || hasVolumes() && !volumes.equals(other.volumes))
-			return false;
-		
-		return true;
+				Set<Service> services = new HashSet<>();
+				for (Container c : cont.getNode().getContainers()) {
+					Container conts = new Container();
+					conts.setId(c.getId());
+					conts.setNode(node);
+					if (!c.hasService()) {
+						conts.setService(null);
+					} else if (c.getService().equals(service)) {
+						conts.setService(service);
+					} else {
+						Service s = services.stream().filter(c.getService()::equals).findAny()
+								.orElse(service.copyWithContainers());
+						conts.setService(s);
+						services.add(s);
+					}
+				}
+			}
+			container.setNode(node);
+		}
+		return service;
 	}
 }

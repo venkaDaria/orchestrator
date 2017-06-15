@@ -6,11 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import exception.PortValidationException;
-import model.Container;
-import model.ImageReference;
-import model.Node;
-import model.Role;
-import model.Service;
+import model.entity.Container;
+import model.entity.Node;
+import model.entity.Service;
+import model.valueobject.ImageReference;
+import model.valueobject.Role;
 
 public class Demo {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -25,7 +25,7 @@ public class Demo {
 				"docker-registry.cloud.sophos/haproxy:dev@sha256:123abc", };
 		for (String el : arr) {
 			ref = new ImageReference(el);
-			System.out.println(ref);
+			System.out.println(ref.asFormattedString());
 		}
 
 		System.out.println("----");
@@ -43,7 +43,7 @@ public class Demo {
 		s.setRoles(roles);
 		s.setPorts(new ArrayList<>());
 		s.setVolumes(new ArrayList<>());
-		System.out.println(s);
+		System.out.println(s.asFormattedString());
 		roles.clear();
 		role = new Role("2");
 		roles.add(role);
@@ -52,13 +52,14 @@ public class Demo {
 		Node n = new Node();
 		n.setName("hghg");
 		n.setRoles(roles);
-		System.out.println(n);
+		System.out.println(n.asFormattedString());
 		System.out.println("----");
 
 		Node n2 = new Node();
 		n2.setName("hjhj");
 		n2.setRoles(roles);
 		Container c2 = new Container();
+		c2.setId("8");
 		c2.setNode(n);
 		c2.setService(s);
 
@@ -67,26 +68,26 @@ public class Demo {
 		n.getContainers().forEach(c -> System.out.println(c.hashCode()));
 		n.getContainers().forEach(c -> System.out.println(c.equals(c2)));
 		System.out.println(n.getContainers().contains(c2));
-		System.out.println(c2);
+		System.out.println(c2.asFormattedString());
 		n2.addContainer(c2);
-		System.out.println(c2);
+		System.out.println(c2.asFormattedString());
 		System.out.println("----");
 
-		n2.getContainers().forEach(c -> System.out.println("*" + c));
+		n2.getContainers().forEach(c -> System.out.println("*" + c.asFormattedString()));
 		System.out.println(n.getContainers());
-		System.out.println(s);
+		System.out.println(s.asFormattedString());
 		System.out.println("----");
 
-		c2.getNode().getContainers().forEach(c -> System.out.println("*" + c));
+		c2.getNode().getContainers().forEach(c -> System.out.println("*" + c.asFormattedString()));
 		Container c3 = c2.copy();
 		System.out.println(";;;;");
-		c3.getNode().getContainers().forEach(c -> System.out.println("*" + c));
+		c3.getNode().getContainers().forEach(c -> System.out.println("*" + c.asFormattedString()));
 
 		System.out.println("----");
-		Node n3 = c3.getNode().copy();
-		n3.getContainers().forEach(c -> System.out.println("*" + c));
+		Node n3 = c3.getNode().copyWithContainers();
+		n3.getContainers().forEach(c -> System.out.println("*" + c.asFormattedString()));
 		n3.getContainers().forEach(c -> c.getService().setName("l"));
-		n3.getContainers().forEach(c -> System.out.println("**" + c.getService()));
-		System.out.println(c3.getService());
+		n3.getContainers().forEach(c -> System.out.println("**" + c.getService().asFormattedString()));
+		System.out.println(c3.getService().asFormattedString());
 	}
 }

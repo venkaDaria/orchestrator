@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 import exception.PortValidationException;
+import model.valueobject.Port;
 
 public class PortTest {
 
