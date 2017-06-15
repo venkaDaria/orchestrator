@@ -73,13 +73,12 @@ public abstract class NodeBase extends Entity {
 	}
 
 	public void removeContainer(final Container container) {
-		if (container != null) {
-			if (container.hasNode() && container.getNode().equals(this)) {
-				containers.remove(container);
-				container.setNode(null);
-			}
-		} else {
-			throw new NodeValidationException("Can't add container");
+		if (container == null) {
+			throw new NodeValidationException("Can't remove container");
+		}
+		if (container.hasNode() && container.getNode().equals(this)) {
+			containers.remove(container);
+			container.setNode(null);
 		}
 	}
 

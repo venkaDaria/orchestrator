@@ -40,8 +40,10 @@ public abstract class ConfigurationBase extends BusinessObject {
 
 	public Configuration copy() {
 		Configuration con = new Configuration();
+
 		con.setNodes(nodes.stream().map(Node::copy).collect(Collectors.toSet()));
 		con.setServices(services.stream().map(Service::copy).collect(Collectors.toSet()));
+
 		return con;
 	}
 }

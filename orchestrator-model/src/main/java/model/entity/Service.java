@@ -18,15 +18,14 @@ public class Service extends ServiceBase {
 
 	@Override
 	public void addContainer(final Container container) {
-		if (container != null) {
-			if (!container.hasService() || !container.getService().equals(this)) {
-				container.setStatus(Status.STOPPED);
-				container.setService(this);
-			} else {
-				super.addContainer(container);
-			}
-		} else {
+		if (container == null) {
 			throw new ServiceValidationException("Can't add container");
+		}
+		if (!container.hasService() || !container.getService().equals(this)) {
+			container.setStatus(Status.STOPPED);
+			container.setService(this);
+		} else {
+			super.addContainer(container);
 		}
 	}
 }

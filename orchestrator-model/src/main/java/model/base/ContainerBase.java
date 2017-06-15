@@ -66,10 +66,12 @@ public abstract class ContainerBase extends Entity {
 
 	public Container copy() {
 		Container cont = new Container();
+
 		cont.setId(id);
 		cont.setNode(node.copy());
 		cont.setService(service.copy());
 		cont.setStatus(status);
+
 		return cont;
 	}
 }

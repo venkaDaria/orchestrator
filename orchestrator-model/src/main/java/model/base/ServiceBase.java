@@ -116,14 +116,13 @@ public abstract class ServiceBase extends Entity {
 	}
 
 	public void removeContainer(final Container container) {
-		if (container != null) {
-			if (container.hasService() && container.getService().equals(this)) {
-				containers.remove(container);
-				container.setStatus(Status.NONE);
-				container.setService(null);
-			}
-		} else {
-			throw new ServiceValidationException("Can't add container");
+		if (container == null) {
+			throw new ServiceValidationException("Can't remove container");
+		}
+		if (container.hasService() && container.getService().equals(this)) {
+			containers.remove(container);
+			container.setStatus(Status.NONE);
+			container.setService(null);
 		}
 	}
 

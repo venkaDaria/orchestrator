@@ -17,14 +17,13 @@ public class Node extends NodeBase {
 
 	@Override
 	public void addContainer(final Container container) {
-		if (container != null) {
-			if (!container.hasNode() || !container.getNode().equals(this)) {
-				container.setNode(this);
-			} else {
-				super.addContainer(container);
-			}
-		} else {
+		if (container == null) {
 			throw new NodeValidationException("Can't add container");
+		}
+		if (!container.hasNode() || !container.getNode().equals(this)) {
+			container.setNode(this);
+		} else {
+			super.addContainer(container);
 		}
 	}
 }
