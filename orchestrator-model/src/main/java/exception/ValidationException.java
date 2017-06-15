@@ -1,7 +1,7 @@
 package exception;
 
 /**
- * Exception's codes interval is 100001-100008
+ * Exception's codes interval is 100001-100099
  */
 public abstract class ValidationException extends RuntimeException {
 	private final int code;
