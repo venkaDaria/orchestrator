@@ -3,8 +3,8 @@ group 'com.globallogic.orchestrator'
 dependencies {
 
     compile project('orchestrator-base')
-   
-    testCompile 'junit:junit:4.12' 
+
+    testCompile group: 'junit', name: 'junit'
         
     compile group: 'org.apache.commons', name: 'commons-lang3'
     
