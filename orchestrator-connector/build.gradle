@@ -1,11 +1,5 @@
 group 'com.globallogic.orchestrator'
 
-apply plugin: 'java'
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
 	testCompile 'junit:junit:4.12'
 }
