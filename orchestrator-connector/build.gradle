@@ -1,0 +1,5 @@
+group 'com.globallogic.orchestrator'
+
+dependencies {
+	testCompile 'junit:junit:4.12'
+}
