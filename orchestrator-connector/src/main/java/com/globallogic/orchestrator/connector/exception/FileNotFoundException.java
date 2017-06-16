@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.base.exception;
+package com.globallogic.orchestrator.connector.exception;
 
 public class FileNotFoundException extends FileProcessException {
     private static final int CODE = 100101;

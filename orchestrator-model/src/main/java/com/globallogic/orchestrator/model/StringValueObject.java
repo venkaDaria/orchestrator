@@ -2,13 +2,13 @@ package com.globallogic.orchestrator.model;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.globallogic.orchestrator.base.exception.StringValidationException;
+import com.globallogic.orchestrator.exception.StringValueObjectValidationException;
 
 public abstract class StringValueObject extends ValueObject<String> {
 
 	public StringValueObject(String value) {
 		if (StringUtils.isBlank(value)) {
-			throw new StringValidationException();
+			throw new StringValueObjectValidationException();
 		}
 	}
 }

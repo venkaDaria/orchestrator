@@ -1,4 +1,6 @@
-package com.globallogic.orchestrator.base.exception;
+package com.globallogic.orchestrator.connector.exception;
+
+import com.globallogic.orchestrator.base.exception.ApplicationException;
 
 /**
  * Exception's codes interval is 100100-100199

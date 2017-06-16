@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.exception;
 
-import com.globallogic.orchestrator.base.exception.ValidationException;
-
 public class ServiceValidationException extends ValidationException {
 	private static final int CODE = 100001;	
 	private static final String MESSAGE = "Can't do some operation with service";

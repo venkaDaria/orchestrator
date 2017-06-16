@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import com.globallogic.orchestrator.base.exception.StringValidationException;
+import com.globallogic.orchestrator.exception.StringValueObjectValidationException;
 import com.globallogic.orchestrator.model.valueobject.Role;
 
 public class RoleTest {
@@ -17,12 +17,12 @@ public class RoleTest {
 		assertEquals("data", role.getValue());
 	}
 
-	@Test(expected = StringValidationException.class)
+	@Test(expected = StringValueObjectValidationException.class)
 	public void testCreateRole_Empty() {
 		new Role("   ");
 	}
 
-	@Test(expected = StringValidationException.class)
+	@Test(expected = StringValueObjectValidationException.class)
 	public void testCreateRole_Null() {
 		new Role(null);
 	}

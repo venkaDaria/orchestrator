@@ -5,6 +5,7 @@ import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.model.valueobject.ImageReference;
 import com.globallogic.orchestrator.model.valueobject.Role;
 import com.globallogic.orchestrator.service.ConfigurationService;
+import com.globallogic.orchestrator.service.ConfigurationServiceImpl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -75,7 +76,7 @@ public class Demo {
         config.setNodes(nodes);
         config.setServices(services);
 
-        ConfigurationService cs = new ConfigurationService();
+        ConfigurationService cs = new ConfigurationServiceImpl();
         cs.write(config);
 
         Configuration config2 = cs.read();

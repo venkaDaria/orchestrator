@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.exception;
 
-import com.globallogic.orchestrator.base.exception.ValidationException;
-
 public class RoleValidationException extends ValidationException {
 	private static final int CODE = 100007;	
 	private static final String MESSAGE = "Value can't be null or empty";

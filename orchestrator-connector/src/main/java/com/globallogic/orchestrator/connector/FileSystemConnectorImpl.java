@@ -1,7 +1,7 @@
 package com.globallogic.orchestrator.connector;
 
-import com.globallogic.orchestrator.base.exception.FileNotFoundException;
-import com.globallogic.orchestrator.base.exception.FileProcessException;
+import com.globallogic.orchestrator.connector.exception.FileNotFoundException;
+import com.globallogic.orchestrator.connector.exception.FileProcessException;
 
 import java.io.*;
 
