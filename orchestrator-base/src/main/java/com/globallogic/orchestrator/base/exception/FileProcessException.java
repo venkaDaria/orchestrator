@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.base;
+package com.globallogic.orchestrator.base.exception;
 
 /**
  * Exception's codes interval is 100100-100199
@@ -21,5 +21,13 @@ public class FileProcessException extends ApplicationException {
 
     public FileProcessException(final Throwable cause) {
         super(CODE, MESSAGE, cause);
+    }
+
+    public FileProcessException(final int code, final String message) {
+        super(code, message);
+    }
+
+    public FileProcessException(final int code, final String message, final Throwable cause) {
+        super(code, message, cause);
     }
 }

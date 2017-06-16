@@ -2,7 +2,7 @@ package com.globallogic.orchestrator.model;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.globallogic.orchestrator.base.StringValidationException;
+import com.globallogic.orchestrator.base.exception.StringValidationException;
 
 public abstract class StringValueObject extends ValueObject<String> {
 

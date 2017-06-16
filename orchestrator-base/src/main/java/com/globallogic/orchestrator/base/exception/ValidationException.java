@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.base;
+package com.globallogic.orchestrator.base.exception;
 
 /**
  * Exception's codes interval is 100001-100099

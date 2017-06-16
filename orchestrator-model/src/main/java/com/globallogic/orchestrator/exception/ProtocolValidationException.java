@@ -1,6 +1,6 @@
 package com.globallogic.orchestrator.exception;
 
-import com.globallogic.orchestrator.base.ValidationException;
+import com.globallogic.orchestrator.base.exception.ValidationException;
 
 public class ProtocolValidationException extends ValidationException {
 	private static final int CODE = 100006;	

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import com.globallogic.orchestrator.base.StringValidationException;
+import com.globallogic.orchestrator.base.exception.StringValidationException;
 import com.globallogic.orchestrator.model.valueobject.Protocol;
 
 public class ProtocolTest {

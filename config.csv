@@ -1,0 +1,10 @@
+one;1
+two;1
+
+one;docker-registry.cloud.sophos/haproxy:dev;;1;
+two;docker-registry.cloud.sophos/haproxy:dev;;1;
+
+1;one;two;NONE
+2;one;one;NONE
+3;two;one;NONE
+4;two;two;NONE

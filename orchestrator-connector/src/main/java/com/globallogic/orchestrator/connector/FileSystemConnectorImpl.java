@@ -1,12 +1,9 @@
 package com.globallogic.orchestrator.connector;
 
-import com.globallogic.orchestrator.base.FileProcessException;
-import com.globallogic.orchestrator.base.FileNotFoundException;
+import com.globallogic.orchestrator.base.exception.FileNotFoundException;
+import com.globallogic.orchestrator.base.exception.FileProcessException;
 
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class FileSystemConnectorImpl implements FileSystemConnector {
 

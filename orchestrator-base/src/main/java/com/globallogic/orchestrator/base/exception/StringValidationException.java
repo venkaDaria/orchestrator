@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.base;
+package com.globallogic.orchestrator.base.exception;
 
 public class StringValidationException extends ValidationException {
 	private static final int CODE = 100008;

@@ -16,3 +16,4 @@ build
 
 .idea/
 *.iml
+!/orchestrator-service/src/main/java/com/globallogic/orchestrator/base/
