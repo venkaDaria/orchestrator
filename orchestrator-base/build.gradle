@@ -1,5 +1,9 @@
 group 'com.globallogic.orchestrator'
 
-dependencies {   
-    testCompile 'junit:junit:4.12'
+dependencies {
+    testCompile group: 'junit', name: 'junit'
+
+    compile group: 'commons-lang', name: 'commons-lang'
+
+    compile group: 'org.apache.commons', name: 'commons-collections4'
 }

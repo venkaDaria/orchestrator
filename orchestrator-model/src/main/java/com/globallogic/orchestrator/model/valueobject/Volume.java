@@ -1,6 +1,6 @@
 package com.globallogic.orchestrator.model.valueobject;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 import com.globallogic.orchestrator.exception.VolumeValidationException;
 import com.globallogic.orchestrator.model.StringValueObject;

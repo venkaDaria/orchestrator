@@ -1,6 +1,6 @@
 package com.globallogic.orchestrator.model.base;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 import com.globallogic.orchestrator.model.Entity;
 import com.globallogic.orchestrator.model.Status;
