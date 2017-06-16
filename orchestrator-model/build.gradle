@@ -1,12 +1,7 @@
 group 'com.globallogic.orchestrator'
 
 dependencies {
-
-    compile project('orchestrator-base')
+    compile project(':orchestrator-base')
 
     testCompile group: 'junit', name: 'junit'
-        
-    compile group: 'org.apache.commons', name: 'commons-lang3'
-    
-    compile group: 'org.apache.commons', name: 'commons-collections4'
 }
