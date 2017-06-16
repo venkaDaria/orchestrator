@@ -5,10 +5,10 @@ import java.io.*;
 public class FileSystemConnectorImpl implements FileSystemConnector {
 
     @Override
-    public String read(String fileName) {
+    public String read(final String fileName) {
         StringBuilder sb = new StringBuilder();
 
-        try (BufferedReader in = new BufferedReader(new FileReader(fileName))){
+        try (FileReader fr = new FileReader(fileName); BufferedReader in = new BufferedReader(fr)){
             String s;
             while ((s = in.readLine()) != null) {
                 sb.append(s).append("\n");
@@ -21,7 +21,7 @@ public class FileSystemConnectorImpl implements FileSystemConnector {
     }
 
     @Override
-    public void write(String fileName, String text) {
+    public void write(final String fileName, final String text) {
         try (PrintWriter out = new PrintWriter(fileName)){
             out.print(text);
         } catch (FileNotFoundException e) {
