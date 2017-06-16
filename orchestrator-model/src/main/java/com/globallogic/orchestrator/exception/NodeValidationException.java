@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.exception;
 
-import com.globallogic.orchestrator.base.ValidationException;
-
 public class NodeValidationException extends ValidationException {
 	private static final int CODE = 100002;	
 	private static final String MESSAGE = "Can't do some operation with node";

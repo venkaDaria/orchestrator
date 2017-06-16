@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.exception;
 
-import com.globallogic.orchestrator.base.ValidationException;
-
 public class ImageReferenceValidationException extends ValidationException {
 	private static final int CODE = 100003;	
 	private static final String MESSAGE = "ImageReference must be: \"server/name:tag@digestTag\"";

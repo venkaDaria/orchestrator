@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.base;
+package com.globallogic.orchestrator.base.exception;
 
 public class ApplicationException extends RuntimeException  {
     private final int code;

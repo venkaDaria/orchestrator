@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.exception;
 
-import com.globallogic.orchestrator.base.ValidationException;
-
 public class VolumeValidationException extends ValidationException {
 	private static final int CODE = 100005;	
 	private static final String MESSAGE = "Volume must be: \"string:string\"";

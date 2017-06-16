@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.exception;
 
-import com.globallogic.orchestrator.base.ValidationException;
-
 public class PortValidationException extends ValidationException {
 	private static final int CODE = 100004;	
 	private static final String MESSAGE = "Port must be \"int:int/protocol\" or \"int/protocol\"";
