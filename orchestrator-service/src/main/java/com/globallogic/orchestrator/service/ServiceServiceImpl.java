@@ -15,18 +15,19 @@ import java.util.Set;
 
 public class ServiceServiceImpl implements ServiceService {
     private static final String SEP = ";";
+    private static final String FILE_NAME = "services.csv";
 
     @Override
-    public void write(final String fileName, final Set<Service> services) {
+    public void save(final Set<Service> services) {
         StringBuilder sb = new StringBuilder();
         services.forEach(service -> sb.append(getStringCsv(service)));
 
-        new FileSystemConnectorImpl().write(fileName, sb.toString());
+        new FileSystemConnectorImpl().write(FILE_NAME, sb.toString());
     }
 
     @Override
-    public Set<Service> read(final String fileName) {
-        String[] lines = new FileSystemConnectorImpl().read(fileName).split(System.lineSeparator());
+    public Set<Service> load() {
+        String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
 
         Set<Service> services = new HashSet<>();
         Arrays.stream(lines).forEach(line -> services.add(parse(line)));

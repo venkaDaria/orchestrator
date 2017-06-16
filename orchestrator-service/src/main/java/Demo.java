@@ -77,9 +77,9 @@ public class Demo {
         config.setServices(services);
 
         ConfigurationService cs = new ConfigurationServiceImpl();
-        cs.write(config);
+        cs.save(config);
 
-        Configuration config2 = cs.read();
+        Configuration config2 = cs.load();
 
         for (Node node : config2.getNodes()) {
             node.getContainers().forEach(x -> System.out.println("N! " + x));

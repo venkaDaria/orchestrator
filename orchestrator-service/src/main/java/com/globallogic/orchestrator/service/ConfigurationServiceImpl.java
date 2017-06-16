@@ -9,31 +9,28 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ConfigurationServiceImpl implements ConfigurationService {
-    private static final String FILE_NAME_CONTAINERS = "containers.csv";
-    private static final String FILE_NAME_NODES = "nodes.csv";
-    private static final String FILE_NAME_SERVICES = "services.csv";
 
     @Override
-    public void write(Configuration config) {
+    public void save(Configuration config) {
         Set<Container> containers = new HashSet<>();
         config.getNodes().forEach(node -> containers.addAll(node.getContainers()));
 
-        new NodeServiceImpl().write(FILE_NAME_NODES, config.getNodes());
+        new NodeServiceImpl().save(config.getNodes());
 
-        new ServiceServiceImpl().write(FILE_NAME_SERVICES, config.getServices());
+        new ServiceServiceImpl().save(config.getServices());
 
-        new ContainerServiceImpl().write(FILE_NAME_CONTAINERS, containers);
+        new ContainerServiceImpl().save(containers);
     }
 
     @Override
-    public Configuration read() {
+    public Configuration load() {
         Configuration config = new Configuration();
 
-        Set<Node> nodes = new NodeServiceImpl().read(FILE_NAME_NODES);
+        Set<Node> nodes = new NodeServiceImpl().load();
 
-        Set<Service> services = new ServiceServiceImpl().read(FILE_NAME_SERVICES);
+        Set<Service> services = new ServiceServiceImpl().load();
 
-        Set<Container> containers = new ContainerServiceImpl().read(FILE_NAME_CONTAINERS);
+        Set<Container> containers = new ContainerServiceImpl().load();
 
         for (Container container : containers) {
             Node node = nodes.stream().filter(container.getNode()::equals).findAny().orElse(container.getNode());

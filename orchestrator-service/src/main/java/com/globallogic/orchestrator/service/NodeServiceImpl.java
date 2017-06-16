@@ -12,18 +12,19 @@ import java.util.Set;
 
 public class NodeServiceImpl implements NodeService {
     private static final String SEP = ";";
+    private static final String FILE_NAME = "nodes.csv";
 
     @Override
-    public void write(final String fileName, final Set<Node> nodes) {
+    public void save(final Set<Node> nodes) {
         StringBuilder sb = new StringBuilder();
         nodes.forEach(node -> sb.append(getStringCsv(node)));
 
-        new FileSystemConnectorImpl().write(fileName, sb.toString());
+        new FileSystemConnectorImpl().write(FILE_NAME, sb.toString());
     }
 
     @Override
-    public Set<Node> read(final String fileName) {
-        String[] lines = new FileSystemConnectorImpl().read(fileName).split(System.lineSeparator());
+    public Set<Node> load() {
+        String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
 
         Set<Node> nodes = new HashSet<>();
         Arrays.stream(lines).forEach(line -> nodes.add(parse(line)));

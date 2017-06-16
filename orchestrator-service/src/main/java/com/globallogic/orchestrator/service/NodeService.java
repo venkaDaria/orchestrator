@@ -5,7 +5,7 @@ import com.globallogic.orchestrator.model.entity.Node;
 import java.util.Set;
 
 public interface NodeService {
-    void write(final String fileName, final Set<Node> node);
+    void save(final Set<Node> node);
 
-    Set<Node> read(final String fileName);
+    Set<Node> load();
 }

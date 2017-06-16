@@ -14,18 +14,19 @@ import java.util.Set;
 
 public class ContainerServiceImpl implements ContainerService {
     private static final String SEP = ";";
+    private static final String FILE_NAME = "containers.csv";
 
     @Override
-    public void write(final String fileName, final Set<Container> containers) {
+    public void save(final Set<Container> containers) {
         StringBuilder sb = new StringBuilder();
         containers.forEach(container -> sb.append(getStringCsv(container)));
 
-        new FileSystemConnectorImpl().write(fileName, sb.toString());
+        new FileSystemConnectorImpl().write(FILE_NAME, sb.toString());
     }
 
     @Override
-    public Set<Container> read(final String fileName) {
-        String[] lines = new FileSystemConnectorImpl().read(fileName).split(System.lineSeparator());
+    public Set<Container> load() {
+        String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
 
         Set<Container> containers = new HashSet<>();
         Arrays.stream(lines).forEach(line -> containers.add(parse(line)));
