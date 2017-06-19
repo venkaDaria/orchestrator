@@ -1,10 +1,10 @@
-import com.globallogic.orchestrator.model.entity.Configuration;
-import com.globallogic.orchestrator.model.entity.Container;
-import com.globallogic.orchestrator.model.entity.Node;
-import com.globallogic.orchestrator.model.entity.Service;
-import com.globallogic.orchestrator.model.valueobject.ImageReference;
-import com.globallogic.orchestrator.model.valueobject.Role;
-import com.globallogic.orchestrator.service.ConfigurationService;
+import com.globallogic.orchestrator.dao.model.entity.Configuration;
+import com.globallogic.orchestrator.dao.model.entity.Container;
+import com.globallogic.orchestrator.dao.model.entity.Node;
+import com.globallogic.orchestrator.dao.model.entity.Service;
+import com.globallogic.orchestrator.dao.model.valueobject.ImageReference;
+import com.globallogic.orchestrator.dao.model.valueobject.Role;
+import com.globallogic.orchestrator.service.interfaces.ConfigurationService;
 import com.globallogic.orchestrator.service.ConfigurationServiceImpl;
 
 import java.util.HashSet;

@@ -1,9 +1,12 @@
 package com.globallogic.orchestrator.service;
 
-import com.globallogic.orchestrator.model.entity.Configuration;
-import com.globallogic.orchestrator.model.entity.Container;
-import com.globallogic.orchestrator.model.entity.Node;
-import com.globallogic.orchestrator.model.entity.Service;
+import com.globallogic.orchestrator.dao.dto.ContainerDTO;
+import com.globallogic.orchestrator.service.interfaces.ConfigurationService;
+import com.globallogic.orchestrator.dao.model.Status;
+import com.globallogic.orchestrator.dao.model.entity.Configuration;
+import com.globallogic.orchestrator.dao.model.entity.Container;
+import com.globallogic.orchestrator.dao.model.entity.Node;
+import com.globallogic.orchestrator.dao.model.entity.Service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,13 +33,18 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
         Set<Service> services = new ServiceServiceImpl().load();
 
-        Set<Container> containers = new ContainerServiceImpl().load();
+        Set<ContainerDTO> containers = new ContainerServiceImpl().load();
 
-        for (Container container : containers) {
-            Node node = nodes.stream().filter(container.getNode()::equals).findAny().orElse(container.getNode());
+        Container container;
+        for (ContainerDTO dto : containers) {
+            container = new Container();
+            container.setId(dto.getId());
+            container.setStatus(Status.valueOf(dto.getStatus()));
+
+            Node node = nodes.stream().filter(n -> dto.getNodeName().equals(n.getName())).findAny().orElse(null);
             container.setNode(node);
 
-            Service service = services.stream().filter(container.getService()::equals).findAny().orElse(container.getService());
+            Service service = services.stream().filter(s -> dto.getServiceName().equals(s.getName())).findAny().orElse(null);
             container.setService(service);
         }
 
