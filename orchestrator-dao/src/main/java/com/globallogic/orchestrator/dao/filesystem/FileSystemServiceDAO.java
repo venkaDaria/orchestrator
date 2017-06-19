@@ -1,13 +1,13 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.dao.ServiceDAO;
-import com.globallogic.orchestrator.dao.connector.FileSystemConnectorImpl;
-import com.globallogic.orchestrator.dao.exception.ServiceConfigurationException;
-import com.globallogic.orchestrator.dao.model.valueobject.ImageReference;
-import com.globallogic.orchestrator.dao.model.valueobject.Port;
-import com.globallogic.orchestrator.dao.model.valueobject.Role;
-import com.globallogic.orchestrator.dao.model.valueobject.Volume;
-import com.globallogic.orchestrator.dao.model.entity.Service;
+import com.globallogic.orchestrator.connector.FileSystemConnectorImpl;
+import com.globallogic.orchestrator.exception.ServiceConfigurationException;
+import com.globallogic.orchestrator.model.valueobject.ImageReference;
+import com.globallogic.orchestrator.model.valueobject.Port;
+import com.globallogic.orchestrator.model.valueobject.Role;
+import com.globallogic.orchestrator.model.valueobject.Volume;
+import com.globallogic.orchestrator.model.entity.Service;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;

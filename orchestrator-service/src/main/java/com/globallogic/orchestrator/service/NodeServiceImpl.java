@@ -1,7 +1,7 @@
 package com.globallogic.orchestrator.service;
 
 import com.globallogic.orchestrator.dao.DAOFactory;
-import com.globallogic.orchestrator.dao.model.entity.Node;
+import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.service.interfaces.NodeService;
 
 import java.util.Set;

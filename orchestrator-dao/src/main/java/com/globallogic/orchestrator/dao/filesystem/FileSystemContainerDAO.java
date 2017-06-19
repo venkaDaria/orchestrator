@@ -1,10 +1,10 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.dao.ContainerDAO;
-import com.globallogic.orchestrator.dao.connector.FileSystemConnectorImpl;
-import com.globallogic.orchestrator.dao.dto.ContainerDTO;
-import com.globallogic.orchestrator.dao.exception.ContainerConfigurationException;
-import com.globallogic.orchestrator.dao.model.entity.Container;
+import com.globallogic.orchestrator.connector.FileSystemConnectorImpl;
+import com.globallogic.orchestrator.dto.ContainerDTO;
+import com.globallogic.orchestrator.exception.ContainerConfigurationException;
+import com.globallogic.orchestrator.model.entity.Container;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;

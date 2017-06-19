@@ -1,7 +1,7 @@
 package com.globallogic.orchestrator.service.interfaces;
 
-import com.globallogic.orchestrator.dao.dto.ContainerDTO;
-import com.globallogic.orchestrator.dao.model.entity.Container;
+import com.globallogic.orchestrator.dto.ContainerDTO;
+import com.globallogic.orchestrator.model.entity.Container;
 
 import java.util.Set;
 

@@ -1,12 +1,12 @@
 package com.globallogic.orchestrator.service;
 
-import com.globallogic.orchestrator.dao.dto.ContainerDTO;
+import com.globallogic.orchestrator.dto.ContainerDTO;
 import com.globallogic.orchestrator.service.interfaces.ConfigurationService;
-import com.globallogic.orchestrator.dao.model.Status;
-import com.globallogic.orchestrator.dao.model.entity.Configuration;
-import com.globallogic.orchestrator.dao.model.entity.Container;
-import com.globallogic.orchestrator.dao.model.entity.Node;
-import com.globallogic.orchestrator.dao.model.entity.Service;
+import com.globallogic.orchestrator.model.Status;
+import com.globallogic.orchestrator.model.entity.Configuration;
+import com.globallogic.orchestrator.model.entity.Container;
+import com.globallogic.orchestrator.model.entity.Node;
+import com.globallogic.orchestrator.model.entity.Service;
 
 import java.util.HashSet;
 import java.util.Set;

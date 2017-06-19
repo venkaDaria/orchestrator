@@ -1,6 +1,6 @@
 package com.globallogic.orchestrator.service.interfaces;
 
-import com.globallogic.orchestrator.dao.model.entity.Service;
+import com.globallogic.orchestrator.model.entity.Service;
 
 import java.util.Set;
 

@@ -1,10 +1,10 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.dao.NodeDAO;
-import com.globallogic.orchestrator.dao.connector.FileSystemConnectorImpl;
-import com.globallogic.orchestrator.dao.exception.NodeConfigurationException;
-import com.globallogic.orchestrator.dao.model.entity.Node;
-import com.globallogic.orchestrator.dao.model.valueobject.Role;
+import com.globallogic.orchestrator.connector.FileSystemConnectorImpl;
+import com.globallogic.orchestrator.exception.NodeConfigurationException;
+import com.globallogic.orchestrator.model.entity.Node;
+import com.globallogic.orchestrator.model.valueobject.Role;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
