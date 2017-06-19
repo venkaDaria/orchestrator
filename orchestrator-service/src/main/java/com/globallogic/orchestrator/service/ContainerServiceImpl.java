@@ -11,11 +11,11 @@ public class ContainerServiceImpl implements ContainerService {
 
     @Override
     public void save(final Set<Container> containers) {
-        DAOFactory.getDAOFactory().getContainerDAO().save(containers);
+        DAOFactory.getDAOFactory(DAOFactory.FILE_SYSTEM).getContainerDAO().save(containers);
     }
 
     @Override
     public Set<ContainerDTO> load() {
-        return DAOFactory.getDAOFactory().getContainerDAO().load();
+        return DAOFactory.getDAOFactory(DAOFactory.FILE_SYSTEM).getContainerDAO().load();
     }
 }

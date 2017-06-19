@@ -9,11 +9,11 @@ import java.util.Set;
 public class NodeServiceImpl implements NodeService {
     @Override
     public void save(final Set<Node> nodes) {
-        DAOFactory.getDAOFactory().getNodeDAO().save(nodes);
+        DAOFactory.getDAOFactory(DAOFactory.FILE_SYSTEM).getNodeDAO().save(nodes);
     }
 
     @Override
     public Set<Node> load() {
-        return DAOFactory.getDAOFactory().getNodeDAO().load();
+        return DAOFactory.getDAOFactory(DAOFactory.FILE_SYSTEM).getNodeDAO().load();
     }
 }

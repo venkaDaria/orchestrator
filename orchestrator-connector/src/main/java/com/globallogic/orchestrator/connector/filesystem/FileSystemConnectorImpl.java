@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector;
+package com.globallogic.orchestrator.connector.filesystem;
 
 import com.globallogic.orchestrator.connector.exception.*;
 

@@ -1,7 +1,7 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.dao.ServiceDAO;
-import com.globallogic.orchestrator.connector.FileSystemConnectorImpl;
+import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
 import com.globallogic.orchestrator.exception.ServiceConfigurationException;
 import com.globallogic.orchestrator.model.valueobject.ImageReference;
 import com.globallogic.orchestrator.model.valueobject.Port;

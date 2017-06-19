@@ -9,11 +9,11 @@ import java.util.Set;
 public class ServiceServiceImpl implements ServiceService {
     @Override
     public void save(final Set<Service> services) {
-        DAOFactory.getDAOFactory().getServiceDAO().save(services);
+        DAOFactory.getDAOFactory(DAOFactory.FILE_SYSTEM).getServiceDAO().save(services);
     }
 
     @Override
     public Set<Service> load() {
-        return DAOFactory.getDAOFactory().getServiceDAO().load();
+        return DAOFactory.getDAOFactory(DAOFactory.FILE_SYSTEM).getServiceDAO().load();
     }
 }

@@ -1,7 +1,7 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.dao.NodeDAO;
-import com.globallogic.orchestrator.connector.FileSystemConnectorImpl;
+import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
 import com.globallogic.orchestrator.exception.NodeConfigurationException;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.valueobject.Role;
