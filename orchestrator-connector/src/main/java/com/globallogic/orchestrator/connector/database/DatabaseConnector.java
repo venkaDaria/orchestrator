@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector.db;
+package com.globallogic.orchestrator.connector.database;
 
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class DbConnector {
+public abstract class DatabaseConnector {
 
     public abstract void insert(final Connection con, final String... params);
 

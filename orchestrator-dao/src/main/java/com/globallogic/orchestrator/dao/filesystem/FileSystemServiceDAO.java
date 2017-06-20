@@ -1,29 +1,27 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
-import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
+import com.globallogic.orchestrator.dao.ServiceDAO;
+import com.globallogic.orchestrator.dao.dto.ServiceDTO;
 import com.globallogic.orchestrator.dao.exception.ServiceConfigurationException;
-import com.globallogic.orchestrator.model.valueobject.ImageReference;
-import com.globallogic.orchestrator.model.valueobject.Port;
-import com.globallogic.orchestrator.model.valueobject.Role;
-import com.globallogic.orchestrator.model.valueobject.Volume;
-import com.globallogic.orchestrator.model.entity.Service;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileSystemServiceDAO implements ServiceDAO {
     private final String SEPARATOR;
     private static final String FILE_NAME = "services.csv";
 
-    public FileSystemServiceDAO(LocaleSeparator separator) {
+    public FileSystemServiceDAO(final LocaleSeparator separator) {
         SEPARATOR = separator.toString();
     }
 
     @Override
-    public void save(final Set<Service> services) {
+    public void save(final Set<ServiceDTO> services) {
         StringBuilder sb = new StringBuilder();
         services.forEach(service -> sb.append(getString(service)));
 
@@ -31,75 +29,47 @@ public class FileSystemServiceDAO implements ServiceDAO {
     }
 
     @Override
-    public Set<Service> load() {
+    public Set<ServiceDTO> load() {
         String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
 
-        Set<Service> services = new HashSet<>();
+        Set<ServiceDTO> services = new HashSet<>();
         Arrays.stream(lines).forEach(line -> services.add(parse(line)));
         return services;
     }
 
-    private Service parse(String line) {
-        Service service = new Service();
+    private ServiceDTO parse(final String line) {
+        ServiceDTO service = new ServiceDTO();
 
         if (StringUtils.isBlank(line)) {
             throw new ServiceConfigurationException();
         }
 
-        String[] values = line.split(SEPARATOR);
+        String regex = "^(.+?)" + SEPARATOR + "(.+?)" + SEPARATOR + "(.*?)" + SEPARATOR + "(.*?)"
+                + SEPARATOR + "(.*?)" + SEPARATOR + "$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(line);
 
-        if (values.length < 2) {
+        if (!m.matches()) {
             throw new ServiceConfigurationException();
         }
 
-        service.setName(values[0]);
-        service.setImage(new ImageReference(values[1]));
+        service.setName(m.group(1));
+        service.setImage(m.group(2));
+        service.setPorts(m.group(3));
+        service.setRoles(m.group(4));
+        service.setVolumes(m.group(5));
 
-        int i = 2;
-
-        Set<Port> ports = new HashSet<>();
-        for (; i < values.length && StringUtils.isNotEmpty(values[i]); i++) {
-            ports.add(new Port(values[i]));
-        }
-        service.setPorts(ports);
-
-        i++;
-
-        Set<Role> roles = new HashSet<>();
-        for (; i < values.length && StringUtils.isNotEmpty(values[i]); i++) {
-            roles.add(new Role(values[i]));
-        }
-        service.setRoles(roles);
-
-        i++;
-
-        Set<Volume> volumes = new HashSet<>();
-        for (; i < values.length; i++) {
-            volumes.add(new Volume(values[i]));
-        }
-        service.setVolumes(volumes);
         return service;
     }
 
-    private String getString(Service service) {
-        StringBuilder lineBuilder = new StringBuilder(service.getName());
-        lineBuilder.append(SEPARATOR).append(service.getImage().getValue());
-
-        for (Port p : service.getPorts()) {
-            lineBuilder.append(SEPARATOR).append(p.getValue());
+    private String getString(final ServiceDTO service) {
+        if (service == null) {
+            throw new ServiceConfigurationException();
         }
-
-        lineBuilder.append(SEPARATOR);
-
-        for (Role r : service.getRoles()) {
-            lineBuilder.append(SEPARATOR).append(r.getValue());
-        }
-
-        lineBuilder.append(SEPARATOR);
-
-        for (Volume v : service.getVolumes()) {
-            lineBuilder.append(SEPARATOR).append(v.getValue());
-        }
-        return lineBuilder.append(System.lineSeparator()).toString();
+        return service.getName() + SEPARATOR + service.getImage() +
+                SEPARATOR + service.getPorts() +
+                SEPARATOR + service.getRoles() +
+                SEPARATOR + service.getVolumes() +
+                System.lineSeparator();
     }
 }

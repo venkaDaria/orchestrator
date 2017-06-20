@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector.db;
+package com.globallogic.orchestrator.connector.database;
 
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-public class NodeDbConnector extends DbConnector {
-    private static final String INSERT_NODE_QUERY = "insert into nodes values(?,?)";
-    private static final String GET_ALL_NODES_QUERY = "select * from nodes";
+public class NodeDatabaseConnectorImpl extends DatabaseConnector {
+    private static final String INSERT_NODE_QUERY = "INSERT INTO nodes VALUES(?,?)";
+    private static final String GET_ALL_NODES_QUERY = "SELECT * FROM nodes";
 
     @Override
     public void insert(final Connection con, final String... params) {

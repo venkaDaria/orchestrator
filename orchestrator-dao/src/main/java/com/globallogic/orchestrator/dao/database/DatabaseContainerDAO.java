@@ -1,8 +1,9 @@
-package com.globallogic.orchestrator.dao.connector;
+package com.globallogic.orchestrator.dao.database;
 
-import com.globallogic.orchestrator.connector.db.ContainerDbConnector;
-import com.globallogic.orchestrator.connector.db.DbManager;
+import com.globallogic.orchestrator.connector.database.ContainerDatabaseConnectorImpl;
+import com.globallogic.orchestrator.connector.database.DatabaseConnectorManager;
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
+import com.globallogic.orchestrator.dao.ContainerDAO;
 import com.globallogic.orchestrator.dao.dto.ContainerDTO;
 
 import java.sql.Connection;
@@ -10,16 +11,16 @@ import java.sql.SQLException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ContainerDbDAOConnector extends DbDAOConnector<ContainerDTO> {
+public class DatabaseContainerDAO extends DatabaseDAOConnector<ContainerDTO> implements ContainerDAO {
 
     @Override
-    public void insert(final Set<ContainerDTO> set) {
+    public void save(final Set<ContainerDTO> containers) {
         Connection con = null;
-        ContainerDbConnector connector = new ContainerDbConnector();
+        ContainerDatabaseConnectorImpl connector = new ContainerDatabaseConnectorImpl();
         try {
-            con = DbManager.getInstance().getConnection();
+            con = DatabaseConnectorManager.getInstance().getConnection();
             con.setAutoCommit(false);
-            for (ContainerDTO el : set) {
+            for (ContainerDTO el : containers) {
                 connector.insert(con, el.getId(), el.getStatus(), el.getNodeName(), el.getServiceName());
             }
             con.commit();
@@ -32,12 +33,12 @@ public class ContainerDbDAOConnector extends DbDAOConnector<ContainerDTO> {
     }
 
     @Override
-    public Set<ContainerDTO> getAll() {
+    public Set<ContainerDTO> load() {
         Set<ContainerDTO> containers;
         Connection con = null;
         try {
-            con = DbManager.getInstance().getConnection();
-            containers = new ContainerDbConnector().getAll(con).stream().map(ContainerDbDAOConnector::extract)
+            con = DatabaseConnectorManager.getInstance().getConnection();
+            containers = new ContainerDatabaseConnectorImpl().getAll(con).stream().map(this::extract)
                     .collect(Collectors.toSet());
         } catch (SQLException e) {
             throw new DatabaseOperationException("Cannot obtain containers", e);
@@ -47,7 +48,7 @@ public class ContainerDbDAOConnector extends DbDAOConnector<ContainerDTO> {
         return containers;
     }
 
-    private static ContainerDTO extract(final String... params) {
+    private ContainerDTO extract(final String... params) {
         if (params.length != 4) {
             throw new DatabaseOperationException("Can't extract container");
         }

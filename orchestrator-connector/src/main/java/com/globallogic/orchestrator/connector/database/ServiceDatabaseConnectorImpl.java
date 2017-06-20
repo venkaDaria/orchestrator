@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector.db;
+package com.globallogic.orchestrator.connector.database;
 
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-public class ServiceDbConnector extends DbConnector {
-    private static final String INSERT_SERVICE_QUERY = "insert into services values(?,?,?,?,?)";
-    private static final String GET_ALL_SERVICES_QUERY = "select * from services";
+public class ServiceDatabaseConnectorImpl extends DatabaseConnector {
+    private static final String INSERT_SERVICE_QUERY = "INSERT INTO services VALUES(?,?,?,?,?)";
+    private static final String GET_ALL_SERVICES_QUERY = "SELECT * FROM services";
 
     @Override
     public void insert(final Connection con, final String... params) {

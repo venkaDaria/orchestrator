@@ -6,6 +6,7 @@ import com.globallogic.orchestrator.dao.dto.ContainerDTO;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.service.interfaces.ContainerService;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class ContainerServiceImpl implements ContainerService {
@@ -17,11 +18,25 @@ public class ContainerServiceImpl implements ContainerService {
 
     @Override
     public void save(final Set<Container> containers) {
-        DAOFactory.getInstance(system).getContainerDAO().save(containers);
+        Set<ContainerDTO> set = new HashSet<>();
+        containers.forEach(container -> set.add(getDTO(container)));
+
+        DAOFactory.getInstance(system).getContainerDAO().save(set);
     }
 
     @Override
     public Set<ContainerDTO> load() {
         return DAOFactory.getInstance(system).getContainerDAO().load();
+    }
+
+    private ContainerDTO getDTO(Container container) {
+        ContainerDTO dto = new ContainerDTO();
+
+        dto.setId(container.getId());
+        dto.setNodeName(container.getNode().getName());
+        dto.setServiceName(container.getService().getName());
+        dto.setStatus(container.getStatus().toString());
+
+        return dto;
     }
 }

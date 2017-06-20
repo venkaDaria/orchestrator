@@ -1,12 +1,11 @@
 package com.globallogic.orchestrator.dao;
 
-import com.globallogic.orchestrator.dao.db.DbDAOFactory;
+import com.globallogic.orchestrator.dao.database.DatabaseDAOFactory;
 import com.globallogic.orchestrator.dao.exception.SystemNotSupportException;
 import com.globallogic.orchestrator.dao.filesystem.FileSystemDAOFactory;
 import com.globallogic.orchestrator.dao.filesystem.LocaleSeparator;
 
 public interface DAOFactory {
-
     ContainerDAO getContainerDAO();
     ServiceDAO getServiceDAO();
     NodeDAO getNodeDAO();
@@ -16,17 +15,17 @@ public interface DAOFactory {
             case FILE_SYSTEM:
                 return FileSystemDAOFactory.getInstance();
             case DB:
-                return DbDAOFactory.getInstance();
+                return DatabaseDAOFactory.getInstance();
             default:
                 throw new SystemNotSupportException();
         }
     }
 
-    static LocaleSeparator getFileSystemSeparator() {
+    static LocaleSeparator getSeparator() {
         return FileSystemDAOFactory.getInstance().getSeparator();
     }
 
-    static void setFileSystemSeparator(LocaleSeparator separator) {
+    static void setSeparator(LocaleSeparator separator) {
         FileSystemDAOFactory.getInstance().setSeparator(separator);
     }
 }

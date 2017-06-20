@@ -7,7 +7,7 @@ import com.globallogic.orchestrator.base.exception.ApplicationException;
  */
 public class DatabaseOperationException extends ApplicationException {
     private static final int CODE = 100300;
-    private static final String MESSAGE = "Problems with db";
+    private static final String MESSAGE = "Problems with database";
 
     public DatabaseOperationException() {
         super(CODE, MESSAGE);

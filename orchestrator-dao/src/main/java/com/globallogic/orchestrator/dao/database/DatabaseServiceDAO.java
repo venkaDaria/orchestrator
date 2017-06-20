@@ -1,8 +1,9 @@
-package com.globallogic.orchestrator.dao.connector;
+package com.globallogic.orchestrator.dao.database;
 
-import com.globallogic.orchestrator.connector.db.DbManager;
-import com.globallogic.orchestrator.connector.db.ServiceDbConnector;
+import com.globallogic.orchestrator.connector.database.DatabaseConnectorManager;
+import com.globallogic.orchestrator.connector.database.ServiceDatabaseConnectorImpl;
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
+import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.dao.dto.ServiceDTO;
 
 import java.sql.Connection;
@@ -10,16 +11,16 @@ import java.sql.SQLException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ServiceDbDAOConnector extends DbDAOConnector<ServiceDTO> {
+public class DatabaseServiceDAO extends DatabaseDAOConnector<ServiceDTO> implements ServiceDAO {
 
     @Override
-    public void insert(final Set<ServiceDTO> set) {
+    public void save(final Set<ServiceDTO> services) {
         Connection con = null;
-        ServiceDbConnector connector = new ServiceDbConnector();
+        ServiceDatabaseConnectorImpl connector = new ServiceDatabaseConnectorImpl();
         try {
-            con = DbManager.getInstance().getConnection();
+            con = DatabaseConnectorManager.getInstance().getConnection();
             con.setAutoCommit(false);
-            for (ServiceDTO el : set) {
+            for (ServiceDTO el : services) {
                 connector.insert(con, el.getName(), el.getImage(), el.getRoles(), el.getPorts(), el.getVolumes());
             }
             con.commit();
@@ -31,14 +32,13 @@ public class ServiceDbDAOConnector extends DbDAOConnector<ServiceDTO> {
         }
     }
 
-
     @Override
-    public Set<ServiceDTO> getAll() {
+    public Set<ServiceDTO> load() {
         Set<ServiceDTO> services;
         Connection con = null;
         try {
-            con = DbManager.getInstance().getConnection();
-            services = new ServiceDbConnector().getAll(con).stream().map(ServiceDbDAOConnector::extract)
+            con = DatabaseConnectorManager.getInstance().getConnection();
+            services = new ServiceDatabaseConnectorImpl().getAll(con).stream().map(this::extract)
                     .collect(Collectors.toSet());
         } catch (SQLException e) {
             throw new DatabaseOperationException("Cannot obtain services", e);
@@ -48,7 +48,7 @@ public class ServiceDbDAOConnector extends DbDAOConnector<ServiceDTO> {
         return services;
     }
 
-    private static ServiceDTO extract(final String... params) {
+    private ServiceDTO extract(final String... params) {
         if (params.length != 5) {
             throw new DatabaseOperationException("Can't extract node");
         }

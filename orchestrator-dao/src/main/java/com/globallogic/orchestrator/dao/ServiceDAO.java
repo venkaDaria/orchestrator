@@ -1,11 +1,11 @@
 package com.globallogic.orchestrator.dao;
 
-import com.globallogic.orchestrator.model.entity.Service;
+import com.globallogic.orchestrator.dao.dto.ServiceDTO;
 
 import java.util.Set;
 
 public interface ServiceDAO {
-    void save(final Set<Service> services);
+    void save(final Set<ServiceDTO> services);
 
-    Set<Service> load();
+    Set<ServiceDTO> load();
 }

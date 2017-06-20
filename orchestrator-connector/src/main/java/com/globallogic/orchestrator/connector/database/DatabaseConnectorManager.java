@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector.db;
+package com.globallogic.orchestrator.connector.database;
 
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
@@ -6,19 +6,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DbManager {
+public class DatabaseConnectorManager {
     private static final String URL = "jdbc:mysql://localhost:3306/config?user=root&password=yroot";
 
-    private static DbManager instance;
+    private DatabaseConnectorManager() { }
 
-    public synchronized static DbManager getInstance() {
-        if (instance == null) {
-            instance = new DbManager();
-        }
-        return instance;
+    private static class DatabaseConnectorManagerHolder {
+        private static final DatabaseConnectorManager INSTANCE = new DatabaseConnectorManager();
     }
 
-    private DbManager() { }
+    public synchronized static DatabaseConnectorManager getInstance() {
+        return DatabaseConnectorManagerHolder.INSTANCE;
+    }
 
     public Connection getConnection() {
         try {

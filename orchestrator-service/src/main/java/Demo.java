@@ -79,7 +79,7 @@ public class Demo {
         config.setNodes(nodes);
         config.setServices(services);
 
-        DAOFactory.setFileSystemSeparator(LocaleSeparator.COMMA);
+        DAOFactory.setSeparator(LocaleSeparator.COMMA);
         ConfigurationService cs = new ConfigurationServiceImpl(DAOSystem.FILE_SYSTEM);
         cs.save(config);
 

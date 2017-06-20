@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector.db;
+package com.globallogic.orchestrator.connector.database;
 
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-public class ContainerDbConnector extends DbConnector {
-    private static final String INSERT_CONTAINER_QUERY = "insert into containers values(?,?,?,?)";
-    private static final String GET_ALL_CONTAINERS_QUERY = "select * from containers";
+public class ContainerDatabaseConnectorImpl extends DatabaseConnector {
+    private static final String INSERT_CONTAINER_QUERY = "INSERT INTO containers VALUES(?,?,?,?)";
+    private static final String GET_ALL_CONTAINERS_QUERY = "SELECT * FROM containers";
 
     @Override
     public void insert(final Connection con, final String... params) {

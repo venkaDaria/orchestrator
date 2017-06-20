@@ -1,15 +1,11 @@
-package com.globallogic.orchestrator.dao.connector;
+package com.globallogic.orchestrator.dao.database;
 
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Set;
 
-public abstract class DbDAOConnector<T> {
-    public abstract void insert(final Set<T> set);
-
-    public abstract Set<T> getAll();
+public abstract class DatabaseDAOConnector<T> {
 
     protected void rollback(final Connection con) {
         if (con != null) {

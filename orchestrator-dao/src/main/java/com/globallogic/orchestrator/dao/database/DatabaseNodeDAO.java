@@ -1,8 +1,9 @@
-package com.globallogic.orchestrator.dao.connector;
+package com.globallogic.orchestrator.dao.database;
 
-import com.globallogic.orchestrator.connector.db.DbManager;
-import com.globallogic.orchestrator.connector.db.NodeDbConnector;
+import com.globallogic.orchestrator.connector.database.DatabaseConnectorManager;
+import com.globallogic.orchestrator.connector.database.NodeDatabaseConnectorImpl;
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
+import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.dto.NodeDTO;
 
 import java.sql.Connection;
@@ -10,15 +11,16 @@ import java.sql.SQLException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class NodeDbDAOConnector extends DbDAOConnector<NodeDTO> {
+public class DatabaseNodeDAO extends DatabaseDAOConnector<NodeDTO> implements NodeDAO {
 
-    public void insert(final Set<NodeDTO> set) {
+    @Override
+    public void save(final Set<NodeDTO> nodes) {
         Connection con = null;
-        NodeDbConnector connector = new NodeDbConnector();
+        NodeDatabaseConnectorImpl connector = new NodeDatabaseConnectorImpl();
         try {
-            con = DbManager.getInstance().getConnection();
+            con = DatabaseConnectorManager.getInstance().getConnection();
             con.setAutoCommit(false);
-            for (NodeDTO el : set) {
+            for (NodeDTO el : nodes) {
                 connector.insert(con, el.getName(), el.getRoles());
             }
             con.commit();
@@ -31,12 +33,12 @@ public class NodeDbDAOConnector extends DbDAOConnector<NodeDTO> {
     }
 
     @Override
-    public Set<NodeDTO> getAll() {
+    public Set<NodeDTO> load() {
         Set<NodeDTO> nodes;
         Connection con = null;
         try {
-            con = DbManager.getInstance().getConnection();
-            nodes = new NodeDbConnector().getAll(con).stream().map(NodeDbDAOConnector::extract)
+            con = DatabaseConnectorManager.getInstance().getConnection();
+            nodes = new NodeDatabaseConnectorImpl().getAll(con).stream().map(this::extract)
                     .collect(Collectors.toSet());
         } catch (SQLException e) {
             throw new DatabaseOperationException("Cannot obtain nodes", e);
@@ -46,7 +48,7 @@ public class NodeDbDAOConnector extends DbDAOConnector<NodeDTO> {
         return nodes;
     }
 
-    private static NodeDTO extract(final String... params) {
+    private NodeDTO extract(final String... params) {
         if (params.length != 2) {
             throw new DatabaseOperationException("Can't extract node");
         }
