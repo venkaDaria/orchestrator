@@ -12,8 +12,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FileSystemNodeDAO implements NodeDAO {
-    private static final String SEPARATOR = ";";
+    private final String SEPARATOR;
     private static final String FILE_NAME = "nodes.csv";
+
+    public FileSystemNodeDAO(LocaleSeparator separator) {
+        SEPARATOR = separator.toString();
+    }
 
     private String getString(Node node) {
         StringBuilder lineBuilder = new StringBuilder(node.getName());

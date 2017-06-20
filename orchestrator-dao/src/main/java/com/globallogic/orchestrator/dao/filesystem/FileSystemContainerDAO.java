@@ -12,8 +12,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FileSystemContainerDAO implements ContainerDAO {
-    private static final String SEPARATOR = ";";
+    private final String SEPARATOR;
     private static final String FILE_NAME = "containers.csv";
+
+    public FileSystemContainerDAO(LocaleSeparator separator) {
+        SEPARATOR = separator.toString();
+    }
 
     private ContainerDTO getDTO(String line) {
         ContainerDTO container = new ContainerDTO();

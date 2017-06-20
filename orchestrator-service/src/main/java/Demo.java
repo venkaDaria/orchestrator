@@ -1,12 +1,14 @@
+import com.globallogic.orchestrator.dao.DAOFactory;
 import com.globallogic.orchestrator.dao.DAOSystem;
+import com.globallogic.orchestrator.dao.filesystem.LocaleSeparator;
 import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.model.valueobject.ImageReference;
 import com.globallogic.orchestrator.model.valueobject.Role;
-import com.globallogic.orchestrator.service.interfaces.ConfigurationService;
 import com.globallogic.orchestrator.service.ConfigurationServiceImpl;
+import com.globallogic.orchestrator.service.interfaces.ConfigurationService;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -77,6 +79,7 @@ public class Demo {
         config.setNodes(nodes);
         config.setServices(services);
 
+        DAOFactory.setFileSystemSeparator(LocaleSeparator.COMMA);
         ConfigurationService cs = new ConfigurationServiceImpl(DAOSystem.FILE_SYSTEM);
         cs.save(config);
 

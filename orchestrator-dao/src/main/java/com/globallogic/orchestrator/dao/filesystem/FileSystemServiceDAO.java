@@ -15,8 +15,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FileSystemServiceDAO implements ServiceDAO {
-    private static final String SEPARATOR = ";";
+    private final String SEPARATOR;
     private static final String FILE_NAME = "services.csv";
+
+    public FileSystemServiceDAO(LocaleSeparator separator) {
+        SEPARATOR = separator.toString();
+    }
 
     @Override
     public void save(final Set<Service> services) {
