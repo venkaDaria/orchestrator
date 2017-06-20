@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DatabaseServiceDAO extends DatabaseDAOConnector<ServiceDTO> implements ServiceDAO {
+public class DatabaseServiceDAOImpl extends DatabaseDAOConnector<ServiceDTO> implements ServiceDAO {
 
     @Override
     public void save(final Set<ServiceDTO> services) {

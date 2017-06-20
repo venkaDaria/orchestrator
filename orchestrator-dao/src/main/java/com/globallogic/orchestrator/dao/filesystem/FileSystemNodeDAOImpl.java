@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FileSystemNodeDAO implements NodeDAO {
+public class FileSystemNodeDAOImpl implements NodeDAO {
     private final String SEPARATOR;
     private static final String FILE_NAME = "nodes.csv";
 
-    public FileSystemNodeDAO(final LocaleSeparator separator) {
+    public FileSystemNodeDAOImpl(final LocaleSeparator separator) {
         SEPARATOR = separator.toString();
     }
 

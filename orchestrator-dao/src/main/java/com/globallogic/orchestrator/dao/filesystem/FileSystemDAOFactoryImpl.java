@@ -5,16 +5,16 @@ import com.globallogic.orchestrator.dao.DAOFactory;
 import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.ServiceDAO;
 
-public class FileSystemDAOFactory implements DAOFactory {
+public class FileSystemDAOFactoryImpl implements DAOFactory {
     private LocaleSeparator separator = LocaleSeparator.SEMICOLON;
 
-    private FileSystemDAOFactory() { }
+    private FileSystemDAOFactoryImpl() { }
 
     private static class FileSystemDAOFactoryHolder {
-        private static final FileSystemDAOFactory INSTANCE = new FileSystemDAOFactory();
+        private static final FileSystemDAOFactoryImpl INSTANCE = new FileSystemDAOFactoryImpl();
     }
 
-    public synchronized static FileSystemDAOFactory getInstance() {
+    public synchronized static FileSystemDAOFactoryImpl getInstance() {
         return FileSystemDAOFactoryHolder.INSTANCE;
     }
 
@@ -28,16 +28,16 @@ public class FileSystemDAOFactory implements DAOFactory {
 
     @Override
     public ContainerDAO getContainerDAO() {
-        return new FileSystemContainerDAO(separator);
+        return new FileSystemContainerDAOImpl(separator);
     }
 
     @Override
     public ServiceDAO getServiceDAO() {
-        return new FileSystemServiceDAO(separator);
+        return new FileSystemServiceDAOImpl(separator);
     }
 
     @Override
     public NodeDAO getNodeDAO() {
-        return new FileSystemNodeDAO(separator);
+        return new FileSystemNodeDAOImpl(separator);
     }
 }

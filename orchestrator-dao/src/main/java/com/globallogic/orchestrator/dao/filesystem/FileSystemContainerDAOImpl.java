@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FileSystemContainerDAO implements ContainerDAO {
+public class FileSystemContainerDAOImpl implements ContainerDAO {
     private final String SEPARATOR;
     private static final String FILE_NAME = "containers.csv";
 
-    public FileSystemContainerDAO(final LocaleSeparator separator) {
+    public FileSystemContainerDAOImpl(final LocaleSeparator separator) {
         SEPARATOR = separator.toString();
     }
 

@@ -5,29 +5,29 @@ import com.globallogic.orchestrator.dao.DAOFactory;
 import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.ServiceDAO;
 
-public class DatabaseDAOFactory implements DAOFactory {
-    private DatabaseDAOFactory() { }
+public class DatabaseDAOFactoryImpl implements DAOFactory {
+    private DatabaseDAOFactoryImpl() { }
 
     private static class DatabaseDAOFactoryHolder {
-        private static final DatabaseDAOFactory INSTANCE = new DatabaseDAOFactory();
+        private static final DatabaseDAOFactoryImpl INSTANCE = new DatabaseDAOFactoryImpl();
     }
 
-    public synchronized static DatabaseDAOFactory getInstance() {
+    public synchronized static DatabaseDAOFactoryImpl getInstance() {
         return DatabaseDAOFactoryHolder.INSTANCE;
     }
 
     @Override
     public ContainerDAO getContainerDAO() {
-        return new DatabaseContainerDAO();
+        return new DatabaseContainerDAOImpl();
     }
 
     @Override
     public ServiceDAO getServiceDAO() {
-        return new DatabaseServiceDAO();
+        return new DatabaseServiceDAOImpl();
     }
 
     @Override
     public NodeDAO getNodeDAO() {
-        return new DatabaseNodeDAO();
+        return new DatabaseNodeDAOImpl();
     }
 }

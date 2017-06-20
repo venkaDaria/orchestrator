@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DatabaseNodeDAO extends DatabaseDAOConnector<NodeDTO> implements NodeDAO {
+public class DatabaseNodeDAOImpl extends DatabaseDAOConnector<NodeDTO> implements NodeDAO {
 
     @Override
     public void save(final Set<NodeDTO> nodes) {

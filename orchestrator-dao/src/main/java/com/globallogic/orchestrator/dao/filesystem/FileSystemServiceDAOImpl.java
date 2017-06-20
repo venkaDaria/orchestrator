@@ -12,11 +12,11 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FileSystemServiceDAO implements ServiceDAO {
+public class FileSystemServiceDAOImpl implements ServiceDAO {
     private final String SEPARATOR;
     private static final String FILE_NAME = "services.csv";
 
-    public FileSystemServiceDAO(final LocaleSeparator separator) {
+    public FileSystemServiceDAOImpl(final LocaleSeparator separator) {
         SEPARATOR = separator.toString();
     }
 

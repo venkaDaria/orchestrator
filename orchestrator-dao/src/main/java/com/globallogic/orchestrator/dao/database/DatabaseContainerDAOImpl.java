@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DatabaseContainerDAO extends DatabaseDAOConnector<ContainerDTO> implements ContainerDAO {
+public class DatabaseContainerDAOImpl extends DatabaseDAOConnector<ContainerDTO> implements ContainerDAO {
 
     @Override
     public void save(final Set<ContainerDTO> containers) {
