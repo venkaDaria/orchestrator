@@ -1,8 +1,8 @@
 package com.globallogic.orchestrator.dao.db;
 
-import com.globallogic.orchestrator.connector.db.ContainerDbConnector;
 import com.globallogic.orchestrator.dao.ContainerDAO;
-import com.globallogic.orchestrator.dto.ContainerDTO;
+import com.globallogic.orchestrator.dao.connector.ContainerDbDAOConnector;
+import com.globallogic.orchestrator.dao.dto.ContainerDTO;
 import com.globallogic.orchestrator.model.entity.Container;
 
 import java.util.HashSet;
@@ -15,7 +15,7 @@ public class DbContainerDAO implements ContainerDAO {
         Set<ContainerDTO> set = new HashSet<>();
         containers.forEach(container -> set.add(getDTO(container)));
 
-        new ContainerDbConnector().insert(set);
+        new ContainerDbDAOConnector().insert(set);
     }
 
     private static ContainerDTO getDTO(Container container) {
@@ -31,6 +31,6 @@ public class DbContainerDAO implements ContainerDAO {
 
     @Override
     public Set<ContainerDTO> load() {
-        return new ContainerDbConnector().getAll();
+        return new ContainerDbDAOConnector().getAll();
     }
 }

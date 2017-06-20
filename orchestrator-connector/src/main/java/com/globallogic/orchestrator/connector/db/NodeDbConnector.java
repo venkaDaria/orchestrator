@@ -1,85 +1,34 @@
 package com.globallogic.orchestrator.connector.db;
 
-import com.globallogic.orchestrator.connector.exception.DbException;
-import com.globallogic.orchestrator.dto.NodeDTO;
+import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
-import java.sql.*;
-import java.util.HashSet;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Set;
 
-public class NodeDbConnector extends DbConnector<NodeDTO> {
-    private static final String INSERT_NODE = "insert into nodes values(?,?)";
-    private static final String GET_NODES = "select * from nodes";
+public class NodeDbConnector extends DbConnector {
+    private static final String INSERT_NODE_QUERY = "insert into nodes values(?,?)";
+    private static final String GET_ALL_NODES_QUERY = "select * from nodes";
 
     @Override
-    public void insert(Set<NodeDTO> set) throws DbException {
-        Connection con = null;
-        try {
-            con = DbManager.getInstance().getConnection();
-            con.setAutoCommit(false);
-            for (NodeDTO el : set) {
-                insert(con, el);
-            }
-            con.commit();
-        } catch (SQLException e) {
-            rollback(con);
-            throw new DbException("Can't insert nodes", e);
-        } finally {
-            close(con);
+    public void insert(Connection con, String... params) {
+        if (params.length != 2) {
+            throw new DatabaseOperationException("Can't insert node");
         }
-    }
-
-    private void insert(Connection con, NodeDTO node) {
-        PreparedStatement pstmt = null;
-        try {
-            pstmt = con.prepareStatement(INSERT_NODE);
-            int k = 1;
-            pstmt.setString(k++, node.getName());
-            pstmt.setString(k, node.getRoles());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new DbException("Can't insert node", e);
-        } finally {
-            close(pstmt);
-        }
+        insert(con, INSERT_NODE_QUERY, params);
     }
 
     @Override
-    public Set<NodeDTO> getAll() throws DbException {
-        Set<NodeDTO> nodes;
-        Connection con = null;
-        try {
-            con = DbManager.getInstance().getConnection();
-            nodes = getAll(con);
-        } catch (SQLException e) {
-            throw new DbException("Cannot obtain nodes", e);
-        } finally {
-            close(con);
-        }
-        return nodes;
+    public Set<String[]> getAll(Connection con) throws SQLException {
+        return getAll(con, GET_ALL_NODES_QUERY);
     }
 
-    private Set<NodeDTO> getAll(Connection con) throws SQLException {
-        Set<NodeDTO> nodes = new HashSet<>();
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(GET_NODES);
-            while (rs.next()) {
-                nodes.add(extractNode(rs));
-            }
-        } finally {
-            close(stmt);
-            close(rs);
-        }
-        return nodes;
-    }
-
-    private static NodeDTO extractNode(ResultSet rs) throws SQLException {
-        NodeDTO node = new NodeDTO();
-        node.setName(rs.getString("name"));
-        node.setRoles(rs.getString("roles"));
-        return node;
+    @Override
+    protected String[] extract(ResultSet rs) throws SQLException {
+        return new String[]{
+            rs.getString("name"),
+            rs.getString("roles")
+        };
     }
 }

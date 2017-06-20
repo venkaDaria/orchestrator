@@ -2,7 +2,7 @@ package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
-import com.globallogic.orchestrator.exception.ServiceConfigurationException;
+import com.globallogic.orchestrator.dao.exception.ServiceConfigurationException;
 import com.globallogic.orchestrator.model.valueobject.ImageReference;
 import com.globallogic.orchestrator.model.valueobject.Port;
 import com.globallogic.orchestrator.model.valueobject.Role;
@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FileSystemServiceDAO implements ServiceDAO {
-    private static final String SEP = ";";
+    private static final String SEPARATOR = ";";
     private static final String FILE_NAME = "services.csv";
 
     @Override
@@ -42,7 +42,7 @@ public class FileSystemServiceDAO implements ServiceDAO {
             throw new ServiceConfigurationException();
         }
 
-        String[] values = line.split(SEP);
+        String[] values = line.split(SEPARATOR);
 
         if (values.length < 2) {
             throw new ServiceConfigurationException();
@@ -79,22 +79,22 @@ public class FileSystemServiceDAO implements ServiceDAO {
 
     private String getString(Service service) {
         StringBuilder lineBuilder = new StringBuilder(service.getName());
-        lineBuilder.append(SEP).append(service.getImage().getValue());
+        lineBuilder.append(SEPARATOR).append(service.getImage().getValue());
 
         for (Port p : service.getPorts()) {
-            lineBuilder.append(SEP).append(p.getValue());
+            lineBuilder.append(SEPARATOR).append(p.getValue());
         }
 
-        lineBuilder.append(SEP);
+        lineBuilder.append(SEPARATOR);
 
         for (Role r : service.getRoles()) {
-            lineBuilder.append(SEP).append(r.getValue());
+            lineBuilder.append(SEPARATOR).append(r.getValue());
         }
 
-        lineBuilder.append(SEP);
+        lineBuilder.append(SEPARATOR);
 
         for (Volume v : service.getVolumes()) {
-            lineBuilder.append(SEP).append(v.getValue());
+            lineBuilder.append(SEPARATOR).append(v.getValue());
         }
         return lineBuilder.append(System.lineSeparator()).toString();
     }

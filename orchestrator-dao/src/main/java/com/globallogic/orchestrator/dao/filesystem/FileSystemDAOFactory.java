@@ -6,6 +6,16 @@ import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.ServiceDAO;
 
 public class FileSystemDAOFactory implements DAOFactory {
+    private static FileSystemDAOFactory instance;
+
+    public synchronized static FileSystemDAOFactory getInstance() {
+        if (instance == null) {
+            instance = new FileSystemDAOFactory();
+        }
+        return instance;
+    }
+
+    private FileSystemDAOFactory() {}
 
     @Override
     public ContainerDAO getContainerDAO() {

@@ -1,25 +1,23 @@
 package com.globallogic.orchestrator.dao;
 
 import com.globallogic.orchestrator.dao.db.DbDAOFactory;
+import com.globallogic.orchestrator.dao.exception.SystemNotSupportException;
 import com.globallogic.orchestrator.dao.filesystem.FileSystemDAOFactory;
 
 public interface DAOFactory {
-
-    int FILE_SYSTEM = 1;
-    int DB = 2;
 
     ContainerDAO getContainerDAO();
     ServiceDAO getServiceDAO();
     NodeDAO getNodeDAO();
 
-    static DAOFactory getDAOFactory(int num){
-        switch(num) {
+    static DAOFactory getInstance(DAOSystem system){
+        switch(system) {
             case FILE_SYSTEM:
-                return new FileSystemDAOFactory();
+                return FileSystemDAOFactory.getInstance();
             case DB:
-                return new DbDAOFactory();
+                return DbDAOFactory.getInstance();
             default:
-                return null;
+                throw new SystemNotSupportException();
         }
     }
 }

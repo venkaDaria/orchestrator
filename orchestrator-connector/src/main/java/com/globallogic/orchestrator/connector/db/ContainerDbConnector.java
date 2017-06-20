@@ -1,90 +1,36 @@
 package com.globallogic.orchestrator.connector.db;
 
-import com.globallogic.orchestrator.connector.exception.DbException;
-import com.globallogic.orchestrator.dto.ContainerDTO;
+import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
-import java.sql.*;
-import java.util.HashSet;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Set;
 
-public class ContainerDbConnector extends DbConnector<ContainerDTO> {
-
-    private static final String INSERT_CONTAINER = "insert into containers values(?,?,?,?)";
-    private static final String GET_CONTAINERS = "select * from containers";
+public class ContainerDbConnector extends DbConnector {
+    private static final String INSERT_CONTAINER_QUERY = "insert into containers values(?,?,?,?)";
+    private static final String GET_ALL_CONTAINERS_QUERY = "select * from containers";
 
     @Override
-    public void insert(Set<ContainerDTO> set) throws DbException {
-        Connection con = null;
-        try {
-            con = DbManager.getInstance().getConnection();
-            con.setAutoCommit(false);
-            for (ContainerDTO el : set) {
-                insert(con, el);
-            }
-            con.commit();
-        } catch (SQLException e) {
-            rollback(con);
-            throw new DbException("Can't insert containers", e);
-        } finally {
-            close(con);
+    public void insert(Connection con, String... params) {
+        if (params.length != 4) {
+            throw new DatabaseOperationException("Can't insert container");
         }
-    }
-
-    private void insert(Connection con, ContainerDTO container) {
-        PreparedStatement pstmt = null;
-        try {
-            pstmt = con.prepareStatement(INSERT_CONTAINER);
-            int k = 1;
-            pstmt.setString(k++, container.getId());
-            pstmt.setString(k++, container.getStatus());
-            pstmt.setString(k++, container.getNodeName());
-            pstmt.setString(k, container.getServiceName());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new DbException("Can't insert container", e);
-        } finally {
-            close(pstmt);
-        }
+        insert(con, INSERT_CONTAINER_QUERY, params);
     }
 
     @Override
-    public Set<ContainerDTO> getAll() throws DbException {
-        Set<ContainerDTO> containers;
-        Connection con = null;
-        try {
-            con = DbManager.getInstance().getConnection();
-            containers = getAll(con);
-        } catch (SQLException e) {
-            throw new DbException("Cannot obtain containers", e);
-        } finally {
-            close(con);
-        }
-        return containers;
+    public Set<String[]> getAll(Connection con) throws SQLException {
+        return getAll(con, GET_ALL_CONTAINERS_QUERY);
     }
 
-    private Set<ContainerDTO> getAll(Connection con) throws SQLException {
-        Set<ContainerDTO> containers = new HashSet<>();
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(GET_CONTAINERS);
-            while (rs.next()) {
-                containers.add(extractContainer(rs));
-            }
-        } finally {
-            close(stmt);
-            close(rs);
-        }
-        return containers;
-    }
-
-    private static ContainerDTO extractContainer(ResultSet rs) throws SQLException {
-        ContainerDTO container = new ContainerDTO();
-        container.setId(rs.getString("id"));
-        container.setStatus(rs.getString("status"));
-        container.setNodeName(rs.getString("node"));
-        container.setServiceName(rs.getString("service"));
-        return container;
+    @Override
+    protected String[] extract(ResultSet rs) throws SQLException {
+        return new String[]{
+            rs.getString("id"),
+            rs.getString("status"),
+            rs.getString("node"),
+            rs.getString("service")
+        };
     }
 }

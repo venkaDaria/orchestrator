@@ -2,7 +2,7 @@ package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
-import com.globallogic.orchestrator.exception.NodeConfigurationException;
+import com.globallogic.orchestrator.dao.exception.NodeConfigurationException;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.valueobject.Role;
 import org.apache.commons.lang.StringUtils;
@@ -12,13 +12,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FileSystemNodeDAO implements NodeDAO {
-    private static final String SEP = ";";
+    private static final String SEPARATOR = ";";
     private static final String FILE_NAME = "nodes.csv";
 
     private String getString(Node node) {
         StringBuilder lineBuilder = new StringBuilder(node.getName());
         for (Role r : node.getRoles()) {
-            lineBuilder.append(SEP).append(r.getValue());
+            lineBuilder.append(SEPARATOR).append(r.getValue());
         }
         return lineBuilder.append(System.lineSeparator()).toString();
     }
@@ -30,7 +30,7 @@ public class FileSystemNodeDAO implements NodeDAO {
             throw new NodeConfigurationException();
         }
 
-        String[] values = line.split(SEP);
+        String[] values = line.split(SEPARATOR);
 
         node.setName(values[0]);
 

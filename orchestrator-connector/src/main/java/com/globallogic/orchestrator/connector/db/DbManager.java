@@ -1,6 +1,6 @@
 package com.globallogic.orchestrator.connector.db;
 
-import com.globallogic.orchestrator.connector.exception.DbException;
+import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,7 +24,7 @@ public class DbManager {
         try {
             return DriverManager.getConnection(URL);
         } catch (SQLException e) {
-            throw new DbException("Can't get connection", e);
+            throw new DatabaseOperationException("Can't get connection", e);
         }
     }
 }

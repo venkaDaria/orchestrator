@@ -1,4 +1,6 @@
-package com.globallogic.orchestrator.exception;
+package com.globallogic.orchestrator.dao.exception;
+
+import com.globallogic.orchestrator.dao.exception.ConfigurationException;
 
 public class ContainerConfigurationException extends ConfigurationException {
     private static final int CODE = 100201;

@@ -1,8 +1,8 @@
 package com.globallogic.orchestrator.dao.db;
 
-import com.globallogic.orchestrator.connector.db.ServiceDbConnector;
 import com.globallogic.orchestrator.dao.ServiceDAO;
-import com.globallogic.orchestrator.dto.ServiceDTO;
+import com.globallogic.orchestrator.dao.connector.ServiceDbDAOConnector;
+import com.globallogic.orchestrator.dao.dto.ServiceDTO;
 import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.model.valueobject.ImageReference;
 import com.globallogic.orchestrator.model.valueobject.Port;
@@ -22,7 +22,7 @@ public class DbServiceDAO implements ServiceDAO {
         Set<ServiceDTO> set = new HashSet<>();
         services.forEach(service -> set.add(getDTO(service)));
 
-        new ServiceDbConnector().insert(set);
+        new ServiceDbDAOConnector().insert(set);
     }
 
     private static ServiceDTO getDTO(Service service) {
@@ -47,7 +47,7 @@ public class DbServiceDAO implements ServiceDAO {
 
     @Override
     public Set<Service> load() {
-        Set<ServiceDTO> set = new ServiceDbConnector().getAll();
+        Set<ServiceDTO> set = new ServiceDbDAOConnector().getAll();
 
         Set<Service> services = new HashSet<>();
         set.forEach(dto -> services.add(getService(dto)));

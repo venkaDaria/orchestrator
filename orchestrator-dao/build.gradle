@@ -3,7 +3,6 @@ group 'com.globallogic.orchestrator'
 dependencies {
     compile project(':orchestrator-base')
     compile project(':orchestrator-connector')
-    compile project(':orchestrator-dto')
     compile project(':orchestrator-model')
 
     runtime "mysql:mysql-connector-java:5.1.37"

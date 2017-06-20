@@ -2,8 +2,8 @@ package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.dao.ContainerDAO;
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
-import com.globallogic.orchestrator.dto.ContainerDTO;
-import com.globallogic.orchestrator.exception.ContainerConfigurationException;
+import com.globallogic.orchestrator.dao.dto.ContainerDTO;
+import com.globallogic.orchestrator.dao.exception.ContainerConfigurationException;
 import com.globallogic.orchestrator.model.entity.Container;
 import org.apache.commons.lang.StringUtils;
 
@@ -12,8 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FileSystemContainerDAO implements ContainerDAO {
-
-    private static final String SEP = ";";
+    private static final String SEPARATOR = ";";
     private static final String FILE_NAME = "containers.csv";
 
     private ContainerDTO getDTO(String line) {
@@ -23,7 +22,7 @@ public class FileSystemContainerDAO implements ContainerDAO {
             throw new ContainerConfigurationException();
         }
 
-        String[] values = line.split(SEP);
+        String[] values = line.split(SEPARATOR);
 
         if (values.length != 4) {
             throw new ContainerConfigurationException();
@@ -38,8 +37,8 @@ public class FileSystemContainerDAO implements ContainerDAO {
     }
 
     private String getString(Container container) {
-        return container.getId() + SEP + container.getNode().getName() + SEP + container.getService().getName()
-                + SEP + container.getStatus() + System.lineSeparator();
+        return container.getId() + SEPARATOR + container.getNode().getName() + SEPARATOR + container.getService().getName()
+                + SEPARATOR + container.getStatus() + System.lineSeparator();
     }
 
     @Override

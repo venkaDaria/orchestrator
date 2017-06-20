@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.dto;
+package com.globallogic.orchestrator.dao.dto;
 
 public class ServiceDTO {
 	private String name;

@@ -1,54 +1,67 @@
 package com.globallogic.orchestrator.connector.db;
 
-import com.globallogic.orchestrator.connector.exception.DbException;
+import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.HashSet;
 import java.util.Set;
 
-public abstract class DbConnector<T> {
-    public abstract void insert(Set<T> set) throws DbException;
+public abstract class DbConnector {
 
-    public abstract Set<T> getAll() throws DbException;
+    public abstract void insert(Connection con, String... params);
 
-    protected void rollback(Connection con) {
-        if (con != null) {
-            try {
-                con.rollback();
-            } catch (SQLException ex) {
-                throw new DbException("Can't rollback");
+    public abstract Set<String[]> getAll(Connection con) throws SQLException;
+
+    protected abstract String[] extract(ResultSet rs) throws SQLException;
+
+    protected void insert(Connection con, String query, String... params) {
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = con.prepareStatement(query);
+            for (int k = 0; k < params.length; k++) {
+                pstmt.setString(k + 1, params[k]);
             }
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseOperationException("Can't insert this object", e);
+        } finally {
+            close(pstmt);
         }
     }
 
-    protected void close(Connection con) {
-        if (con != null) {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                throw new DbException("Can't close connection");
+    protected Set<String[]> getAll(Connection con, String query) throws SQLException {
+        Set<String[]> containers = new HashSet<>();
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                containers.add(extract(rs));
             }
+        } finally {
+            close(stmt);
+            close(rs);
         }
+        return containers;
     }
 
-    protected void close(ResultSet rs) {
+    protected void close(final ResultSet rs) {
         if (rs != null) {
             try {
                 rs.close();
             } catch (SQLException ex) {
-                throw new DbException("Can't close result set");
+                throw new DatabaseOperationException("Can't close result set");
             }
         }
     }
 
-    protected void close(Statement stmt) {
+    protected void close(final Statement stmt) {
         if (stmt != null) {
             try {
                 stmt.close();
             } catch (SQLException ex) {
-                throw new DbException("Can't close statement");
+                throw new DatabaseOperationException("Can't close statement");
             }
         }
     }

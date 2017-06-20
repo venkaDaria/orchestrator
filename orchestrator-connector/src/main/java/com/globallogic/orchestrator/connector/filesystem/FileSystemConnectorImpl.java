@@ -1,8 +1,12 @@
 package com.globallogic.orchestrator.connector.filesystem;
 
-import com.globallogic.orchestrator.connector.exception.*;
+import com.globallogic.orchestrator.connector.exception.FileNotFoundException;
+import com.globallogic.orchestrator.connector.exception.FileProcessException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class FileSystemConnectorImpl implements FileSystemConnector {
 
@@ -16,7 +20,7 @@ public class FileSystemConnectorImpl implements FileSystemConnector {
                 sb.append(s).append("\n");
             }
         } catch (java.io.FileNotFoundException e) {
-            throw new com.globallogic.orchestrator.connector.exception.FileNotFoundException();
+            throw new FileNotFoundException();
         } catch (IOException e) {
             throw new FileProcessException();
         }

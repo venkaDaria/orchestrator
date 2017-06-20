@@ -1,3 +1,4 @@
+import com.globallogic.orchestrator.dao.DAOSystem;
 import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.model.entity.Node;
@@ -76,7 +77,7 @@ public class Demo {
         config.setNodes(nodes);
         config.setServices(services);
 
-        ConfigurationService cs = new ConfigurationServiceImpl();
+        ConfigurationService cs = new ConfigurationServiceImpl(DAOSystem.FILE_SYSTEM);
         cs.save(config);
 
         Configuration config2 = cs.load();

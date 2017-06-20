@@ -1,8 +1,8 @@
 package com.globallogic.orchestrator.dao.db;
 
-import com.globallogic.orchestrator.connector.db.NodeDbConnector;
 import com.globallogic.orchestrator.dao.NodeDAO;
-import com.globallogic.orchestrator.dto.NodeDTO;
+import com.globallogic.orchestrator.dao.connector.NodeDbDAOConnector;
+import com.globallogic.orchestrator.dao.dto.NodeDTO;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.valueobject.Role;
 import org.apache.commons.lang.StringUtils;
@@ -19,7 +19,7 @@ public class DbNodeDAO implements NodeDAO {
         Set<NodeDTO> set = new HashSet<>();
         nodes.forEach(node -> set.add(getDTO(node)));
 
-        new NodeDbConnector().insert(set);
+        new NodeDbDAOConnector().insert(set);
     }
 
     private static NodeDTO getDTO(Node node) {
@@ -35,7 +35,7 @@ public class DbNodeDAO implements NodeDAO {
 
     @Override
     public Set<Node> load() {
-        Set<NodeDTO> set = new NodeDbConnector().getAll();
+        Set<NodeDTO> set = new NodeDbDAOConnector().getAll();
 
         Set<Node> nodes = new HashSet<>();
         set.forEach(dto -> nodes.add(getNode(dto)));
