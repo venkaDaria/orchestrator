@@ -47,7 +47,7 @@ public class ContainerDbDAOConnector extends DbDAOConnector<ContainerDTO> {
         return containers;
     }
 
-    private static ContainerDTO extract(String... params) {
+    private static ContainerDTO extract(final String... params) {
         if (params.length != 4) {
             throw new DatabaseOperationException("Can't extract container");
         }

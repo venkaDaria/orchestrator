@@ -12,7 +12,7 @@ public class NodeDbConnector extends DbConnector {
     private static final String GET_ALL_NODES_QUERY = "select * from nodes";
 
     @Override
-    public void insert(Connection con, String... params) {
+    public void insert(final Connection con, final String... params) {
         if (params.length != 2) {
             throw new DatabaseOperationException("Can't insert node");
         }
@@ -20,12 +20,12 @@ public class NodeDbConnector extends DbConnector {
     }
 
     @Override
-    public Set<String[]> getAll(Connection con) throws SQLException {
+    public Set<String[]> getAll(final Connection con) throws SQLException {
         return getAll(con, GET_ALL_NODES_QUERY);
     }
 
     @Override
-    protected String[] extract(ResultSet rs) throws SQLException {
+    protected String[] extract(final ResultSet rs) throws SQLException {
         return new String[]{
             rs.getString("name"),
             rs.getString("roles")

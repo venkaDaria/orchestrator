@@ -11,7 +11,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class NodeDbDAOConnector extends DbDAOConnector<NodeDTO> {
-    public void insert(Set<NodeDTO> set) throws DatabaseOperationException {
+
+    public void insert(final Set<NodeDTO> set) {
         Connection con = null;
         NodeDbConnector connector = new NodeDbConnector();
         try {
@@ -30,7 +31,7 @@ public class NodeDbDAOConnector extends DbDAOConnector<NodeDTO> {
     }
 
     @Override
-    public Set<NodeDTO> getAll() throws DatabaseOperationException {
+    public Set<NodeDTO> getAll() {
         Set<NodeDTO> nodes;
         Connection con = null;
         try {
@@ -45,7 +46,7 @@ public class NodeDbDAOConnector extends DbDAOConnector<NodeDTO> {
         return nodes;
     }
 
-    private static NodeDTO extract(String... params) {
+    private static NodeDTO extract(final String... params) {
         if (params.length != 2) {
             throw new DatabaseOperationException("Can't extract node");
         }

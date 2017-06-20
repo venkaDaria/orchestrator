@@ -12,7 +12,7 @@ public class ContainerDbConnector extends DbConnector {
     private static final String GET_ALL_CONTAINERS_QUERY = "select * from containers";
 
     @Override
-    public void insert(Connection con, String... params) {
+    public void insert(final Connection con, final String... params) {
         if (params.length != 4) {
             throw new DatabaseOperationException("Can't insert container");
         }
@@ -20,12 +20,12 @@ public class ContainerDbConnector extends DbConnector {
     }
 
     @Override
-    public Set<String[]> getAll(Connection con) throws SQLException {
+    public Set<String[]> getAll(final Connection con) throws SQLException {
         return getAll(con, GET_ALL_CONTAINERS_QUERY);
     }
 
     @Override
-    protected String[] extract(ResultSet rs) throws SQLException {
+    protected String[] extract(final ResultSet rs) throws SQLException {
         return new String[]{
             rs.getString("id"),
             rs.getString("status"),

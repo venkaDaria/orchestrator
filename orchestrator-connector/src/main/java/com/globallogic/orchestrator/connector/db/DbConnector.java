@@ -8,13 +8,13 @@ import java.util.Set;
 
 public abstract class DbConnector {
 
-    public abstract void insert(Connection con, String... params);
+    public abstract void insert(final Connection con, final String... params);
 
-    public abstract Set<String[]> getAll(Connection con) throws SQLException;
+    public abstract Set<String[]> getAll(final Connection con) throws SQLException;
 
-    protected abstract String[] extract(ResultSet rs) throws SQLException;
+    protected abstract String[] extract(final ResultSet rs) throws SQLException;
 
-    protected void insert(Connection con, String query, String... params) {
+    protected void insert(final Connection con, final String query, final String... params) {
         PreparedStatement pstmt = null;
         try {
             pstmt = con.prepareStatement(query);
@@ -29,7 +29,7 @@ public abstract class DbConnector {
         }
     }
 
-    protected Set<String[]> getAll(Connection con, String query) throws SQLException {
+    protected Set<String[]> getAll(final Connection con, final String query) throws SQLException {
         Set<String[]> containers = new HashSet<>();
         Statement stmt = null;
         ResultSet rs = null;

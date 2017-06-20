@@ -11,7 +11,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ServiceDbDAOConnector extends DbDAOConnector<ServiceDTO> {
-    public void insert(Set<ServiceDTO> set) throws DatabaseOperationException {
+
+    @Override
+    public void insert(final Set<ServiceDTO> set) {
         Connection con = null;
         ServiceDbConnector connector = new ServiceDbConnector();
         try {
@@ -31,7 +33,7 @@ public class ServiceDbDAOConnector extends DbDAOConnector<ServiceDTO> {
 
 
     @Override
-    public Set<ServiceDTO> getAll() throws DatabaseOperationException {
+    public Set<ServiceDTO> getAll() {
         Set<ServiceDTO> services;
         Connection con = null;
         try {
@@ -46,7 +48,7 @@ public class ServiceDbDAOConnector extends DbDAOConnector<ServiceDTO> {
         return services;
     }
 
-    private static ServiceDTO extract(String... params) {
+    private static ServiceDTO extract(final String... params) {
         if (params.length != 5) {
             throw new DatabaseOperationException("Can't extract node");
         }
