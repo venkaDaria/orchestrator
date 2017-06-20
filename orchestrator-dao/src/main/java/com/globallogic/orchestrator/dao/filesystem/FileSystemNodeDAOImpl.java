@@ -18,27 +18,6 @@ public class FileSystemNodeDAOImpl implements NodeDAO {
         SEPARATOR = separator.toString();
     }
 
-    private String getString(final NodeDTO node) {
-        if (node == null) {
-            throw new NodeConfigurationException();
-        }
-        return node.getName() + SEPARATOR + node.getRoles() + System.lineSeparator();
-    }
-
-    private NodeDTO parse(final String line) {
-        NodeDTO node = new NodeDTO();
-
-        if (StringUtils.isBlank(line)) {
-            throw new NodeConfigurationException();
-        }
-
-        int idx = line.indexOf(SEPARATOR);
-
-        node.setName(line.substring(0, idx));
-        node.setRoles(line.substring(idx + 1));
-        return node;
-    }
-
     @Override
     public void save(final Set<NodeDTO> nodes) {
         StringBuilder sb = new StringBuilder();
@@ -52,7 +31,28 @@ public class FileSystemNodeDAOImpl implements NodeDAO {
         String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
 
         Set<NodeDTO> nodes = new HashSet<>();
-        Arrays.stream(lines).forEach(line -> nodes.add(parse(line)));
+        Arrays.stream(lines).forEach(line -> nodes.add(getDTO(line)));
         return nodes;
+    }
+
+    private String getString(final NodeDTO node) {
+        if (node == null) {
+            throw new NodeConfigurationException();
+        }
+        return node.getName() + SEPARATOR + node.getRoles() + System.lineSeparator();
+    }
+
+    private NodeDTO getDTO(final String line) {
+        NodeDTO node = new NodeDTO();
+
+        if (StringUtils.isBlank(line)) {
+            throw new NodeConfigurationException();
+        }
+
+        int idx = line.indexOf(SEPARATOR);
+
+        node.setName(line.substring(0, idx));
+        node.setRoles(line.substring(idx + 1));
+        return node;
     }
 }

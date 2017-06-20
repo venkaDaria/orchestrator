@@ -18,6 +18,31 @@ public class FileSystemContainerDAOImpl implements ContainerDAO {
         SEPARATOR = separator.toString();
     }
 
+    @Override
+    public void save(final Set<ContainerDTO> containers) {
+        StringBuilder sb = new StringBuilder();
+        containers.forEach(container -> sb.append(getString(container)));
+
+        new FileSystemConnectorImpl().write(FILE_NAME, sb.toString());
+    }
+
+    @Override
+    public Set<ContainerDTO> load() {
+        String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
+
+        Set<ContainerDTO> containers = new HashSet<>();
+        Arrays.stream(lines).forEach(line -> containers.add(getDTO(line)));
+        return containers;
+    }
+
+    private String getString(final ContainerDTO container) {
+        if (container == null) {
+            throw new ContainerConfigurationException();
+        }
+        return container.getId() + SEPARATOR + container.getNodeName() + SEPARATOR + container.getServiceName()
+                + SEPARATOR + container.getStatus() + System.lineSeparator();
+    }
+
     private ContainerDTO getDTO(final String line) {
         ContainerDTO container = new ContainerDTO();
 
@@ -37,30 +62,5 @@ public class FileSystemContainerDAOImpl implements ContainerDAO {
         container.setStatus(values[3]);
 
         return container;
-    }
-
-    private String getString(final ContainerDTO container) {
-        if (container == null) {
-            throw new ContainerConfigurationException();
-        }
-        return container.getId() + SEPARATOR + container.getNodeName() + SEPARATOR + container.getServiceName()
-                + SEPARATOR + container.getStatus() + System.lineSeparator();
-    }
-
-    @Override
-    public void save(final Set<ContainerDTO> containers) {
-        StringBuilder sb = new StringBuilder();
-        containers.forEach(container -> sb.append(getString(container)));
-
-        new FileSystemConnectorImpl().write(FILE_NAME, sb.toString());
-    }
-
-    @Override
-    public Set<ContainerDTO> load() {
-        String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
-
-        Set<ContainerDTO> containers = new HashSet<>();
-        Arrays.stream(lines).forEach(line -> containers.add(getDTO(line)));
-        return containers;
     }
 }

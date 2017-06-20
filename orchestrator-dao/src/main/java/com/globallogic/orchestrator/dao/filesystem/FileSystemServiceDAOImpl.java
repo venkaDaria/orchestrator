@@ -33,11 +33,22 @@ public class FileSystemServiceDAOImpl implements ServiceDAO {
         String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
 
         Set<ServiceDTO> services = new HashSet<>();
-        Arrays.stream(lines).forEach(line -> services.add(parse(line)));
+        Arrays.stream(lines).forEach(line -> services.add(getDTO(line)));
         return services;
     }
 
-    private ServiceDTO parse(final String line) {
+    private String getString(final ServiceDTO service) {
+        if (service == null) {
+            throw new ServiceConfigurationException();
+        }
+        return service.getName() + SEPARATOR + service.getImage() +
+                SEPARATOR + service.getPorts() +
+                SEPARATOR + service.getRoles() +
+                SEPARATOR + service.getVolumes() +
+                System.lineSeparator();
+    }
+
+    private ServiceDTO getDTO(final String line) {
         ServiceDTO service = new ServiceDTO();
 
         if (StringUtils.isBlank(line)) {
@@ -60,16 +71,5 @@ public class FileSystemServiceDAOImpl implements ServiceDAO {
         service.setVolumes(m.group(5));
 
         return service;
-    }
-
-    private String getString(final ServiceDTO service) {
-        if (service == null) {
-            throw new ServiceConfigurationException();
-        }
-        return service.getName() + SEPARATOR + service.getImage() +
-                SEPARATOR + service.getPorts() +
-                SEPARATOR + service.getRoles() +
-                SEPARATOR + service.getVolumes() +
-                System.lineSeparator();
     }
 }
