@@ -19,6 +19,7 @@ rootProject.name = 'orchestrator'
 
 include 'orchestrator-base'
 include 'orchestrator-connector'
+include 'orchestrator-controller'
 include 'orchestrator-dao'
 include 'orchestrator-model'
 include 'orchestrator-service'
