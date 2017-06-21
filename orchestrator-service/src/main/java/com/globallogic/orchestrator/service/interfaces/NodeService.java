@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.service;
+package com.globallogic.orchestrator.service.interfaces;
 
 import com.globallogic.orchestrator.model.entity.Node;
 

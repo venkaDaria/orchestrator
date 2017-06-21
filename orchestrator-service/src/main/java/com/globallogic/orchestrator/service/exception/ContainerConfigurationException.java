@@ -1,10 +1,8 @@
 package com.globallogic.orchestrator.service.exception;
 
-import com.globallogic.orchestrator.connector.exception.FileProcessException;
-
-public class ContainerConfigurationException extends FileProcessException {
-    private static final int CODE = 100102;
-    private static final String MESSAGE = "Can't read container from file";
+public class ContainerConfigurationException extends ConfigurationException {
+    private static final int CODE = 100201;
+    private static final String MESSAGE = "Can't configure container";
 
     public ContainerConfigurationException() {
         super(CODE, MESSAGE);

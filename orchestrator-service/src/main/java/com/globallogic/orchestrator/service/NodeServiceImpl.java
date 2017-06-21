@@ -1,9 +1,12 @@
 package com.globallogic.orchestrator.service;
 
-import com.globallogic.orchestrator.connector.FileSystemConnectorImpl;
+import com.globallogic.orchestrator.dao.DAOFactory;
+import com.globallogic.orchestrator.dao.DAOType;
+import com.globallogic.orchestrator.dao.SeparatorHolder;
+import com.globallogic.orchestrator.dao.dto.NodeDTO;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.valueobject.Role;
-import com.globallogic.orchestrator.service.exception.NodeConfigurationException;
+import com.globallogic.orchestrator.service.interfaces.NodeService;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
@@ -11,51 +14,56 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class NodeServiceImpl implements NodeService {
-    private static final String SEP = ";";
-    private static final String FILE_NAME = "nodes.csv";
+    private DAOType type;
+    private final String SEPARATOR;
+
+    public NodeServiceImpl(final DAOType type) {
+        this.type = type;
+        SEPARATOR = SeparatorHolder.getSeparatorString();
+    }
 
     @Override
     public void save(final Set<Node> nodes) {
-        StringBuilder sb = new StringBuilder();
-        nodes.forEach(node -> sb.append(getStringCsv(node)));
+        Set<NodeDTO> set = new HashSet<>();
+        nodes.forEach(node -> set.add(getDTO(node)));
 
-        new FileSystemConnectorImpl().write(FILE_NAME, sb.toString());
+        DAOFactory.getInstance(type).getNodeDAO().save(set);
     }
 
     @Override
     public Set<Node> load() {
-        String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
+        Set<NodeDTO> set = DAOFactory.getInstance(type).getNodeDAO().load();
 
         Set<Node> nodes = new HashSet<>();
-        Arrays.stream(lines).forEach(line -> nodes.add(parse(line)));
+        set.forEach(dto -> nodes.add(getNode(dto)));
+
         return nodes;
     }
 
-    private Node parse(final String line) {
-        Node node = new Node();
+    private NodeDTO getDTO(final Node node) {
+        NodeDTO dto = new NodeDTO();
+        dto.setName(node.getName());
 
-        if (StringUtils.isBlank(line)) {
-            throw new NodeConfigurationException();
-        }
+        StringBuilder sb = new StringBuilder();
+        node.getRoles().forEach(role -> sb.append(role.getValue()).append(SEPARATOR));
 
-        String[] values = line.split(SEP);
+        String str = sb.toString();
+        str = (StringUtils.isNotEmpty(str)) ? str.substring(0, str.length() - 1) : str;
+        dto.setRoles(str);
 
-        node.setName(values[0]);
-
-        Set<Role> roles = new HashSet<>();
-        for (int i = 1; i < values.length; i++) {
-            roles.add(new Role(values[i]));
-        }
-
-        node.setRoles(roles);
-        return node;
+        return dto;
     }
 
-    private String getStringCsv(final Node node) {
-        StringBuilder lineBuilder = new StringBuilder(node.getName());
-        for (Role r : node.getRoles()) {
-            lineBuilder.append(SEP).append(r.getValue());
+    private Node getNode(final NodeDTO dto) {
+        Node node = new Node();
+        node.setName(dto.getName());
+
+        Set<Role> roles = new HashSet<>();
+        if (StringUtils.isNotEmpty(dto.getRoles())) {
+            Arrays.stream(dto.getRoles().split(SEPARATOR)).forEach(role -> roles.add(new Role(role)));
         }
-        return lineBuilder.append(System.lineSeparator()).toString();
+        node.setRoles(roles);
+
+        return node;
     }
 }

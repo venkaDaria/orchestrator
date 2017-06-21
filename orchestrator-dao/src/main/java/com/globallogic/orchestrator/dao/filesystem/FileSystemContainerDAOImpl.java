@@ -1,0 +1,54 @@
+package com.globallogic.orchestrator.dao.filesystem;
+
+import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
+import com.globallogic.orchestrator.dao.ContainerDAO;
+import com.globallogic.orchestrator.dao.SeparatorHolder;
+import com.globallogic.orchestrator.dao.dto.ContainerDTO;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+public class FileSystemContainerDAOImpl implements ContainerDAO {
+    private final String SEPARATOR;
+    private static final String FILE_NAME = "containers.csv";
+
+    public FileSystemContainerDAOImpl() {
+        SEPARATOR = SeparatorHolder.getSeparatorString();
+    }
+
+    @Override
+    public void save(final Set<ContainerDTO> containers) {
+        StringBuilder sb = new StringBuilder();
+        containers.forEach(container -> sb.append(getString(container)));
+
+        new FileSystemConnectorImpl().write(FILE_NAME, sb.toString());
+    }
+
+    @Override
+    public Set<ContainerDTO> load() {
+        String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
+
+        Set<ContainerDTO> containers = new HashSet<>();
+        Arrays.stream(lines).forEach(line -> containers.add(getDTO(line)));
+        return containers;
+    }
+
+    private String getString(final ContainerDTO container) {
+        return container.getId() + SEPARATOR + container.getNodeName() + SEPARATOR + container.getServiceName()
+                + SEPARATOR + container.getStatus() + System.lineSeparator();
+    }
+
+    private ContainerDTO getDTO(final String line) {
+        ContainerDTO container = new ContainerDTO();
+
+        String[] values = line.split(SEPARATOR);
+
+        container.setId(values[0]);
+        container.setNodeName(values[1]);
+        container.setServiceName(values[2]);
+        container.setStatus(values[3]);
+
+        return container;
+    }
+}

@@ -1,10 +1,8 @@
 package com.globallogic.orchestrator.service.exception;
 
-import com.globallogic.orchestrator.connector.exception.FileProcessException;
-
-public class NodeConfigurationException extends FileProcessException {
-    private static final int CODE = 100103;
-    private static final String MESSAGE = "Can't read node from file";
+public class NodeConfigurationException extends ConfigurationException {
+    private static final int CODE = 100202;
+    private static final String MESSAGE = "Can't configure node";
 
     public NodeConfigurationException() {
         super(CODE, MESSAGE);

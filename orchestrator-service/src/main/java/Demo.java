@@ -1,11 +1,14 @@
+import com.globallogic.orchestrator.dao.DAOType;
+import com.globallogic.orchestrator.dao.SeparatorHolder;
+import com.globallogic.orchestrator.dao.LocaleSeparator;
 import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.model.valueobject.ImageReference;
 import com.globallogic.orchestrator.model.valueobject.Role;
-import com.globallogic.orchestrator.service.ConfigurationService;
 import com.globallogic.orchestrator.service.ConfigurationServiceImpl;
+import com.globallogic.orchestrator.service.interfaces.ConfigurationService;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,6 +26,8 @@ public class Demo {
         s.setVolumes(new HashSet<>());
         Set<Role> roles = new HashSet<>();
         Role role = new Role("1");
+        roles.add(role);
+        role = new Role("2");
         roles.add(role);
         s.setRoles(roles);
 
@@ -76,7 +81,8 @@ public class Demo {
         config.setNodes(nodes);
         config.setServices(services);
 
-        ConfigurationService cs = new ConfigurationServiceImpl();
+        SeparatorHolder.setSeparator(LocaleSeparator.COMMA);
+        ConfigurationService cs = new ConfigurationServiceImpl(DAOType.FILE_SYSTEM);
         cs.save(config);
 
         Configuration config2 = cs.load();

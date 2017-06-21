@@ -1,10 +1,8 @@
 package com.globallogic.orchestrator.service.exception;
 
-import com.globallogic.orchestrator.connector.exception.FileProcessException;
-
-public class ServiceConfigurationException extends FileProcessException {
-    private static final int CODE = 100104;
-    private static final String MESSAGE = "Can't read service from file";
+public class ServiceConfigurationException extends ConfigurationException {
+    private static final int CODE = 100203;
+    private static final String MESSAGE = "Can't configure service";
 
     public ServiceConfigurationException() {
         super(CODE, MESSAGE);
