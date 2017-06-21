@@ -14,10 +14,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ServiceTranslator implements Translator<Service, ServiceDTO> {
+public class ServiceTranslatorImpl implements Translator<Service, ServiceDTO> {
     private final String SEPARATOR;
 
-    public ServiceTranslator() {
+    public ServiceTranslatorImpl() {
         SEPARATOR = SeparatorHolder.getSeparatorString();
     }
 

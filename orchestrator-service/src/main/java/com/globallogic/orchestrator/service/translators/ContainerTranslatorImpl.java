@@ -7,7 +7,7 @@ import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.entity.Service;
 
-public class ContainerTranslator implements Translator<Container, ContainerDTO> {
+public class ContainerTranslatorImpl implements Translator<Container, ContainerDTO> {
     @Override
     public ContainerDTO getDto(Container model) {
         ContainerDTO dto = new ContainerDTO();

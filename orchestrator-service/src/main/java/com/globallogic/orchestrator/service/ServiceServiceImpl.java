@@ -5,7 +5,7 @@ import com.globallogic.orchestrator.dao.DAOType;
 import com.globallogic.orchestrator.dao.dto.ServiceDTO;
 import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.service.interfaces.ServiceService;
-import com.globallogic.orchestrator.service.translators.ServiceTranslator;
+import com.globallogic.orchestrator.service.translators.ServiceTranslatorImpl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +22,7 @@ public class ServiceServiceImpl implements ServiceService {
     public void save(final Set<Service> services) {
         Set<ServiceDTO> set = new HashSet<>();
 
-        ServiceTranslator translator = new ServiceTranslator();
+        ServiceTranslatorImpl translator = new ServiceTranslatorImpl();
         services.forEach(service -> set.add(translator.getDto(service)));
 
         DAOFactory.getInstance(type).getServiceDAO().save(set);
@@ -33,7 +33,7 @@ public class ServiceServiceImpl implements ServiceService {
         Set<ServiceDTO> set = DAOFactory.getInstance(type).getServiceDAO().load();
         Set<Service> services = new HashSet<>();
 
-        ServiceTranslator translator = new ServiceTranslator();
+        ServiceTranslatorImpl translator = new ServiceTranslatorImpl();
         set.forEach(dto -> services.add(translator.fromDto(dto)));
 
         return services;

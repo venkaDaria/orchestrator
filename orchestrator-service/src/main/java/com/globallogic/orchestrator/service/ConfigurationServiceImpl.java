@@ -7,7 +7,7 @@ import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.service.interfaces.ConfigurationService;
-import com.globallogic.orchestrator.service.translators.ContainerTranslator;
+import com.globallogic.orchestrator.service.translators.ContainerTranslatorImpl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +42,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
         Set<ContainerDTO> containers = new ContainerServiceImpl(type).load();
 
-        ContainerTranslator translator = new ContainerTranslator();
+        ContainerTranslatorImpl translator = new ContainerTranslatorImpl();
         for (ContainerDTO dto : containers) {
             Node node = nodes.stream().filter(n -> dto.getNodeName().equals(n.getName())).findAny().orElse(null);
             Service service = services.stream().filter(s -> dto.getServiceName().equals(s.getName())).findAny().orElse(null);

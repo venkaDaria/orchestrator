@@ -11,10 +11,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NodeTranslator implements Translator<Node, NodeDTO> {
+public class NodeTranslatorImpl implements Translator<Node, NodeDTO> {
     private final String SEPARATOR;
 
-    public NodeTranslator() {
+    public NodeTranslatorImpl() {
         SEPARATOR = SeparatorHolder.getSeparatorString();
     }
 
