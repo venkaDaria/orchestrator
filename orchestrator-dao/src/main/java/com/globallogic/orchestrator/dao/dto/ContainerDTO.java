@@ -1,10 +1,16 @@
 package com.globallogic.orchestrator.dao.dto;
 
 public class ContainerDTO {
+
     private String id;
+
     private String status;
+
     private String nodeName;
+
     private String serviceName;
+
+    public ContainerDTO() { }
 
     public String getId() {
         return id;

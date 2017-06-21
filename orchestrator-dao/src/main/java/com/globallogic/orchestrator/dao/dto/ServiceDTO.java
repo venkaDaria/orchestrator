@@ -1,11 +1,18 @@
 package com.globallogic.orchestrator.dao.dto;
 
 public class ServiceDTO {
+
     private String name;
+
     private String image;
+
     private String roles;
+
     private String ports;
+
     private String volumes;
+
+    public ServiceDTO() { }
 
     public String getName() {
         return name;

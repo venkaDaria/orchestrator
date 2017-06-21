@@ -1,8 +1,12 @@
 package com.globallogic.orchestrator.dao.dto;
 
 public class NodeDTO {
+
     private String name;
+
     private String roles;
+
+    public NodeDTO() { }
 
     public String getName() {
         return name;
