@@ -5,11 +5,13 @@ import com.globallogic.orchestrator.dao.DAOType;
 import com.globallogic.orchestrator.dao.dto.ContainerDTO;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.service.interfaces.ContainerService;
+import com.globallogic.orchestrator.service.translators.ContainerTranslator;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class ContainerServiceImpl implements ContainerService {
+
     private DAOType type;
 
     public ContainerServiceImpl(final DAOType type) {
@@ -19,7 +21,9 @@ public class ContainerServiceImpl implements ContainerService {
     @Override
     public void save(final Set<Container> containers) {
         Set<ContainerDTO> set = new HashSet<>();
-        containers.forEach(container -> set.add(getDTO(container)));
+
+        ContainerTranslator translator = new ContainerTranslator();
+        containers.forEach(container -> set.add(translator.getDto(container)));
 
         DAOFactory.getInstance(type).getContainerDAO().save(set);
     }
@@ -27,16 +31,5 @@ public class ContainerServiceImpl implements ContainerService {
     @Override
     public Set<ContainerDTO> load() {
         return DAOFactory.getInstance(type).getContainerDAO().load();
-    }
-
-    private ContainerDTO getDTO(final Container container) {
-        ContainerDTO dto = new ContainerDTO();
-
-        dto.setId(container.getId());
-        dto.setNodeName(container.getNode().getName());
-        dto.setServiceName(container.getService().getName());
-        dto.setStatus(container.getStatus().toString());
-
-        return dto;
     }
 }
