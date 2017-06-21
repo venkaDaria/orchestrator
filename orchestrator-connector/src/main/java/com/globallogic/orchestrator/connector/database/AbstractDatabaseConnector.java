@@ -25,7 +25,7 @@ public abstract class AbstractDatabaseConnector implements DatabaseConnector {
         } catch (SQLException e) {
             throw new DatabaseOperationException("Can't insert this object", e);
         } finally {
-            close(pstmt);
+            close(null, pstmt);
         }
     }
 
@@ -40,13 +40,12 @@ public abstract class AbstractDatabaseConnector implements DatabaseConnector {
                 containers.add(extract(rs));
             }
         } finally {
-            close(stmt);
-            close(rs);
+            close(rs, stmt);
         }
         return containers;
     }
 
-    protected void close(final ResultSet rs) {
+    protected void close(final ResultSet rs, final Statement stmt) {
         if (rs != null) {
             try {
                 rs.close();
@@ -54,9 +53,6 @@ public abstract class AbstractDatabaseConnector implements DatabaseConnector {
                 throw new DatabaseOperationException("Can't close result set");
             }
         }
-    }
-
-    protected void close(final Statement stmt) {
         if (stmt != null) {
             try {
                 stmt.close();
