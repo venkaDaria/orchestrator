@@ -46,11 +46,6 @@ public final class Port extends StringValueObject {
     }
 
     @Override
-    public String asString() {
-        return "Port [protocol=" + protocol + ", local=" + local + ", remote=" + remote + "]";
-    }
-
-    @Override
     public String getValue() {
         String line = local.toString();
 
@@ -58,7 +53,7 @@ public final class Port extends StringValueObject {
             line += ":" + remote;
         }
 
-        line += "/" + protocol.getValue();
+        line += "/" + protocol.asString();
         return line;
     }
 }

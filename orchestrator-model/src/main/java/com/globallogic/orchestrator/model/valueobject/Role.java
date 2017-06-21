@@ -14,10 +14,4 @@ public final class Role extends StringValueObject {
     public String getValue() {
         return value;
     }
-
-    @Override
-    public String asString() {
-        return "Role [value=" + value + "]";
-    }
-
 }

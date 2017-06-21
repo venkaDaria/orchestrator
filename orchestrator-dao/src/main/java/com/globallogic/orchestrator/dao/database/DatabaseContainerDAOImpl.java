@@ -4,23 +4,23 @@ import com.globallogic.orchestrator.connector.database.ContainerDatabaseConnecto
 import com.globallogic.orchestrator.connector.database.DatabaseConnectorManager;
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 import com.globallogic.orchestrator.dao.ContainerDAO;
-import com.globallogic.orchestrator.dao.dto.ContainerDTO;
+import com.globallogic.orchestrator.dao.dto.ContainerDto;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DatabaseContainerDAOImpl extends DatabaseDAOConnector<ContainerDTO> implements ContainerDAO {
+public class DatabaseContainerDAOImpl extends DatabaseDAOConnector<ContainerDto> implements ContainerDAO {
 
     @Override
-    public void save(final Set<ContainerDTO> containers) {
+    public void save(final Set<ContainerDto> containers) {
         Connection con = null;
         ContainerDatabaseConnectorImpl connector = new ContainerDatabaseConnectorImpl();
         try {
             con = DatabaseConnectorManager.getInstance().getConnection();
             con.setAutoCommit(false);
-            for (ContainerDTO el : containers) {
+            for (ContainerDto el : containers) {
                 connector.insert(con, el.getId(), el.getStatus(), el.getNodeName(), el.getServiceName());
             }
             con.commit();
@@ -33,8 +33,8 @@ public class DatabaseContainerDAOImpl extends DatabaseDAOConnector<ContainerDTO>
     }
 
     @Override
-    public Set<ContainerDTO> load() {
-        Set<ContainerDTO> containers;
+    public Set<ContainerDto> load() {
+        Set<ContainerDto> containers;
         Connection con = null;
         try {
             con = DatabaseConnectorManager.getInstance().getConnection();
@@ -48,8 +48,8 @@ public class DatabaseContainerDAOImpl extends DatabaseDAOConnector<ContainerDTO>
         return containers;
     }
 
-    private ContainerDTO extract(final String... params) {
-        ContainerDTO container = new ContainerDTO();
+    private ContainerDto extract(final String... params) {
+        ContainerDto container = new ContainerDto();
         container.setId(params[0]);
         container.setStatus(params[1]);
         container.setNodeName(params[2]);

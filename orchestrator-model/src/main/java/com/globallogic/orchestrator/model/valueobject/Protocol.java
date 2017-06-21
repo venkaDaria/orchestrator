@@ -14,9 +14,4 @@ public final class Protocol extends StringValueObject {
     public String getValue() {
         return value;
     }
-
-    @Override
-    public String asString() {
-        return "Protocol [value=" + value + "]";
-    }
 }

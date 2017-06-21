@@ -1,16 +1,17 @@
 package com.globallogic.orchestrator.service.translators;
 
 import com.globallogic.orchestrator.base.Translator;
-import com.globallogic.orchestrator.dao.dto.ContainerDTO;
+import com.globallogic.orchestrator.dao.dto.ContainerDto;
 import com.globallogic.orchestrator.model.Status;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.entity.Service;
 
-public class ContainerTranslatorImpl implements Translator<Container, ContainerDTO> {
+public class ContainerDtoTranslator implements Translator<Container, ContainerDto> {
+
     @Override
-    public ContainerDTO getDto(Container model) {
-        ContainerDTO dto = new ContainerDTO();
+    public ContainerDto getDto(Container model) {
+        ContainerDto dto = new ContainerDto();
 
         dto.setId(model.getId());
         dto.setNodeName(model.getNode().getName());
@@ -21,11 +22,11 @@ public class ContainerTranslatorImpl implements Translator<Container, ContainerD
     }
 
     @Override
-    public Container fromDto(ContainerDTO dto) {
+    public Container fromDto(ContainerDto dto) {
         return fromDto(dto, null, null);
     }
 
-    public Container fromDto(ContainerDTO dto, Node node, Service service) {
+    public Container fromDto(ContainerDto dto, Node node, Service service) {
         Container container = new Container();
 
         container.setId(dto.getId());
