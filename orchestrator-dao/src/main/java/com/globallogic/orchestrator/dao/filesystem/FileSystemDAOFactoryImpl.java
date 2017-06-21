@@ -1,12 +1,8 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
-import com.globallogic.orchestrator.dao.ContainerDAO;
-import com.globallogic.orchestrator.dao.DAOFactory;
-import com.globallogic.orchestrator.dao.NodeDAO;
-import com.globallogic.orchestrator.dao.ServiceDAO;
+import com.globallogic.orchestrator.dao.*;
 
 public class FileSystemDAOFactoryImpl implements DAOFactory {
-    private LocaleSeparator separator = LocaleSeparator.SEMICOLON;
 
     private FileSystemDAOFactoryImpl() { }
 
@@ -18,26 +14,18 @@ public class FileSystemDAOFactoryImpl implements DAOFactory {
         return FileSystemDAOFactoryHolder.INSTANCE;
     }
 
-    public LocaleSeparator getSeparator() {
-        return separator;
-    }
-
-    public void setSeparator(LocaleSeparator separator) {
-        this.separator = separator;
-    }
-
     @Override
     public ContainerDAO getContainerDAO() {
-        return new FileSystemContainerDAOImpl(separator);
+        return new FileSystemContainerDAOImpl();
     }
 
     @Override
     public ServiceDAO getServiceDAO() {
-        return new FileSystemServiceDAOImpl(separator);
+        return new FileSystemServiceDAOImpl();
     }
 
     @Override
     public NodeDAO getNodeDAO() {
-        return new FileSystemNodeDAOImpl(separator);
+        return new FileSystemNodeDAOImpl();
     }
 }

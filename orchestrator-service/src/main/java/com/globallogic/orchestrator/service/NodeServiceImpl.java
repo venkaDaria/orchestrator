@@ -2,6 +2,7 @@ package com.globallogic.orchestrator.service;
 
 import com.globallogic.orchestrator.dao.DAOFactory;
 import com.globallogic.orchestrator.dao.DAOSystem;
+import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.NodeDTO;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.valueobject.Role;
@@ -14,10 +15,11 @@ import java.util.Set;
 
 public class NodeServiceImpl implements NodeService {
     private DAOSystem system;
-    private static final String SEPARATOR = DAOFactory.getSeparator().toString();
+    private final String SEPARATOR;
 
     public NodeServiceImpl(final DAOSystem system) {
         this.system = system;
+        SEPARATOR = SeparatorHolder.getSeparatorString();
     }
 
     @Override
@@ -38,7 +40,7 @@ public class NodeServiceImpl implements NodeService {
         return nodes;
     }
 
-    private static NodeDTO getDTO(Node node) {
+    private NodeDTO getDTO(final Node node) {
         NodeDTO dto = new NodeDTO();
         dto.setName(node.getName());
 
@@ -49,7 +51,7 @@ public class NodeServiceImpl implements NodeService {
         return dto;
     }
 
-    private Node getNode(NodeDTO dto) {
+    private Node getNode(final NodeDTO dto) {
         Node node = new Node();
         node.setName(dto.getName());
 

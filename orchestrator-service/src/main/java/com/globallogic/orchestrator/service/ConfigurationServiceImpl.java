@@ -21,7 +21,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     }
 
     @Override
-    public void save(Configuration config) {
+    public void save(final Configuration config) {
         Set<Container> containers = new HashSet<>();
         config.getNodes().forEach(node -> containers.addAll(node.getContainers()));
 

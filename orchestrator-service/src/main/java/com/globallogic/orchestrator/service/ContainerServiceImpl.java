@@ -29,7 +29,7 @@ public class ContainerServiceImpl implements ContainerService {
         return DAOFactory.getInstance(system).getContainerDAO().load();
     }
 
-    private ContainerDTO getDTO(Container container) {
+    private ContainerDTO getDTO(final Container container) {
         ContainerDTO dto = new ContainerDTO();
 
         dto.setId(container.getId());

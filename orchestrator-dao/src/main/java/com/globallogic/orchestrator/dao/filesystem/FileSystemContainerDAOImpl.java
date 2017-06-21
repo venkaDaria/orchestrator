@@ -2,6 +2,7 @@ package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
 import com.globallogic.orchestrator.dao.ContainerDAO;
+import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.ContainerDTO;
 import com.globallogic.orchestrator.dao.exception.ContainerConfigurationException;
 import org.apache.commons.lang.StringUtils;
@@ -14,8 +15,8 @@ public class FileSystemContainerDAOImpl implements ContainerDAO {
     private final String SEPARATOR;
     private static final String FILE_NAME = "containers.csv";
 
-    public FileSystemContainerDAOImpl(final LocaleSeparator separator) {
-        SEPARATOR = separator.toString();
+    public FileSystemContainerDAOImpl() {
+        SEPARATOR = SeparatorHolder.getSeparatorString();
     }
 
     @Override

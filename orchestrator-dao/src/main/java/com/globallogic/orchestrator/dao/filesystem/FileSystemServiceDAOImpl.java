@@ -1,6 +1,7 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
+import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.dao.dto.ServiceDTO;
 import com.globallogic.orchestrator.dao.exception.ServiceConfigurationException;
@@ -16,8 +17,8 @@ public class FileSystemServiceDAOImpl implements ServiceDAO {
     private final String SEPARATOR;
     private static final String FILE_NAME = "services.csv";
 
-    public FileSystemServiceDAOImpl(final LocaleSeparator separator) {
-        SEPARATOR = separator.toString();
+    public FileSystemServiceDAOImpl() {
+        SEPARATOR = SeparatorHolder.getSeparatorString();
     }
 
     @Override

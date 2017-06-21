@@ -3,7 +3,6 @@ package com.globallogic.orchestrator.dao;
 import com.globallogic.orchestrator.dao.database.DatabaseDAOFactoryImpl;
 import com.globallogic.orchestrator.dao.exception.SystemNotSupportException;
 import com.globallogic.orchestrator.dao.filesystem.FileSystemDAOFactoryImpl;
-import com.globallogic.orchestrator.dao.filesystem.LocaleSeparator;
 
 public interface DAOFactory {
     ContainerDAO getContainerDAO();
@@ -19,13 +18,5 @@ public interface DAOFactory {
             default:
                 throw new SystemNotSupportException();
         }
-    }
-
-    static LocaleSeparator getSeparator() {
-        return FileSystemDAOFactoryImpl.getInstance().getSeparator();
-    }
-
-    static void setSeparator(LocaleSeparator separator) {
-        FileSystemDAOFactoryImpl.getInstance().setSeparator(separator);
     }
 }

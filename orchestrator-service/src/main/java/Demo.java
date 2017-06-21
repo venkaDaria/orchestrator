@@ -1,5 +1,5 @@
-import com.globallogic.orchestrator.dao.DAOFactory;
 import com.globallogic.orchestrator.dao.DAOSystem;
+import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.filesystem.LocaleSeparator;
 import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Container;
@@ -79,7 +79,7 @@ public class Demo {
         config.setNodes(nodes);
         config.setServices(services);
 
-        DAOFactory.setSeparator(LocaleSeparator.COMMA);
+        SeparatorHolder.setSeparator(LocaleSeparator.COMMA);
         ConfigurationService cs = new ConfigurationServiceImpl(DAOSystem.FILE_SYSTEM);
         cs.save(config);
 

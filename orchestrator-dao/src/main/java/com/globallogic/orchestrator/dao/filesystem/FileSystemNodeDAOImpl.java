@@ -2,6 +2,7 @@ package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
 import com.globallogic.orchestrator.dao.NodeDAO;
+import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.NodeDTO;
 import com.globallogic.orchestrator.dao.exception.NodeConfigurationException;
 import org.apache.commons.lang.StringUtils;
@@ -14,8 +15,8 @@ public class FileSystemNodeDAOImpl implements NodeDAO {
     private final String SEPARATOR;
     private static final String FILE_NAME = "nodes.csv";
 
-    public FileSystemNodeDAOImpl(final LocaleSeparator separator) {
-        SEPARATOR = separator.toString();
+    public FileSystemNodeDAOImpl() {
+        SEPARATOR = SeparatorHolder.getSeparatorString();
     }
 
     @Override
