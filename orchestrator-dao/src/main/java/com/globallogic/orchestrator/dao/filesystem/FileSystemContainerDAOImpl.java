@@ -3,11 +3,11 @@ package com.globallogic.orchestrator.dao.filesystem;
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
 import com.globallogic.orchestrator.dao.ContainerDAO;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
-import com.globallogic.orchestrator.dao.dto.ContainerDTO;
+import com.globallogic.orchestrator.dao.dto.ContainerDto;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class FileSystemContainerDAOImpl implements ContainerDAO {
     private final String SEPARATOR;
@@ -18,7 +18,7 @@ public class FileSystemContainerDAOImpl implements ContainerDAO {
     }
 
     @Override
-    public void save(final Set<ContainerDTO> containers) {
+    public void save(final Set<ContainerDto> containers) {
         StringBuilder sb = new StringBuilder();
         containers.forEach(container -> sb.append(getString(container)));
 
@@ -26,21 +26,19 @@ public class FileSystemContainerDAOImpl implements ContainerDAO {
     }
 
     @Override
-    public Set<ContainerDTO> load() {
+    public Set<ContainerDto> load() {
         String[] lines = new FileSystemConnectorImpl().read(FILE_NAME).split(System.lineSeparator());
 
-        Set<ContainerDTO> containers = new HashSet<>();
-        Arrays.stream(lines).forEach(line -> containers.add(getDTO(line)));
-        return containers;
+        return Arrays.stream(lines).map(this::getDTO).collect(Collectors.toSet());
     }
 
-    private String getString(final ContainerDTO container) {
+    private String getString(final ContainerDto container) {
         return container.getId() + SEPARATOR + container.getNodeName() + SEPARATOR + container.getServiceName()
                 + SEPARATOR + container.getStatus() + System.lineSeparator();
     }
 
-    private ContainerDTO getDTO(final String line) {
-        ContainerDTO container = new ContainerDTO();
+    private ContainerDto getDTO(final String line) {
+        ContainerDto container = new ContainerDto();
 
         String[] values = line.split(SEPARATOR);
 

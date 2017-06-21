@@ -1,6 +1,6 @@
 package com.globallogic.orchestrator.dao.dto;
 
-public class ContainerDTO {
+public class ContainerDto {
 
     private String id;
 
@@ -10,7 +10,7 @@ public class ContainerDTO {
 
     private String serviceName;
 
-    public ContainerDTO() { }
+    public ContainerDto() { }
 
     public String getId() {
         return id;

@@ -10,4 +10,9 @@ public abstract class StringValueObject extends ValueObject<String> {
             throw new StringValueObjectValidationException();
         }
     }
+
+    @Override
+    public String asString() {
+        return getValue();
+    }
 }

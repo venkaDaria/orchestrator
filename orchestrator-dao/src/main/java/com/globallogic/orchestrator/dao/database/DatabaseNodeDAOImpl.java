@@ -4,24 +4,27 @@ import com.globallogic.orchestrator.connector.database.DatabaseConnectorManager;
 import com.globallogic.orchestrator.connector.database.NodeDatabaseConnectorImpl;
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 import com.globallogic.orchestrator.dao.NodeDAO;
-import com.globallogic.orchestrator.dao.dto.NodeDTO;
+import com.globallogic.orchestrator.dao.SeparatorHolder;
+import com.globallogic.orchestrator.dao.dto.NodeDto;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DatabaseNodeDAOImpl extends DatabaseDAOConnector<NodeDTO> implements NodeDAO {
+public class DatabaseNodeDAOImpl extends DatabaseDAOConnector<NodeDto> implements NodeDAO {
 
     @Override
-    public void save(final Set<NodeDTO> nodes) {
+    public void save(final Set<NodeDto> nodes) {
         Connection con = null;
         NodeDatabaseConnectorImpl connector = new NodeDatabaseConnectorImpl();
         try {
             con = DatabaseConnectorManager.getInstance().getConnection();
             con.setAutoCommit(false);
-            for (NodeDTO el : nodes) {
-                connector.insert(con, el.getName(), el.getRoles());
+            for (NodeDto el : nodes) {
+                connector.insert(con, el.getName(), getString(el.getRoles()));
             }
             con.commit();
         } catch (SQLException e) {
@@ -32,9 +35,15 @@ public class DatabaseNodeDAOImpl extends DatabaseDAOConnector<NodeDTO> implement
         }
     }
 
+    private String getString(Set<String> roles) {
+        StringBuilder sb = new StringBuilder();
+        roles.forEach(role -> sb.append(roles).append(SeparatorHolder.getSeparatorDatabaseString()));
+        return sb.length() > 1 ? sb.substring(0, sb.length() - 1) : sb.toString();
+    }
+
     @Override
-    public Set<NodeDTO> load() {
-        Set<NodeDTO> nodes;
+    public Set<NodeDto> load() {
+        Set<NodeDto> nodes;
         Connection con = null;
         try {
             con = DatabaseConnectorManager.getInstance().getConnection();
@@ -48,10 +57,10 @@ public class DatabaseNodeDAOImpl extends DatabaseDAOConnector<NodeDTO> implement
         return nodes;
     }
 
-    private NodeDTO extract(final String... params) {
-        NodeDTO node = new NodeDTO();
+    private NodeDto extract(final String... params) {
+        NodeDto node = new NodeDto();
         node.setName(params[0]);
-        node.setRoles(params[1]);
+        node.setRoles(new HashSet<>(Arrays.asList(params[1].split(SeparatorHolder.getSeparatorDatabaseString()))));
         return node;
     }
 }

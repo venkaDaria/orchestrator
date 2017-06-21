@@ -57,12 +57,6 @@ public final class ImageReference extends StringValueObject {
     }
 
     @Override
-    public String asString() {
-        return "ImageReference [server=" + server + ", name=" + name + ", digestTag=" + digestTag + ", tag=" + tag
-                + "]";
-    }
-
-    @Override
     public String getValue() {
         String line = server + "/" + name;
 

@@ -1,11 +1,11 @@
 package com.globallogic.orchestrator.dao;
 
-import com.globallogic.orchestrator.dao.dto.NodeDTO;
+import com.globallogic.orchestrator.dao.dto.NodeDto;
 
 import java.util.Set;
 
 public interface NodeDAO {
-    void save(final Set<NodeDTO> node);
+    void save(final Set<NodeDto> node);
 
-    Set<NodeDTO> load();
+    Set<NodeDto> load();
 }

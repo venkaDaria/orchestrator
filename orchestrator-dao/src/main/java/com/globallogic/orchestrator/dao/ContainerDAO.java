@@ -1,11 +1,11 @@
 package com.globallogic.orchestrator.dao;
 
-import com.globallogic.orchestrator.dao.dto.ContainerDTO;
+import com.globallogic.orchestrator.dao.dto.ContainerDto;
 
 import java.util.Set;
 
 public interface ContainerDAO {
-    void save(final Set<ContainerDTO> containers);
+    void save(final Set<ContainerDto> containers);
 
-    Set<ContainerDTO> load();
+    Set<ContainerDto> load();
 }

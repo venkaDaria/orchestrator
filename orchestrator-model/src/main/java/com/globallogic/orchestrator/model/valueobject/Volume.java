@@ -29,11 +29,6 @@ public final class Volume extends StringValueObject {
     }
 
     @Override
-    public String asString() {
-        return "Volume [local=" + local + ", remote=" + remote + "]";
-    }
-
-    @Override
     public String getValue() {
         return local + ":" + remote;
     }
