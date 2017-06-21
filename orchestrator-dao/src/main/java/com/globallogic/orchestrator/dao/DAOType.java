@@ -1,5 +1,5 @@
 package com.globallogic.orchestrator.dao;
 
-public enum DAOSystem {
+public enum DAOType {
     FILE_SYSTEM, DB
 }

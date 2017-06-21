@@ -1,6 +1,6 @@
 package com.globallogic.orchestrator.service;
 
-import com.globallogic.orchestrator.dao.DAOSystem;
+import com.globallogic.orchestrator.dao.DAOType;
 import com.globallogic.orchestrator.dao.dto.ContainerDTO;
 import com.globallogic.orchestrator.model.Status;
 import com.globallogic.orchestrator.model.entity.Configuration;
@@ -14,10 +14,10 @@ import java.util.Set;
 
 public class ConfigurationServiceImpl implements ConfigurationService {
 
-    private DAOSystem system;
+    private DAOType type;
 
-    public ConfigurationServiceImpl(final DAOSystem system) {
-        this.system = system;
+    public ConfigurationServiceImpl(final DAOType type) {
+        this.type = type;
     }
 
     @Override
@@ -25,22 +25,22 @@ public class ConfigurationServiceImpl implements ConfigurationService {
         Set<Container> containers = new HashSet<>();
         config.getNodes().forEach(node -> containers.addAll(node.getContainers()));
 
-        new NodeServiceImpl(system).save(config.getNodes());
+        new NodeServiceImpl(type).save(config.getNodes());
 
-        new ServiceServiceImpl(system).save(config.getServices());
+        new ServiceServiceImpl(type).save(config.getServices());
 
-        new ContainerServiceImpl(system).save(containers);
+        new ContainerServiceImpl(type).save(containers);
     }
 
     @Override
     public Configuration load() {
         Configuration config = new Configuration();
 
-        Set<Node> nodes = new NodeServiceImpl(system).load();
+        Set<Node> nodes = new NodeServiceImpl(type).load();
 
-        Set<Service> services = new ServiceServiceImpl(system).load();
+        Set<Service> services = new ServiceServiceImpl(type).load();
 
-        Set<ContainerDTO> containers = new ContainerServiceImpl(system).load();
+        Set<ContainerDTO> containers = new ContainerServiceImpl(type).load();
 
         Container container;
         for (ContainerDTO dto : containers) {

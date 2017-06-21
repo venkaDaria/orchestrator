@@ -11,8 +11,8 @@ public interface DAOFactory {
 
     NodeDAO getNodeDAO();
 
-    static DAOFactory getInstance(DAOSystem system) {
-        switch (system) {
+    static DAOFactory getInstance(DAOType type) {
+        switch (type) {
             case FILE_SYSTEM:
                 return FileSystemDAOFactoryImpl.getInstance();
             case DB:

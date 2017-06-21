@@ -1,7 +1,7 @@
 package com.globallogic.orchestrator.service;
 
 import com.globallogic.orchestrator.dao.DAOFactory;
-import com.globallogic.orchestrator.dao.DAOSystem;
+import com.globallogic.orchestrator.dao.DAOType;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.ServiceDTO;
 import com.globallogic.orchestrator.model.entity.Service;
@@ -17,11 +17,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ServiceServiceImpl implements ServiceService {
-    private DAOSystem system;
+    private DAOType type;
     private final String SEPARATOR;
 
-    public ServiceServiceImpl(final DAOSystem system) {
-        this.system = system;
+    public ServiceServiceImpl(final DAOType type) {
+        this.type = type;
         SEPARATOR = SeparatorHolder.getSeparatorString();
     }
 
@@ -30,12 +30,12 @@ public class ServiceServiceImpl implements ServiceService {
         Set<ServiceDTO> set = new HashSet<>();
         services.forEach(service -> set.add(getDTO(service)));
 
-        DAOFactory.getInstance(system).getServiceDAO().save(set);
+        DAOFactory.getInstance(type).getServiceDAO().save(set);
     }
 
     @Override
     public Set<Service> load() {
-        Set<ServiceDTO> set = DAOFactory.getInstance(system).getServiceDAO().load();
+        Set<ServiceDTO> set = DAOFactory.getInstance(type).getServiceDAO().load();
 
         Set<Service> services = new HashSet<>();
         set.forEach(dto -> services.add(getService(dto)));
