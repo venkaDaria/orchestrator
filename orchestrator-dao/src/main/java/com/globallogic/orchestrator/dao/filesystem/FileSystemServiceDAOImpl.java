@@ -4,8 +4,6 @@ import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.dao.dto.ServiceDTO;
-import com.globallogic.orchestrator.dao.exception.ServiceConfigurationException;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -39,9 +37,6 @@ public class FileSystemServiceDAOImpl implements ServiceDAO {
     }
 
     private String getString(final ServiceDTO service) {
-        if (service == null) {
-            throw new ServiceConfigurationException();
-        }
         return service.getName() + SEPARATOR + service.getImage() +
                 SEPARATOR + service.getPorts() + SEPARATOR +
                 SEPARATOR + service.getRoles() + SEPARATOR +
@@ -52,17 +47,13 @@ public class FileSystemServiceDAOImpl implements ServiceDAO {
     private ServiceDTO getDTO(final String line) {
         ServiceDTO service = new ServiceDTO();
 
-        if (StringUtils.isBlank(line)) {
-            throw new ServiceConfigurationException();
-        }
-
         String regex = "^(.+?)" + SEPARATOR + "(.+?)" + SEPARATOR + "(.*?)" + SEPARATOR + SEPARATOR + "(.*?)"
                 + SEPARATOR + SEPARATOR + "(.*?)$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(line);
 
         if (!m.matches()) {
-            throw new ServiceConfigurationException();
+            return service;
         }
 
         service.setName(m.group(1));

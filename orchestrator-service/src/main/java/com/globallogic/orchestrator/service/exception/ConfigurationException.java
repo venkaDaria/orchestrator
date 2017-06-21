@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.dao.exception;
+package com.globallogic.orchestrator.service.exception;
 
 import com.globallogic.orchestrator.base.exception.ApplicationException;
 

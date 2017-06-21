@@ -4,8 +4,6 @@ import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl
 import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.NodeDTO;
-import com.globallogic.orchestrator.dao.exception.NodeConfigurationException;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -37,18 +35,11 @@ public class FileSystemNodeDAOImpl implements NodeDAO {
     }
 
     private String getString(final NodeDTO node) {
-        if (node == null) {
-            throw new NodeConfigurationException();
-        }
         return node.getName() + SEPARATOR + node.getRoles() + System.lineSeparator();
     }
 
     private NodeDTO getDTO(final String line) {
         NodeDTO node = new NodeDTO();
-
-        if (StringUtils.isBlank(line)) {
-            throw new NodeConfigurationException();
-        }
 
         int idx = line.indexOf(SEPARATOR);
 

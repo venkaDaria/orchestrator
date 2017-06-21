@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.dao.filesystem;
+package com.globallogic.orchestrator.dao;
 
 public enum LocaleSeparator {
     SEMICOLON, COMMA;

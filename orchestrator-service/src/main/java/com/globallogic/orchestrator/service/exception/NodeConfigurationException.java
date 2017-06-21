@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.dao.exception;
+package com.globallogic.orchestrator.service.exception;
 
 public class NodeConfigurationException extends ConfigurationException {
     private static final int CODE = 100202;
