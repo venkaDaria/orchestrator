@@ -17,7 +17,7 @@ public class FileSystemConnectorImpl implements FileSystemConnector {
         try (FileReader fr = new FileReader(fileName); BufferedReader in = new BufferedReader(fr)) {
             String s;
             while ((s = in.readLine()) != null) {
-                sb.append(s).append("\n");
+                sb.append(s).append(System.lineSeparator());
             }
         } catch (java.io.FileNotFoundException e) {
             throw new FileNotFoundException();

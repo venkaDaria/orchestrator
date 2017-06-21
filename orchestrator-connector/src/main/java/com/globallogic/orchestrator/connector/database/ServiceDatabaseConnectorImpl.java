@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-public class ServiceDatabaseConnectorImpl extends DatabaseConnector {
+public class ServiceDatabaseConnectorImpl extends AbstractDatabaseConnector {
     private static final String INSERT_SERVICE_QUERY = "INSERT INTO services VALUES(?,?,?,?,?)";
     private static final String GET_ALL_SERVICES_QUERY = "SELECT * FROM services";
 
@@ -21,7 +21,7 @@ public class ServiceDatabaseConnectorImpl extends DatabaseConnector {
     }
 
     @Override
-    protected String[] extract(final ResultSet rs) throws SQLException {
+    public String[] extract(final ResultSet rs) throws SQLException {
         return new String[]{
                 rs.getString("name"),
                 rs.getString("image"),

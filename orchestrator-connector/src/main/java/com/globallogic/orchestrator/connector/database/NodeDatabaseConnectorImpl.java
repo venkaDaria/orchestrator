@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-public class NodeDatabaseConnectorImpl extends DatabaseConnector {
+public class NodeDatabaseConnectorImpl extends AbstractDatabaseConnector {
     private static final String INSERT_NODE_QUERY = "INSERT INTO nodes VALUES(?,?)";
     private static final String GET_ALL_NODES_QUERY = "SELECT * FROM nodes";
 
@@ -21,7 +21,7 @@ public class NodeDatabaseConnectorImpl extends DatabaseConnector {
     }
 
     @Override
-    protected String[] extract(final ResultSet rs) throws SQLException {
+    public String[] extract(final ResultSet rs) throws SQLException {
         return new String[]{
                 rs.getString("name"),
                 rs.getString("roles")

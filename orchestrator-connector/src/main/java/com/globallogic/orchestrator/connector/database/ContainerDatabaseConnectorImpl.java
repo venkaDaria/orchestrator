@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-public class ContainerDatabaseConnectorImpl extends DatabaseConnector {
+public class ContainerDatabaseConnectorImpl extends AbstractDatabaseConnector {
     private static final String INSERT_CONTAINER_QUERY = "INSERT INTO containers VALUES(?,?,?,?)";
     private static final String GET_ALL_CONTAINERS_QUERY = "SELECT * FROM containers";
 
@@ -21,7 +21,7 @@ public class ContainerDatabaseConnectorImpl extends DatabaseConnector {
     }
 
     @Override
-    protected String[] extract(final ResultSet rs) throws SQLException {
+    public String[] extract(final ResultSet rs) throws SQLException {
         return new String[]{
                 rs.getString("id"),
                 rs.getString("status"),
