@@ -49,9 +49,6 @@ public class DatabaseNodeDAOImpl extends DatabaseDAOConnector<NodeDTO> implement
     }
 
     private NodeDTO extract(final String... params) {
-        if (params.length != 2) {
-            throw new DatabaseOperationException("Can't extract node");
-        }
         NodeDTO node = new NodeDTO();
         node.setName(params[0]);
         node.setRoles(params[1]);

@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.connector.database;
 
-import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,9 +11,7 @@ public class ContainerDatabaseConnectorImpl extends DatabaseConnector {
 
     @Override
     public void insert(final Connection con, final String... params) {
-        if (params.length != 4) {
-            throw new DatabaseOperationException("Can't insert container");
-        }
+        validate(4, "container", params);
         insert(con, INSERT_CONTAINER_QUERY, params);
     }
 
@@ -27,10 +23,10 @@ public class ContainerDatabaseConnectorImpl extends DatabaseConnector {
     @Override
     protected String[] extract(final ResultSet rs) throws SQLException {
         return new String[]{
-            rs.getString("id"),
-            rs.getString("status"),
-            rs.getString("node"),
-            rs.getString("service")
+                rs.getString("id"),
+                rs.getString("status"),
+                rs.getString("node"),
+                rs.getString("service")
         };
     }
 }

@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.connector.database;
 
-import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,9 +11,7 @@ public class NodeDatabaseConnectorImpl extends DatabaseConnector {
 
     @Override
     public void insert(final Connection con, final String... params) {
-        if (params.length != 2) {
-            throw new DatabaseOperationException("Can't insert node");
-        }
+        validate(2, "node", params);
         insert(con, INSERT_NODE_QUERY, params);
     }
 
@@ -27,8 +23,8 @@ public class NodeDatabaseConnectorImpl extends DatabaseConnector {
     @Override
     protected String[] extract(final ResultSet rs) throws SQLException {
         return new String[]{
-            rs.getString("name"),
-            rs.getString("roles")
+                rs.getString("name"),
+                rs.getString("roles")
         };
     }
 }

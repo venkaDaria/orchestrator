@@ -5,12 +5,12 @@ plugins {
 group 'com.globallogic.orchestrator'
 
 allprojects {
-	apply plugin: 'java'
+    apply plugin: 'java'
     apply plugin: 'io.spring.dependency-management'
 
-	repositories {
-		mavenCentral()
-	}
+    repositories {
+        mavenCentral()
+    }
 
     dependencyManagement {
         dependencies {

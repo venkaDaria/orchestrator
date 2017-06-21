@@ -9,7 +9,8 @@ import java.sql.SQLException;
 public class DatabaseConnectorManager {
     private static final String URL = "jdbc:mysql://localhost:3306/config?user=root&password=yroot";
 
-    private DatabaseConnectorManager() { }
+    private DatabaseConnectorManager() {
+    }
 
     private static class DatabaseConnectorManagerHolder {
         private static final DatabaseConnectorManager INSTANCE = new DatabaseConnectorManager();

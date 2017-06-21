@@ -14,6 +14,14 @@ public abstract class DatabaseConnector {
 
     protected abstract String[] extract(final ResultSet rs) throws SQLException;
 
+
+    protected void validate(int len, String name, String... params) {
+        if (params.length != len) {
+            throw new DatabaseOperationException("Can't insert " + name);
+        }
+    }
+
+
     protected void insert(final Connection con, final String query, final String... params) {
         PreparedStatement pstmt = null;
         try {

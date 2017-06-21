@@ -1,9 +1,9 @@
 package com.globallogic.orchestrator.exception;
 
 public class PortValidationException extends ValidationException {
-	private static final int CODE = 100004;	
-	private static final String MESSAGE = "Port must be \"int:int/protocol\" or \"int/protocol\"";
-	
+    private static final int CODE = 100004;
+    private static final String MESSAGE = "Port must be \"int:int/protocol\" or \"int/protocol\"";
+
     public PortValidationException() {
         super(CODE, MESSAGE);
     }
@@ -15,7 +15,7 @@ public class PortValidationException extends ValidationException {
     public PortValidationException(final String message, final Throwable cause) {
         super(CODE, message, cause);
     }
-    
+
     public PortValidationException(final Throwable cause) {
         super(CODE, MESSAGE, cause);
     }

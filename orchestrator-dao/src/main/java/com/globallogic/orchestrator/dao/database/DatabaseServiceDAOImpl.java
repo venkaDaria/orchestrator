@@ -49,9 +49,6 @@ public class DatabaseServiceDAOImpl extends DatabaseDAOConnector<ServiceDTO> imp
     }
 
     private ServiceDTO extract(final String... params) {
-        if (params.length != 5) {
-            throw new DatabaseOperationException("Can't extract node");
-        }
         ServiceDTO service = new ServiceDTO();
         service.setName(params[0]);
         service.setImage(params[1]);

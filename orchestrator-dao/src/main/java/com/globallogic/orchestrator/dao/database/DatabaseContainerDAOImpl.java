@@ -49,9 +49,6 @@ public class DatabaseContainerDAOImpl extends DatabaseDAOConnector<ContainerDTO>
     }
 
     private ContainerDTO extract(final String... params) {
-        if (params.length != 4) {
-            throw new DatabaseOperationException("Can't extract container");
-        }
         ContainerDTO container = new ContainerDTO();
         container.setId(params[0]);
         container.setStatus(params[1]);

@@ -6,7 +6,8 @@ import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.ServiceDAO;
 
 public class DatabaseDAOFactoryImpl implements DAOFactory {
-    private DatabaseDAOFactoryImpl() { }
+    private DatabaseDAOFactoryImpl() {
+    }
 
     private static class DatabaseDAOFactoryHolder {
         private static final DatabaseDAOFactoryImpl INSTANCE = new DatabaseDAOFactoryImpl();

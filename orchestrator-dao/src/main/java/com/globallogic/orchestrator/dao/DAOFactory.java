@@ -6,11 +6,13 @@ import com.globallogic.orchestrator.dao.filesystem.FileSystemDAOFactoryImpl;
 
 public interface DAOFactory {
     ContainerDAO getContainerDAO();
+
     ServiceDAO getServiceDAO();
+
     NodeDAO getNodeDAO();
 
-    static DAOFactory getInstance(DAOSystem system){
-        switch(system) {
+    static DAOFactory getInstance(DAOSystem system) {
+        switch (system) {
             case FILE_SYSTEM:
                 return FileSystemDAOFactoryImpl.getInstance();
             case DB:
