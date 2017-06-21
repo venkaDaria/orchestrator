@@ -50,17 +50,22 @@ public class ServiceServiceImpl implements ServiceService {
 
         StringBuilder sb = new StringBuilder();
         service.getRoles().forEach(role -> sb.append(role.getValue()).append(SEPARATOR));
-        dto.setRoles(sb.toString());
+        dto.setRoles(removeLastChar(sb));
 
-        StringBuilder sb2= new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         service.getPorts().forEach(port -> sb2.append(port.getValue()).append(SEPARATOR));
-        dto.setPorts(sb2.toString());
+        dto.setPorts(removeLastChar(sb2));
 
         StringBuilder sb3 = new StringBuilder();
         service.getVolumes().forEach(volume -> sb3.append(volume.getValue()).append(SEPARATOR));
-        dto.setVolumes(sb3.toString());
+        dto.setVolumes(removeLastChar(sb3));
 
         return dto;
+    }
+
+    private String removeLastChar(StringBuilder sb) {
+        String str = sb.toString();
+        return (StringUtils.isNotEmpty(str)) ? str.substring(0, str.length() - 1) : str;
     }
 
     private Service getService(final ServiceDTO dto) {

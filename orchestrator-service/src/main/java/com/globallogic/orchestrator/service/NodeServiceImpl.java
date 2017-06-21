@@ -46,7 +46,10 @@ public class NodeServiceImpl implements NodeService {
 
         StringBuilder sb = new StringBuilder();
         node.getRoles().forEach(role -> sb.append(role.getValue()).append(SEPARATOR));
-        dto.setRoles(sb.toString());
+
+        String str = sb.toString();
+        str = (StringUtils.isNotEmpty(str)) ? str.substring(0, str.length() - 1) : str;
+        dto.setRoles(str);
 
         return dto;
     }

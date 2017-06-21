@@ -27,6 +27,8 @@ public class Demo {
         Set<Role> roles = new HashSet<>();
         Role role = new Role("1");
         roles.add(role);
+        role = new Role("2");
+        roles.add(role);
         s.setRoles(roles);
 
         Service s2 = s.copy();

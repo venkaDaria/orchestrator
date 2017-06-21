@@ -43,8 +43,8 @@ public class FileSystemServiceDAOImpl implements ServiceDAO {
             throw new ServiceConfigurationException();
         }
         return service.getName() + SEPARATOR + service.getImage() +
-                SEPARATOR + service.getPorts() +
-                SEPARATOR + service.getRoles() +
+                SEPARATOR + service.getPorts() + SEPARATOR +
+                SEPARATOR + service.getRoles() + SEPARATOR +
                 SEPARATOR + service.getVolumes() +
                 System.lineSeparator();
     }
@@ -56,8 +56,8 @@ public class FileSystemServiceDAOImpl implements ServiceDAO {
             throw new ServiceConfigurationException();
         }
 
-        String regex = "^(.+?)" + SEPARATOR + "(.+?)" + SEPARATOR + "(.*?)" + SEPARATOR + "(.*?)"
-                + SEPARATOR + "(.*?)" + SEPARATOR + "$";
+        String regex = "^(.+?)" + SEPARATOR + "(.+?)" + SEPARATOR + "(.*?)" + SEPARATOR + SEPARATOR + "(.*?)"
+                + SEPARATOR + SEPARATOR + "(.*?)$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(line);
 
