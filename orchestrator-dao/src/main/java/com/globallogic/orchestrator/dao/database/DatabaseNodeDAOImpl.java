@@ -4,6 +4,7 @@ import com.globallogic.orchestrator.connector.database.NodeDatabaseConnector;
 import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +41,11 @@ public class DatabaseNodeDAOImpl implements NodeDAO {
         NodeDto node = new NodeDto();
 
         node.setName(params[0]);
-        node.setRoles(new HashSet<>(Arrays.asList(params[1].split(SeparatorHolder.getSeparatorDatabaseString()))));
+        if (StringUtils.isNotEmpty(params[1])) {
+            node.setRoles(new HashSet<>(Arrays.asList(params[1].split(SeparatorHolder.getSeparatorDatabaseString()))));
+        } else {
+            node.setRoles(new HashSet<>());
+        }
 
         return node;
     }

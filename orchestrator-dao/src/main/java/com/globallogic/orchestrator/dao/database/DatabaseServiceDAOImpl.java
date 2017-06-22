@@ -4,6 +4,7 @@ import com.globallogic.orchestrator.connector.database.impl.ServiceDatabaseConne
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,9 +44,23 @@ public class DatabaseServiceDAOImpl implements ServiceDAO {
         service.setName(params[0]);
         service.setImage(params[1]);
 
-        service.setRoles(new HashSet<>(Arrays.asList(params[2].split(SeparatorHolder.getSeparatorDatabaseString()))));
-        service.setPorts(new HashSet<>(Arrays.asList(params[3].split(SeparatorHolder.getSeparatorDatabaseString()))));
-        service.setVolumes(new HashSet<>(Arrays.asList(params[4].split(SeparatorHolder.getSeparatorDatabaseString()))));
+        if (StringUtils.isNotEmpty(params[2])) {
+            service.setRoles(new HashSet<>(Arrays.asList(params[2].split(SeparatorHolder.getSeparatorDatabaseString()))));
+        } else {
+            service.setRoles(new HashSet<>());
+        }
+
+        if (StringUtils.isNotEmpty(params[3])) {
+            service.setPorts(new HashSet<>(Arrays.asList(params[3].split(SeparatorHolder.getSeparatorDatabaseString()))));
+        } else {
+            service.setPorts(new HashSet<>());
+        }
+
+        if (StringUtils.isNotEmpty(params[4])) {
+            service.setVolumes(new HashSet<>(Arrays.asList(params[4].split(SeparatorHolder.getSeparatorDatabaseString()))));
+        } else {
+            service.setVolumes(new HashSet<>());
+        }
 
         return service;
     }
