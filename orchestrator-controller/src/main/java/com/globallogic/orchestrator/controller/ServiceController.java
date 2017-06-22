@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/service")
@@ -31,15 +32,15 @@ public class ServiceController {
     }
 
     @RequestMapping("")
-    public Set<Service> getAll() {
-        return config.getServices();
+    public Set<String> getAll() {
+        return config.getServices().stream().map(Service::asFormattedString).collect(Collectors.toSet());
     }
 
-    @RequestMapping("/{id}")
-    public Service getContainer(@PathVariable String name) {
+    @RequestMapping("/{name}")
+    public String getContainer(@PathVariable String name) {
         for (Service service : config.getServices()) {
             if (service.getName().equals(name))
-                return service;
+                return service.asFormattedString();
         }
         return null;
     }

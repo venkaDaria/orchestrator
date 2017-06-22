@@ -17,6 +17,7 @@ import com.globallogic.orchestrator.model.entity.Container;
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/container")
@@ -32,20 +33,20 @@ public class ContainerController {
     }
 
     @RequestMapping("")
-    public Set<Container> getAll() {
+    public Set<String> getAll() {
         Set<Container> containers = new HashSet<>();
         config.getNodes().forEach(node -> containers.addAll(node.getContainers()));
-        return containers;
+        return containers.stream().map(Container::asFormattedString).collect(Collectors.toSet());
     }
 
     @RequestMapping("/{id}")
-    public Container getContainer(@PathVariable String id) {
+    public String getContainer(@PathVariable String id) {
         Container cont = null;
         for (Node node : config.getNodes()) {
             cont = node.getContainers().stream().filter(c -> c.getId().equals(id)).findAny().orElse(null);
             if (cont != null)
                 break;
         }
-        return cont;
+        return cont.asFormattedString();
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/node")
@@ -31,15 +32,15 @@ public class NodeController {
     }
 
     @RequestMapping("")
-    public Set<Node> getAll() {
-        return config.getNodes();
+    public Set<String> getAll() {
+        return config.getNodes().stream().map(Node::asFormattedString).collect(Collectors.toSet());
     }
 
-    @RequestMapping("/{id}")
-    public Node getContainer(@PathVariable String name) {
+    @RequestMapping("/{name}")
+    public String getContainer(@PathVariable String name) {
         for (Node node : config.getNodes()) {
             if (node.getName().equals(name))
-                return node;
+                return node.asFormattedString();
         }
         return null;
     }
