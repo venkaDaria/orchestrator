@@ -1,31 +1,33 @@
 package com.globallogic.orchestrator.service;
 
-import com.globallogic.orchestrator.dao.DAOFactory;
-import com.globallogic.orchestrator.dao.DAOType;
+import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.service.interfaces.NodeService;
 import com.globallogic.orchestrator.service.translators.NodeDtoTranslator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class NodeServiceImpl implements NodeService {
 
-    private DAOType type;
-    private NodeDtoTranslator translator;
+    @Qualifier("getNodeDAO")
+    @Autowired
+    private NodeDAO nodeDAO;
 
-    public NodeServiceImpl(final DAOType type) {
-        this.type = type;
-        translator = new NodeDtoTranslator();
-    }
+    @Autowired
+    private NodeDtoTranslator translator;
 
     @Override
     public void save(final Set<Node> nodes) {
-        DAOFactory.getInstance(type).getNodeDAO().save(nodes.stream().map(translator::getDto).collect(Collectors.toSet()));
+        nodeDAO.save(nodes.stream().map(translator::getDto).collect(Collectors.toSet()));
     }
 
     @Override
     public Set<Node> load() {
-        return DAOFactory.getInstance(type).getNodeDAO().load().stream().map(translator::fromDto).collect(Collectors.toSet());
+        return nodeDAO.load().stream().map(translator::fromDto).collect(Collectors.toSet());
     }
 }

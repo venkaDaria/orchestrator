@@ -1,25 +1,29 @@
-package com.globallogic.orchestrator.connector.database;
+package com.globallogic.orchestrator.connector.database.impl;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.globallogic.orchestrator.connector.database.AbstractDatabaseConnector;
+import com.globallogic.orchestrator.connector.database.ServiceDatabaseConnector;
+import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-public class ServiceDatabaseConnectorImpl extends AbstractDatabaseConnector {
+@Repository
+public class ServiceDatabaseConnectorImpl extends AbstractDatabaseConnector implements ServiceDatabaseConnector {
+
     private static final String INSERT_SERVICE_QUERY = "INSERT INTO services VALUES(?,?,?,?,?)";
+
     private static final String GET_ALL_SERVICES_QUERY = "SELECT * FROM services";
 
     @Override
-    public void insert(final JdbcTemplate jdbcTemplate, final String... params) {
+    public void insert(final String... params) {
         validate(5, "service", params);
-        insert(jdbcTemplate, INSERT_SERVICE_QUERY, params);
+        insert(INSERT_SERVICE_QUERY, params);
     }
 
     @Override
-    public Set<String[]> getAll(final JdbcTemplate jdbcTemplate)  {
-        return getAll(jdbcTemplate, GET_ALL_SERVICES_QUERY);
+    public Set<String[]> getAll()  {
+        return getAll(GET_ALL_SERVICES_QUERY);
     }
 
     @Override

@@ -1,31 +1,32 @@
 package com.globallogic.orchestrator.service;
 
-import com.globallogic.orchestrator.dao.DAOFactory;
-import com.globallogic.orchestrator.dao.DAOType;
+import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.service.interfaces.ServiceService;
 import com.globallogic.orchestrator.service.translators.ServiceDtoTranslator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@org.springframework.stereotype.Service
 public class ServiceServiceImpl implements ServiceService {
 
-    private DAOType type;
-    private ServiceDtoTranslator translator;
+    @Qualifier("getServiceDAO")
+    @Autowired
+    private ServiceDAO serviceDAO;
 
-    public ServiceServiceImpl(final DAOType type) {
-        this.type = type;
-        translator = new ServiceDtoTranslator();
-    }
+    @Autowired
+    private ServiceDtoTranslator translator;
 
     @Override
     public void save(final Set<Service> services) {
-        DAOFactory.getInstance(type).getServiceDAO().save(services.stream().map(translator::getDto).collect(Collectors.toSet()));
+        serviceDAO.save(services.stream().map(translator::getDto).collect(Collectors.toSet()));
     }
 
     @Override
     public Set<Service> load() {
-        return DAOFactory.getInstance(type).getServiceDAO().load().stream().map(translator::fromDto).collect(Collectors.toSet());
+        return serviceDAO.load().stream().map(translator::fromDto).collect(Collectors.toSet());
     }
 }

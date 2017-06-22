@@ -11,6 +11,7 @@ import com.globallogic.orchestrator.model.valueobject.Volume;
 
 import java.util.stream.Collectors;
 
+@org.springframework.stereotype.Service
 public class ServiceDtoTranslator implements Translator<Service, ServiceDto> {
 
     @Override

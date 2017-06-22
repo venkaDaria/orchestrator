@@ -1,4 +1,3 @@
-import com.globallogic.orchestrator.dao.DAOType;
 import com.globallogic.orchestrator.dao.LocaleSeparator;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.model.entity.Configuration;
@@ -82,7 +81,7 @@ public class Demo {
         config.setServices(services);
 
         SeparatorHolder.setSeparator(LocaleSeparator.COMMA);
-        ConfigurationService cs = new ConfigurationServiceImpl(DAOType.DB);
+        ConfigurationService cs = new ConfigurationServiceImpl();
         cs.save(config);
 
         Configuration config2 = cs.load();

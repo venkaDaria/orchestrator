@@ -1,25 +1,29 @@
-package com.globallogic.orchestrator.connector.database;
+package com.globallogic.orchestrator.connector.database.impl;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.globallogic.orchestrator.connector.database.AbstractDatabaseConnector;
+import com.globallogic.orchestrator.connector.database.ContainerDatabaseConnector;
+import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
 
-public class ContainerDatabaseConnectorImpl extends AbstractDatabaseConnector {
+@Repository
+public class ContainerDatabaseConnectorImpl extends AbstractDatabaseConnector implements ContainerDatabaseConnector {
+
     private static final String INSERT_CONTAINER_QUERY = "INSERT INTO containers VALUES(?,?,?,?)";
+
     private static final String GET_ALL_CONTAINERS_QUERY = "SELECT * FROM containers";
 
     @Override
-    public void insert(final JdbcTemplate jdbcTemplate, final String... params) {
+    public void insert(final String... params) {
         validate(4, "container", params);
-        insert(jdbcTemplate, INSERT_CONTAINER_QUERY, params);
+        insert(INSERT_CONTAINER_QUERY, params);
     }
 
     @Override
-    public Set<String[]> getAll(final JdbcTemplate jdbcTemplate) {
-        return getAll(jdbcTemplate, GET_ALL_CONTAINERS_QUERY);
+    public Set<String[]> getAll() {
+        return getAll(GET_ALL_CONTAINERS_QUERY);
     }
 
     @Override

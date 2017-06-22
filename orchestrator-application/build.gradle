@@ -1,0 +1,12 @@
+dependencies {
+    compile project(':orchestrator-base')
+
+    compile project(':orchestrator-controller')
+
+    compile project(':orchestrator-connector')
+
+    compile project(':orchestrator-dao')
+
+    compile project(':orchestrator-model')
+}
+

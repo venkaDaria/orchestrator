@@ -5,7 +5,5 @@ dependencies {
 
     compile project(':orchestrator-connector')
 
-    runtime "mysql:mysql-connector-java:5.1.37"
-
     testCompile group: 'junit', name: 'junit'
 }

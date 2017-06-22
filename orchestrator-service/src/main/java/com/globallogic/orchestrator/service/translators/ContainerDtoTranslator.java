@@ -7,6 +7,7 @@ import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.entity.Service;
 
+@org.springframework.stereotype.Service
 public class ContainerDtoTranslator implements Translator<Container, ContainerDto> {
 
     @Override

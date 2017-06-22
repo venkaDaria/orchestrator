@@ -2,7 +2,7 @@ package com.globallogic.orchestrator.connector.database;
 
 import java.util.Set;
 
-public interface DatabaseConnector {
+public interface ServiceDatabaseConnector {
 
     void insert(final String... params);
 

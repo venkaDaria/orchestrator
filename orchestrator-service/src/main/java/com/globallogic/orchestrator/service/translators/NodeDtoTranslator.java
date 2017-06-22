@@ -5,10 +5,11 @@ import com.globallogic.orchestrator.dao.dto.NodeDto;
 import com.globallogic.orchestrator.model.StringValueObject;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.valueobject.Role;
+import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.stream.Collectors;
 
+@Service
 public class NodeDtoTranslator implements Translator<Node, NodeDto> {
 
     @Override

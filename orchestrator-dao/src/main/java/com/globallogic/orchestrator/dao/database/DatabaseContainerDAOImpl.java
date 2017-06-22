@@ -1,37 +1,30 @@
 package com.globallogic.orchestrator.dao.database;
 
-import com.globallogic.orchestrator.connector.database.ContainerDatabaseConnectorImpl;
-import com.globallogic.orchestrator.connector.database.DatabaseConnectorManager;
-import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
+import com.globallogic.orchestrator.connector.database.ContainerDatabaseConnector;
 import com.globallogic.orchestrator.dao.ContainerDAO;
 import com.globallogic.orchestrator.dao.dto.ContainerDto;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Repository
 public class DatabaseContainerDAOImpl implements ContainerDAO {
+
+    @Autowired
+    private ContainerDatabaseConnector connector;
 
     @Override
     @Transactional
     public void save(final Set<ContainerDto> containers) {
-        ContainerDatabaseConnectorImpl connector = new ContainerDatabaseConnectorImpl();
-
-        JdbcTemplate jdbcTemplate = DatabaseConnectorManager.getInstance().getJdbcTemplate();
-
-        for (ContainerDto el : containers) {
-            connector.insert(jdbcTemplate, el.getId(), el.getStatus(), el.getNodeName(), el.getServiceName());
-        }
+        containers.forEach(el -> connector.insert(el.getId(), el.getStatus(), el.getNodeName(), el.getServiceName()));
     }
 
     @Override
     public Set<ContainerDto> load() {
-        JdbcTemplate jdbcTemplate = DatabaseConnectorManager.getInstance().getJdbcTemplate();
-        return new ContainerDatabaseConnectorImpl().getAll(jdbcTemplate).stream().map(this::extract)
-                    .collect(Collectors.toSet());
+        return connector.getAll().stream().map(this::extract).collect(Collectors.toSet());
     }
 
     private ContainerDto extract(final String... params) {
