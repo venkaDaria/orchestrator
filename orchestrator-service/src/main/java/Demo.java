@@ -82,7 +82,7 @@ public class Demo {
         config.setServices(services);
 
         SeparatorHolder.setSeparator(LocaleSeparator.COMMA);
-        ConfigurationService cs = new ConfigurationServiceImpl(DAOType.FILE_SYSTEM);
+        ConfigurationService cs = new ConfigurationServiceImpl(DAOType.DB);
         cs.save(config);
 
         Configuration config2 = cs.load();

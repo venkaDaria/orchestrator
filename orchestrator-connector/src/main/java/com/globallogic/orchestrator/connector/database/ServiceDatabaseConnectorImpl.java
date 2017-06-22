@@ -1,5 +1,7 @@
 package com.globallogic.orchestrator.connector.database;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,14 +12,14 @@ public class ServiceDatabaseConnectorImpl extends AbstractDatabaseConnector {
     private static final String GET_ALL_SERVICES_QUERY = "SELECT * FROM services";
 
     @Override
-    public void insert(final Connection con, final String... params) {
+    public void insert(final JdbcTemplate jdbcTemplate, final String... params) {
         validate(5, "service", params);
-        insert(con, INSERT_SERVICE_QUERY, params);
+        insert(jdbcTemplate, INSERT_SERVICE_QUERY, params);
     }
 
     @Override
-    public Set<String[]> getAll(final Connection con) throws SQLException {
-        return getAll(con, GET_ALL_SERVICES_QUERY);
+    public Set<String[]> getAll(final JdbcTemplate jdbcTemplate)  {
+        return getAll(jdbcTemplate, GET_ALL_SERVICES_QUERY);
     }
 
     @Override

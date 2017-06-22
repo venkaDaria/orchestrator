@@ -6,6 +6,8 @@ import com.globallogic.orchestrator.connector.exception.DatabaseOperationExcepti
 import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,24 +16,17 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DatabaseNodeDAOImpl extends DatabaseDAOConnector implements NodeDAO {
+public class DatabaseNodeDAOImpl implements NodeDAO {
 
     @Override
+    @Transactional
     public void save(final Set<NodeDto> nodes) {
-        Connection con = null;
         NodeDatabaseConnectorImpl connector = new NodeDatabaseConnectorImpl();
-        try {
-            con = DatabaseConnectorManager.getInstance().getConnection();
-            con.setAutoCommit(false);
-            for (NodeDto el : nodes) {
-                connector.insert(con, el.getName(), getString(el.getRoles()));
-            }
-            con.commit();
-        } catch (SQLException e) {
-            rollback(con);
-            throw new DatabaseOperationException("Can't insert nodes", e);
-        } finally {
-            close(con);
+
+        JdbcTemplate jdbcTemplate = DatabaseConnectorManager.getInstance().getJdbcTemplate();
+
+        for (NodeDto el : nodes) {
+            connector.insert(jdbcTemplate, el.getName(), getString(el.getRoles()));
         }
     }
 
@@ -43,18 +38,9 @@ public class DatabaseNodeDAOImpl extends DatabaseDAOConnector implements NodeDAO
 
     @Override
     public Set<NodeDto> load() {
-        Set<NodeDto> nodes;
-        Connection con = null;
-        try {
-            con = DatabaseConnectorManager.getInstance().getConnection();
-            nodes = new NodeDatabaseConnectorImpl().getAll(con).stream().map(this::extract)
+        JdbcTemplate jdbcTemplate = DatabaseConnectorManager.getInstance().getJdbcTemplate();
+        return new NodeDatabaseConnectorImpl().getAll(jdbcTemplate).stream().map(this::extract)
                     .collect(Collectors.toSet());
-        } catch (SQLException e) {
-            throw new DatabaseOperationException("Cannot obtain nodes", e);
-        } finally {
-            close(con);
-        }
-        return nodes;
     }
 
     private NodeDto extract(final String... params) {

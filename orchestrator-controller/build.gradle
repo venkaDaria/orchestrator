@@ -8,6 +8,4 @@ dependencies {
     compile project(':orchestrator-model')
 
     compile project(':orchestrator-service')
-
-    compile('org.springframework.boot:spring-boot-starter-web:1.5.4.RELEASE')
 }

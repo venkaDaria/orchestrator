@@ -6,6 +6,8 @@ import com.globallogic.orchestrator.connector.exception.DatabaseOperationExcepti
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,25 +16,18 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DatabaseServiceDAOImpl extends DatabaseDAOConnector implements ServiceDAO {
+public class DatabaseServiceDAOImpl implements ServiceDAO {
 
     @Override
+    @Transactional
     public void save(final Set<ServiceDto> services) {
-        Connection con = null;
         ServiceDatabaseConnectorImpl connector = new ServiceDatabaseConnectorImpl();
-        try {
-            con = DatabaseConnectorManager.getInstance().getConnection();
-            con.setAutoCommit(false);
-            for (ServiceDto el : services) {
-                connector.insert(con, el.getName(), el.getImage(), getString(el.getRoles()),
-                        getString(el.getPorts()), getString(el.getVolumes()));
-            }
-            con.commit();
-        } catch (SQLException e) {
-            rollback(con);
-            throw new DatabaseOperationException("Can't insert services", e);
-        } finally {
-            close(con);
+
+        JdbcTemplate jdbcTemplate = DatabaseConnectorManager.getInstance().getJdbcTemplate();
+
+        for (ServiceDto el : services) {
+            connector.insert(jdbcTemplate, el.getName(), el.getImage(), getString(el.getRoles()),
+                    getString(el.getPorts()), getString(el.getVolumes()));
         }
     }
 
@@ -44,18 +39,9 @@ public class DatabaseServiceDAOImpl extends DatabaseDAOConnector implements Serv
 
     @Override
     public Set<ServiceDto> load() {
-        Set<ServiceDto> services;
-        Connection con = null;
-        try {
-            con = DatabaseConnectorManager.getInstance().getConnection();
-            services = new ServiceDatabaseConnectorImpl().getAll(con).stream().map(this::extract)
-                    .collect(Collectors.toSet());
-        } catch (SQLException e) {
-            throw new DatabaseOperationException("Cannot obtain services", e);
-        } finally {
-            close(con);
-        }
-        return services;
+        JdbcTemplate jdbcTemplate = DatabaseConnectorManager.getInstance().getJdbcTemplate();
+        return new ServiceDatabaseConnectorImpl().getAll(jdbcTemplate).stream().map(this::extract)
+                .collect(Collectors.toSet());
     }
 
     private ServiceDto extract(final String... params) {
