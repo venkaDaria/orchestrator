@@ -8,39 +8,38 @@ import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.service.ConfigurationServiceImpl;
 import com.globallogic.orchestrator.service.interfaces.ConfigurationService;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.globallogic.orchestrator.model.entity.Container;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 
 @RestController
+@RequestMapping("/container")
 public class ContainerController {
 
-    @RequestMapping("/")
-    public String index() {
-        return "Hello, world!";
-    }
+    private Configuration config;
 
-    @RequestMapping("/container")
-    public Set<Container> getAll() {
+    @ModelAttribute("container")
+    public void common() {
         SeparatorHolder.setSeparator(LocaleSeparator.COMMA);
         ConfigurationService cs = new ConfigurationServiceImpl(DAOType.FILE_SYSTEM);
-        Configuration config = cs.load();
+        config = cs.load();
+    }
 
+    @RequestMapping("")
+    public Set<Container> getAll() {
         Set<Container> containers = new HashSet<>();
         config.getNodes().forEach(node -> containers.addAll(node.getContainers()));
         return containers;
     }
 
-    @RequestMapping("/container/{id}")
+    @RequestMapping("/{id}")
     public Container getContainer(@PathVariable String id) {
-        SeparatorHolder.setSeparator(LocaleSeparator.COMMA);
-        ConfigurationService cs = new ConfigurationServiceImpl(DAOType.FILE_SYSTEM);
-        Configuration config = cs.load();
-
         Container cont = null;
         for (Node node : config.getNodes()) {
             cont = node.getContainers().stream().filter(c -> c.getId().equals(id)).findAny().orElse(null);
