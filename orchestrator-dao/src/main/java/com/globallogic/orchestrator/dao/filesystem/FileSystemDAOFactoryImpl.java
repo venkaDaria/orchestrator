@@ -7,8 +7,7 @@ import com.globallogic.orchestrator.dao.ServiceDAO;
 
 public class FileSystemDAOFactoryImpl implements DAOFactory {
 
-    private FileSystemDAOFactoryImpl() {
-    }
+    private FileSystemDAOFactoryImpl() { }
 
     private static class FileSystemDAOFactoryHolder {
         private static final FileSystemDAOFactoryImpl INSTANCE = new FileSystemDAOFactoryImpl();

@@ -16,6 +16,7 @@ public class ServiceDtoTranslator implements Translator<Service, ServiceDto> {
     @Override
     public ServiceDto getDto(Service model) {
         ServiceDto dto = new ServiceDto();
+
         dto.setName(model.getName());
         dto.setImage(model.getImage().asString());
 
@@ -29,6 +30,7 @@ public class ServiceDtoTranslator implements Translator<Service, ServiceDto> {
     @Override
     public Service fromDto(ServiceDto dto) {
         Service service = new Service();
+
         service.setName(dto.getName());
         service.setImage(new ImageReference(dto.getImage()));
 

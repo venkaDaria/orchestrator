@@ -12,7 +12,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class FileSystemNodeDAOImpl implements NodeDAO {
+
     private final String SEPARATOR;
+
     private static final String FILE_NAME = "nodes.csv";
 
     public FileSystemNodeDAOImpl() {

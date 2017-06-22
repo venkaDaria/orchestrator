@@ -44,7 +44,8 @@ public class ContainerController {
         Container cont = null;
         for (Node node : config.getNodes()) {
             cont = node.getContainers().stream().filter(c -> c.getId().equals(id)).findAny().orElse(null);
-            break;
+            if (cont != null)
+                break;
         }
         return cont;
     }

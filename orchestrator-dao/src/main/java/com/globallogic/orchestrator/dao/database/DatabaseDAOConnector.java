@@ -5,7 +5,7 @@ import com.globallogic.orchestrator.connector.exception.DatabaseOperationExcepti
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public abstract class DatabaseDAOConnector<T> {
+public abstract class DatabaseDAOConnector {
 
     protected void rollback(final Connection con) {
         if (con != null) {

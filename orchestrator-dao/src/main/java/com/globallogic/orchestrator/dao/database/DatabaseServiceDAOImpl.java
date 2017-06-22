@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DatabaseServiceDAOImpl extends DatabaseDAOConnector<ServiceDto> implements ServiceDAO {
+public class DatabaseServiceDAOImpl extends DatabaseDAOConnector implements ServiceDAO {
 
     @Override
     public void save(final Set<ServiceDto> services) {

@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class DatabaseNodeDAOImpl extends DatabaseDAOConnector<NodeDto> implements NodeDAO {
+public class DatabaseNodeDAOImpl extends DatabaseDAOConnector implements NodeDAO {
 
     @Override
     public void save(final Set<NodeDto> nodes) {

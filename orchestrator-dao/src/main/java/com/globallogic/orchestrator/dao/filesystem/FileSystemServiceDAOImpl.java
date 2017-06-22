@@ -14,7 +14,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class FileSystemServiceDAOImpl implements ServiceDAO {
+
     private final String SEPARATOR;
+
     private static final String FILE_NAME = "services.csv";
 
     public FileSystemServiceDAOImpl() {

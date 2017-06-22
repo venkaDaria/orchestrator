@@ -10,7 +10,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class FileSystemContainerDAOImpl implements ContainerDAO {
+
     private final String SEPARATOR;
+
     private static final String FILE_NAME = "containers.csv";
 
     public FileSystemContainerDAOImpl() {

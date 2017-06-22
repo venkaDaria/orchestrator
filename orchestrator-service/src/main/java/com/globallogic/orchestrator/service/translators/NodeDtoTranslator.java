@@ -14,21 +14,19 @@ public class NodeDtoTranslator implements Translator<Node, NodeDto> {
     @Override
     public NodeDto getDto(Node model) {
         NodeDto dto = new NodeDto();
+
         dto.setName(model.getName());
         dto.setRoles(model.getRoles().stream().map(StringValueObject::asString).collect(Collectors.toSet()));
+
         return dto;
     }
 
     @Override
     public Node fromDto(NodeDto dto) {
         Node node = new Node();
-        node.setName(dto.getName());
 
-        if (!dto.getRoles().isEmpty()) {
-            node.setRoles(dto.getRoles().stream().map(Role::new).collect(Collectors.toSet()));
-        } else {
-            node.setRoles(new HashSet<>());
-        }
+        node.setName(dto.getName());
+        node.setRoles(dto.getRoles().stream().map(Role::new).collect(Collectors.toSet()));
 
         return node;
     }
