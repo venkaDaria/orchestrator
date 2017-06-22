@@ -5,12 +5,14 @@ import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Component
 public class FileSystemNodeDAOImpl implements NodeDAO {
 
     private final String SEPARATOR;

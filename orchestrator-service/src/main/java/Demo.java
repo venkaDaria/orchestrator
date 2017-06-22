@@ -8,6 +8,7 @@ import com.globallogic.orchestrator.model.valueobject.ImageReference;
 import com.globallogic.orchestrator.model.valueobject.Role;
 import com.globallogic.orchestrator.service.ConfigurationServiceImpl;
 import com.globallogic.orchestrator.service.interfaces.ConfigurationService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 import java.util.HashSet;
 import java.util.Set;

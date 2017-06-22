@@ -8,4 +8,6 @@ public interface ServiceService {
     void save(final Set<Service> services);
 
     Set<Service> load();
+
+    Service getByName(final String name);
 }

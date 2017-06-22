@@ -2,6 +2,8 @@ package com.globallogic.orchestrator.controller;
 
 import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Node;
+import com.globallogic.orchestrator.service.interfaces.ContainerService;
+import com.globallogic.orchestrator.service.interfaces.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,19 +17,15 @@ import java.util.stream.Collectors;
 public class NodeController {
 
     @Autowired
-    private Configuration config;
+    private NodeService nodeService;
 
     @RequestMapping()
     public Set<String> getAll() {
-        return config.getNodes().stream().map(Node::asFormattedString).collect(Collectors.toSet());
+        return nodeService.load().stream().map(Node::asFormattedString).collect(Collectors.toSet());
     }
 
     @RequestMapping("/{name}")
     public String getContainer(@PathVariable String name) {
-        for (Node node : config.getNodes()) {
-            if (node.getName().equals(name))
-                return node.asFormattedString();
-        }
-        return null;
+        return nodeService.getByName(name).asFormattedString();
     }
 }

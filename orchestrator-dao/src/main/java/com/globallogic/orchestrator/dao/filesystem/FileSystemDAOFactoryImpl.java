@@ -4,31 +4,33 @@ import com.globallogic.orchestrator.dao.ContainerDAO;
 import com.globallogic.orchestrator.dao.DAOFactory;
 import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.ServiceDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FileSystemDAOFactoryImpl implements DAOFactory {
 
-    private FileSystemDAOFactoryImpl() { }
+    @Autowired
+    private FileSystemContainerDAOImpl fileSystemContainerDAO;
 
-    private static class FileSystemDAOFactoryHolder {
-        private static final FileSystemDAOFactoryImpl INSTANCE = new FileSystemDAOFactoryImpl();
-    }
+    @Autowired
+    private FileSystemNodeDAOImpl fileSystemNodeDAO;
 
-    public synchronized static FileSystemDAOFactoryImpl getInstance() {
-        return FileSystemDAOFactoryHolder.INSTANCE;
-    }
+    @Autowired
+    private FileSystemServiceDAOImpl fileSystemServiceDAO;
 
     @Override
     public ContainerDAO getContainerDAO() {
-        return new FileSystemContainerDAOImpl();
+        return fileSystemContainerDAO;
     }
 
     @Override
     public ServiceDAO getServiceDAO() {
-        return new FileSystemServiceDAOImpl();
+        return fileSystemServiceDAO;
     }
 
     @Override
     public NodeDAO getNodeDAO() {
-        return new FileSystemNodeDAOImpl();
+        return fileSystemNodeDAO;
     }
 }

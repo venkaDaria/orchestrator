@@ -1,5 +1,6 @@
 package com.globallogic.orchestrator.service;
 
+import com.globallogic.orchestrator.dao.ContainerDAO;
 import com.globallogic.orchestrator.dao.dto.ContainerDto;
 import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Container;
@@ -29,6 +30,9 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     private ContainerService containerService;
 
     @Autowired
+    private ContainerDAO containerDAO;
+
+    @Autowired
     private ContainerDtoTranslator translator;
 
     @Override
@@ -47,7 +51,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
         Set<Node> nodes = nodeService.load();
         Set<Service> services = serviceService.load();
-        Set<ContainerDto> containers = containerService.load();
+        Set<ContainerDto> containers = containerDAO.load();
 
         for (ContainerDto dto : containers) {
             Node node = nodes.stream().filter(n -> dto.getNodeName().equals(n.getName())).findAny().orElse(null);

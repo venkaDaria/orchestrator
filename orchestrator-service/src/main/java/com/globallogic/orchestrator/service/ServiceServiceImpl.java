@@ -5,7 +5,6 @@ import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.service.interfaces.ServiceService;
 import com.globallogic.orchestrator.service.translators.ServiceDtoTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,7 +12,6 @@ import java.util.stream.Collectors;
 @org.springframework.stereotype.Service
 public class ServiceServiceImpl implements ServiceService {
 
-    @Qualifier("getServiceDAO")
     @Autowired
     private ServiceDAO serviceDAO;
 
@@ -28,5 +26,11 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public Set<Service> load() {
         return serviceDAO.load().stream().map(translator::fromDto).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Service getByName(final String name) {
+        return null;
+        // TODO:
     }
 }

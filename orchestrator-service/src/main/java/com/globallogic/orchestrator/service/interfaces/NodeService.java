@@ -8,4 +8,6 @@ public interface NodeService {
     void save(final Set<Node> node);
 
     Set<Node> load();
+
+    Node getByName(String name);
 }

@@ -5,7 +5,6 @@ import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.service.interfaces.NodeService;
 import com.globallogic.orchestrator.service.translators.NodeDtoTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 @Service
 public class NodeServiceImpl implements NodeService {
 
-    @Qualifier("getNodeDAO")
     @Autowired
     private NodeDAO nodeDAO;
 
@@ -29,5 +27,11 @@ public class NodeServiceImpl implements NodeService {
     @Override
     public Set<Node> load() {
         return nodeDAO.load().stream().map(translator::fromDto).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Node getByName(String name) {
+        return null;
+        //TODO:
     }
 }

@@ -1,7 +1,6 @@
 package com.globallogic.orchestrator.service;
 
 import com.globallogic.orchestrator.dao.ContainerDAO;
-import com.globallogic.orchestrator.dao.dto.ContainerDto;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.service.interfaces.ContainerService;
 import com.globallogic.orchestrator.service.translators.ContainerDtoTranslator;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 @Service
 public class ContainerServiceImpl implements ContainerService {
 
-    @Qualifier("getContainerDAO")
     @Autowired
     private ContainerDAO containerDAO;
 
@@ -28,7 +26,13 @@ public class ContainerServiceImpl implements ContainerService {
     }
 
     @Override
-    public Set<ContainerDto> load() {
-        return containerDAO.load();
+    public Set<Container> load() {
+        return containerDAO.load().stream().map(translator::fromDto).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Container getById(final String id) {
+        return null;
+        //TODO:
     }
 }

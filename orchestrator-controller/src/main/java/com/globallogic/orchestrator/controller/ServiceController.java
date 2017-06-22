@@ -2,6 +2,7 @@ package com.globallogic.orchestrator.controller;
 
 import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Service;
+import com.globallogic.orchestrator.service.interfaces.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,23 +14,18 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/service")
-@Order(7)
 public class ServiceController {
 
     @Autowired
-    private Configuration config;
+    private ServiceService serviceService;
 
     @RequestMapping()
     public Set<String> getAll() {
-        return config.getServices().stream().map(Service::asFormattedString).collect(Collectors.toSet());
+        return serviceService.load().stream().map(Service::asFormattedString).collect(Collectors.toSet());
     }
 
     @RequestMapping("/{name}")
     public String getContainer(@PathVariable String name) {
-        for (Service service : config.getServices()) {
-            if (service.getName().equals(name))
-                return service.asFormattedString();
-        }
-        return null;
+        return serviceService.getByName(name).asFormattedString();
     }
 }
