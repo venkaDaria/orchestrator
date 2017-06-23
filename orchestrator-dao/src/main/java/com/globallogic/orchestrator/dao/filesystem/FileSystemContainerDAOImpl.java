@@ -1,10 +1,8 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
-import com.globallogic.orchestrator.dao.ContainerDAO;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.ContainerDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -12,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
-public class FileSystemContainerDAOImpl implements ContainerDAO {
+public class FileSystemContainerDAOImpl implements FileSystemContainerDAO {
 
     private final String SEPARATOR;
 

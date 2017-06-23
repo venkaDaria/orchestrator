@@ -2,7 +2,6 @@ package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
-import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
@@ -15,7 +14,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Component
-public class FileSystemServiceDAOImpl implements ServiceDAO {
+public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
 
     private final String SEPARATOR;
 

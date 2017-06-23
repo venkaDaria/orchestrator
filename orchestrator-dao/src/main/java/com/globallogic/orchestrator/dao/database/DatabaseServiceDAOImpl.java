@@ -2,7 +2,6 @@ package com.globallogic.orchestrator.dao.database;
 
 import com.globallogic.orchestrator.connector.database.impl.ServiceDatabaseConnectorImpl;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
-import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
-public class DatabaseServiceDAOImpl implements ServiceDAO {
+public class DatabaseServiceDAOImpl implements DatabaseServiceDAO {
 
     @Autowired
     private ServiceDatabaseConnectorImpl connector;

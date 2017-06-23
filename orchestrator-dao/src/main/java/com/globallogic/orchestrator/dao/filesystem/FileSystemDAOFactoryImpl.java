@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 public class FileSystemDAOFactoryImpl implements DAOFactory {
 
     @Autowired
-    private FileSystemContainerDAOImpl fileSystemContainerDAO;
+    private FileSystemContainerDAO fileSystemContainerDAO;
 
     @Autowired
-    private FileSystemNodeDAOImpl fileSystemNodeDAO;
+    private FileSystemNodeDAO fileSystemNodeDAO;
 
     @Autowired
-    private FileSystemServiceDAOImpl fileSystemServiceDAO;
+    private FileSystemServiceDAO fileSystemServiceDAO;
 
     @Override
     public ContainerDAO getContainerDAO() {

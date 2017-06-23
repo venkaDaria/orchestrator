@@ -1,7 +1,6 @@
 package com.globallogic.orchestrator.dao.database;
 
 import com.globallogic.orchestrator.connector.database.ContainerDatabaseConnector;
-import com.globallogic.orchestrator.dao.ContainerDAO;
 import com.globallogic.orchestrator.dao.dto.ContainerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
-public class DatabaseContainerDAOImpl implements ContainerDAO {
+public class DatabaseContainerDAOImpl implements DatabaseContainerDAO {
 
     @Autowired
     private ContainerDatabaseConnector connector;

@@ -1,7 +1,6 @@
 package com.globallogic.orchestrator.dao.filesystem;
 
 import com.globallogic.orchestrator.connector.filesystem.FileSystemConnectorImpl;
-import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
 import org.apache.commons.lang.StringUtils;
@@ -13,7 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
-public class FileSystemNodeDAOImpl implements NodeDAO {
+public class FileSystemNodeDAOImpl implements FileSystemNodeDAO {
 
     private final String SEPARATOR;
 

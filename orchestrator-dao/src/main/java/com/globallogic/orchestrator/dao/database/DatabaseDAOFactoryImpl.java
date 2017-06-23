@@ -14,13 +14,13 @@ import org.springframework.stereotype.Component;
 public class DatabaseDAOFactoryImpl implements DAOFactory {
 
     @Autowired
-    private DatabaseContainerDAOImpl fileSystemContainerDAO;
+    private DatabaseContainerDAO fileSystemContainerDAO;
 
     @Autowired
-    private DatabaseNodeDAOImpl fileSystemNodeDAO;
+    private DatabaseNodeDAO fileSystemNodeDAO;
 
     @Autowired
-    private DatabaseServiceDAOImpl fileSystemServiceDAO;
+    private DatabaseServiceDAO fileSystemServiceDAO;
 
     @Override
     public ContainerDAO getContainerDAO() {

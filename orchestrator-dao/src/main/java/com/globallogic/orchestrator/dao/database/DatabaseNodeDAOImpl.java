@@ -1,7 +1,6 @@
 package com.globallogic.orchestrator.dao.database;
 
 import com.globallogic.orchestrator.connector.database.NodeDatabaseConnector;
-import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
 import org.apache.commons.lang.StringUtils;
@@ -15,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
-public class DatabaseNodeDAOImpl implements NodeDAO {
+public class DatabaseNodeDAOImpl implements DatabaseNodeDAO {
 
     @Autowired
     private NodeDatabaseConnector connector;
