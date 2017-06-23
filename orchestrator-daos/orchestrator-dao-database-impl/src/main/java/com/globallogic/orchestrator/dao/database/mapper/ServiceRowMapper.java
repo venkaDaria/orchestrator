@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class ServiceRowMapper implements RowMapper<ServiceDto> {
 
     @Override
-    public ServiceDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public ServiceDto mapRow(final ResultSet rs, final int rowNum) throws SQLException {
         ServiceDto service = new ServiceDto();
 
         service.setName(rs.getString(0));

@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class NodeRowMapper implements RowMapper<NodeDto> {
 
     @Override
-    public NodeDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public NodeDto mapRow(final ResultSet rs, final int rowNum) throws SQLException {
         NodeDto node = new NodeDto();
 
         node.setName(rs.getString(0));

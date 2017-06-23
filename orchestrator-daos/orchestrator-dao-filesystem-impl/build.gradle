@@ -5,7 +5,7 @@ dependencies {
 
     compile project(':orchestrator-daos:orchestrator-dao-api')
 
-    compile project(':orchestrator-connectors:orchestrator-connector-filesystem-api')
+    compile project(':orchestrator-connectors:orchestrator-connector-filesystem-impl')
 
     testCompile group: 'junit', name: 'junit'
 }

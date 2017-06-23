@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class ContainerRowMapper implements RowMapper<ContainerDto> {
 
     @Override
-    public ContainerDto mapRow(ResultSet rs, int rowNum) {
+    public ContainerDto mapRow(final ResultSet rs, final int rowNum) {
         ContainerDto container = new ContainerDto();
 
         try {
