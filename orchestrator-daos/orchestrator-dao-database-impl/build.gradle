@@ -1,11 +1,7 @@
 group 'com.globallogic.orchestrator'
 
 dependencies {
-    compile project(':orchestrator-base')
-
     compile project(':orchestrator-daos:orchestrator-dao-api')
 
     compile project(':orchestrator-connectors:orchestrator-connector-database-impl')
-
-    testCompile group: 'junit', name: 'junit'
 }

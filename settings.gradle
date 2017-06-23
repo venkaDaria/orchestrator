@@ -39,6 +39,8 @@ include 'orchestrator-daos:orchestrator-dao-database-impl'
 include 'orchestrator-service-api'
 include 'orchestrator-service-impl'
 
+include 'orchestrator-test-base'
+
 
 
 

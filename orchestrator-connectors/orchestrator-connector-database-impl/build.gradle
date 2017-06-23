@@ -1,10 +1,6 @@
 group 'com.globallogic.orchestrator'
 
 dependencies {
-    compile project(':orchestrator-base')
-
     compile project(':orchestrator-connectors:orchestrator-connector-database-api')
-
-    compile group: 'mysql', name: 'mysql-connector-java'
 }
 
