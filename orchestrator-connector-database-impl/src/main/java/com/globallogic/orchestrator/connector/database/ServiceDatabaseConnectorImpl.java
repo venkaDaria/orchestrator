@@ -1,11 +1,8 @@
 package com.globallogic.orchestrator.connector.database;
 
-import com.globallogic.orchestrator.connector.database.AbstractDatabaseConnector;
-import com.globallogic.orchestrator.connector.database.ServiceDatabaseConnector;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Set;
 
 @Repository
@@ -24,23 +21,12 @@ public class ServiceDatabaseConnectorImpl extends AbstractDatabaseConnector impl
     }
 
     @Override
-    public Set<String[]> getAll()  {
-        return getAll(GET_ALL_SERVICES_QUERY);
+    public <T> Set<T> getAll(RowMapper<T> rowMapper) {
+        return getAll(GET_ALL_SERVICES_QUERY, rowMapper);
     }
 
     @Override
-    public String[] getByName(String name) {
-        return get(GET_SERVICE_QUERY, name);
-    }
-
-    @Override
-    public String[] extract(final ResultSet rs, int rowNum) throws SQLException {
-        return new String[]{
-                rs.getString("name"),
-                rs.getString("image"),
-                rs.getString("roles"),
-                rs.getString("ports"),
-                rs.getString("volumes")
-        };
+    public <T> T getByName(String name, RowMapper<T> rowMapper) {
+        return get(GET_SERVICE_QUERY, name, rowMapper);
     }
 }

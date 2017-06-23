@@ -17,7 +17,9 @@ include 'services:webservice'
 
 rootProject.name = 'orchestrator'
 
-include 'orchestrator-application'
+include 'orchestrator-application-database'
+include 'orchestrator-application-filesystem'
+
 include 'orchestrator-base'
 include 'orchestrator-controller'
 include 'orchestrator-model'

@@ -1,19 +1,22 @@
 package com.globallogic.orchestrator.dao.database;
 
 import com.globallogic.orchestrator.connector.database.ContainerDatabaseConnector;
+import com.globallogic.orchestrator.dao.database.mapper.ContainerRowMapper;
 import com.globallogic.orchestrator.dao.dto.ContainerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Repository
 public class DatabaseContainerDAOImpl implements DatabaseContainerDAO {
 
     @Autowired
     private ContainerDatabaseConnector connector;
+
+    @Autowired
+    private ContainerRowMapper mapper;
 
     @Override
     @Transactional
@@ -23,22 +26,11 @@ public class DatabaseContainerDAOImpl implements DatabaseContainerDAO {
 
     @Override
     public Set<ContainerDto> load() {
-        return connector.getAll().stream().map(this::extract).collect(Collectors.toSet());
+        return connector.getAll(mapper);
     }
 
     @Override
     public ContainerDto getById(String id) {
-        return extract(connector.getById(id));
-    }
-
-    private ContainerDto extract(final String... params) {
-        ContainerDto container = new ContainerDto();
-
-        container.setId(params[0]);
-        container.setStatus(params[1]);
-        container.setNodeName(params[2]);
-        container.setServiceName(params[3]);
-
-        return container;
+        return connector.getById(id, mapper);
     }
 }

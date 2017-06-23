@@ -3,11 +3,9 @@ package com.globallogic.orchestrator.connector.database;
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,19 +25,11 @@ public abstract class AbstractDatabaseConnector implements DatabaseConnector {
         jdbcTemplate.update(query, (Object[]) params);
     }
 
-    protected Set<String[]> getAll(final String query) {
-        Set<String[]> set = new HashSet<>();
-        jdbcTemplate.query(query, (RowCallbackHandler) rs -> set.add(extract(rs)));
-        return set;
+    protected <T> Set<T> getAll(final String query, final RowMapper<T> mapper) {
+        return new HashSet<>(jdbcTemplate.query(query, mapper));
     }
 
-    protected String[] get(final String query, String param) {
-        return jdbcTemplate.queryForObject(query, this::extract, param);
+    protected <T> T get(final String query, String param, final RowMapper<T> mapper) {
+        return jdbcTemplate.queryForObject(query, mapper, param);
     }
-
-    protected String[] extract(final ResultSet rs) throws SQLException {
-        return extract(rs, 0);
-    }
-
-    protected abstract String[] extract(final ResultSet rs, int rowNum) throws SQLException;
 }

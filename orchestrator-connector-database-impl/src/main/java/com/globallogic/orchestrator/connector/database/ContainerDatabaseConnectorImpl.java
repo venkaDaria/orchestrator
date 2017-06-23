@@ -1,11 +1,8 @@
 package com.globallogic.orchestrator.connector.database;
 
-import com.globallogic.orchestrator.connector.database.AbstractDatabaseConnector;
-import com.globallogic.orchestrator.connector.database.ContainerDatabaseConnector;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Set;
 
 @Repository
@@ -24,22 +21,12 @@ public class ContainerDatabaseConnectorImpl extends AbstractDatabaseConnector im
     }
 
     @Override
-    public Set<String[]> getAll() {
-        return getAll(GET_ALL_CONTAINERS_QUERY);
+    public <T> Set<T> getAll(RowMapper<T> mapper) {
+        return getAll(GET_ALL_CONTAINERS_QUERY, mapper);
     }
 
     @Override
-    public String[] getById(String id) {
-        return get(GET_CONTAINER_QUERY, id);
-    }
-
-    @Override
-    public String[] extract(final ResultSet rs, int rowNum) throws SQLException {
-        return new String[]{
-                rs.getString("id"),
-                rs.getString("status"),
-                rs.getString("node"),
-                rs.getString("service")
-        };
+    public <T> T getById(String id, RowMapper<T> mapper) {
+        return get(GET_CONTAINER_QUERY, id, mapper);
     }
 }
