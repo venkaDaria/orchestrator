@@ -3,7 +3,5 @@ group 'com.globallogic.orchestrator'
 dependencies {
     compile project(':orchestrator-base')
 
-    compile project(':orchestrator-model')
-
     compile project(':orchestrator-service-api')
 }
