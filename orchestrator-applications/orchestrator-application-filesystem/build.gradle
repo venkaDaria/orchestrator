@@ -1,0 +1,12 @@
+dependencies {
+    compile project(':orchestrator-base')
+
+    compile project(':orchestrator-controller')
+
+    compile project(':orchestrator-service-impl')
+
+    compile project(':orchestrator-daos:orchestrator-dao-filesystem-impl')
+
+    compile group: 'mysql', name: 'mysql-connector-java'
+}
+

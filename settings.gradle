@@ -17,21 +17,28 @@ include 'services:webservice'
 
 rootProject.name = 'orchestrator'
 
-include 'orchestrator-application-database'
-include 'orchestrator-application-filesystem'
+include 'orchestrator-applications'
+include 'orchestrator-applications:orchestrator-application-database'
+include 'orchestrator-applications:orchestrator-application-filesystem'
 
 include 'orchestrator-base'
 include 'orchestrator-controller'
 include 'orchestrator-model'
 
-include 'orchestrator-connector-filesystem-api'
-include 'orchestrator-connector-database-api'
-include 'orchestrator-connector-filesystem-impl'
-include 'orchestrator-connector-database-impl'
+include 'orchestrator-connectors'
+include 'orchestrator-connectors:orchestrator-connector-filesystem-api'
+include 'orchestrator-connectors:orchestrator-connector-database-api'
+include 'orchestrator-connectors:orchestrator-connector-filesystem-impl'
+include 'orchestrator-connectors:orchestrator-connector-database-impl'
 
-include 'orchestrator-dao-api'
-include 'orchestrator-dao-filesystem-impl'
-include 'orchestrator-dao-database-impl'
+include 'orchestrator-daos'
+include 'orchestrator-daos:orchestrator-dao-api'
+include 'orchestrator-daos:orchestrator-dao-filesystem-impl'
+include 'orchestrator-daos:orchestrator-dao-database-impl'
 
 include 'orchestrator-service-api'
 include 'orchestrator-service-impl'
+
+
+
+
