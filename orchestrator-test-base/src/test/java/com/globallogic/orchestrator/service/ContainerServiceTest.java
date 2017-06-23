@@ -10,7 +10,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.HashSet;
+
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 
 public class ContainerServiceTest {
@@ -30,11 +33,9 @@ public class ContainerServiceTest {
     }
 
     @Test
-    public void tesGetById() {
+    public void testGetById() {
         ContainerDto contDto = new ContainerDto();
         contDto.setId("1");
-        contDto.setNodeName("node");
-        contDto.setServiceName("service");
 
         Container cont = new Container();
         cont.setId("1");
@@ -42,7 +43,64 @@ public class ContainerServiceTest {
         when(containerDao.getById("1")).thenReturn(contDto);
         when(translator.fromDto(contDto)).thenReturn(cont);
 
-        Container cont2 = containerService.getById("1");
-        assertEquals(cont, cont2);
+        assertEquals(cont, containerService.getById("1"));
+    }
+
+    @Test
+    public void testSave() {
+        HashSet<Container> containers = new HashSet<>();
+
+        Container cont = new Container();
+        cont.setId("1");
+        containers.add(cont);
+
+        Container cont2 = new Container();
+        cont2.setId("2");
+        containers.add(cont2);
+
+        HashSet<ContainerDto> containerDtos = new HashSet<>();
+
+        ContainerDto contDto = new ContainerDto();
+        contDto.setId("1");
+        containerDtos.add(contDto);
+
+        ContainerDto contDto2 = new ContainerDto();
+        contDto2.setId("2");
+        containerDtos.add(contDto2);
+
+        doAnswer(invocation -> null).when(containerDao).save(containerDtos);
+        when(translator.getDto(cont)).thenReturn(contDto);
+        when(translator.getDto(cont2)).thenReturn(contDto2);
+
+        containerService.save(containers);
+    }
+
+    @Test
+    public void testLoad() {
+        HashSet<ContainerDto> containerDtos = new HashSet<>();
+
+        ContainerDto contDto = new ContainerDto();
+        contDto.setId("1");
+        containerDtos.add(contDto);
+
+        ContainerDto contDto2 = new ContainerDto();
+        contDto2.setId("2");
+        containerDtos.add(contDto2);
+
+        HashSet<Container> containers = new HashSet<>();
+
+        Container cont = new Container();
+        cont.setId("1");
+        containers.add(cont);
+
+        Container cont2 = new Container();
+        cont2.setId("2");
+        containers.add(cont2);
+
+        when(containerDao.load()).thenReturn(containerDtos);
+        when(translator.fromDto(contDto)).thenReturn(cont);
+        when(translator.fromDto(contDto2)).thenReturn(cont2);
+
+        assertEquals(containers, containerService.load());
     }
 }
