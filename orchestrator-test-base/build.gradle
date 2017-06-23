@@ -10,4 +10,8 @@ dependencies {
     compile project(':orchestrator-daos:orchestrator-dao-api')
 
     compile project(':orchestrator-service-api')
+
+    testCompile group: 'junit', name: 'junit'
+
+    testCompile group: 'org.mockito', name: 'mockito-core'
 }
