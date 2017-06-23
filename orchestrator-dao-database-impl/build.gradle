@@ -5,7 +5,5 @@ dependencies {
 
     compile project(':orchestrator-dao-api')
 
-    compile project(':orchestrator-сonnector-api')
-
     testCompile group: 'junit', name: 'junit'
 }

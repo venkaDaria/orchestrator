@@ -2,10 +2,8 @@ package com.globallogic.orchestrator.service;
 
 import com.globallogic.orchestrator.dao.ContainerDAO;
 import com.globallogic.orchestrator.model.entity.Container;
-import com.globallogic.orchestrator.service.interfaces.ContainerService;
 import com.globallogic.orchestrator.service.translators.ContainerDtoTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;

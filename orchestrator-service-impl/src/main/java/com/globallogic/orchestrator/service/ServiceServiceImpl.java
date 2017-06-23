@@ -2,7 +2,7 @@ package com.globallogic.orchestrator.service;
 
 import com.globallogic.orchestrator.dao.ServiceDAO;
 import com.globallogic.orchestrator.model.entity.Service;
-import com.globallogic.orchestrator.service.interfaces.ServiceService;
+import com.globallogic.orchestrator.service.ServiceService;
 import com.globallogic.orchestrator.service.translators.ServiceDtoTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 

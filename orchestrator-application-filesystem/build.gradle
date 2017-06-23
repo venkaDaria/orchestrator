@@ -1,7 +1,7 @@
 dependencies {
     compile project(':orchestrator-base')
 
-    compile project(':orchestrator-controller-filesystem-impl')
+    compile project(':orchestrator-controller')
 
     compile group: 'mysql', name: 'mysql-connector-java'
 }

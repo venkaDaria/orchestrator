@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.service.interfaces;
+package com.globallogic.orchestrator.service;
 
 import com.globallogic.orchestrator.model.entity.Container;
 

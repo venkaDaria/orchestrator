@@ -2,7 +2,6 @@ package com.globallogic.orchestrator.service;
 
 import com.globallogic.orchestrator.dao.NodeDAO;
 import com.globallogic.orchestrator.model.entity.Node;
-import com.globallogic.orchestrator.service.interfaces.NodeService;
 import com.globallogic.orchestrator.service.translators.NodeDtoTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

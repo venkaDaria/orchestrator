@@ -1,10 +1,8 @@
 package com.globallogic.orchestrator.controller;
 
-import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Service;
-import com.globallogic.orchestrator.service.interfaces.ServiceService;
+import com.globallogic.orchestrator.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

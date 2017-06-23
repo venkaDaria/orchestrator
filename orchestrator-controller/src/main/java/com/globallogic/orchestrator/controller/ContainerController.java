@@ -1,15 +1,12 @@
 package com.globallogic.orchestrator.controller;
 
-import com.globallogic.orchestrator.model.entity.Configuration;
 import com.globallogic.orchestrator.model.entity.Container;
-import com.globallogic.orchestrator.model.entity.Node;
-import com.globallogic.orchestrator.service.interfaces.ContainerService;
+import com.globallogic.orchestrator.service.ContainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
