@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.service;
+package com.globallogic.orchestrator.service.translators;
 
 import com.globallogic.orchestrator.dao.dto.NodeDto;
 import com.globallogic.orchestrator.model.entity.Node;

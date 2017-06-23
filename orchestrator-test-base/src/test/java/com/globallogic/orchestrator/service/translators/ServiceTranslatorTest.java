@@ -1,10 +1,9 @@
-package com.globallogic.orchestrator.service;
+package com.globallogic.orchestrator.service.translators;
 
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
 import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.model.valueobject.ImageReference;
 import com.globallogic.orchestrator.model.valueobject.Role;
-import com.globallogic.orchestrator.service.translators.ServiceDtoTranslator;
 import org.junit.Before;
 import org.junit.Test;
 
