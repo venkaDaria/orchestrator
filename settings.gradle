@@ -24,7 +24,8 @@ include 'orchestrator-base'
 include 'orchestrator-controller'
 include 'orchestrator-model'
 
-include 'orchestrator-connector-api'
+include 'orchestrator-connector-filesystem-api'
+include 'orchestrator-connector-database-api'
 include 'orchestrator-connector-filesystem-impl'
 include 'orchestrator-connector-database-impl'
 

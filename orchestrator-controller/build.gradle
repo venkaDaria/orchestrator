@@ -6,4 +6,6 @@ dependencies {
     compile project(':orchestrator-model')
 
     compile project(':orchestrator-service-api')
+
+    compile project(':orchestrator-service-impl')
 }

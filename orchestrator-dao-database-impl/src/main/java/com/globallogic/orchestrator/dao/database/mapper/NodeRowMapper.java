@@ -4,12 +4,14 @@ import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashSet;
 
+@Component
 public class NodeRowMapper implements RowMapper<NodeDto> {
 
     @Override

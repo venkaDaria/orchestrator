@@ -1,10 +1,7 @@
+group 'com.globallogic.orchestrator'
+
 dependencies {
     compile project(':orchestrator-base')
 
-    compile project(':orchestrator-controller')
-
-    compile project(':orchestrator-dao-filesystem-impl')
-
     compile group: 'mysql', name: 'mysql-connector-java'
 }
-
