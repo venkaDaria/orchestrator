@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -48,7 +47,7 @@ public class DatabaseContainerDAOTest {
 
     @Test
     public void testLoad() {
-        Set<ContainerDto> containerDtos = new LinkedHashSet<>();
+        Set<ContainerDto> containerDtos = new HashSet<>();
 
         ContainerDto contDto = new ContainerDto();
         contDto.setId("1");

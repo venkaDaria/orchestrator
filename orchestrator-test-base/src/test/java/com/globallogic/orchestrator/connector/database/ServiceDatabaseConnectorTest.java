@@ -1,6 +1,5 @@
-package com.globallogic.orchestrator.dao.database;
+package com.globallogic.orchestrator.connector.database;
 
-import com.globallogic.orchestrator.connector.database.ServiceDatabaseConnectorImpl;
 import com.globallogic.orchestrator.dao.database.mapper.ServiceRowMapper;
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
 import org.junit.Before;
@@ -8,24 +7,24 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 
-public class DatabaseServiceDAOTest {
+public class ServiceDatabaseConnectorTest {
 
     @InjectMocks
-    private DatabaseServiceDAOImpl databaseServiceDAO;
+    private ServiceDatabaseConnectorImpl serviceDatabaseConnector;
 
     @Mock
-    private ServiceDatabaseConnectorImpl connector;
+    private JdbcTemplate jdbcTemplate;
 
-    @Mock
-    private ServiceRowMapper mapper;
 
     @Before
     public void initMocks(){
@@ -33,7 +32,7 @@ public class DatabaseServiceDAOTest {
     }
 
     @Test
-    public void testGetById() {
+    public void insert() {
         Set<String> rolesString = new HashSet<>();
         rolesString.add("1");
         rolesString.add("2");
@@ -41,14 +40,17 @@ public class DatabaseServiceDAOTest {
         ServiceDto serviceDto = new ServiceDto();
         serviceDto.setName("1");
         serviceDto.setRoles(rolesString);
+        serviceDto.setVolumes(new HashSet<>());
+        serviceDto.setPorts(new HashSet<>());
 
-        when(connector.getByName("1", mapper)).thenReturn(serviceDto);
+        doAnswer(invocation -> null).when(jdbcTemplate).update(anyString());
 
-        assertEquals(serviceDto, databaseServiceDAO.getByName("1"));
+        serviceDatabaseConnector.insert(serviceDto.getName(), serviceDto.getImage(),
+                serviceDto.getRoles(), serviceDto.getPorts(), serviceDto.getVolumes());
     }
 
     @Test
-    public void testLoad() {
+    public void getAll() {
         Set<ServiceDto> serviceDtos = new HashSet<>();
 
         Set<String> rolesString = new HashSet<>();
@@ -65,15 +67,14 @@ public class DatabaseServiceDAOTest {
         serviceDto2.setRoles(rolesString);
         serviceDtos.add(serviceDto2);
 
-        when(connector.getAll(mapper)).thenReturn(serviceDtos);
+        ServiceRowMapper mapper = new ServiceRowMapper();
+        when(jdbcTemplate.query(anyString(), eq(mapper))).thenReturn(new ArrayList<>(serviceDtos));
 
-        assertEquals(serviceDtos, databaseServiceDAO.load());
+        assertEquals(serviceDtos, serviceDatabaseConnector.getAll(mapper));
     }
 
     @Test
-    public void testSave() {
-        HashSet<ServiceDto> serviceDtos = new HashSet<>();
-
+    public void getByName() {
         Set<String> rolesString = new HashSet<>();
         rolesString.add("1");
         rolesString.add("2");
@@ -81,18 +82,13 @@ public class DatabaseServiceDAOTest {
         ServiceDto serviceDto = new ServiceDto();
         serviceDto.setName("1");
         serviceDto.setRoles(rolesString);
-        serviceDtos.add(serviceDto);
 
-        ServiceDto serviceDto2 = new ServiceDto();
-        serviceDto2.setName("2");
-        serviceDto2.setRoles(rolesString);
-        serviceDtos.add(serviceDto2);
+        List<ServiceDto> services = new ArrayList<>();
+        services.add(serviceDto);
 
-        doAnswer(invocation -> null).when(connector).insert(serviceDto.getName(), serviceDto.getImage(),
-                serviceDto.getRoles(), serviceDto.getPorts(), serviceDto.getVolumes());
-        doAnswer(invocation -> null).when(connector).insert(serviceDto2.getName(), serviceDto2.getImage(),
-                serviceDto2.getRoles(), serviceDto2.getPorts(), serviceDto2.getVolumes());
+        ServiceRowMapper mapper = new ServiceRowMapper();
+        when(jdbcTemplate.query(anyString(), eq(mapper), anyString())).thenReturn(services);
 
-        databaseServiceDAO.save(serviceDtos);
+        assertEquals(serviceDto, serviceDatabaseConnector.getByName("1", mapper));
     }
 }

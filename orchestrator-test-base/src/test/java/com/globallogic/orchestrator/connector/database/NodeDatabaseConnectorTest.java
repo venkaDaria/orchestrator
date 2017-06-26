@@ -1,6 +1,5 @@
-package com.globallogic.orchestrator.dao.database;
+package com.globallogic.orchestrator.connector.database;
 
-import com.globallogic.orchestrator.connector.database.NodeDatabaseConnectorImpl;
 import com.globallogic.orchestrator.dao.database.mapper.NodeRowMapper;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
 import org.junit.Before;
@@ -8,32 +7,35 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 
-public class DatabaseNodeDAOTest {
+public class NodeDatabaseConnectorTest {
 
     @InjectMocks
-    private DatabaseNodeDAOImpl databaseNodeDAO;
+    private NodeDatabaseConnectorImpl nodeDatabaseConnector;
 
     @Mock
-    private NodeDatabaseConnectorImpl connector;
+    private JdbcTemplate jdbcTemplate;
 
-    @Mock
-    private NodeRowMapper mapper;
-    
+
     @Before
     public void initMocks(){
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void testGetById() {
+    public void insert() {
         Set<String> rolesString = new HashSet<>();
         rolesString.add("1");
         rolesString.add("2");
@@ -42,13 +44,13 @@ public class DatabaseNodeDAOTest {
         nodeDto.setName("1");
         nodeDto.setRoles(rolesString);
 
-        when(connector.getByName("1", mapper)).thenReturn(nodeDto);
+        doAnswer(invocation -> null).when(jdbcTemplate).update(anyString());
 
-        assertEquals(nodeDto, databaseNodeDAO.getByName("1"));
+        nodeDatabaseConnector.insert(nodeDto.getName(), nodeDto.getRoles());
     }
 
     @Test
-    public void testLoad() {
+    public void getAll() {
         Set<NodeDto> nodeDtos = new HashSet<>();
 
         Set<String> rolesString = new HashSet<>();
@@ -65,15 +67,14 @@ public class DatabaseNodeDAOTest {
         nodeDto2.setRoles(rolesString);
         nodeDtos.add(nodeDto2);
 
-        when(connector.getAll(mapper)).thenReturn(nodeDtos);
+        NodeRowMapper mapper = new NodeRowMapper();
+        when(jdbcTemplate.query(anyString(), eq(mapper))).thenReturn(new ArrayList<>(nodeDtos));
 
-        assertEquals(nodeDtos, databaseNodeDAO.load());
+        assertEquals(nodeDtos, nodeDatabaseConnector.getAll(mapper));
     }
 
     @Test
-    public void testSave() {
-        HashSet<NodeDto> nodeDtos = new HashSet<>();
-
+    public void getByName() {
         Set<String> rolesString = new HashSet<>();
         rolesString.add("1");
         rolesString.add("2");
@@ -81,16 +82,13 @@ public class DatabaseNodeDAOTest {
         NodeDto nodeDto = new NodeDto();
         nodeDto.setName("1");
         nodeDto.setRoles(rolesString);
-        nodeDtos.add(nodeDto);
 
-        NodeDto nodeDto2 = new NodeDto();
-        nodeDto2.setName("2");
-        nodeDto2.setRoles(rolesString);
-        nodeDtos.add(nodeDto2);
+        List<NodeDto> nodes = new ArrayList<>();
+        nodes.add(nodeDto);
 
-        doAnswer(invocation -> null).when(connector).insert(nodeDto.getName(), nodeDto.getRoles());
-        doAnswer(invocation -> null).when(connector).insert(nodeDto2.getName(), nodeDto2.getRoles());
+        NodeRowMapper mapper = new NodeRowMapper();
+        when(jdbcTemplate.query(anyString(), eq(mapper), anyString())).thenReturn(nodes);
 
-        databaseNodeDAO.save(nodeDtos);
+        assertEquals(nodeDto, nodeDatabaseConnector.getByName("1", mapper));
     }
 }
