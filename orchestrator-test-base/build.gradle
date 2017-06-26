@@ -9,7 +9,13 @@ dependencies {
 
     compile project(':orchestrator-daos:orchestrator-dao-api')
 
+    compile project(':orchestrator-daos:orchestrator-dao-filesystem-impl')
+
+    compile project(':orchestrator-daos:orchestrator-dao-database-impl')
+
     compile project(':orchestrator-service-api')
+
+    compile project(':orchestrator-service-impl')
 
     testCompile group: 'junit', name: 'junit'
 

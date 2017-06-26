@@ -33,9 +33,6 @@ public class ConfigurationServiceTest {
     private ServiceService serviceService;
 
     @Mock
-    private ContainerService containerService;
-
-    @Mock
     private ContainerDAO containerDAO;
 
     @Mock
@@ -144,10 +141,5 @@ public class ConfigurationServiceTest {
 
         assertEquals(config.getNodes(), conf.getNodes());
         assertEquals(config.getServices(), conf.getServices());
-    }
-
-    @Test
-    public void testSave() {
-
     }
 }

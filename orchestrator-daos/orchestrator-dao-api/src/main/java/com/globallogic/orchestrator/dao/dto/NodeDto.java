@@ -26,4 +26,9 @@ public class NodeDto {
     public void setRoles(final Set<String> roles) {
         this.roles = new HashSet<>(roles);
     }
+
+    @Override
+    public String toString() {
+        return "NodeDto [name=" + name + ", roles=" + roles + "]";
+    }
 }

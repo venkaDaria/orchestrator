@@ -48,8 +48,17 @@ public class ContainerServiceImpl implements ContainerService {
     }
 
     private Container transform(final ContainerDto containerDto) {
-        Node node = translatorNode.fromDto(nodeDAO.getByName(containerDto.getNodeName()));
-        Service service = translatorService.fromDto(serviceDAO.getByName(containerDto.getServiceName()));
+        Service service = null;
+        Node node = null;
+
+        if (containerDto.getNodeName() != null) {
+            node = translatorNode.fromDto(nodeDAO.getByName(containerDto.getNodeName()));
+        }
+
+        if (containerDto.getServiceName() != null) {
+            service = translatorService.fromDto(serviceDAO.getByName(containerDto.getServiceName()));
+        }
+
         return translator.fromDto(containerDto, node, service);
     }
 

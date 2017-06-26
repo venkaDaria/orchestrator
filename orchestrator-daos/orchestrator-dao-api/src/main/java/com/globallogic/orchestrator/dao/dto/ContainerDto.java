@@ -43,4 +43,12 @@ public class ContainerDto {
     public void setServiceName(final String serviceName) {
         this.serviceName = serviceName;
     }
+
+    @Override
+    public String toString() {
+        return "ContainerDto [id=" + id +
+                ", status=" + status +
+                ", nodeName=" + nodeName +
+                ", serviceName=" + serviceName + "]";
+    }
 }

@@ -41,7 +41,7 @@ public class ContainerServiceTest {
         cont.setId("1");
 
         when(containerDao.getById("1")).thenReturn(contDto);
-        when(translator.fromDto(contDto)).thenReturn(cont);
+        when(translator.fromDto(contDto, null, null)).thenReturn(cont);
 
         assertEquals(cont, containerService.getById("1"));
     }
@@ -81,10 +81,12 @@ public class ContainerServiceTest {
 
         ContainerDto contDto = new ContainerDto();
         contDto.setId("1");
+        contDto.setStatus("NONE");
         containerDtos.add(contDto);
 
         ContainerDto contDto2 = new ContainerDto();
         contDto2.setId("2");
+        contDto2.setStatus("NONE");
         containerDtos.add(contDto2);
 
         HashSet<Container> containers = new HashSet<>();
@@ -98,8 +100,8 @@ public class ContainerServiceTest {
         containers.add(cont2);
 
         when(containerDao.load()).thenReturn(containerDtos);
-        when(translator.fromDto(contDto)).thenReturn(cont);
-        when(translator.fromDto(contDto2)).thenReturn(cont2);
+        when(translator.fromDto(contDto, null, null)).thenReturn(cont);
+        when(translator.fromDto(contDto2, null, null)).thenReturn(cont2);
 
         assertEquals(containers, containerService.load());
     }

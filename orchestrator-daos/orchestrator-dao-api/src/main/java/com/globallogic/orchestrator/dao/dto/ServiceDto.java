@@ -56,4 +56,11 @@ public class ServiceDto {
     public void setVolumes(final Set<String> volumes) {
         this.volumes = new HashSet<>(volumes);
     }
+
+    @Override
+    public String toString() {
+        return "ServiceDto [name=" + name +
+                ", image=" + image + ", roles=" + roles +
+                ", ports=" + ports + ", volumes=" + volumes + "]";
+    }
 }

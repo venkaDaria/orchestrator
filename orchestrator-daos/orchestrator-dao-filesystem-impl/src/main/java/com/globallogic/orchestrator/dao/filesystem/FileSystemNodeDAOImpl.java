@@ -42,13 +42,13 @@ public class FileSystemNodeDAOImpl implements FileSystemNodeDAO {
     }
 
     @Override
-    public NodeDto getByName(String name) {
+    public NodeDto getByName(final String name) {
         String[] lines = connector.read(FILE_NAME).split(System.lineSeparator());
 
         return getDTO(Arrays.stream(lines).filter(line -> line.split(SEPARATOR)[0].equals(name)).findAny().orElse(null));
     }
 
-    private String getString(NodeDto node) {
+    private String getString(final NodeDto node) {
         StringBuilder sb = new StringBuilder();
         node.getRoles().forEach(role -> sb.append(role).append(SeparatorHolder.getSeparatorString()));
         String rolesString = sb.length() > 1 ? sb.substring(0, sb.length() - 1) : sb.toString();
