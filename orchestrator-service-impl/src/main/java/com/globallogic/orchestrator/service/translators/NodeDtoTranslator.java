@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class NodeDtoTranslator implements Translator<Node, NodeDto> {
 
     @Override
-    public NodeDto getDto(Node model) {
+    public NodeDto getDto(final Node model) {
         NodeDto dto = new NodeDto();
 
         dto.setName(model.getName());
@@ -23,7 +23,7 @@ public class NodeDtoTranslator implements Translator<Node, NodeDto> {
     }
 
     @Override
-    public Node fromDto(NodeDto dto) {
+    public Node fromDto(final NodeDto dto) {
         Node node = new Node();
 
         node.setName(dto.getName());

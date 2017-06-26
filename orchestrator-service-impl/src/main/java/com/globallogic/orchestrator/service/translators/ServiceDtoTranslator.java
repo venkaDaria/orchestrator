@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ServiceDtoTranslator implements Translator<Service, ServiceDto> {
 
     @Override
-    public ServiceDto getDto(Service model) {
+    public ServiceDto getDto(final Service model) {
         ServiceDto dto = new ServiceDto();
 
         dto.setName(model.getName());
@@ -29,7 +29,7 @@ public class ServiceDtoTranslator implements Translator<Service, ServiceDto> {
     }
 
     @Override
-    public Service fromDto(ServiceDto dto) {
+    public Service fromDto(final ServiceDto dto) {
         Service service = new Service();
 
         service.setName(dto.getName());

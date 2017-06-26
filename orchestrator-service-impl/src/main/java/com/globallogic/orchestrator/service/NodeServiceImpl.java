@@ -29,7 +29,7 @@ public class NodeServiceImpl implements NodeService {
     }
 
     @Override
-    public Node getByName(String name) {
+    public Node getByName(final String name) {
         return translator.fromDto(nodeDAO.getByName(name));
     }
 }

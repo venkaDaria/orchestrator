@@ -16,10 +16,10 @@ public class ContainerRowMapper implements RowMapper<ContainerDto> {
         ContainerDto container = new ContainerDto();
 
         try {
-            container.setId(rs.getString(0));
-            container.setStatus(rs.getString(1));
-            container.setNodeName(rs.getString(2));
-            container.setServiceName(rs.getString(3));
+            container.setId(rs.getString(1));
+            container.setStatus(rs.getString(2));
+            container.setNodeName(rs.getString(3));
+            container.setServiceName(rs.getString(4));
         } catch (SQLException e) {
             throw new DatabaseOperationException();
         }

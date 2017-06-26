@@ -9,5 +9,5 @@ public interface NodeService {
 
     Set<Node> load();
 
-    Node getByName(String name);
+    Node getByName(final String name);
 }

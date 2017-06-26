@@ -11,7 +11,7 @@ import com.globallogic.orchestrator.model.entity.Service;
 public class ContainerDtoTranslator implements Translator<Container, ContainerDto> {
 
     @Override
-    public ContainerDto getDto(Container model) {
+    public ContainerDto getDto(final Container model) {
         ContainerDto dto = new ContainerDto();
 
         dto.setId(model.getId());
@@ -23,11 +23,11 @@ public class ContainerDtoTranslator implements Translator<Container, ContainerDt
     }
 
     @Override
-    public Container fromDto(ContainerDto dto) {
+    public Container fromDto(final ContainerDto dto) {
         return fromDto(dto, null, null);
     }
 
-    public Container fromDto(ContainerDto dto, Node node, Service service) {
+    public Container fromDto(final ContainerDto dto, final Node node, final Service service) {
         Container container = new Container();
 
         container.setId(dto.getId());
