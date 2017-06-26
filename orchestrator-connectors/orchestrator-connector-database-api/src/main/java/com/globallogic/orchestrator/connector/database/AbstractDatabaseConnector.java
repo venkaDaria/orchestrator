@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Repository
-public abstract class AbstractDatabaseConnector implements DatabaseConnector {
+public abstract class AbstractDatabaseConnector {
 
     @Autowired
     protected JdbcTemplate jdbcTemplate;
@@ -29,7 +29,7 @@ public abstract class AbstractDatabaseConnector implements DatabaseConnector {
         return new HashSet<>(jdbcTemplate.query(query, mapper));
     }
 
-    protected <T> T get(final String query, String param, final RowMapper<T> mapper) {
-        return jdbcTemplate.queryForObject(query, mapper, param);
+    protected <T> T get(final String query, final String param, final RowMapper<T> mapper) {
+        return jdbcTemplate.query(query, mapper, param).get(0);
     }
 }

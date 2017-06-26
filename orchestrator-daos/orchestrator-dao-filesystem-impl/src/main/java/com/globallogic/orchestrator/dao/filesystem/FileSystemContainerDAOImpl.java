@@ -40,7 +40,7 @@ public class FileSystemContainerDAOImpl implements FileSystemContainerDAO {
     }
 
     @Override
-    public ContainerDto getById(String id) {
+    public Set<ContainerDto> getById(String id) {
         String[] lines = connector.read(FILE_NAME).split(System.lineSeparator());
 
         return getDTO(Arrays.stream(lines).filter(line -> line.split(SEPARATOR)[0].equals(id)).findAny().orElse(null));

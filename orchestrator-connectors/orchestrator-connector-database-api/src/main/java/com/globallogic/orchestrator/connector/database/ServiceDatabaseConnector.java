@@ -6,7 +6,7 @@ import java.util.Set;
 
 public interface ServiceDatabaseConnector {
 
-    void insert(final String... params);
+    void insert(final String name, String image, Set<String> roles, Set<String> ports, Set<String> volumes);
 
     <T> Set<T> getAll(final RowMapper<T> rowMapper);
 

@@ -1,47 +1,52 @@
 package com.globallogic.orchestrator.dao.database.mapper;
 
-import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @Component
 public class ServiceRowMapper implements RowMapper<ServiceDto> {
 
+    private final Map<String, ServiceDto> serviceMap;
+
+    public ServiceRowMapper() {
+        serviceMap = new HashMap<>();
+    }
+
     @Override
     public ServiceDto mapRow(final ResultSet rs, final int rowNum) throws SQLException {
-        ServiceDto service = new ServiceDto();
+        String name = rs.getString(1);
+        ServiceDto serviceDto = serviceMap.get(name) != null ? serviceMap.get(name) : new ServiceDto();
+        serviceDto.setName(name);
+        serviceDto.setImage(rs.getString(2));
 
-        service.setName(rs.getString(0));
-        service.setImage(rs.getString(1));
-
-        if (StringUtils.isNotEmpty(rs.getString(2))) {
-            service.setRoles(new HashSet<>(Arrays.asList(rs.getString(2)
-                    .split(SeparatorHolder.getSeparatorDatabaseString()))));
-        } else {
-            service.setRoles(new HashSet<>());
+        Set<String> roles = serviceDto.getRoles() != null ? serviceDto.getRoles() : new HashSet<>();
+        if (rs.getString(3) != null) {
+            roles.add(rs.getString(3));
         }
+        serviceDto.setRoles(roles);
 
-        if (StringUtils.isNotEmpty(rs.getString(3))) {
-            service.setPorts(new HashSet<>(Arrays.asList(rs.getString(3)
-                    .split(SeparatorHolder.getSeparatorDatabaseString()))));
-        } else {
-            service.setPorts(new HashSet<>());
+        Set<String> ports = serviceDto.getPorts() != null ? serviceDto.getPorts() : new HashSet<>();
+        if (rs.getString(4) != null) {
+            ports.add(rs.getString(4));
         }
+        serviceDto.setPorts(ports);
 
-        if (StringUtils.isNotEmpty(rs.getString(4))) {
-            service.setVolumes(new HashSet<>(Arrays.asList(rs.getString(4)
-                    .split(SeparatorHolder.getSeparatorDatabaseString()))));
-        } else {
-            service.setVolumes(new HashSet<>());
+        Set<String> volumes = serviceDto.getVolumes() != null ? serviceDto.getVolumes() : new HashSet<>();
+        if (rs.getString(5) != null) {
+            volumes.add(rs.getString(5));
         }
+        serviceDto.setVolumes(volumes);
 
-        return service;
+        serviceMap.put(name, serviceDto);
+
+        return serviceDto;
     }
 }

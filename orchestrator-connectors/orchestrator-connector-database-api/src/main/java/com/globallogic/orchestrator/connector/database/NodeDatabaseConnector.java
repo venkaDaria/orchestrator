@@ -6,7 +6,7 @@ import java.util.Set;
 
 public interface NodeDatabaseConnector {
 
-    void insert(final String... params);
+    void insert(String name, Set<String> roles);
 
     <T> Set<T> getAll(final RowMapper<T> rowMapper);
 
