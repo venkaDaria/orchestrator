@@ -1,0 +1,23 @@
+group 'com.globallogic.orchestrator'
+
+dependencies {
+    compile project(':orchestrator-base')
+
+    compile project(':orchestrator-connectors:orchestrator-connector-database-api')
+
+    compile project(':orchestrator-connectors:orchestrator-connector-filesystem-api')
+
+    compile project(':orchestrator-daos:orchestrator-dao-api')
+
+    compile project(':orchestrator-daos:orchestrator-dao-filesystem-impl')
+
+    compile project(':orchestrator-daos:orchestrator-dao-database-impl')
+
+    compile project(':orchestrator-service-api')
+
+    compile project(':orchestrator-service-impl')
+
+    testCompile group: 'junit', name: 'junit'
+
+    testCompile group: 'org.mockito', name: 'mockito-core'
+}

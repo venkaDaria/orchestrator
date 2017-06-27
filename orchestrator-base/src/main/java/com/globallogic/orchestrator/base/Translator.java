@@ -7,7 +7,7 @@ package com.globallogic.orchestrator.base;
  */
 public interface Translator<T, R> {
 
-    R getDto(T model);
+    R getDto(final T model);
 
-    T fromDto(R dto);
+    T fromDto(final R dto);
 }

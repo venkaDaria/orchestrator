@@ -1,0 +1,7 @@
+group 'com.globallogic.orchestrator'
+
+dependencies {
+    compile project(':orchestrator-base')
+
+    testCompile group: 'junit', name: 'junit'
+}
