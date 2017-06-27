@@ -2,6 +2,7 @@ package com.globallogic.orchestrator.connector.database;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public class NodeDatabaseConnectorImpl extends AbstractDatabaseConnector impleme
             "left join roles on node_roles.value = roles.value WHERE name = ?";
 
     @Override
+    @Transactional
     public void insert(final String name, final Set<String> roles) {
         insert(INSERT_NODE_QUERY, name);
         roles.forEach(role -> {

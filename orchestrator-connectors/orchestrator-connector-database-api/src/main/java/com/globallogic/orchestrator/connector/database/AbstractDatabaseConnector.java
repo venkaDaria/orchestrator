@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -30,6 +31,10 @@ public abstract class AbstractDatabaseConnector {
     }
 
     protected <T> T get(final String query, final String param, final RowMapper<T> mapper) {
-        return jdbcTemplate.query(query, mapper, param).get(0);
+        List<T> result = jdbcTemplate.query(query, mapper, param);
+        if (result.size() != 1) {
+            throw new DatabaseOperationException("Too many results");
+        }
+        return result.get(0);
     }
 }

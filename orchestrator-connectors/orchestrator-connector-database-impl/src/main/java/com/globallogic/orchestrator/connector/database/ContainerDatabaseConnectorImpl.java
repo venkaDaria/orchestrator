@@ -2,6 +2,7 @@ package com.globallogic.orchestrator.connector.database;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -15,6 +16,7 @@ public class ContainerDatabaseConnectorImpl extends AbstractDatabaseConnector im
     private static final String GET_CONTAINER_QUERY = "SELECT * FROM containers WHERE id = ?";
 
     @Override
+    @Transactional
     public void insert(final String... params) {
         validate(4, "container", params);
         insert(INSERT_CONTAINER_QUERY, params);

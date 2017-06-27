@@ -2,6 +2,7 @@ package com.globallogic.orchestrator.connector.database;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -33,6 +34,7 @@ public class ServiceDatabaseConnectorImpl extends AbstractDatabaseConnector impl
             "left join ports on ports.service = services.name WHERE name = ?";
 
     @Override
+    @Transactional
     public void insert(final String name, final String image, final Set<String> roles, final Set<String> ports, final Set<String> volumes) {
         super.insert(INSERT_SERVICE_QUERY, name, image);
         roles.forEach(role -> {
