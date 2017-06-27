@@ -44,7 +44,7 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
     }
 
     @Override
-    public ServiceDto getByName(String name) {
+    public ServiceDto getByName(final String name) {
         String[] lines = connector.read(FILE_NAME).split(System.lineSeparator());
 
         return getDTO(Arrays.stream(lines).filter(line -> line.split(SEPARATOR)[0].equals(name)).findAny().orElse(null));
@@ -58,7 +58,7 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
                 System.lineSeparator();
     }
 
-    private String getString(Set<String> set) {
+    private String getString(final Set<String> set) {
         StringBuilder sb = new StringBuilder();
         set.forEach(el -> sb.append(el).append(SeparatorHolder.getSeparatorString()));
         return sb.length() > 1 ? sb.substring(0, sb.length() - 1) : sb.toString();

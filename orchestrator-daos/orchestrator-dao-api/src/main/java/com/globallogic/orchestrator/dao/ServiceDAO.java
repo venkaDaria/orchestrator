@@ -10,5 +10,5 @@ public interface ServiceDAO {
 
     Set<ServiceDto> load();
 
-    ServiceDto getByName(String name);
+    ServiceDto getByName(final String name);
 }

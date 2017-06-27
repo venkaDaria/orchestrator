@@ -30,7 +30,7 @@ public class DatabaseContainerDAOImpl implements DatabaseContainerDAO {
     }
 
     @Override
-    public ContainerDto getById(String id) {
+    public ContainerDto getById(final String id) {
         return connector.getById(id, mapper);
     }
 }

@@ -25,7 +25,6 @@ public class ServiceDatabaseConnectorTest {
     @Mock
     private JdbcTemplate jdbcTemplate;
 
-
     @Before
     public void initMocks(){
         MockitoAnnotations.initMocks(this);

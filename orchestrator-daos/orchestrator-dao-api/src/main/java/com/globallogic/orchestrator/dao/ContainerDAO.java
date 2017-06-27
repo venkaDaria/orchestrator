@@ -10,5 +10,5 @@ public interface ContainerDAO {
 
     Set<ContainerDto> load();
 
-    ContainerDto getById(String id);
+    ContainerDto getById(final String id);
 }

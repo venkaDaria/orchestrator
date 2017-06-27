@@ -28,7 +28,6 @@ public class NodeDatabaseConnectorTest {
     @Mock
     private JdbcTemplate jdbcTemplate;
 
-
     @Before
     public void initMocks(){
         MockitoAnnotations.initMocks(this);

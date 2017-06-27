@@ -23,7 +23,7 @@ public class ServiceController {
     }
 
     @RequestMapping("/{name}")
-    public String getContainer(@PathVariable String name) {
+    public String getContainer(@PathVariable final String name) {
         return serviceService.getByName(name).asFormattedString();
     }
 }

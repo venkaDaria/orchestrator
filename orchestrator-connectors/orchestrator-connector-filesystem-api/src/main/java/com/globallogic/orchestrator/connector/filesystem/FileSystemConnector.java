@@ -2,7 +2,7 @@ package com.globallogic.orchestrator.connector.filesystem;
 
 public interface FileSystemConnector {
 
-    String read(String fileName);
+    String read(final String fileName);
 
-    void write(String fileName, String text);
+    void write(final String fileName, final String text);
 }

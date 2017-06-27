@@ -32,7 +32,6 @@ public class ServiceDatabaseConnectorImpl extends AbstractDatabaseConnector impl
             "left join volumes on volumes.service = services.name " +
             "left join ports on ports.service = services.name WHERE name = ?";
 
-
     @Override
     public void insert(final String name, final String image, final Set<String> roles, final Set<String> ports, final Set<String> volumes) {
         super.insert(INSERT_SERVICE_QUERY, name, image);

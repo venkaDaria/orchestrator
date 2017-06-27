@@ -10,5 +10,5 @@ public interface NodeDAO {
 
     Set<NodeDto> load();
 
-    NodeDto getByName(String name);
+    NodeDto getByName(final String name);
 }

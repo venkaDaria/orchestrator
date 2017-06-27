@@ -23,7 +23,7 @@ public class NodeController {
     }
 
     @RequestMapping("/{name}")
-    public String getContainer(@PathVariable String name) {
+    public String getContainer(@PathVariable final String name) {
         return nodeService.getByName(name).asFormattedString();
     }
 }

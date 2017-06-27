@@ -13,9 +13,9 @@ import java.util.Set;
 public abstract class AbstractDatabaseConnector {
 
     @Autowired
-    protected JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-    protected void validate(int len, String name, String... params) {
+    protected void validate(final int len, final String name, final String... params) {
         if (params.length != len) {
             throw new DatabaseOperationException("Can't insert " + name);
         }

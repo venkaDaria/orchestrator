@@ -23,7 +23,7 @@ public class ContainerController {
     }
 
     @RequestMapping("/{id}")
-    public String getContainer(@PathVariable String id) {
+    public String getContainer(@PathVariable final String id) {
         return containerService.getById(id).asFormattedString();
     }
 }
