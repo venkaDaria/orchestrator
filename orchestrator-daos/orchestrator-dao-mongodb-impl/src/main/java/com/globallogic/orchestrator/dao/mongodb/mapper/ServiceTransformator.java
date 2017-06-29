@@ -5,6 +5,8 @@ import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class ServiceTransformator {
 
@@ -12,11 +14,11 @@ public class ServiceTransformator {
         ServiceDto serviceDto = new ServiceDto();
 
         serviceDto.setName(dbObject.get("name").toString());
-        serviceDto.setName(dbObject.get("image").toString());
+        serviceDto.setImage(dbObject.get("image").toString());
 
-        serviceDto.setRoles(((BasicDBList)dbObject.get("roles")).keySet());
-        serviceDto.setPorts(((BasicDBList)dbObject.get("ports")).keySet());
-        serviceDto.setVolumes(((BasicDBList)dbObject.get("volumes")).keySet());
+        serviceDto.setRoles(((BasicDBList)dbObject.get("roles")).stream().map(Object::toString).collect(Collectors.toSet()));
+        serviceDto.setPorts(((BasicDBList)dbObject.get("ports")).stream().map(Object::toString).collect(Collectors.toSet()));
+        serviceDto.setVolumes(((BasicDBList)dbObject.get("volumes")).stream().map(Object::toString).collect(Collectors.toSet()));
 
         return serviceDto;
     }

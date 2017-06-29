@@ -25,14 +25,14 @@ public class ContainerController {
         return containerService.getById(id).asFormattedString();
     }
 
-    @PutMapping(value = "/",  params = { "id", "status", "node", "server" })
+    @PutMapping()
     public void add(@RequestParam final String id, @RequestParam final String status,
                     @RequestParam final String node, @RequestParam final String server) {
         containerService.add(id, status, node, server);
     }
 
     @DeleteMapping("/{id}")
-    public void remove(@RequestParam final String id) {
+    public void remove(@PathVariable final String id) {
         containerService.remove(id);
     }
 }

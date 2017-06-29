@@ -4,6 +4,8 @@ import com.globallogic.orchestrator.mongodb.AbstractMongodbConnector;
 import com.globallogic.orchestrator.mongodb.NodeMongodbConnector;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Set;
@@ -38,9 +40,6 @@ public class NodeMongodbConnectorImpl extends AbstractMongodbConnector implement
 
     @Override
     public void remove(final String param) {
-        DBObject dbObject = new BasicDBObject();
-        dbObject.put("name", param);
-
-        remove(COLLECTION_NAME, dbObject);
+        remove(COLLECTION_NAME, new Query(Criteria.where("name").is(param)));
     }
 }

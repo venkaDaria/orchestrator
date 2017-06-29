@@ -22,17 +22,17 @@ public class NodeController {
     }
 
     @GetMapping("/{name}")
-    public String getContainer(@PathVariable final String name) {
+    public String getNode(@PathVariable final String name) {
         return nodeService.getByName(name).asFormattedString();
     }
 
-    @PutMapping(value = "/",  params = { "name", "role" })
+    @PutMapping()
     public void add(@RequestParam final String name, @RequestParam final List<String> roles) {
         nodeService.add(name, roles);
     }
 
     @DeleteMapping("/{name}")
-    public void remove(@RequestParam final String name) {
+    public void remove(@PathVariable final String name) {
        nodeService.remove(name);
     }
 }

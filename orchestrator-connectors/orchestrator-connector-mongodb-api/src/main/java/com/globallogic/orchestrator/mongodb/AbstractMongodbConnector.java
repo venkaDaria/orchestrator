@@ -5,6 +5,7 @@ import com.mongodb.DBObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,14 +32,10 @@ public abstract class AbstractMongodbConnector {
     }
 
     protected DBObject get(final String collectionName, final DBObject dbObject) {
-        List<DBObject> results = mongoOperations.getCollection(collectionName).find(dbObject).toArray();
-        if (results.size() != 1) {
-            throw new MongodbOperationException("Too many results");
-        }
-        return results.get(0);
+        return mongoOperations.getCollection(collectionName).find(dbObject).toArray().get(0);
     }
 
-    protected void remove(final String collectionName, final DBObject dbObject) {
-        mongoOperations.remove(dbObject, collectionName);
+    protected void remove(final String collectionName, final Query searchQuery) {
+        mongoOperations.remove(searchQuery, collectionName);
     }
 }

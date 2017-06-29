@@ -5,6 +5,8 @@ import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class NodeTransformator {
 
@@ -12,7 +14,7 @@ public class NodeTransformator {
         NodeDto nodeDto = new NodeDto();
 
         nodeDto.setName(dbObject.get("name").toString());
-        nodeDto.setRoles(((BasicDBList)dbObject.get("roles")).keySet());
+        nodeDto.setRoles(((BasicDBList)dbObject.get("roles")).stream().map(Object::toString).collect(Collectors.toSet()));
 
         return nodeDto;
     }

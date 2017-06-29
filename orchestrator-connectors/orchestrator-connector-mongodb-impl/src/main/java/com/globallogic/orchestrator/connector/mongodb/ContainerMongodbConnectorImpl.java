@@ -4,6 +4,8 @@ import com.globallogic.orchestrator.mongodb.AbstractMongodbConnector;
 import com.globallogic.orchestrator.mongodb.ContainerMongodbConnector;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Set;
@@ -43,9 +45,6 @@ public class ContainerMongodbConnectorImpl extends AbstractMongodbConnector impl
 
     @Override
     public void remove(final String param) {
-        DBObject dbObject = new BasicDBObject();
-        dbObject.put("id", param);
-
-        remove(COLLECTION_NAME, dbObject);
+        remove(COLLECTION_NAME, new Query(Criteria.where("id").is(param)));
     }
 }
