@@ -1,6 +1,6 @@
 package com.globallogic.orchestrator.dao.mongodb;
 
-import com.globallogic.orchestrator.connector.database.NodeMongodbConnector;
+import com.globallogic.orchestrator.mongodb.NodeMongodbConnector;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
 import com.globallogic.orchestrator.dao.mongodb.mapper.NodeTransformator;
 import org.springframework.beans.factory.annotation.Autowired;

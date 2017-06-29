@@ -1,5 +1,7 @@
-package com.globallogic.orchestrator.connector.database;
+package com.globallogic.orchestrator.connector.mongodb;
 
+import com.globallogic.orchestrator.mongodb.AbstractMongodbConnector;
+import com.globallogic.orchestrator.mongodb.ServiceMongodbConnector;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector.database;
+package com.globallogic.orchestrator.mongodb;
 
 import com.mongodb.DBObject;
 

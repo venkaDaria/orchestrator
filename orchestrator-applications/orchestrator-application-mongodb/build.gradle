@@ -10,5 +10,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb'
+
+    compile group: 'io.springfox', name: 'springfox-swagger-ui'
 }
 

@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector.database.config;
+package com.globallogic.orchestrator.mongodb.config;
 
 import com.mongodb.MongoClient;
 import org.springframework.context.annotation.Bean;

@@ -1,5 +1,7 @@
-package com.globallogic.orchestrator.connector.database;
+package com.globallogic.orchestrator.connector.mongodb;
 
+import com.globallogic.orchestrator.mongodb.AbstractMongodbConnector;
+import com.globallogic.orchestrator.mongodb.ContainerMongodbConnector;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import org.springframework.stereotype.Repository;
@@ -9,14 +11,19 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Repository
-public class NodeMongodbConnectorImpl extends AbstractMongodbConnector implements NodeMongodbConnector {
+public class ContainerMongodbConnectorImpl extends AbstractMongodbConnector implements ContainerMongodbConnector {
 
-    private static String COLLECTION_NAME = "nodes";
+    private static String COLLECTION_NAME = "containers";
 
-    public void insert(final String name, final Set<String> roles) {
+    @Override
+    public void insert(final String... params) {
+        validate(4, "container");
+
         DBObject dbObject = new BasicDBObject();
-        dbObject.put("name", name);
-        dbObject.put("roles", roles);
+        dbObject.put("id", params[0]);
+        dbObject.put("status", params[1]);
+        dbObject.put("node", params[2]);
+        dbObject.put("service", params[3]);
 
         insert(COLLECTION_NAME, dbObject);
     }
@@ -27,9 +34,9 @@ public class NodeMongodbConnectorImpl extends AbstractMongodbConnector implement
     }
 
     @Override
-    public <T> T getByName(final Function<DBObject, T> transform, final String param) {
+    public <T> T getById(final Function<DBObject, T> transform, final String param) {
         DBObject dbObject = new BasicDBObject();
-        dbObject.put("name", param);
+        dbObject.put("id", param);
 
         return transform.apply(get(COLLECTION_NAME, dbObject));
     }
@@ -37,7 +44,7 @@ public class NodeMongodbConnectorImpl extends AbstractMongodbConnector implement
     @Override
     public void remove(final String param) {
         DBObject dbObject = new BasicDBObject();
-        dbObject.put("name", param);
+        dbObject.put("id", param);
 
         remove(COLLECTION_NAME, dbObject);
     }

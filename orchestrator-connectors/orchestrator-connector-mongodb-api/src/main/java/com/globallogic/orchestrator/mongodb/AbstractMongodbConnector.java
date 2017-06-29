@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector.database;
+package com.globallogic.orchestrator.mongodb;
 
 import com.globallogic.orchestrator.connector.exception.MongodbOperationException;
 import com.mongodb.DBObject;
