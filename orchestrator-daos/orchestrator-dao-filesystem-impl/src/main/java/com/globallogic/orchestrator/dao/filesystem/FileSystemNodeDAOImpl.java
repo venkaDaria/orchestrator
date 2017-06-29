@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -50,6 +51,11 @@ public class FileSystemNodeDAOImpl implements FileSystemNodeDAO {
 
     @Override
     public void remove(final String id) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void add(final String name, final List<String> roles) {
         throw new UnsupportedOperationException();
     }
 

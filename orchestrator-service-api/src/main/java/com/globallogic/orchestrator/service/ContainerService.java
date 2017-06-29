@@ -13,4 +13,6 @@ public interface ContainerService {
     Container getById(final String id);
 
     void remove(String id);
+
+    void add(String id, String status, String node, String server);
 }

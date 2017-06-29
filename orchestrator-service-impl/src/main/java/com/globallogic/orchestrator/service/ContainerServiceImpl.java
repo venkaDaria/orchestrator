@@ -71,4 +71,9 @@ public class ContainerServiceImpl implements ContainerService {
     public void remove(final String id) {
         containerDAO.remove(id);
     }
+
+    @Override
+    public void add(final String id, final String status, final String node, final String server) {
+        containerDAO.add(id, status, node, server);
+    }
 }

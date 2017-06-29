@@ -5,6 +5,7 @@ import com.globallogic.orchestrator.service.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,18 +16,23 @@ public class NodeController {
     @Autowired
     private NodeService nodeService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @GetMapping()
     public Set<String> getAll() {
         return nodeService.load().stream().map(Node::asFormattedString).collect(Collectors.toSet());
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+    @GetMapping("/{name}")
     public String getContainer(@PathVariable final String name) {
         return nodeService.getByName(name).asFormattedString();
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.DELETE)
-    public void remove(@RequestBody final String name) {
+    @PutMapping(value = "/",  params = { "name", "role" })
+    public void add(@RequestParam final String name, @RequestParam final List<String> roles) {
+        nodeService.add(name, roles);
+    }
+
+    @DeleteMapping("/{name}")
+    public void remove(@RequestParam final String name) {
        nodeService.remove(name);
     }
 }

@@ -38,4 +38,9 @@ public class DatabaseContainerDAOImpl implements DatabaseContainerDAO {
     public void remove(final String name) {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void add(final String id, final String status, final String node, final String server) {
+        connector.insert(id, status, node, server);
+    }
 }

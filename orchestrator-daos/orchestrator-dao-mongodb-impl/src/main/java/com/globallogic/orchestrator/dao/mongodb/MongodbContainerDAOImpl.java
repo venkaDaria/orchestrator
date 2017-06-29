@@ -38,4 +38,9 @@ public class MongodbContainerDAOImpl implements MongodbContainerDAO {
     public void remove(final String id) {
         connector.remove(id);
     }
+
+    @Override
+    public void add(final String id, final String status, final String node, final String server) {
+        connector.insert(id, status, node, server);
+    }
 }

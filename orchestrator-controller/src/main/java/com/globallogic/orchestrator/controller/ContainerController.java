@@ -15,18 +15,24 @@ public class ContainerController {
     @Autowired
     private ContainerService containerService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @GetMapping()
     public Set<String> getAll() {
         return containerService.load().stream().map(Container::asFormattedString).collect(Collectors.toSet());
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public String getContainer(@PathVariable final String id) {
         return containerService.getById(id).asFormattedString();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void remove(@RequestBody final String id) {
+    @PutMapping(value = "/",  params = { "id", "status", "node", "server" })
+    public void add(@RequestParam final String id, @RequestParam final String status,
+                    @RequestParam final String node, @RequestParam final String server) {
+        containerService.add(id, status, node, server);
+    }
+
+    @DeleteMapping("/{id}")
+    public void remove(@RequestParam final String id) {
         containerService.remove(id);
     }
 }

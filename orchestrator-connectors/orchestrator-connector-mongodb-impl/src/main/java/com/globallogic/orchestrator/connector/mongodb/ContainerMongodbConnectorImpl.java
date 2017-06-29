@@ -17,7 +17,7 @@ public class ContainerMongodbConnectorImpl extends AbstractMongodbConnector impl
 
     @Override
     public void insert(final String... params) {
-        validate(4, "container");
+        validate(4, "container", params);
 
         DBObject dbObject = new BasicDBObject();
         dbObject.put("id", params[0]);

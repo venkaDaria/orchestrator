@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -37,5 +39,10 @@ public class MongodbNodeDAOImpl implements MongodbNodeDAO {
     @Override
     public void remove(final String name) {
         connector.remove(name);
+    }
+
+    @Override
+    public void add(final String name, final List<String> roles) {
+        connector.insert(name, new HashSet<>(roles));
     }
 }

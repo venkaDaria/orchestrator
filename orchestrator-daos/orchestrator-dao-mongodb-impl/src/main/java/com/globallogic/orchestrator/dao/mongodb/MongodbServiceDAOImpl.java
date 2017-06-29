@@ -1,12 +1,14 @@
 package com.globallogic.orchestrator.dao.mongodb;
 
-import com.globallogic.orchestrator.mongodb.ServiceMongodbConnector;
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
 import com.globallogic.orchestrator.dao.mongodb.mapper.ServiceTransformator;
+import com.globallogic.orchestrator.mongodb.ServiceMongodbConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -37,5 +39,10 @@ public class MongodbServiceDAOImpl implements MongodbServiceDAO {
     @Override
     public void remove(final String name) {
         connector.remove(name);
+    }
+
+    @Override
+    public void add(final String name, final String image, final List<String> roles, final List<String> ports, final List<String> volumes) {
+        connector.insert(name, image, new HashSet<>(roles), new HashSet<>(ports), new HashSet<>(volumes));
     }
 }
