@@ -11,4 +11,6 @@ public interface ServiceService {
     Set<Service> load();
 
     Service getByName(final String name);
+
+    void remove(String name);
 }

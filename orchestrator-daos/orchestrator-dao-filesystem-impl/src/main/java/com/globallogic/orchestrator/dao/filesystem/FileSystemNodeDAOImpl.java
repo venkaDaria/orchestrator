@@ -48,6 +48,11 @@ public class FileSystemNodeDAOImpl implements FileSystemNodeDAO {
         return getDTO(Arrays.stream(lines).filter(line -> line.split(SEPARATOR)[0].equals(name)).findAny().orElse(null));
     }
 
+    @Override
+    public void remove(final String id) {
+        throw new UnsupportedOperationException();
+    }
+
     private String getString(final NodeDto node) {
         StringBuilder sb = new StringBuilder();
         node.getRoles().forEach(role -> sb.append(role).append(SeparatorHolder.getSeparatorString()));

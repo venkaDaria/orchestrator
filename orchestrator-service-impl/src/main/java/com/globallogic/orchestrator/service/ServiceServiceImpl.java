@@ -31,4 +31,9 @@ public class ServiceServiceImpl implements ServiceService {
     public Service getByName(final String name) {
         return translator.fromDto(serviceDAO.getByName(name));
     }
+
+    @Override
+    public void remove(final String name) {
+        serviceDAO.remove(name);
+    }
 }

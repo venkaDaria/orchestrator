@@ -11,4 +11,6 @@ public interface NodeService {
     Set<Node> load();
 
     Node getByName(final String name);
+
+    void remove(String name);
 }

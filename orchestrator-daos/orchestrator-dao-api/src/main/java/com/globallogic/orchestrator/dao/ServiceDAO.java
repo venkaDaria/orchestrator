@@ -11,4 +11,6 @@ public interface ServiceDAO {
     Set<ServiceDto> load();
 
     ServiceDto getByName(final String name);
+
+    void remove(String name);
 }

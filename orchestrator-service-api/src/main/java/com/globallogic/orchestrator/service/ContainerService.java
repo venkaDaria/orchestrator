@@ -11,4 +11,6 @@ public interface ContainerService {
     Set<Container> load();
 
     Container getById(final String id);
+
+    void remove(String id);
 }

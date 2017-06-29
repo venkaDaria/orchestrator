@@ -32,4 +32,9 @@ public class NodeServiceImpl implements NodeService {
     public Node getByName(final String name) {
         return translator.fromDto(nodeDAO.getByName(name));
     }
+
+    @Override
+    public void remove(final String name) {
+        nodeDAO.remove(name);
+    }
 }

@@ -11,4 +11,6 @@ public interface ContainerDAO {
     Set<ContainerDto> load();
 
     ContainerDto getById(final String id);
+
+    void remove(String id);
 }

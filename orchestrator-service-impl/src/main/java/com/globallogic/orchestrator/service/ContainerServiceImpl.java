@@ -66,4 +66,9 @@ public class ContainerServiceImpl implements ContainerService {
     public Container getById(final String id) {
         return transform(containerDAO.getById(id));
     }
+
+    @Override
+    public void remove(final String id) {
+        containerDAO.remove(id);
+    }
 }

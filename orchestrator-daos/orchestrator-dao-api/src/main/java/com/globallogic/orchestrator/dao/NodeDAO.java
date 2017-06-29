@@ -11,4 +11,6 @@ public interface NodeDAO {
     Set<NodeDto> load();
 
     NodeDto getByName(final String name);
+
+    void remove(String name);
 }

@@ -33,4 +33,9 @@ public class DatabaseServiceDAOImpl implements DatabaseServiceDAO {
     public ServiceDto getByName(final String name) {
         return connector.getByName(name, mapper);
     }
+
+    @Override
+    public void remove(final String name) {
+        throw new UnsupportedOperationException();
+    }
 }

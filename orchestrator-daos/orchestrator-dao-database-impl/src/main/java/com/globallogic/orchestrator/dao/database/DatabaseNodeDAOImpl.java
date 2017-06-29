@@ -33,4 +33,9 @@ public class DatabaseNodeDAOImpl implements DatabaseNodeDAO {
     public NodeDto getByName(final String name) {
         return connector.getByName(name, mapper);
     }
+
+    @Override
+    public void remove(final String name) {
+        throw new UnsupportedOperationException();
+    }
 }

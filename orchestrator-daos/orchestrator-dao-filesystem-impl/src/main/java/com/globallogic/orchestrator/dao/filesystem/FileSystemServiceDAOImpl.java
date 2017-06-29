@@ -50,6 +50,11 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
         return getDTO(Arrays.stream(lines).filter(line -> line.split(SEPARATOR)[0].equals(name)).findAny().orElse(null));
     }
 
+    @Override
+    public void remove(final String id) {
+        throw new UnsupportedOperationException();
+    }
+
     private String getString(final ServiceDto service) {
         return service.getName() + SEPARATOR + service.getImage() +
                 SEPARATOR + getString(service.getPorts()) + SEPARATOR +
