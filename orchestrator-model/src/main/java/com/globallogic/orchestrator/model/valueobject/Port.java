@@ -4,6 +4,7 @@ import com.globallogic.orchestrator.exception.PortValidationException;
 import com.globallogic.orchestrator.model.StringValueObject;
 import org.apache.commons.lang.StringUtils;
 
+import java.beans.Transient;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,6 +46,7 @@ public final class Port extends StringValueObject {
         return remote != null;
     }
 
+    @Transient
     @Override
     public String getValue() {
         String line = local.toString();

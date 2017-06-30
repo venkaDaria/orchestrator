@@ -1,8 +1,11 @@
 package com.globallogic.orchestrator.model;
 
+import java.beans.Transient;
 import java.util.Objects;
 
 public abstract class Entity extends BusinessObject {
+
+    @Transient
     public abstract Object getIdentity();
 
     @Override

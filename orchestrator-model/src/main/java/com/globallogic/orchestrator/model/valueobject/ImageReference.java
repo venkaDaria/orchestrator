@@ -4,6 +4,7 @@ import com.globallogic.orchestrator.exception.ImageReferenceValidationException;
 import com.globallogic.orchestrator.model.StringValueObject;
 import org.apache.commons.lang.StringUtils;
 
+import java.beans.Transient;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,6 +57,7 @@ public final class ImageReference extends StringValueObject {
         return StringUtils.isNotBlank(tag);
     }
 
+    @Transient
     @Override
     public String getValue() {
         String line = server + "/" + name;

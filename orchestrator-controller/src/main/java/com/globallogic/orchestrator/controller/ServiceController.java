@@ -8,23 +8,22 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/orchestrator/service", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/service", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ServiceController {
 
     @Autowired
     private ServiceService serviceService;
 
     @GetMapping()
-    public Set<String> getAll() {
-        return serviceService.load().stream().map(Service::asFormattedString).collect(Collectors.toSet());
+    public Set<Service> getAll() {
+        return serviceService.load();
     }
 
     @GetMapping("/{name}")
-    public String getService(@PathVariable final String name) {
-        return serviceService.getByName(name).asFormattedString();
+    public Service getService(@PathVariable final String name) {
+        return serviceService.getByName(name);
     }
 
     @PutMapping()

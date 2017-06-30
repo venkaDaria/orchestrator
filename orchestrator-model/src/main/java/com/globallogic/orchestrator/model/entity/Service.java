@@ -5,6 +5,7 @@ import com.globallogic.orchestrator.model.Status;
 import com.globallogic.orchestrator.model.base.ServiceBase;
 
 public class Service extends ServiceBase {
+
     @Override
     public String asFormattedString() {
         return "Service [name=" + getName() + ", image=" + getImage() + ", volumes=" + getVolumes() + ", ports="

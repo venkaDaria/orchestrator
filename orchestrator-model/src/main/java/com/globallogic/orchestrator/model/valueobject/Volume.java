@@ -4,6 +4,8 @@ import com.globallogic.orchestrator.exception.VolumeValidationException;
 import com.globallogic.orchestrator.model.StringValueObject;
 import org.apache.commons.lang.StringUtils;
 
+import java.beans.Transient;
+
 public final class Volume extends StringValueObject {
     private final String local;
     private final String remote;
@@ -28,6 +30,7 @@ public final class Volume extends StringValueObject {
         return remote;
     }
 
+    @Transient
     @Override
     public String getValue() {
         return local + ":" + remote;

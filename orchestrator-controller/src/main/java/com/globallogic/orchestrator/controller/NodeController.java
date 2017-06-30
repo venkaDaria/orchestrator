@@ -3,27 +3,27 @@ package com.globallogic.orchestrator.controller;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.service.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/orchestrator/node")
+@RequestMapping(value = "/node", produces = MediaType.APPLICATION_JSON_VALUE)
 public class NodeController {
 
     @Autowired
     private NodeService nodeService;
 
     @GetMapping()
-    public Set<String> getAll() {
-        return nodeService.load().stream().map(Node::asFormattedString).collect(Collectors.toSet());
+    public Set<Node> getAll() {
+        return nodeService.load();
     }
 
     @GetMapping("/{name}")
-    public String getNode(@PathVariable final String name) {
-        return nodeService.getByName(name).asFormattedString();
+    public Node getNode(@PathVariable final String name) {
+        return nodeService.getByName(name);
     }
 
     @PutMapping()

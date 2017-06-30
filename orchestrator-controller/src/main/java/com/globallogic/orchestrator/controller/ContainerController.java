@@ -3,26 +3,26 @@ package com.globallogic.orchestrator.controller;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.service.ContainerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/orchestrator/container")
+@RequestMapping(value = "/container", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ContainerController {
 
     @Autowired
     private ContainerService containerService;
 
     @GetMapping()
-    public Set<String> getAll() {
-        return containerService.load().stream().map(Container::asFormattedString).collect(Collectors.toSet());
+    public Set<Container> getAll() {
+        return containerService.load();
     }
 
     @GetMapping("/{id}")
-    public String getContainer(@PathVariable final String id) {
-        return containerService.getById(id).asFormattedString();
+    public Container getContainer(@PathVariable final String id) {
+        return containerService.getById(id);
     }
 
     @PutMapping()

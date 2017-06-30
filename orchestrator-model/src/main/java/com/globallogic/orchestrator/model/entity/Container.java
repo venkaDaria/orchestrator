@@ -3,6 +3,7 @@ package com.globallogic.orchestrator.model.entity;
 import com.globallogic.orchestrator.model.base.ContainerBase;
 
 public class Container extends ContainerBase {
+
     @Override
     public String asFormattedString() {
         return "Container [id = " + getId() + ", status=" + getStatus() + ", node=" + getNode() + ", service="
