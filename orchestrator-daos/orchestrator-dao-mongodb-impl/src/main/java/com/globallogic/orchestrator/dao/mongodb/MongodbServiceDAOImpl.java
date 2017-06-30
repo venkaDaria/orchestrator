@@ -5,7 +5,6 @@ import com.globallogic.orchestrator.dao.mongodb.mapper.ServiceTransformator;
 import com.globallogic.orchestrator.mongodb.ServiceMongodbConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +20,6 @@ public class MongodbServiceDAOImpl implements MongodbServiceDAO {
     private ServiceTransformator serviceTransformator;
 
     @Override
-    @Transactional
     public void save(final Set<ServiceDto> services) {
         services.forEach(el -> connector.insert(el.getName(), el.getImage(),el.getRoles(), el.getPorts(), el.getVolumes()));
     }

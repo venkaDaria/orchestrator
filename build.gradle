@@ -26,8 +26,6 @@ allprojects {
 
             dependency group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '1.5.4.RELEASE'
 
-            dependency group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '1.5.4.RELEASE'
-
             dependency group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
 
             dependency group: 'org.mongodb', name: 'mongodb-driver', version: '3.4.2'

@@ -1,11 +1,10 @@
 package com.globallogic.orchestrator.dao.mongodb;
 
-import com.globallogic.orchestrator.mongodb.NodeMongodbConnector;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
 import com.globallogic.orchestrator.dao.mongodb.mapper.NodeTransformator;
+import com.globallogic.orchestrator.mongodb.NodeMongodbConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +20,6 @@ public class MongodbNodeDAOImpl implements MongodbNodeDAO {
     private NodeTransformator nodeTransformator;
 
     @Override
-    @Transactional
     public void save(final Set<NodeDto> nodes) {
         nodes.forEach(el -> connector.insert(el.getName(), el.getRoles()));
     }

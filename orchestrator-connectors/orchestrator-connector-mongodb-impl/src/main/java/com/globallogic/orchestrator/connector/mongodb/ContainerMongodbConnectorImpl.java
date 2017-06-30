@@ -2,10 +2,7 @@ package com.globallogic.orchestrator.connector.mongodb;
 
 import com.globallogic.orchestrator.mongodb.AbstractMongodbConnector;
 import com.globallogic.orchestrator.mongodb.ContainerMongodbConnector;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
+import org.bson.Document;
 import org.springframework.stereotype.Repository;
 
 import java.util.Set;
@@ -21,7 +18,7 @@ public class ContainerMongodbConnectorImpl extends AbstractMongodbConnector impl
     public void insert(final String... params) {
         validate(4, "container", params);
 
-        DBObject dbObject = new BasicDBObject();
+        Document dbObject = new Document();
         dbObject.put("id", params[0]);
         dbObject.put("status", params[1]);
         dbObject.put("node", params[2]);
@@ -31,13 +28,13 @@ public class ContainerMongodbConnectorImpl extends AbstractMongodbConnector impl
     }
 
     @Override
-    public <T> Set<T> getAll(final Function<DBObject, T> transform) {
+    public <T> Set<T> getAll(final Function<Document, T> transform) {
         return getAll(COLLECTION_NAME).stream().map(transform).collect(Collectors.toSet());
     }
 
     @Override
-    public <T> T getById(final Function<DBObject, T> transform, final String param) {
-        DBObject dbObject = new BasicDBObject();
+    public <T> T getById(final Function<Document, T> transform, final String param) {
+        Document dbObject = new Document();
         dbObject.put("id", param);
 
         return transform.apply(get(COLLECTION_NAME, dbObject));
@@ -45,6 +42,9 @@ public class ContainerMongodbConnectorImpl extends AbstractMongodbConnector impl
 
     @Override
     public void remove(final String param) {
-        remove(COLLECTION_NAME, new Query(Criteria.where("id").is(param)));
+        Document dbObject = new Document();
+        dbObject.put("id", param);
+
+        remove(COLLECTION_NAME, dbObject);
     }
 }

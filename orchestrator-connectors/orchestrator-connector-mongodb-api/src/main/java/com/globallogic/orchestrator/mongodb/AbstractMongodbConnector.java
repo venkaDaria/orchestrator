@@ -1,21 +1,19 @@
 package com.globallogic.orchestrator.mongodb;
 
 import com.globallogic.orchestrator.connector.exception.MongodbOperationException;
-import com.mongodb.DBObject;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public abstract class AbstractMongodbConnector {
 
-    @Qualifier("getMongoOperations")
     @Autowired
-    private MongoOperations mongoOperations;
+    private MongoDatabase mongoDatabase;
 
     protected void validate(final int len, final String name, final String... params) {
         if (params.length != len) {
@@ -23,19 +21,19 @@ public abstract class AbstractMongodbConnector {
         }
     }
 
-    protected void insert(final String collectionName, final DBObject object) {
-        mongoOperations.insert(object, collectionName);
+    protected void insert(final String collectionName, final Document dc) {
+        mongoDatabase.getCollection(collectionName).insertOne(dc);
     }
 
-    protected List<DBObject> getAll(final String collectionName) {
-        return mongoOperations.getCollection(collectionName).find().toArray();
+    protected List<Document> getAll(final String collectionName) {
+        return mongoDatabase.getCollection(collectionName).find().into(new ArrayList<>());
     }
 
-    protected DBObject get(final String collectionName, final DBObject dbObject) {
-        return mongoOperations.getCollection(collectionName).find(dbObject).toArray().get(0);
+    protected Document get(final String collectionName, final Document dc) {
+        return mongoDatabase.getCollection(collectionName).find(dc).into(new ArrayList<>()).get(0);
     }
 
-    protected void remove(final String collectionName, final Query searchQuery) {
-        mongoOperations.remove(searchQuery, collectionName);
+    protected void remove(final String collectionName, final Document dc) {
+        mongoDatabase.getCollection(collectionName).deleteOne(dc);
     }
 }

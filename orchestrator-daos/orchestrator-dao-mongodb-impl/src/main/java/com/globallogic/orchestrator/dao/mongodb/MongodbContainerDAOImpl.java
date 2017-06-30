@@ -1,11 +1,10 @@
 package com.globallogic.orchestrator.dao.mongodb;
 
-import com.globallogic.orchestrator.mongodb.ContainerMongodbConnector;
 import com.globallogic.orchestrator.dao.dto.ContainerDto;
 import com.globallogic.orchestrator.dao.mongodb.mapper.ContainerTransformator;
+import com.globallogic.orchestrator.mongodb.ContainerMongodbConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -19,7 +18,6 @@ public class MongodbContainerDAOImpl implements MongodbContainerDAO {
     private ContainerTransformator containerTransformator;
 
     @Override
-    @Transactional
     public void save(final Set<ContainerDto> containers) {
         containers.forEach(el -> connector.insert(el.getId(), el.getStatus(), el.getNodeName(), el.getServiceName()));
     }

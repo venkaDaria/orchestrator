@@ -1,13 +1,13 @@
 package com.globallogic.orchestrator.dao.mongodb.mapper;
 
 import com.globallogic.orchestrator.dao.dto.ContainerDto;
-import com.mongodb.DBObject;
+import org.bson.Document;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ContainerTransformator {
 
-    public ContainerDto toDto(final DBObject dbObject) {
+    public ContainerDto toDto(final Document dbObject) {
         ContainerDto container = new ContainerDto();
 
         container.setId(dbObject.get("id").toString());
