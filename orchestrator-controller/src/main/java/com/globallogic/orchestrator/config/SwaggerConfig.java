@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.controller.config;
+package com.globallogic.orchestrator.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

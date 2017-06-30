@@ -9,6 +9,7 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 public class MongoDatabaseConfig {
+
     @Autowired
     private Environment env;
 

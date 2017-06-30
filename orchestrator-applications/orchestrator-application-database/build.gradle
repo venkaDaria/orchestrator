@@ -1,26 +1,14 @@
 group 'com.globallogic.orchestrator'
 
-def props = new Properties()
-
-file("src/main/resources/application.properties").withInputStream { props.load(it) }
-
 dependencies {
 
-    if (props.getProperty("orchestrator.base.enabled").toBoolean()) {
-        compile project(':orchestrator-base')
-    }
+    compile project(':orchestrator-base')
 
-    if (props.getProperty("orchestrator.controller.enabled").toBoolean()) {
-        compile project(':orchestrator-controller')
-    }
+    compile project(':orchestrator-controller')
 
-    if (props.getProperty("orchestrator.service.enabled").toBoolean()) {
-        compile project(':orchestrator-service-impl')
-    }
+    compile project(':orchestrator-service-impl')
 
-    if (props.getProperty("orchestrator.connector.database.enabled").toBoolean()) {
-        compile project(':orchestrator-daos:orchestrator-dao-database-impl')
-    }
+    compile project(':orchestrator-daos:orchestrator-dao-database-impl')
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 

@@ -1,0 +1,39 @@
+db:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/config
+  login: root
+  password: yroot
+
+mongodb:
+  host: 127.0.0.1
+  port: 27017
+  databaseName: config
+
+orchestrator:
+  base:
+    enabled: true
+
+  connector:
+    database:
+      enabled: true
+    filesystem:
+      enabled: true
+    mongodb:
+      enabled: true
+
+  controller:
+    enabled: true
+
+  dao:
+    database:
+      enabled: true
+    filesystem:
+      enabled: true
+    mongodb:
+      enabled: true
+
+  model:
+    enabled: true
+
+  service:
+    enabled: true
