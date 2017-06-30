@@ -6,7 +6,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.globallogic.orchestrator" level="INFO" additivity="false">
+    <logger name="com.globallogic.orchestrator" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 
