@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,6 +49,16 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
         String[] lines = connector.read(FILE_NAME).split(System.lineSeparator());
 
         return getDTO(Arrays.stream(lines).filter(line -> line.split(SEPARATOR)[0].equals(name)).findAny().orElse(null));
+    }
+
+    @Override
+    public void remove(final String id) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void add(final String name, final String image, final List<String> roles, final List<String> ports, final List<String> volumes) {
+        throw new UnsupportedOperationException();
     }
 
     private String getString(final ServiceDto service) {

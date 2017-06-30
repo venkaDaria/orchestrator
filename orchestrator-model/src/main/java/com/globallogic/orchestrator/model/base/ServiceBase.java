@@ -13,6 +13,7 @@ import com.globallogic.orchestrator.model.valueobject.Volume;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import java.beans.Transient;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -89,6 +90,7 @@ public abstract class ServiceBase extends Entity {
         return CollectionUtils.isNotEmpty(roles);
     }
 
+    @Transient
     public Set<Container> getContainers() {
         return getUnmodifiableSet(containers);
     }
@@ -144,6 +146,7 @@ public abstract class ServiceBase extends Entity {
         removeContainers(containers);
     }
 
+    @Transient
     public Set<Node> getNodes() {
         Set<Node> nodes = new HashSet<>();
         for (Container cont : containers) {

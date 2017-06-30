@@ -5,6 +5,7 @@ import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.service.translators.ServiceDtoTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,5 +31,15 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public Service getByName(final String name) {
         return translator.fromDto(serviceDAO.getByName(name));
+    }
+
+    @Override
+    public void remove(final String name) {
+        serviceDAO.remove(name);
+    }
+
+    @Override
+    public void add(final String name, final String image, final List<String> roles, final List<String> ports, final List<String> volumes) {
+        serviceDAO.add(name, image, roles, ports, volumes);
     }
 }

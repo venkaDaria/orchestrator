@@ -46,6 +46,16 @@ public class FileSystemContainerDAOImpl implements FileSystemContainerDAO {
         return getDTO(Arrays.stream(lines).filter(line -> line.split(SEPARATOR)[0].equals(id)).findAny().orElse(null));
     }
 
+    @Override
+    public void remove(final String id) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void add(final String id, final String status, final String node, final String server) {
+        throw new UnsupportedOperationException();
+    }
+
     private String getString(final ContainerDto container) {
         return container.getId() + SEPARATOR + container.getNodeName() + SEPARATOR + container.getServiceName()
                 + SEPARATOR + container.getStatus() + System.lineSeparator();

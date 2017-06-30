@@ -3,27 +3,36 @@ package com.globallogic.orchestrator.controller;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.service.ContainerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/container")
+@RequestMapping(value = "/container", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ContainerController {
 
     @Autowired
     private ContainerService containerService;
 
-    @RequestMapping()
-    public Set<String> getAll() {
-        return containerService.load().stream().map(Container::asFormattedString).collect(Collectors.toSet());
+    @GetMapping()
+    public Set<Container> getAll() {
+        return containerService.load();
     }
 
-    @RequestMapping("/{id}")
-    public String getContainer(@PathVariable final String id) {
-        return containerService.getById(id).asFormattedString();
+    @GetMapping("/{id}")
+    public Container getContainer(@PathVariable final String id) {
+        return containerService.getById(id);
+    }
+
+    @PutMapping()
+    public void add(@RequestParam final String id, @RequestParam final String status,
+                    @RequestParam final String node, @RequestParam final String server) {
+        containerService.add(id, status, node, server);
+    }
+
+    @DeleteMapping("/{id}")
+    public void remove(@PathVariable final String id) {
+        containerService.remove(id);
     }
 }

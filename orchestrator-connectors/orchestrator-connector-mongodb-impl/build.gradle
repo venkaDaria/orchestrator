@@ -1,0 +1,6 @@
+group 'com.globallogic.orchestrator'
+
+dependencies {
+    compile project(':orchestrator-connectors:orchestrator-connector-mongodb-api')
+}
+

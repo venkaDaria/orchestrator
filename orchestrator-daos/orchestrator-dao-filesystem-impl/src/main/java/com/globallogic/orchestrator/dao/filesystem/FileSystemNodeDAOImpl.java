@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -46,6 +47,16 @@ public class FileSystemNodeDAOImpl implements FileSystemNodeDAO {
         String[] lines = connector.read(FILE_NAME).split(System.lineSeparator());
 
         return getDTO(Arrays.stream(lines).filter(line -> line.split(SEPARATOR)[0].equals(name)).findAny().orElse(null));
+    }
+
+    @Override
+    public void remove(final String id) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void add(final String name, final List<String> roles) {
+        throw new UnsupportedOperationException();
     }
 
     private String getString(final NodeDto node) {

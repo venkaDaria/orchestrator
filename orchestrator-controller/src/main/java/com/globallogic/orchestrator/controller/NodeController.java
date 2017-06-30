@@ -3,27 +3,36 @@ package com.globallogic.orchestrator.controller;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.service.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/node")
+@RequestMapping(value = "/node", produces = MediaType.APPLICATION_JSON_VALUE)
 public class NodeController {
 
     @Autowired
     private NodeService nodeService;
 
-    @RequestMapping()
-    public Set<String> getAll() {
-        return nodeService.load().stream().map(Node::asFormattedString).collect(Collectors.toSet());
+    @GetMapping()
+    public Set<Node> getAll() {
+        return nodeService.load();
     }
 
-    @RequestMapping("/{name}")
-    public String getContainer(@PathVariable final String name) {
-        return nodeService.getByName(name).asFormattedString();
+    @GetMapping("/{name}")
+    public Node getNode(@PathVariable final String name) {
+        return nodeService.getByName(name);
+    }
+
+    @PutMapping()
+    public void add(@RequestParam final String name, @RequestParam final List<String> roles) {
+        nodeService.add(name, roles);
+    }
+
+    @DeleteMapping("/{name}")
+    public void remove(@PathVariable final String name) {
+       nodeService.remove(name);
     }
 }

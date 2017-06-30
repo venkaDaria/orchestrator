@@ -6,6 +6,7 @@ import com.globallogic.orchestrator.service.translators.NodeDtoTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,5 +32,15 @@ public class NodeServiceImpl implements NodeService {
     @Override
     public Node getByName(final String name) {
         return translator.fromDto(nodeDAO.getByName(name));
+    }
+
+    @Override
+    public void remove(final String name) {
+        nodeDAO.remove(name);
+    }
+
+    @Override
+    public void add(final String name, final List<String> roles) {
+        nodeDAO.add(name, roles);
     }
 }

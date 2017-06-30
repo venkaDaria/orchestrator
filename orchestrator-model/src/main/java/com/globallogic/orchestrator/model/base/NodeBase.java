@@ -9,6 +9,7 @@ import com.globallogic.orchestrator.model.valueobject.Role;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import java.beans.Transient;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -46,6 +47,7 @@ public abstract class NodeBase extends Entity {
         this.roles = new HashSet<>(roles);
     }
 
+    @Transient
     public Set<Container> getContainers() {
         return getUnmodifiableSet(containers);
     }
