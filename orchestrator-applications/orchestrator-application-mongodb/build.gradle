@@ -14,5 +14,9 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger-ui'
 
     compile group: 'org.mongodb', name: 'mongodb-driver'
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api'
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core'
 }
 
