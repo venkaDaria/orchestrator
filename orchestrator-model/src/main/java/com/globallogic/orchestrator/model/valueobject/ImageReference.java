@@ -17,7 +17,7 @@ public final class ImageReference extends StringValueObject {
     public ImageReference(final String path) {
         super(path);
 
-        Pattern p = Pattern.compile("^(.+?)\\/(.+?)(:(.+?))?(@(.+))?$");
+        Pattern p = Pattern.compile("^(.+?)/(.+?)(:(.+?))?(@(.+))?$");
         Matcher m = p.matcher(path);
 
         boolean isMatch = m.matches();
