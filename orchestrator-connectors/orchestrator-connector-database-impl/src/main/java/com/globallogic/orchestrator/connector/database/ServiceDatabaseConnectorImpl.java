@@ -1,5 +1,7 @@
 package com.globallogic.orchestrator.connector.database;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,6 +10,8 @@ import java.util.Set;
 
 @Repository
 public class ServiceDatabaseConnectorImpl extends AbstractDatabaseConnector implements ServiceDatabaseConnector {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ServiceDatabaseConnectorImpl.class);
 
     private static final String INSERT_SERVICE_QUERY = "INSERT INTO services VALUES(?,?)";
 
@@ -43,15 +47,19 @@ public class ServiceDatabaseConnectorImpl extends AbstractDatabaseConnector impl
         });
         ports.forEach(port -> super.insert(INSERT_PORT_QUERY, port, name));
         volumes.forEach(volume -> super.insert(INSERT_VOLUME_QUERY, volume, name));
+
+        LOG.debug("Insert a service -> " + name + ", " + image + ", " + roles + ", " + volumes + ", " + ports);
     }
 
     @Override
     public <T> Set<T> getAll(final RowMapper<T> rowMapper) {
+        LOG.debug("Get all services");
         return getAll(GET_ALL_SERVICES_QUERY, rowMapper);
     }
 
     @Override
     public <T> T getByName(final String name, final RowMapper<T> rowMapper) {
+        LOG.debug("Get a service by name -> " + name);
         return get(GET_SERVICE_QUERY, name, rowMapper);
     }
 }

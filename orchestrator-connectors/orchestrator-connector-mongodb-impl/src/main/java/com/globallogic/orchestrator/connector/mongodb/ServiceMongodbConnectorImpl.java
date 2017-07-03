@@ -1,8 +1,8 @@
 package com.globallogic.orchestrator.connector.mongodb;
 
-import com.globallogic.orchestrator.mongodb.AbstractMongodbConnector;
-import com.globallogic.orchestrator.mongodb.ServiceMongodbConnector;
 import org.bson.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.Set;
@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 @Repository
 public class ServiceMongodbConnectorImpl extends AbstractMongodbConnector implements ServiceMongodbConnector {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ServiceMongodbConnectorImpl.class);
 
     private static String COLLECTION_NAME = "services";
 
@@ -25,10 +27,12 @@ public class ServiceMongodbConnectorImpl extends AbstractMongodbConnector implem
         dbObject.put("volumes", volumes);
 
         insert(COLLECTION_NAME, dbObject);
+        LOG.debug("Insert a service -> " + dbObject);
     }
 
     @Override
     public <T> Set<T> getAll(final Function<Document, T> transform) {
+        LOG.debug("Get services");
         return getAll(COLLECTION_NAME).stream().map(transform).collect(Collectors.toSet());
     }
 
@@ -37,6 +41,7 @@ public class ServiceMongodbConnectorImpl extends AbstractMongodbConnector implem
         Document dbObject = new Document();
         dbObject.put("name", param);
 
+        LOG.debug("Get a service by name -> " + param);
         return transform.apply(get(COLLECTION_NAME, dbObject));
     }
 
@@ -45,6 +50,7 @@ public class ServiceMongodbConnectorImpl extends AbstractMongodbConnector implem
         Document dbObject = new Document();
         dbObject.put("name", param);
 
+        LOG.debug("Remove a service by name -> " + param);
         remove(COLLECTION_NAME, dbObject);
     }
 }

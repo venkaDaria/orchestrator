@@ -1,6 +1,8 @@
 package com.globallogic.orchestrator.dao.database.mapper;
 
 import com.globallogic.orchestrator.dao.dto.NodeDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,8 @@ import java.util.Set;
 
 @Component
 public class NodeRowMapper implements RowMapper<NodeDto> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(NodeRowMapper.class);
 
     private final Map<String, NodeDto> nodeMap;
 
@@ -35,6 +39,7 @@ public class NodeRowMapper implements RowMapper<NodeDto> {
 
         nodeMap.put(name, nodeDto);
 
+        LOG.debug("Get NodeDto -> " + nodeDto);
         return nodeDto;
     }
 }

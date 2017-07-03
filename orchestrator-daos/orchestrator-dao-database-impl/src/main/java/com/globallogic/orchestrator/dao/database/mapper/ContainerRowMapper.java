@@ -2,6 +2,8 @@ package com.globallogic.orchestrator.dao.database.mapper;
 
 import com.globallogic.orchestrator.connector.exception.DatabaseOperationException;
 import com.globallogic.orchestrator.dao.dto.ContainerDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +12,8 @@ import java.sql.SQLException;
 
 @Component
 public class ContainerRowMapper implements RowMapper<ContainerDto> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ContainerRowMapper.class);
 
     @Override
     public ContainerDto mapRow(final ResultSet rs, final int rowNum) {
@@ -24,6 +28,7 @@ public class ContainerRowMapper implements RowMapper<ContainerDto> {
             throw new DatabaseOperationException();
         }
 
+        LOG.debug("Get ContainerDto -> " + container);
         return container;
     }
 }

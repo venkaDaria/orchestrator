@@ -4,6 +4,8 @@ import com.globallogic.orchestrator.connector.filesystem.FileSystemConnector;
 import com.globallogic.orchestrator.dao.SeparatorHolder;
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 @Component
 public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
 
+    private static final Logger LOG = LoggerFactory.getLogger(FileSystemServiceDAOImpl.class);
+
     private final String SEPARATOR;
 
     private static final String FILE_NAME = "services.csv";
@@ -31,6 +35,8 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
 
     @Override
     public void save(final Set<ServiceDto> services) {
+        LOG.debug("Save services -> " + services);
+
         StringBuilder sb = new StringBuilder();
         services.forEach(service -> sb.append(getString(service)));
 
@@ -39,6 +45,7 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
 
     @Override
     public Set<ServiceDto> load() {
+        LOG.debug("Load services");
         String[] lines = connector.read(FILE_NAME).split(System.lineSeparator());
 
         return Arrays.stream(lines).map(this::getDTO).collect(Collectors.toSet());
@@ -46,6 +53,8 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
 
     @Override
     public ServiceDto getByName(final String name) {
+        LOG.debug("Get a service by name -> " + name);
+
         String[] lines = connector.read(FILE_NAME).split(System.lineSeparator());
 
         return getDTO(Arrays.stream(lines).filter(line -> line.split(SEPARATOR)[0].equals(name)).findAny().orElse(null));
@@ -62,6 +71,7 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
     }
 
     private String getString(final ServiceDto service) {
+        LOG.debug("Get a String from ServiceDto -> " + service);
         return service.getName() + SEPARATOR + service.getImage() +
                 SEPARATOR + getString(service.getPorts()) + SEPARATOR +
                 SEPARATOR + getString(service.getRoles()) + SEPARATOR +
@@ -76,6 +86,7 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
     }
 
     private ServiceDto getDTO(final String line) {
+        LOG.debug("Get a ServiceDto from String -> " + line);
         ServiceDto service = new ServiceDto();
 
         String regex = "^(.+?)" + SEPARATOR + "(.+?)" + SEPARATOR + "(.*?)" + SEPARATOR + SEPARATOR + "(.*?)"
@@ -108,6 +119,7 @@ public class FileSystemServiceDAOImpl implements FileSystemServiceDAO {
             service.setVolumes(new HashSet<>());
         }
 
+        LOG.debug("Return a ServiceDto -> " + service);
         return service;
     }
 }

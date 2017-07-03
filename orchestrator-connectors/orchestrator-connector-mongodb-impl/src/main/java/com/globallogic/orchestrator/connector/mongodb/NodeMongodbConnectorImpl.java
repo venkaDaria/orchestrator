@@ -1,8 +1,8 @@
 package com.globallogic.orchestrator.connector.mongodb;
 
-import com.globallogic.orchestrator.mongodb.AbstractMongodbConnector;
-import com.globallogic.orchestrator.mongodb.NodeMongodbConnector;
 import org.bson.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.Set;
@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 @Repository
 public class NodeMongodbConnectorImpl extends AbstractMongodbConnector implements NodeMongodbConnector {
 
+    private static final Logger LOG = LoggerFactory.getLogger(NodeMongodbConnectorImpl.class);
+
     private static String COLLECTION_NAME = "nodes";
 
     public void insert(final String name, final Set<String> roles) {
@@ -20,10 +22,12 @@ public class NodeMongodbConnectorImpl extends AbstractMongodbConnector implement
         dbObject.put("roles", roles);
 
         insert(COLLECTION_NAME, dbObject);
+        LOG.debug("Insert a node -> " + dbObject);
     }
 
     @Override
     public <T> Set<T> getAll(final Function<Document, T> transform) {
+        LOG.debug("Get nodes");
         return getAll(COLLECTION_NAME).stream().map(transform).collect(Collectors.toSet());
     }
 
@@ -32,6 +36,7 @@ public class NodeMongodbConnectorImpl extends AbstractMongodbConnector implement
         Document dbObject = new Document();
         dbObject.put("name", param);
 
+        LOG.debug("Get a node by name -> " + param);
         return transform.apply(get(COLLECTION_NAME, dbObject));
     }
 
@@ -40,6 +45,7 @@ public class NodeMongodbConnectorImpl extends AbstractMongodbConnector implement
         Document dbObject = new Document();
         dbObject.put("name", param);
 
+        LOG.debug("Remove a node by name -> " + param);
         remove(COLLECTION_NAME, dbObject);
     }
 }

@@ -18,5 +18,3 @@ public class Application {
         LOG.debug("Start app");
     }
 }
-
-//TODO: logging

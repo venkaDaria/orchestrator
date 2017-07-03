@@ -7,6 +7,8 @@ import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.entity.Service;
 import com.globallogic.orchestrator.service.translators.ContainerDtoTranslator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,8 @@ import java.util.Set;
 
 @Repository
 public class ConfigurationServiceImpl implements ConfigurationService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
 
     @Autowired
     private NodeService nodeService;
@@ -33,6 +37,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
     @Override
     public void save(final Configuration config) {
+        LOG.debug("Save configuration -> " + config);
         Set<Container> containers = new HashSet<>();
         config.getNodes().forEach(node -> containers.addAll(node.getContainers()));
 
@@ -60,6 +65,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
         config.setNodes(nodes);
         config.setServices(services);
 
+        LOG.debug("Load configuration -> " + config);
         return config;
     }
 }

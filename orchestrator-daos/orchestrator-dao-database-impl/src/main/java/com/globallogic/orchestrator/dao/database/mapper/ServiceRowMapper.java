@@ -1,6 +1,8 @@
 package com.globallogic.orchestrator.dao.database.mapper;
 
 import com.globallogic.orchestrator.dao.dto.ServiceDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,8 @@ import java.util.Set;
 
 @Component
 public class ServiceRowMapper implements RowMapper<ServiceDto> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ServiceRowMapper.class);
 
     private final Map<String, ServiceDto> serviceMap;
 
@@ -47,6 +51,7 @@ public class ServiceRowMapper implements RowMapper<ServiceDto> {
 
         serviceMap.put(name, serviceDto);
 
+        LOG.debug("Get ServiceDto -> " + serviceDto);
         return serviceDto;
     }
 }

@@ -1,13 +1,14 @@
-package com.globallogic.orchestrator.mongodb;
+package com.globallogic.orchestrator.connector.mongodb;
 
 import org.bson.Document;
 
 import java.util.Set;
 import java.util.function.Function;
 
-public interface NodeMongodbConnector {
+public interface ServiceMongodbConnector {
 
-    void insert(final String name, final Set<String> roles);
+    void insert(final String name, final String image, final Set<String> roles,
+                final Set<String> ports, final Set<String> volumes);
 
     <T> Set<T> getAll(final Function<Document, T> transform);
 
