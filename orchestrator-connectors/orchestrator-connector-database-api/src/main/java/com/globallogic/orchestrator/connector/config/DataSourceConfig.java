@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.connector.database.config;
+package com.globallogic.orchestrator.connector.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

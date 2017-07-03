@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
-@ComponentScan("com.globallogic.orchestrator")
+@ComponentScan("com.globallogic.orchestrator.config")
 public class Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(Application.class);
@@ -19,4 +19,4 @@ public class Application {
     }
 }
 
-//TODO: logging + properties (config for app?)
+//TODO: logging

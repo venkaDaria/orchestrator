@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.mongodb.config;
+package com.globallogic.orchestrator.config;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
