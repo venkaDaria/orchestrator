@@ -1,14 +1,10 @@
 orchestrator:
   connector:
     database:
-      driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/com.globallogic.orchestrator.config
-      login: root
-      password: yroot
-      enabled: true
+      enabled: false
 
     filesystem:
-      enabled: true
+      enabled: false
 
     mongodb:
       host: 127.0.0.1
@@ -21,9 +17,9 @@ orchestrator:
 
   dao:
     database:
-      enabled: true
+      enabled: false
     filesystem:
-      enabled: true
+      enabled: false
     mongodb:
       enabled: true
 
