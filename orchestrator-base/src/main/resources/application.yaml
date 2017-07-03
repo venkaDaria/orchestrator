@@ -1,24 +1,19 @@
-db:
-  driverClassName: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/com.globallogic.orchestrator.config
-  login: root
-  password: yroot
-
-mongodb:
-  host: 127.0.0.1
-  port: 27017
-  databaseName: com.globallogic.orchestrator.config
-
 orchestrator:
-  base:
-    enabled: true
-
   connector:
     database:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/com.globallogic.orchestrator.config
+      login: root
+      password: yroot
       enabled: true
+
     filesystem:
       enabled: true
+
     mongodb:
+      host: 127.0.0.1
+      port: 27017
+      databaseName: com.globallogic.orchestrator.config
       enabled: true
 
   controller:
@@ -31,9 +26,6 @@ orchestrator:
       enabled: true
     mongodb:
       enabled: true
-
-  model:
-    enabled: true
 
   service:
     enabled: true

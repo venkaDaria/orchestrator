@@ -20,7 +20,6 @@ public abstract class AbstractMongodbConnector {
 
     protected void validate(final int len, final String name, final String... params) {
         if (params.length != len) {
-            LOG.error("Can't insert " + name);
             throw new MongodbOperationException("Can't insert " + name);
         }
         LOG.debug("Validation is successful");

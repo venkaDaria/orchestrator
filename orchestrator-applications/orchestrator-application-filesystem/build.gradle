@@ -10,8 +10,6 @@ dependencies {
 
     compile project(':orchestrator-daos:orchestrator-dao-filesystem-impl')
 
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
-
     compile group: 'io.springfox', name: 'springfox-swagger-ui'
 }
 

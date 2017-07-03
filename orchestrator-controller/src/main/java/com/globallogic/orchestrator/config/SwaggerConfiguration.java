@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -14,11 +12,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SwaggerConfiguration.class);
-
     @Bean
     public Docket api() {
-        LOG.debug("Swagger was configured");
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())

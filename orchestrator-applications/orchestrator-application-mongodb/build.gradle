@@ -10,17 +10,7 @@ dependencies {
 
     compile project(':orchestrator-daos:orchestrator-dao-mongodb-impl')
 
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
-
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb'
-
     compile group: 'io.springfox', name: 'springfox-swagger-ui'
 
     compile group: 'org.mongodb', name: 'mongodb-driver'
-
-    compile group: 'ch.qos.logback', name: 'logback-classic'
-
-    compile group: 'ch.qos.logback', name: 'logback-core'
-
-    compile group: 'org.slf4j', name: 'slf4j-api'
 }

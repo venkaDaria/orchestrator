@@ -2,10 +2,8 @@ package com.globallogic.orchestrator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-@ComponentScan("com.globallogic.orchestrator")
+@SpringBootApplication(scanBasePackages = "com.globallogic.orchestrator.config")
 public class Application {
 
     public static void main(String[] args) {

@@ -10,8 +10,6 @@ dependencies {
 
     compile project(':orchestrator-daos:orchestrator-dao-database-impl')
 
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
-
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc'
 
     compile group: 'mysql', name: 'mysql-connector-java'

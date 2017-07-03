@@ -1,7 +1,5 @@
 package com.globallogic.orchestrator.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +13,6 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConfiguration  {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfiguration.class);
-
     @Autowired
     private Environment env;
 
@@ -24,19 +20,17 @@ public class DataSourceConfiguration  {
     @Primary
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getProperty("db.driverClassName"));
-        dataSource.setUrl(env.getProperty("db.url"));
-        dataSource.setUsername(env.getProperty("db.login"));
-        dataSource.setPassword(env.getProperty("db.password"));
 
-        LOG.debug("DataSource was created");
+        dataSource.setDriverClassName(env.getProperty("orchestrator.connector.database.driverClassName"));
+        dataSource.setUrl(env.getProperty("orchestrator.connector.database.url"));
+        dataSource.setUsername(env.getProperty("orchestrator.connector.database.login"));
+        dataSource.setPassword(env.getProperty("orchestrator.connector.database.password"));
 
         return dataSource;
     }
 
     @Bean
     public JdbcTemplate getJdbcTemplate(final DataSource dataSource) {
-        LOG.debug("JdbcTemplate was created");
         return new JdbcTemplate(dataSource);
     }
 }

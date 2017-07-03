@@ -27,11 +27,9 @@ public class FileSystemConnectorImpl implements FileSystemConnector {
                 sb.append(s).append(System.lineSeparator());
             }
         } catch (java.io.FileNotFoundException e) {
-            LOG.error(e.getMessage());
-            throw new FileNotFoundException();
+            throw new FileNotFoundException(e);
         } catch (IOException e) {
-            LOG.error(e.getMessage());
-            throw new FileProcessException();
+            throw new FileProcessException(e);
         }
 
         LOG.debug("Finish reading from " + fileName);
@@ -46,8 +44,7 @@ public class FileSystemConnectorImpl implements FileSystemConnector {
         try (PrintWriter out = new PrintWriter(fileName)) {
             out.print(text);
         } catch (java.io.FileNotFoundException e) {
-            LOG.error(e.getMessage());
-            throw new FileProcessException();
+            throw new FileProcessException(e);
         }
 
         LOG.debug("Start writing to " + fileName);
