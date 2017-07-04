@@ -4,4 +4,6 @@ dependencies {
     compile project(':orchestrator-daos:orchestrator-dao-api')
 
     compile project(':orchestrator-connectors:orchestrator-connector-filesystem-impl')
+
+    compile files('src/main/config')
 }

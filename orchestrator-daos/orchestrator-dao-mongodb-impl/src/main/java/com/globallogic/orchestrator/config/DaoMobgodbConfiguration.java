@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ConditionalOnProperty(name = "orchestrator.dao.mongodb.enabled", havingValue = "true")
-@PropertySource("classpath:mongo-db.properties")
+@PropertySource("classpath:mongodb-dao.properties")
 @ComponentScan("com.globallogic.orchestrator.dao.mongodb")
 public class DaoMobgodbConfiguration {
     // empty

@@ -14,4 +14,6 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb'
 
     compile group: 'io.springfox', name: 'springfox-swagger2'
+
+    compile files('src/main/config')
 }
