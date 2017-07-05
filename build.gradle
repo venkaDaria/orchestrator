@@ -41,6 +41,8 @@ allprojects {
             dependency group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
 
             dependency group: 'org.slf4j', name: 'slf4j-api', version: '1.7.7'
+
+            dependency group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '1.5.4.RELEASE'
         }
     }
 }

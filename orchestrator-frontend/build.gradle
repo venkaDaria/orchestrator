@@ -2,8 +2,6 @@ group 'com.globallogic.orchestrator'
 
 dependencies {
     compile project(':orchestrator-base')
-
-    compile group: 'org.webjars.npm', name: 'angular2', version: '2.0.0-alpha.55'
-
+    
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '1.5.4.RELEASE'
 }
