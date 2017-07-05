@@ -15,6 +15,9 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 AppComponent = __decorate([
-    core_1.Component({ selector: 'greeting', template: 'Hello, {{name}}!' })
+    core_1.Component({
+        selector: 'greeting',
+        template: 'Hello, {{name}}!'
+    })
 ], AppComponent);
 platform_browser_dynamic_1.bootstrap(AppComponent);
