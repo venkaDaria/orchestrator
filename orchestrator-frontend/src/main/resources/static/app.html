@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Orchestrator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="https://npmcdn.com/zone.js@0.8.12"></script>
+    <script src="https://npmcdn.com/reflect-metadata@0.1.10"></script>
+    <script src="https://npmcdn.com/typescript@2.4.1"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.27/system.js"></script>
+
+    <script src="config.js"></script>
+    <script>
+        System.import('app')
+            .catch(console.error.bind(console));
+    </script>
+</head>
+
+<body>
+<my-app>
+    Loading...
+</my-app>
+</body>
+
+</html>

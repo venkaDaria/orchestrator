@@ -10,7 +10,12 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index() {
-        return "forward:index.html";
+        return "forward:app.html";
+    }
+
+    @RequestMapping("/angular")
+    public String angular() {
+        return "forward:angular.html";
     }
 
     @RequestMapping("/template")
