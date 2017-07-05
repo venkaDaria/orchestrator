@@ -10,14 +10,11 @@ var core_1 = require("@angular/core");
 var platform_browser_dynamic_1 = require("@angular/platform-browser-dynamic");
 var AppComponent = (function () {
     function AppComponent() {
+        this.name = 'World';
     }
     return AppComponent;
 }());
 AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        template: "<h1>Hello from the {{componentName}}.</h1>"
-    })
+    core_1.Component({ selector: 'greeting', template: 'Hello, {{name}}!' })
 ], AppComponent);
-exports.AppComponent = AppComponent;
 platform_browser_dynamic_1.bootstrap(AppComponent);
