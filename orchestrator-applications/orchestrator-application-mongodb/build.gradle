@@ -13,4 +13,6 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger-ui'
 
     compile group: 'org.mongodb', name: 'mongodb-driver'
+
+    compile project(':orchestrator-frontend')
 }

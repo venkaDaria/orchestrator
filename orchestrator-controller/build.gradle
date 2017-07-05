@@ -16,4 +16,6 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger2'
 
     compile files('src/main/config')
+
+    compile project(':orchestrator-frontend')
 }
