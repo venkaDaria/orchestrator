@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     @RequestMapping("/")
-    public String index(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+    public String index() {
+        return "redirect:index.html";
+    }
+
+    @RequestMapping("/template")
+    public String template(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);
-        return "index";
+        return "template";
     }
 }
