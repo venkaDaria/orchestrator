@@ -1,4 +1,7 @@
+group 'com.globallogic.orchestrator'
+
 dependencies {
+
     compile project(':orchestrator-base')
 
     compile project(':orchestrator-controller')
@@ -6,8 +9,6 @@ dependencies {
     compile project(':orchestrator-service-impl')
 
     compile project(':orchestrator-daos:orchestrator-dao-database-impl')
-
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc'
 

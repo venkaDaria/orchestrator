@@ -1,0 +1,22 @@
+orchestrator:
+  connector:
+    database:
+      enabled: false
+    filesystem:
+      enabled: true
+    mongodb:
+      enabled: false
+
+  controller:
+    enabled: true
+
+  dao:
+    database:
+      enabled: false
+    filesystem:
+      enabled: true
+    mongodb:
+      enabled: false
+
+  service:
+    enabled: true

@@ -1,4 +1,4 @@
-package com.globallogic.orchestrator.mongodb;
+package com.globallogic.orchestrator.connector.mongodb;
 
 import org.bson.Document;
 

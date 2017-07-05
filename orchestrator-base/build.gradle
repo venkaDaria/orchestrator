@@ -6,4 +6,12 @@ dependencies {
     compile group: 'commons-lang', name: 'commons-lang'
 
     compile group: 'org.apache.commons', name: 'commons-collections4'
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+
+    compile group: 'ch.qos.logback', name: 'logback-classic'
+
+    compile group: 'ch.qos.logback', name: 'logback-core'
+
+    compile group: 'org.slf4j', name: 'slf4j-api'
 }

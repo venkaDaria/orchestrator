@@ -1,0 +1,27 @@
+orchestrator:
+  connector:
+    database:
+      enabled: false
+
+    filesystem:
+      enabled: false
+
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      databaseName: config
+      enabled: true
+
+  controller:
+    enabled: true
+
+  dao:
+    database:
+      enabled: false
+    filesystem:
+      enabled: false
+    mongodb:
+      enabled: true
+
+  service:
+    enabled: true

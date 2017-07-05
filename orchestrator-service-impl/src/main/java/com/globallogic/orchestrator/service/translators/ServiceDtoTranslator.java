@@ -8,14 +8,19 @@ import com.globallogic.orchestrator.model.valueobject.ImageReference;
 import com.globallogic.orchestrator.model.valueobject.Port;
 import com.globallogic.orchestrator.model.valueobject.Role;
 import com.globallogic.orchestrator.model.valueobject.Volume;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class ServiceDtoTranslator implements Translator<Service, ServiceDto> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ServiceDtoTranslator.class);
+
     @Override
     public ServiceDto getDto(final Service model) {
+        LOG.debug("Get ServiceDto from -> " + model);
         ServiceDto dto = new ServiceDto();
 
         dto.setName(model.getName());
@@ -25,11 +30,13 @@ public class ServiceDtoTranslator implements Translator<Service, ServiceDto> {
         dto.setPorts(model.getPorts().stream().map(StringValueObject::asString).collect(Collectors.toSet()));
         dto.setVolumes(model.getVolumes().stream().map(StringValueObject::asString).collect(Collectors.toSet()));
 
+        LOG.debug("Return ServiceDto -> " + dto);
         return dto;
     }
 
     @Override
     public Service fromDto(final ServiceDto dto) {
+        LOG.debug("Get Service from -> " + dto);
         Service service = new Service();
 
         service.setName(dto.getName());
@@ -39,6 +46,7 @@ public class ServiceDtoTranslator implements Translator<Service, ServiceDto> {
         service.setPorts(dto.getPorts().stream().map(Port::new).collect(Collectors.toSet()));
         service.setVolumes(dto.getVolumes().stream().map(Volume::new).collect(Collectors.toSet()));
 
+        LOG.debug("Return Service -> " + service);
         return service;
     }
 }

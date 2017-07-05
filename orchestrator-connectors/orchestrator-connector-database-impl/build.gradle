@@ -2,5 +2,7 @@ group 'com.globallogic.orchestrator'
 
 dependencies {
     compile project(':orchestrator-connectors:orchestrator-connector-database-api')
+
+    compile files('src/main/config')
 }
 

@@ -4,4 +4,6 @@ dependencies {
     compile project(':orchestrator-service-api')
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+
+    compile files('src/main/config')
 }

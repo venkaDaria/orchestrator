@@ -1,4 +1,7 @@
+group 'com.globallogic.orchestrator'
+
 dependencies {
+
     compile project(':orchestrator-base')
 
     compile project(':orchestrator-controller')
@@ -7,12 +10,7 @@ dependencies {
 
     compile project(':orchestrator-daos:orchestrator-dao-mongodb-impl')
 
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
-
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb'
-
     compile group: 'io.springfox', name: 'springfox-swagger-ui'
 
     compile group: 'org.mongodb', name: 'mongodb-driver'
 }
-

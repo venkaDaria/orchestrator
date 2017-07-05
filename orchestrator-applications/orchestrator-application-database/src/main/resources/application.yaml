@@ -1,0 +1,27 @@
+orchestrator:
+  connector:
+    database:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/config
+      login: root
+      password: yroot
+      enabled: true
+
+    filesystem:
+      enabled: false
+    mongodb:
+      enabled: false
+
+  controller:
+    enabled: true
+
+  dao:
+    database:
+      enabled: true
+    filesystem:
+      enabled: false
+    mongodb:
+      enabled: false
+
+  service:
+    enabled: true
