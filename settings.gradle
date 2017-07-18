@@ -46,4 +46,3 @@ include 'orchestrator-service-impl'
 include 'orchestrator-test-base'
 
 include 'orchestrator-frontend'
-include 'orchestrator-frontend-examples'
