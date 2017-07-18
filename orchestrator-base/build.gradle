@@ -14,4 +14,8 @@ dependencies {
     compile group: 'ch.qos.logback', name: 'logback-core'
 
     compile group: 'org.slf4j', name: 'slf4j-api'
+
+    compile group: 'javax.mail', name: 'mail'
+
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j'
 }
