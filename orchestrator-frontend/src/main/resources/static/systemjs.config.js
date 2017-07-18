@@ -2,7 +2,7 @@
     System.config({
         paths: {
             //'npm:': 'node_modules/'
-            'npm:': 'https://npmcdn.com/'
+            'npm:': 'https://unpkg.com/'
         },
         map: {
             app: 'app',
