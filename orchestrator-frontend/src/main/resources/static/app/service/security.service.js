@@ -18,7 +18,7 @@ var AuthGuard = (function () {
         this.router = router;
     }
     AuthGuard.prototype.canActivate = function (route, state) {
-        var prevStep = constants_1.STEPS[constants_1.STEPS.indexOf(state.url)];
+        var prevStep = constants_1.STEPS[constants_1.STEPS.indexOf(state.url) - 1];
         if (session_1.Session.get(prevStep) || session_1.Session.get(constants_1.LOADING)) {
             return true;
         }
@@ -27,11 +27,11 @@ var AuthGuard = (function () {
             .catch(function (err) { return console.error(err); });
         return false;
     };
-    AuthGuard = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [router_1.Router])
-    ], AuthGuard);
     return AuthGuard;
 }());
+AuthGuard = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [router_1.Router])
+], AuthGuard);
 exports.AuthGuard = AuthGuard;
 //# sourceMappingURL=security.service.js.map

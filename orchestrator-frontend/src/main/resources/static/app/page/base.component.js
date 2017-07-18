@@ -83,14 +83,14 @@ var BaseComponent = (function () {
             .then(function (success) { return console.log('Go to first page'); })
             .catch(function (err) { return console.error(err); });
     };
-    BaseComponent = __decorate([
-        core_1.Component({
-            templateUrl: 'templates/page/main.html'
-        }),
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [router_1.Router])
-    ], BaseComponent);
     return BaseComponent;
 }());
+BaseComponent = __decorate([
+    core_1.Component({
+        templateUrl: 'templates/page/main.html'
+    }),
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [router_1.Router])
+], BaseComponent);
 exports.BaseComponent = BaseComponent;
 //# sourceMappingURL=base.component.js.map

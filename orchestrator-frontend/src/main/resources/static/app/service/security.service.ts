@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        let prevStep = STEPS[STEPS.indexOf(state.url)];
+        let prevStep = STEPS[STEPS.indexOf(state.url) - 1];
 
         if (Session.get(prevStep) || Session.get(LOADING)) {
             return true;

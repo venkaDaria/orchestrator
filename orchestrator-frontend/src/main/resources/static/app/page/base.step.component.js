@@ -94,11 +94,11 @@ var StepComponent = (function (_super) {
             });
         }
     };
-    __decorate([
-        core_1.ViewChild('form'),
-        __metadata("design:type", Object)
-    ], StepComponent.prototype, "form", void 0);
     return StepComponent;
 }(base_component_1.BaseComponent));
+__decorate([
+    core_1.ViewChild('form'),
+    __metadata("design:type", Object)
+], StepComponent.prototype, "form", void 0);
 exports.StepComponent = StepComponent;
 //# sourceMappingURL=base.step.component.js.map

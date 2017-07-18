@@ -29,72 +29,72 @@ var StepComponent1 = (function (_super) {
     function StepComponent1(service, router) {
         return _super.call(this, service, router) || this;
     }
-    StepComponent1 = __decorate([
-        core_1.Component({
-            templateUrl: 'templates/step/step1.html'
-        }),
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [wizard_service_1.StepValidationService1, router_1.Router])
-    ], StepComponent1);
     return StepComponent1;
 }(base_step_component_1.StepComponent));
+StepComponent1 = __decorate([
+    core_1.Component({
+        templateUrl: 'templates/step/step1.html'
+    }),
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [wizard_service_1.StepValidationService1, router_1.Router])
+], StepComponent1);
 exports.StepComponent1 = StepComponent1;
 var StepComponent2 = (function (_super) {
     __extends(StepComponent2, _super);
     function StepComponent2(service, router) {
         return _super.call(this, service, router) || this;
     }
-    StepComponent2 = __decorate([
-        core_1.Component({
-            templateUrl: 'templates/step/step2.html'
-        }),
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [wizard_service_1.StepValidationService2, router_1.Router])
-    ], StepComponent2);
     return StepComponent2;
 }(base_step_component_1.StepComponent));
+StepComponent2 = __decorate([
+    core_1.Component({
+        templateUrl: 'templates/step/step2.html'
+    }),
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [wizard_service_1.StepValidationService2, router_1.Router])
+], StepComponent2);
 exports.StepComponent2 = StepComponent2;
 var StepComponent3 = (function (_super) {
     __extends(StepComponent3, _super);
     function StepComponent3(service, router) {
         return _super.call(this, service, router) || this;
     }
-    StepComponent3 = __decorate([
-        core_1.Component({
-            templateUrl: 'templates/step/step3.html'
-        }),
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [wizard_service_1.StepValidationService3, router_1.Router])
-    ], StepComponent3);
     return StepComponent3;
 }(base_step_component_1.StepComponent));
+StepComponent3 = __decorate([
+    core_1.Component({
+        templateUrl: 'templates/step/step3.html'
+    }),
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [wizard_service_1.StepValidationService3, router_1.Router])
+], StepComponent3);
 exports.StepComponent3 = StepComponent3;
 var StepComponent4 = (function (_super) {
     __extends(StepComponent4, _super);
     function StepComponent4(service, router) {
         return _super.call(this, service, router) || this;
     }
-    StepComponent4 = __decorate([
-        core_1.Component({
-            templateUrl: 'templates/step/step4.html'
-        }),
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [wizard_service_1.StepValidationService4, router_1.Router])
-    ], StepComponent4);
     return StepComponent4;
 }(base_step_component_1.StepComponent));
+StepComponent4 = __decorate([
+    core_1.Component({
+        templateUrl: 'templates/step/step4.html'
+    }),
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [wizard_service_1.StepValidationService4, router_1.Router])
+], StepComponent4);
 exports.StepComponent4 = StepComponent4;
 var FinalStepComponent = (function (_super) {
     __extends(FinalStepComponent, _super);
     function FinalStepComponent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    FinalStepComponent = __decorate([
-        core_1.Component({
-            templateUrl: 'templates/step/final.html'
-        })
-    ], FinalStepComponent);
     return FinalStepComponent;
 }(base_component_1.BaseComponent));
+FinalStepComponent = __decorate([
+    core_1.Component({
+        templateUrl: 'templates/step/final.html'
+    })
+], FinalStepComponent);
 exports.FinalStepComponent = FinalStepComponent;
 //# sourceMappingURL=step.component.js.map

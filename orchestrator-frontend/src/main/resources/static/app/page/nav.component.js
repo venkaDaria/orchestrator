@@ -42,12 +42,12 @@ var NavComponent = (function (_super) {
     NavComponent.prototype.isFinal = function (idx) {
         return idx == constants_1.STEPS.length - 1;
     };
-    NavComponent = __decorate([
-        core_1.Component({
-            templateUrl: 'templates/page/nav.html'
-        })
-    ], NavComponent);
     return NavComponent;
 }(base_component_1.BaseComponent));
+NavComponent = __decorate([
+    core_1.Component({
+        templateUrl: 'templates/page/nav.html'
+    })
+], NavComponent);
 exports.NavComponent = NavComponent;
 //# sourceMappingURL=nav.component.js.map

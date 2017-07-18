@@ -42,47 +42,47 @@ var StepValidationService1 = (function (_super) {
     function StepValidationService1(http) {
         return _super.call(this, http, constants_1.STEP_1) || this;
     }
-    StepValidationService1 = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], StepValidationService1);
     return StepValidationService1;
 }(ValidationService));
+StepValidationService1 = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], StepValidationService1);
 exports.StepValidationService1 = StepValidationService1;
 var StepValidationService2 = (function (_super) {
     __extends(StepValidationService2, _super);
     function StepValidationService2(http) {
         return _super.call(this, http, constants_1.STEP_2) || this;
     }
-    StepValidationService2 = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], StepValidationService2);
     return StepValidationService2;
 }(ValidationService));
+StepValidationService2 = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], StepValidationService2);
 exports.StepValidationService2 = StepValidationService2;
 var StepValidationService3 = (function (_super) {
     __extends(StepValidationService3, _super);
     function StepValidationService3(http) {
         return _super.call(this, http, constants_1.STEP_3) || this;
     }
-    StepValidationService3 = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], StepValidationService3);
     return StepValidationService3;
 }(ValidationService));
+StepValidationService3 = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], StepValidationService3);
 exports.StepValidationService3 = StepValidationService3;
 var StepValidationService4 = (function (_super) {
     __extends(StepValidationService4, _super);
     function StepValidationService4(http) {
         return _super.call(this, http, constants_1.STEP_4) || this;
     }
-    StepValidationService4 = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], StepValidationService4);
     return StepValidationService4;
 }(ValidationService));
+StepValidationService4 = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], StepValidationService4);
 exports.StepValidationService4 = StepValidationService4;
 //# sourceMappingURL=wizard.service.js.map

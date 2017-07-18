@@ -13,12 +13,5 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "../../../../../wizard/node_modules",
-    "**/*.spec.ts"
-  ]
+  }
 }

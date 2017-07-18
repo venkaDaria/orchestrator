@@ -16,15 +16,15 @@ var AppComponent = (function () {
         this.mockBackendService = mockBackendService;
         this.mockBackendService.start(1000);
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'app-component',
-            templateUrl: 'templates/app.html'
-        }),
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [mock_backend_service_1.MockBackendService])
-    ], AppComponent);
     return AppComponent;
 }());
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'app-component',
+        templateUrl: 'templates/app.html'
+    }),
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [mock_backend_service_1.MockBackendService])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
