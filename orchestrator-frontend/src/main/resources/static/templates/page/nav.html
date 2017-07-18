@@ -1,0 +1,30 @@
+<ul class="nav nav-pills nav-justified thumbnail">
+
+    <li *ngFor="let idx of steps" title="Step {{idx + 1}}"
+        [class.active]="urlEquals(idx)" [class.disabled]="isDisabled(idx)"
+        [class.bg-success]="isSuccess(idx)">
+
+        <a (click)="isDisabled(idx) || goTo(idx)">
+            <div *ngIf="!isFinal(idx); else finalBlock">
+                <div *ngIf="isValid(idx); else elseBlock">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-check-circle fa-stack-2x"></i>
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <ng-template #elseBlock>
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                <strong class="fa-stack-lg">{{idx + 1}}</strong>
+            </span>
+        </ng-template>
+    </li>
+
+    <ng-template #finalBlock>
+         <span class="fa-stack fa-lg">
+             <i class="fa fa-circle-o fa-stack-2x"></i>
+         </span>
+    </ng-template>
+</ul>

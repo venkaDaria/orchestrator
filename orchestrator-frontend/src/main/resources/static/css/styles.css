@@ -1,0 +1,13 @@
+/* sticky footer */
+
+html, body {
+    height: 100%;
+}
+
+footer {
+    height: 10%;
+}
+
+.app {
+    min-height: 90%;
+}

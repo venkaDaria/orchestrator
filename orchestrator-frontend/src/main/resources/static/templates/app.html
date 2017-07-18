@@ -1,0 +1,17 @@
+<div class="app">
+    <header class="container-fluid bg-primary">
+        <h1 class="text-center">Angular Wizard</h1>
+    </header>
+
+    <nav>
+        <router-outlet name="nav"></router-outlet>
+    </nav>
+
+    <main class="container">
+        <router-outlet></router-outlet>
+    </main>
+</div>
+
+<footer class="container-fluid bg-primary">
+    <router-outlet name="footer"></router-outlet>
+</footer>

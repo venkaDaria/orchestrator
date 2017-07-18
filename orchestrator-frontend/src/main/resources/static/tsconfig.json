@@ -1,5 +1,24 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true
-  }
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "removeComments": false,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "../../../../../wizard/node_modules",
+    "**/*.spec.ts"
+  ]
 }

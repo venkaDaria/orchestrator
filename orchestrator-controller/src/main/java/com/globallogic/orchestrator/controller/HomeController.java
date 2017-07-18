@@ -8,19 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/")
+    @RequestMapping({"/", "/step1", "/step2", "/step3", "/step4", "/final"})
     public String index() {
-        return "forward:app.html";
-    }
-
-    @RequestMapping("/angular")
-    public String angular() {
-        return "forward:angular.html";
-    }
-
-    @RequestMapping("/template")
-    public String template(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "template";
+        return "forward:index.html";
     }
 }
