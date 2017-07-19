@@ -10,7 +10,7 @@ export abstract class ValidationService {
     isValid(form: any): Promise<string> {
         return this.http.get(MOCK_URL + this.url, new RequestOptions({params: form}))
             .toPromise()
-            .then(response => response.json())
+            .then((response: any) => response.json())
             .catch((err: any) => console.error(err));
     }
 }

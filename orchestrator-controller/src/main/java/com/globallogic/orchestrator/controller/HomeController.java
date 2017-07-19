@@ -1,9 +1,7 @@
 package com.globallogic.orchestrator.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -12,7 +10,6 @@ public class HomeController {
     public String index() {
         return "forward:index.html";
     }
-
 
     @RequestMapping({"/test"})
     public String test() {
