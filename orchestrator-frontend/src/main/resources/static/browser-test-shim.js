@@ -12,6 +12,13 @@
             '@angular/platform-browser-dynamic/testing': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
             '@angular/router/testing': 'npm:@angular/router/bundles/router-testing.umd.js',
             '@angular/forms/testing': 'npm:@angular/forms/bundles/forms-testing.umd.js'
+        },
+
+        packages: {
+            test: {
+                main: 'main.spec.js',
+                defaultExtension: 'js'
+            }
         }
     });
 
@@ -40,9 +47,13 @@
         console.log('loading spec files: ' + specFiles.join(', '));
 
         return Promise.all(specFiles.map(specImport))
-            .then(success, console.error.bind(console));
+            .then(success)
+            .catch(function (err) {
+                console.error(err);
+            });
 
         function specImport(spec) {
+            console.log(spec);
             return System.import(spec);
         }
 

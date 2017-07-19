@@ -15,7 +15,7 @@ var FooterComponent1 = (function () {
 }());
 FooterComponent1 = __decorate([
     core_1.Component({
-        templateUrl: 'templates/page/footer.html'
+        template: '<h1>{{title}}</h1>'
     })
 ], FooterComponent1);
 exports.FooterComponent1 = FooterComponent1;

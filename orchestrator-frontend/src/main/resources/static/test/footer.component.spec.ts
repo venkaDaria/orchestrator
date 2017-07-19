@@ -10,23 +10,21 @@ describe('FooterComponent1 test', () => {
     let de: DebugElement;
     let el: HTMLElement;
 
-    beforeAll(() => {
-        TestBed.resetTestEnvironment();
-        TestBed.initTestEnvironment(
-            BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-    });
+    beforeEach((done: any) => {
+        before().then(done).catch((err: any) => console.log(err));
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [FooterComponent1],
-        }).compileComponents();
+        async function before() {
+            await TestBed.configureTestingModule({
+                declarations: [FooterComponent1],
+            }).compileComponents();
 
-        fixture = TestBed.createComponent(FooterComponent1);
+            fixture = TestBed.createComponent(FooterComponent1);
 
-        comp = fixture.componentInstance;
+            comp = fixture.componentInstance;
 
-        de = fixture.debugElement.query(By.css('h1'));
-        el = de.nativeElement;
+            de = fixture.debugElement.query(By.css('h1'));
+            el = de.nativeElement;
+        }
     });
 
     it('no title in the DOM until manually call `detectChanges`', () => expect(el.textContent).toEqual(''));

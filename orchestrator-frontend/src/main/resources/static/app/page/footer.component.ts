@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-    templateUrl: 'templates/page/footer.html'
+    template: '<h1>{{title}}</h1>'
 })
 export class FooterComponent1 {
     title = "I am Step1"
