@@ -11,7 +11,12 @@ describe('FooterComponent1 test', () => {
     let el: HTMLElement;
 
     beforeEach((done: any) => {
-        before().then(done).catch((err: any) => console.log(err));
+        before().then(done).catch(error);
+
+        function error(err: any) {
+            console.log(err);
+            done();
+        }
 
         async function before() {
             await TestBed.configureTestingModule({

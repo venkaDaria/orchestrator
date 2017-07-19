@@ -44,7 +44,11 @@ describe('FooterComponent1 test', function () {
     var de;
     var el;
     beforeEach(function (done) {
-        before().then(done).catch(function (err) { return console.log(err); });
+        before().then(done).catch(error);
+        function error(err) {
+            console.log(err);
+            done();
+        }
         function before() {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
