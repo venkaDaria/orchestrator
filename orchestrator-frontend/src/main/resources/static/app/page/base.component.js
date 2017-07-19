@@ -90,7 +90,8 @@ BaseComponent = __decorate([
         templateUrl: 'templates/page/main.html'
     }),
     core_1.Injectable(),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [typeof (_a = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _a || Object])
 ], BaseComponent);
 exports.BaseComponent = BaseComponent;
+var _a;
 //# sourceMappingURL=base.component.js.map

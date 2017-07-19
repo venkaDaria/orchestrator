@@ -1,8 +1,9 @@
-(function (global) {
+(function () {
+    var npm = 'https://unpkg.com/'; //'node_modules/'
+
     System.config({
         paths: {
-            //'npm:': 'node_modules/'
-            'npm:': 'https://unpkg.com/'
+            'npm:': npm
         },
         map: {
             app: 'app',
@@ -29,4 +30,4 @@
             }
         }
     });
-})(this);
+})();

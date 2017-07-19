@@ -36,7 +36,7 @@ StepComponent1 = __decorate([
         templateUrl: 'templates/step/step1.html'
     }),
     core_1.Injectable(),
-    __metadata("design:paramtypes", [wizard_service_1.StepValidationService1, router_1.Router])
+    __metadata("design:paramtypes", [wizard_service_1.StepValidationService1, typeof (_a = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _a || Object])
 ], StepComponent1);
 exports.StepComponent1 = StepComponent1;
 var StepComponent2 = (function (_super) {
@@ -51,7 +51,7 @@ StepComponent2 = __decorate([
         templateUrl: 'templates/step/step2.html'
     }),
     core_1.Injectable(),
-    __metadata("design:paramtypes", [wizard_service_1.StepValidationService2, router_1.Router])
+    __metadata("design:paramtypes", [wizard_service_1.StepValidationService2, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object])
 ], StepComponent2);
 exports.StepComponent2 = StepComponent2;
 var StepComponent3 = (function (_super) {
@@ -66,7 +66,7 @@ StepComponent3 = __decorate([
         templateUrl: 'templates/step/step3.html'
     }),
     core_1.Injectable(),
-    __metadata("design:paramtypes", [wizard_service_1.StepValidationService3, router_1.Router])
+    __metadata("design:paramtypes", [wizard_service_1.StepValidationService3, typeof (_c = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _c || Object])
 ], StepComponent3);
 exports.StepComponent3 = StepComponent3;
 var StepComponent4 = (function (_super) {
@@ -81,7 +81,7 @@ StepComponent4 = __decorate([
         templateUrl: 'templates/step/step4.html'
     }),
     core_1.Injectable(),
-    __metadata("design:paramtypes", [wizard_service_1.StepValidationService4, router_1.Router])
+    __metadata("design:paramtypes", [wizard_service_1.StepValidationService4, typeof (_d = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _d || Object])
 ], StepComponent4);
 exports.StepComponent4 = StepComponent4;
 var FinalStepComponent = (function (_super) {
@@ -97,4 +97,5 @@ FinalStepComponent = __decorate([
     })
 ], FinalStepComponent);
 exports.FinalStepComponent = FinalStepComponent;
+var _a, _b, _c, _d;
 //# sourceMappingURL=step.component.js.map

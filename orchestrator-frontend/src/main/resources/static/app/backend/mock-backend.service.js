@@ -123,7 +123,8 @@ var MockBackendService = (function () {
 }());
 MockBackendService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [testing_1.MockBackend, router_1.Router])
+    __metadata("design:paramtypes", [typeof (_a = typeof testing_1.MockBackend !== "undefined" && testing_1.MockBackend) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object])
 ], MockBackendService);
 exports.MockBackendService = MockBackendService;
+var _a, _b;
 //# sourceMappingURL=mock-backend.service.js.map

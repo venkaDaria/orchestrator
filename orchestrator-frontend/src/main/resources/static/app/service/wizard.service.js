@@ -46,7 +46,7 @@ var StepValidationService1 = (function (_super) {
 }(ValidationService));
 StepValidationService1 = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [typeof (_a = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _a || Object])
 ], StepValidationService1);
 exports.StepValidationService1 = StepValidationService1;
 var StepValidationService2 = (function (_super) {
@@ -58,7 +58,7 @@ var StepValidationService2 = (function (_super) {
 }(ValidationService));
 StepValidationService2 = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [typeof (_b = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _b || Object])
 ], StepValidationService2);
 exports.StepValidationService2 = StepValidationService2;
 var StepValidationService3 = (function (_super) {
@@ -70,7 +70,7 @@ var StepValidationService3 = (function (_super) {
 }(ValidationService));
 StepValidationService3 = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [typeof (_c = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _c || Object])
 ], StepValidationService3);
 exports.StepValidationService3 = StepValidationService3;
 var StepValidationService4 = (function (_super) {
@@ -82,7 +82,8 @@ var StepValidationService4 = (function (_super) {
 }(ValidationService));
 StepValidationService4 = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [typeof (_d = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _d || Object])
 ], StepValidationService4);
 exports.StepValidationService4 = StepValidationService4;
+var _a, _b, _c, _d;
 //# sourceMappingURL=wizard.service.js.map

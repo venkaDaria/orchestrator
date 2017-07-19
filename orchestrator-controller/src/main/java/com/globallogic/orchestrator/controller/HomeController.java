@@ -12,4 +12,10 @@ public class HomeController {
     public String index() {
         return "forward:index.html";
     }
+
+
+    @RequestMapping({"/test"})
+    public String test() {
+        return "forward:karma-index.html";
+    }
 }
