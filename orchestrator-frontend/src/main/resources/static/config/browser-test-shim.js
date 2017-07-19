@@ -22,7 +22,7 @@
         }
     });
 
-    System.import('systemjs.config.js')
+    System.import('config/systemjs.config.js')
         .then(initTestBed)
         .then(initTesting);
 
