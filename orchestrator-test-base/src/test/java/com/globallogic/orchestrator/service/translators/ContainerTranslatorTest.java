@@ -5,7 +5,6 @@ import com.globallogic.orchestrator.model.Status;
 import com.globallogic.orchestrator.model.entity.Container;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.entity.Service;
-import com.globallogic.orchestrator.service.translators.ContainerDtoTranslator;
 import org.junit.Before;
 import org.junit.Test;
 

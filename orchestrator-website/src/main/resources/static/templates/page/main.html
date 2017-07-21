@@ -1,0 +1,17 @@
+<div class="col-xs-12">
+    <div class="col-md-12 well">
+        <router-outlet></router-outlet>
+        <br/>
+
+        <ng-template [ngIf]="hasValue('errorMessage')">
+            <div class="alert alert-danger">
+                <strong>Error!</strong>
+                <p>{{getValue('errorMessage')}}</p>
+            </div>
+        </ng-template>
+
+        <ng-template [ngIf]="hasValue('loading')">
+            <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </ng-template>
+    </div>
+</div>

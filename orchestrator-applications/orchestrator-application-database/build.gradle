@@ -4,7 +4,7 @@ dependencies {
 
     compile project(':orchestrator-base')
 
-    compile project(':orchestrator-controller')
+    compile project(':orchestrator-webapi')
 
     compile project(':orchestrator-service-impl')
 
@@ -15,5 +15,7 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java'
 
     compile group: 'io.springfox', name: 'springfox-swagger-ui'
+
+    compile project(':orchestrator-website')
 }
 

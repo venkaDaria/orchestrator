@@ -23,7 +23,7 @@ include 'orchestrator-applications:orchestrator-application-database'
 include 'orchestrator-applications:orchestrator-application-mongodb'
 
 include 'orchestrator-base'
-include 'orchestrator-controller'
+include 'orchestrator-webapi'
 include 'orchestrator-model'
 
 include 'orchestrator-connectors'
@@ -45,4 +45,4 @@ include 'orchestrator-service-impl'
 
 include 'orchestrator-test-base'
 
-include 'orchestrator-frontend'
+include 'orchestrator-website'

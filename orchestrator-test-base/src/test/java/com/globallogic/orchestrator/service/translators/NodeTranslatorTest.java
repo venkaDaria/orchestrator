@@ -3,7 +3,6 @@ package com.globallogic.orchestrator.service.translators;
 import com.globallogic.orchestrator.dao.dto.NodeDto;
 import com.globallogic.orchestrator.model.entity.Node;
 import com.globallogic.orchestrator.model.valueobject.Role;
-import com.globallogic.orchestrator.service.translators.NodeDtoTranslator;
 import org.junit.Before;
 import org.junit.Test;
 

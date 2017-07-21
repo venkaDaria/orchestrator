@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href='/'>
+    <title>Angular Wizard</title>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+          integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css'
+          integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp' crossorigin='anonymous'>
+
+    <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css'/>
+
+    <link href='css/styles.css' rel='stylesheet'/>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
+            integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa'
+            crossorigin='anonymous'></script>
+
+    <!--<script src='node_modules/core-js/client/shim.min.js'></script>
+        <script src='node_modules/zone.js/dist/zone.js'></script>
+        <script src='node_modules/systemjs/dist/system.src.js'></script>-->
+
+    <script src='https://unpkg.com/core-js/client/shim.min.js'></script>
+    <script src='https://unpkg.com/zone.js/dist/zone.js'></script>
+    <script src='https://unpkg.com/systemjs/dist/system.src.js'></script>
+
+    <script src='config/systemjs.config.js'></script>
+    <script>
+        System.import('app').catch(function (err) {
+            console.error(err);
+        });
+    </script>
+</head>
+<body>
+<app-component>
+    <div class="form-group"></div>
+    <div class="container">
+        <i class="fa fa-refresh fa-spin fa-5x"></i>
+    </div>
+</app-component>
+</body>
+</html>
