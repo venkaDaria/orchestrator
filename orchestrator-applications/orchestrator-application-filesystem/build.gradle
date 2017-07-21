@@ -4,12 +4,14 @@ dependencies {
 
     compile project(':orchestrator-base')
 
-    compile project(':orchestrator-controller')
+    compile project(':orchestrator-webapi')
 
     compile project(':orchestrator-service-impl')
 
     compile project(':orchestrator-daos:orchestrator-dao-filesystem-impl')
 
     compile group: 'io.springfox', name: 'springfox-swagger-ui'
+
+    compile project(':orchestrator-website')
 }
 

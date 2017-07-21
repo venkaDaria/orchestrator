@@ -4,7 +4,7 @@ dependencies {
 
     compile project(':orchestrator-base')
 
-    compile project(':orchestrator-controller')
+    compile project(':orchestrator-webapi')
 
     compile project(':orchestrator-service-impl')
 
@@ -13,4 +13,6 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger-ui'
 
     compile group: 'org.mongodb', name: 'mongodb-driver'
+
+    compile project(':orchestrator-website')
 }
