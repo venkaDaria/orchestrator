@@ -19,3 +19,7 @@ build
 *.iml
 
 setting.properties
+
+*.js
+!config/*.js
+*.js.map
